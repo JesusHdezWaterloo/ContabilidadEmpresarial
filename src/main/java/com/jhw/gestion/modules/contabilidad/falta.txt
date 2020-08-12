@@ -1,0 +1,7 @@
+Falta:
+-   Subcuenta:
+    * Que no hayan ciclos
+    * Lo de la suma de los % no exceda 100%
+
+-deposito:
+destroy pago

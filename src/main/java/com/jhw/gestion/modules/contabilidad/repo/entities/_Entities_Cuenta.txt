@@ -1,0 +1,95 @@
+-------------------- Cuenta --------------------
+    public Cuenta(String nombreCuenta, float porciento, double totalDepositos, double totalExtracciones, String numeroCuenta, String pin, String descripcion, boolean cuentaBase, Moneda monedaFk) {
+        this.nombreCuenta = nombreCuenta;
+        this.porciento = porciento;
+        this.totalDepositos = totalDepositos;
+        this.totalExtracciones = totalExtracciones;
+        this.numeroCuenta = numeroCuenta;
+        this.pin = pin;
+        this.descripcion = descripcion;
+        this.cuentaBase = cuentaBase;
+        this.monedaFk = monedaFk;
+    }
+
+    public float getValorTotal() {
+        return Misc.round2f(totalDepositos - totalExtracciones);
+    }
+
+    @Override
+    public String toString() {
+        return nombreCuenta;
+    }
+
+    public List<Cuenta> getCuentasHijos() {
+        return new CuentaService().findCuentasHijoDelPadre(this);
+    }
+
+    public List<Cuenta> getCuentasPadre() {
+        return new CuentaService().findCuentasPadresDelHijo(this);
+    }
+
+-------------------- DepositoCuenta --------------------
+    public DepositoCuenta(float valor, float porciento, Cuenta cuentaFk, PagoTrabajoRealizado pagoTrabRealizFk) {
+        this.valor = valor;
+        this.porciento = porciento;
+        this.cuentaFk = cuentaFk;
+        this.pagoTrabRealizFk = pagoTrabRealizFk;
+    }
+
+    @Override
+    public String toString() {
+        return "Depósito por valor de :" + StringFormating.formatToMoney(valor) + " en la cuenta " + cuentaFk;
+    }
+
+-------------------- ExtraccionCuenta --------------------
+    public ExtraccionCuenta(String nombreExtraccCta, Date fecha, float valor, boolean deducido, String descripcion, TipoExtraccion tipoExtraccion, int idExterno, Cuenta cuentaFk) {
+        this.nombreExtraccCta = nombreExtraccCta;
+        this.fecha = fecha;
+        this.valor = valor;
+        this.deducido = deducido;
+        this.descripcion = descripcion;
+        this.tipoExtraccion = tipoExtraccion;
+        this.idExterno = idExterno;
+        this.cuentaFk = cuentaFk;
+    }
+
+    @Override
+    public String toString() {
+        return "Extracción por valor de :" + StringFormating.formatToMoney(valor) + " de la cuenta " + cuentaFk;
+    }
+
+-------------------- Moneda --------------------
+    public Moneda(String tipoMoneda, float compra, float venta, String descripcion) {
+        this.tipoMoneda = tipoMoneda;
+        this.compra = compra;
+        this.venta = venta;
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return tipoMoneda;
+    }
+
+-------------------- Subcuenta --------------------	
+    public Subcuenta(String descripcion, Cuenta cuentaHijoFk, Cuenta cuentaPadreFk) {
+        this.descripcion = descripcion;
+        this.cuentaHijoFk = cuentaHijoFk;
+        this.cuentaPadreFk = cuentaPadreFk;
+    }
+
+    @Override
+    public String toString() {
+        return "Padre: " + cuentaPadreFk + " - Hijo: " + cuentaHijoFk;
+    }
+
+-------------------- TipoExtraccion --------------------	
+    public TipoExtraccion(String nombreTipoExtraccion, String descripcion) {
+        this.nombreTipoExtraccion = nombreTipoExtraccion;
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return nombreTipoExtraccion;
+    }

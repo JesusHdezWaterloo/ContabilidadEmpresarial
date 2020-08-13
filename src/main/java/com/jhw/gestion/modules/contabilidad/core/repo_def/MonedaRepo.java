@@ -1,14 +1,8 @@
 package com.jhw.gestion.modules.contabilidad.core.repo_def;
 
 import com.clean.core.app.repo.CRUDRepository;
-import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
-import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
-import com.jhw.utils.others.PairDifferent;
+import com.jhw.gestion.modules.contabilidad.core.domain.*;
 
 public interface MonedaRepo extends CRUDRepository<MonedaDomain> {
-
-    public PairDifferent<MonedaDomain, CuentaDomain> create(MonedaDomain moneda, CuentaDomain cuenta) throws Exception;
-
-    public PairDifferent<MonedaDomain, CuentaDomain> destroy(MonedaDomain moneda, CuentaDomain cuenta) throws Exception;
 
 }

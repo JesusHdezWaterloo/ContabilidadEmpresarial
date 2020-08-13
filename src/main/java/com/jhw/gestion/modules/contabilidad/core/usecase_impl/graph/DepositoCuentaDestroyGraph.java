@@ -5,9 +5,9 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl.graph;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
-import com.jhw.gestion.modules.contabilidad.core.domain.DepositoCuentaDomain;
-import com.jhw.gestion.modules.contabilidad.core.domain.ExtraccionCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.DepositoCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.ExtraccionCuentaDomain;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.DepositoCuentaUseCase;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.ExtraccionCuentaUseCase;

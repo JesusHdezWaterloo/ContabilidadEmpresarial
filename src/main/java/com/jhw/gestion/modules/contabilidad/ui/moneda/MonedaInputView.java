@@ -6,7 +6,7 @@ import com.jhw.swing.material.components.container.layout.HorizontalLayoutCompon
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import java.util.Map;

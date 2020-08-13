@@ -1,6 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.ui.subcuenta;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
 
 /**
  *

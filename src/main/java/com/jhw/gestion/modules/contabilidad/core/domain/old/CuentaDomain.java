@@ -1,4 +1,4 @@
-package com.jhw.gestion.modules.contabilidad.core.domain;
+package com.jhw.gestion.modules.contabilidad.core.domain.old;
 
 import com.clean.core.exceptions.ValidationException;
 import com.clean.core.utils.SortBy;

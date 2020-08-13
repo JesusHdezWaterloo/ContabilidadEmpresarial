@@ -1,6 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta.mix;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
 import com.jhw.swing.models.input.panels.ModelMixPanel;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaInputView;
 

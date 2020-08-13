@@ -1,6 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;

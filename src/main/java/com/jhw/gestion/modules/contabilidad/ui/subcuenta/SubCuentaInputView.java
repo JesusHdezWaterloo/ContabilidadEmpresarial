@@ -1,9 +1,9 @@
 package com.jhw.gestion.modules.contabilidad.ui.subcuenta;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.SubcuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.SubcuentaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import java.util.Map;
 

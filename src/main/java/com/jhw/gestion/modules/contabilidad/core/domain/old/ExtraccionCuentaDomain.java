@@ -1,4 +1,4 @@
-package com.jhw.gestion.modules.contabilidad.core.domain;
+package com.jhw.gestion.modules.contabilidad.core.domain.old;
 
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import com.jhw.utils.others.StringFormating;

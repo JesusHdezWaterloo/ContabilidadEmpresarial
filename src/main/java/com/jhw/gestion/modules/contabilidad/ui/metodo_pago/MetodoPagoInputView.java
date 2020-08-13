@@ -2,7 +2,7 @@ package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.MetodoPagoDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MetodoPagoDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import java.util.Map;
 

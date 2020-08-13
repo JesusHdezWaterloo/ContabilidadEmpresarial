@@ -1,7 +1,10 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_def;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.ExtraccionCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.DepositoCuentaDomain;
 import com.clean.core.app.usecase.CRUDUseCase;
-import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import java.util.List;
 
 public interface CuentaUseCase extends CRUDUseCase<CuentaDomain> {

@@ -1,10 +1,12 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.ExtraccionCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.TipoExtraccionDomain;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
-import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import java.util.List;
 
 public class ExtraccionCuentaUseCaseImpl extends DefaultCRUDUseCase<ExtraccionCuentaDomain> implements ExtraccionCuentaUseCase {

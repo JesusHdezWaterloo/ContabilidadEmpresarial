@@ -1,9 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.DepositoCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.PagoParaDepositar;
 import com.jhw.gestion.modules.contabilidad.core.usecase_impl.graph.DepositoCuentaCreateGraph;
 import com.jhw.gestion.modules.contabilidad.core.usecase_impl.graph.DepositoCuentaDestroyGraph;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
-import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;

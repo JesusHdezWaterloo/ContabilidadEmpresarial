@@ -1,7 +1,7 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
 import com.jhw.swing.bundles.dialog.DialogPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

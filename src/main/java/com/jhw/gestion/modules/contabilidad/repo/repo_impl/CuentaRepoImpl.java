@@ -1,6 +1,10 @@
 package com.jhw.gestion.modules.contabilidad.repo.repo_impl;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.SubcuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.ExtraccionCuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.DepositoCuentaDomain;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.entities.old.Cuenta;
 import com.jhw.gestion.modules.contabilidad.repo.entities.old.Moneda;

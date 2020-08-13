@@ -1,7 +1,7 @@
 package com.jhw.gestion.modules.contabilidad.utils;
 
 import com.clean.core.app.services.ExceptionHandler;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.MonedaUseCase;
 

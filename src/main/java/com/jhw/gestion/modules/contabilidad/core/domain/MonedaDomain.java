@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.clean.core.utils.SortBy;
@@ -8,7 +13,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"tipoMoneda"})
 public class MonedaDomain extends EntityDomainObjectValidated {
@@ -17,13 +22,13 @@ public class MonedaDomain extends EntityDomainObjectValidated {
 
     @NotEmpty(message = "#msg.module.contabilidad.validation.moneda_nombre_vacio#")
     @Size(max = 3, message = "#msg.module.contabilidad.validation.moneda_nombre_largo#")
-    private String tipoMoneda;
+    private String nombreMoneda;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.moneda_compra_negativo#")
-    private float compra;
+    private double compra;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.moneda_venta_negativo#")
-    private float venta;
+    private double venta;
 
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
@@ -35,17 +40,11 @@ public class MonedaDomain extends EntityDomainObjectValidated {
         this.idMoneda = idMoneda;
     }
 
-    public MonedaDomain(String tipoMoneda, float compra, float venta, String descripcion) {
-        this.tipoMoneda = tipoMoneda;
+    public MonedaDomain(String nombreMoneda, float compra, float venta, String descripcion) {
+        this.nombreMoneda = nombreMoneda;
         this.compra = compra;
         this.venta = venta;
         this.descripcion = descripcion;
-        validate();
-    }
-
-    @Override
-    public String toString() {
-        return tipoMoneda;
     }
 
     public Integer getIdMoneda() {
@@ -56,27 +55,27 @@ public class MonedaDomain extends EntityDomainObjectValidated {
         this.idMoneda = idMoneda;
     }
 
-    public String getTipoMoneda() {
-        return tipoMoneda;
+    public String getNombreMoneda() {
+        return nombreMoneda;
     }
 
-    public void setTipoMoneda(String tipoMoneda) {
-        this.tipoMoneda = tipoMoneda;
+    public void setNombreMoneda(String nombreMoneda) {
+        this.nombreMoneda = nombreMoneda;
     }
 
-    public float getCompra() {
+    public double getCompra() {
         return compra;
     }
 
-    public void setCompra(float compra) {
+    public void setCompra(double compra) {
         this.compra = compra;
     }
 
-    public float getVenta() {
+    public double getVenta() {
         return venta;
     }
 
-    public void setVenta(float venta) {
+    public void setVenta(double venta) {
         this.venta = venta;
     }
 
@@ -106,6 +105,11 @@ public class MonedaDomain extends EntityDomainObjectValidated {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return nombreMoneda;
     }
 
 }

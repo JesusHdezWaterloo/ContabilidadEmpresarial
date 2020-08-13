@@ -5,8 +5,8 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl.graph;
 
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
-import com.jhw.gestion.modules.contabilidad.core.domain.SubcuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.SubcuentaDomain;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.CuentaUseCase;
 import java.util.HashMap;

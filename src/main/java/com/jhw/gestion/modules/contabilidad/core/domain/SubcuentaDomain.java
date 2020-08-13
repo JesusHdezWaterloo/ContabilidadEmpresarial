@@ -1,25 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.jhw.utils.clean.EntityDomainObjectValidated;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
+ * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public class SubcuentaDomain extends EntityDomainObjectValidated {
 
     private Integer idSubcuenta;
 
+    @Max(value = 100, message = "#msg.module.contabilidad.validation.porciento_mayor_que_100#")
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.porciento_negativo#")
+    private float pociento;
+
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
     @NotNull(message = "#msg.module.contabilidad.validation.subcuenta_hijo_null#")
-    private CuentaDomain cuentaHijoFk;
+    private CuentaContableDomain cuentaHijoFk;
 
     @NotNull(message = "#msg.module.contabilidad.validation.subcuenta_padre_null#")
-    private CuentaDomain cuentaPadreFk;
+    private CuentaContableDomain cuentaPadreFk;
 
     public SubcuentaDomain() {
     }
@@ -28,11 +39,11 @@ public class SubcuentaDomain extends EntityDomainObjectValidated {
         this.idSubcuenta = idSubcuenta;
     }
 
-    public SubcuentaDomain(String descripcion, CuentaDomain cuentaHijoFk, CuentaDomain cuentaPadreFk) {
+    public SubcuentaDomain(float pociento, String descripcion, CuentaContableDomain cuentaHijoFk, CuentaContableDomain cuentaPadreFk) {
+        this.pociento = pociento;
         this.descripcion = descripcion;
         this.cuentaHijoFk = cuentaHijoFk;
         this.cuentaPadreFk = cuentaPadreFk;
-        validate();
     }
 
     public Integer getIdSubcuenta() {
@@ -43,6 +54,14 @@ public class SubcuentaDomain extends EntityDomainObjectValidated {
         this.idSubcuenta = idSubcuenta;
     }
 
+    public float getPociento() {
+        return pociento;
+    }
+
+    public void setPociento(float pociento) {
+        this.pociento = pociento;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -51,19 +70,19 @@ public class SubcuentaDomain extends EntityDomainObjectValidated {
         this.descripcion = descripcion;
     }
 
-    public CuentaDomain getCuentaHijoFk() {
+    public CuentaContableDomain getCuentaHijoFk() {
         return cuentaHijoFk;
     }
 
-    public void setCuentaHijoFk(CuentaDomain cuentaHijoFk) {
+    public void setCuentaHijoFk(CuentaContableDomain cuentaHijoFk) {
         this.cuentaHijoFk = cuentaHijoFk;
     }
 
-    public CuentaDomain getCuentaPadreFk() {
+    public CuentaContableDomain getCuentaPadreFk() {
         return cuentaPadreFk;
     }
 
-    public void setCuentaPadreFk(CuentaDomain cuentaPadreFk) {
+    public void setCuentaPadreFk(CuentaContableDomain cuentaPadreFk) {
         this.cuentaPadreFk = cuentaPadreFk;
     }
 

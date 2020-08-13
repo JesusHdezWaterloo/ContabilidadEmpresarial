@@ -1,11 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
 
 import com.clean.core.app.services.ExceptionHandler;
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.CuentaDomain;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
-import com.jhw.gestion.modules.contabilidad.core.domain.MetodoPagoDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.old.MetodoPagoDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import java.util.ArrayList;
 import java.util.List;

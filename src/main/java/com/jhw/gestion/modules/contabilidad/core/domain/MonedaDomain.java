@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@SortBy(priority = {"tipoMoneda"})
+@SortBy(priority = {"nombreMoneda"})
 public class MonedaDomain extends EntityDomainObjectValidated {
 
     private Integer idMoneda;

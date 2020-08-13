@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
@@ -15,7 +16,8 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class OperacionBancariaDomain extends EntityDomainObjectValidated {
+@SortBy(priority = {"documento", "nombre"})
+public class OperacionBancariaDomain extends EntityDomainObjectValidated implements Operacion {
 
     private Integer idOperacionBancaria;
 
@@ -69,50 +71,72 @@ public class OperacionBancariaDomain extends EntityDomainObjectValidated {
         this.idOperacionBancaria = idOperacionBancaria;
     }
 
+    @Override
+    public Integer getIdOperacion() {
+        return getIdOperacionBancaria();
+    }
+
+    @Override
+    public void setIdOperacion(Integer idOperacion) {
+        setIdOperacionBancaria(idOperacion);
+    }
+
+    @Override
     public String getDocumento() {
         return documento;
     }
 
+    @Override
     public void setDocumento(String documento) {
         this.documento = documento;
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
 
+    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
 
+    @Override
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    @Override
     public Date getFecha() {
         return fecha;
     }
 
+    @Override
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }

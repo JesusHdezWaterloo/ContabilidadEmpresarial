@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,8 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class CuentaContableDomain extends EntityDomainObjectValidated {
+@SortBy(priority = {"nombreCuenta", "codigo"})
+public class CuentaContableDomain extends EntityDomainObjectValidated implements Cuenta {
 
     private Integer idCuentaContable;
 
@@ -63,42 +65,62 @@ public class CuentaContableDomain extends EntityDomainObjectValidated {
         this.idCuentaContable = idCuentaContable;
     }
 
+    @Override
+    public Integer getIdCuenta() {
+        return getIdCuentaContable();
+    }
+
+    @Override
+    public void setIdCuenta(Integer idCuenta) {
+        setIdCuentaContable(idCuenta);
+    }
+
+    @Override
     public String getNombreCuenta() {
         return nombreCuenta;
     }
 
+    @Override
     public void setNombreCuenta(String nombreCuenta) {
         this.nombreCuenta = nombreCuenta;
     }
 
+    @Override
     public String getCodigo() {
         return codigo;
     }
 
+    @Override
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
 
+    @Override
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -111,10 +133,12 @@ public class CuentaContableDomain extends EntityDomainObjectValidated {
         this.tipoCuentaFk = tipoCuentaFk;
     }
 
+    @Override
     public MonedaDomain getMonedaFk() {
         return monedaFk;
     }
 
+    @Override
     public void setMonedaFk(MonedaDomain monedaFk) {
         this.monedaFk = monedaFk;
     }
@@ -143,5 +167,4 @@ public class CuentaContableDomain extends EntityDomainObjectValidated {
     public String toString() {
         return nombreCuenta + " (" + codigo + ")";
     }
-
 }

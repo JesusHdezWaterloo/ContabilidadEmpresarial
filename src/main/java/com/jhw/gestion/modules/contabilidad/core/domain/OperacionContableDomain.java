@@ -5,21 +5,9 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.jhw.gestion.modules.contabilidad.repo.entities.*;
+import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
-import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +16,8 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class OperacionContableDomain extends EntityDomainObjectValidated {
+@SortBy(priority = {"documento", "nombre"})
+public class OperacionContableDomain extends EntityDomainObjectValidated implements Operacion {
 
     private Integer idOperacionContable;
 
@@ -86,42 +75,72 @@ public class OperacionContableDomain extends EntityDomainObjectValidated {
         this.idOperacionContable = idOperacionContable;
     }
 
+    @Override
+    public Integer getIdOperacion() {
+        return getIdOperacionContable();
+    }
+
+    @Override
+    public void setIdOperacion(Integer idOperacion) {
+        setIdOperacionContable(idOperacion);
+    }
+
+    @Override
     public String getDocumento() {
         return documento;
     }
 
+    @Override
     public void setDocumento(String documento) {
         this.documento = documento;
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
 
+    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }
 
+    @Override
+    public Date getFecha() {
+        return fecha;
+    }
+
+    @Override
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
 
+    @Override
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"nombreCuenta", "codigo"})
-public class CuentaBancariaDomain extends EntityDomainObjectValidated {
+public class CuentaBancariaDomain extends EntityDomainObjectValidated implements Cuenta {
 
     private Integer idCuentaBancaria;
 
@@ -70,10 +70,22 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
+    @Override
+    public Integer getIdCuenta() {
+        return getIdCuentaBancaria();
+    }
+
+    @Override
+    public void setIdCuenta(Integer idCuenta) {
+        setIdCuentaBancaria(idCuenta);
+    }
+
+    @Override
     public String getNombreCuenta() {
         return nombreCuenta;
     }
 
+    @Override
     public void setNombreCuenta(String nombreCuenta) {
         this.nombreCuenta = nombreCuenta;
     }
@@ -94,42 +106,52 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated {
         this.pin = pin;
     }
 
+    @Override
     public String getCodigo() {
         return codigo;
     }
 
+    @Override
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }
 
+    @Override
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    @Override
     public MonedaDomain getMonedaFk() {
         return monedaFk;
     }
 
+    @Override
     public void setMonedaFk(MonedaDomain monedaFk) {
         this.monedaFk = monedaFk;
     }

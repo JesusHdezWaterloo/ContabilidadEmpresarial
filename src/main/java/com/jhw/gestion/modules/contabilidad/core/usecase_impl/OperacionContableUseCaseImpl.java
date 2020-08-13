@@ -6,11 +6,11 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 
-public class MonedaUseCaseImpl extends DefaultCRUDUseCase<MonedaDomain> implements MonedaUseCase {
+public class OperacionContableUseCaseImpl extends DefaultCRUDUseCase<OperacionContableDomain> implements OperacionContableUseCase {
 
-    private final MonedaRepo repo = ContabilidadCoreModule.getInstance().getImplementation(MonedaRepo.class);
+    private final OperacionContableRepo repo = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableRepo.class);
 
-    public MonedaUseCaseImpl() {
+    public OperacionContableUseCaseImpl() {
         super.setRepo(repo);
     }
 

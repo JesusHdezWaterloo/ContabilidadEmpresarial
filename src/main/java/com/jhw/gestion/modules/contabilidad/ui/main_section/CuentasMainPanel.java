@@ -7,7 +7,7 @@ import com.jhw.swing.models.input.dialogs.DialogModelMixInput;
 import java.awt.GridLayout;
 import java.util.List;
 import com.jhw.gestion.modules.contabilidad.repo.entities.old.Cuenta;
-import com.jhw.gestion.modules.contabilidad.core.usecase_impl.CuentaUseCaseImpl;
+import com.jhw.gestion.modules.contabilidad.core.usecase_impl.CuentaBancariaUseCaseImpl;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.mix.CuentaInputMIXView;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 

@@ -1,7 +1,7 @@
 package com.jhw.gestion.modules.contabilidad.ui.moneda;
 
 import com.jhw.gestion.modules.contabilidad.core.usecase_impl.MonedaUseCaseImpl;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Moneda;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Moneda;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;

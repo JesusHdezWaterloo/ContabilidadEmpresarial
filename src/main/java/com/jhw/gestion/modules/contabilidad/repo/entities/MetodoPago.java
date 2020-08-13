@@ -16,6 +16,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,10 +39,16 @@ public class MetodoPago implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_metodo_pago", nullable = false)
     private Integer idMetodoPago;
+    
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "nombre_metodo_pago", nullable = false, length = 100)
     private String nombreMetodoPago;
+    
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
 
@@ -103,7 +111,7 @@ public class MetodoPago implements Serializable {
 
     @Override
     public String toString() {
-        return "testJPA.entities.MetodoPago[ idMetodoPago=" + idMetodoPago + " ]";
+        return "com.jhw.gestion.modules.contabilidad.repo.entities.MetodoPago[ idMetodoPago=" + idMetodoPago + " ]";
     }
     
 }

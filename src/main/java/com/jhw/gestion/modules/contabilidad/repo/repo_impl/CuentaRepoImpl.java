@@ -2,8 +2,8 @@ package com.jhw.gestion.modules.contabilidad.repo.repo_impl;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Cuenta;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Moneda;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Cuenta;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Moneda;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
 import com.jhw.utils.jackson.JACKSON;

@@ -2,7 +2,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta.mix;
 
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.ExtraccionCuentaDomain;
-import com.jhw.gestion.modules.contabilidad.repo.entities.ExtraccionCuenta;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.ExtraccionCuenta;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;

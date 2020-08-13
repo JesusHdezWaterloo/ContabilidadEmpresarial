@@ -2,7 +2,7 @@ package com.jhw.gestion.modules.contabilidad.ui.subcuenta;
 
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Subcuenta;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Subcuenta;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.gestion.modules.contabilidad.core.domain.SubcuentaDomain;

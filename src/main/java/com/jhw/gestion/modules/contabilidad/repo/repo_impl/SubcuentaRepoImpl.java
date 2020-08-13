@@ -2,8 +2,8 @@ package com.jhw.gestion.modules.contabilidad.repo.repo_impl;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Cuenta;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Subcuenta;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Cuenta;
+import com.jhw.gestion.modules.contabilidad.repo.entities.old.Subcuenta;
 import java.util.List;
 import javax.persistence.EntityManager;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;

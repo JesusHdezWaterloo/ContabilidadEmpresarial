@@ -27,25 +27,29 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     }
 
     private void initComponents() {
+        setHeader("Crear Moneda", "Editar Moneda");
 
+
+        //tipo
         textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
-        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
-        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-
-        setHeader("Nueva Moneda", "Editar Moneda");
-
-        textFieldTipo.setHint("Tipo de moneda. Ej.: EUR");
         textFieldTipo.setLabel("Moneda");
+        textFieldTipo.setHint("Nombre de moneda. Ej.: EUR");
 
+        //compra
+        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
+        //venta
+        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
+        
+        //descripcion
+        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
-
         HorizontalLayoutContainer.builder hlcCompraVenta = HorizontalLayoutContainer.builder((int) textFieldCompra.getPreferredSize().getHeight());
         hlcCompraVenta.add(HorizontalLayoutComponent.builder(textFieldCompra).gapRight(5).build());
         hlcCompraVenta.add(HorizontalLayoutComponent.builder(textFieldVenta).gapLeft(5).build());

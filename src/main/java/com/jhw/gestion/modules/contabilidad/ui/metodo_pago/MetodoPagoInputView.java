@@ -2,7 +2,7 @@ package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.old.MetodoPagoDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import java.util.Map;
 
@@ -24,16 +24,18 @@ public class MetodoPagoInputView extends CleanCRUDInputView<MetodoPagoDomain> {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
+        //header
+        setHeader("Crear Tipo de Pago", "Editar Tipo de Pago");
 
+        //nombre
         textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldNombre.setLabel("Tipo de pago");
+        textFieldNombre.setHint("Nombre del tipo de pago. Ej: Efectivo");
+
+        //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
 
-        setHeader("Nuevo Tipo de Pago", "Editar Tipo de Pago");
-
-        textFieldNombre.setHint("Nombre del tipo de pago. Ej.: Efectivo");
-        textFieldNombre.setLabel("Tipo de pago");
-
-        VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder(300);
+        VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
         vlc.add(textFieldNombre);
         vlc.add(textAreaDescripcion, true);

@@ -18,7 +18,7 @@ public class CuentaICBS extends ICBSNotEmptySeleccionable<CuentaDomain> {
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.cuentaUC.findAll());
+        setModel(ContabilidadSwingModule.cuentaBancariaUC.findAll());
     }
 
     @Override

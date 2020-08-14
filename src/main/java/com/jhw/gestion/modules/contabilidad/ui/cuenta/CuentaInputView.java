@@ -34,7 +34,7 @@ public class CuentaInputView extends CleanCRUDInputView<CuentaDomain> {
     }
 
     public CuentaInputView(CuentaDomain model) {
-        super(model, ContabilidadSwingModule.cuentaUC, CuentaDomain.class);
+        super(model, ContabilidadSwingModule.cuentaBancariaUC, CuentaDomain.class);
         initComponents();
         addListeners();
         update();

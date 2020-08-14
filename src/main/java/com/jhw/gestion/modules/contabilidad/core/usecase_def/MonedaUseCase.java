@@ -5,4 +5,6 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 
 public interface MonedaUseCase extends CRUDUseCase<MonedaDomain> {
 
+    public MonedaDomain findMonedaBase() throws Exception;
+
 }

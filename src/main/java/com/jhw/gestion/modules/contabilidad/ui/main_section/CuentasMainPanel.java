@@ -136,7 +136,7 @@ public class CuentasMainPanel extends javax.swing.JPanel implements Update {
 
     private void rellenarCuentas() {
         try {
-            List<CuentaDomain> cuentas = ContabilidadSwingModule.cuentaUC.findAll();
+            List<CuentaDomain> cuentas = ContabilidadSwingModule.cuentaBancariaUC.findAll();
             panelCuentas.removeAll();
 
             panelCuentas.setLayout(new GridLayout(cuentas.size() / 4 + 1, 0));

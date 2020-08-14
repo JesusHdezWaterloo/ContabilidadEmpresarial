@@ -36,7 +36,7 @@ public class CuentasChartPanel extends _MaterialBarChart implements Update {
     public void update() {
         try {
             removeAllBars();
-            List<CuentaDomain> cta = ContabilidadSwingModule.cuentaUC.findAll();
+            List<CuentaDomain> cta = ContabilidadSwingModule.cuentaBancariaUC.findAll();
             //coje una moneda para convertilas todas
             MonedaDomain monBase = MonedaHandler.getMonedaBase();
             if (monBase == null) {

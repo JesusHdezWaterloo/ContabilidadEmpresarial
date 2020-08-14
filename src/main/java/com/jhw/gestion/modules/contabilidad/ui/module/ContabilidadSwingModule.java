@@ -20,27 +20,29 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
 
     private final ContabilidadModuleNavigator navigator = new ContabilidadModuleNavigator();
 
-    public final static CuentaUseCase cuentaUC;
-    public final static DepositoCuentaUseCase depositoUC;
-    public final static ExtraccionCuentaUseCase extraccionUC;
+    public final static CuentaBancariaUseCase cuentaBancariaUC;
+    public final static CuentaContableUseCase cuentaContableUC;
     public final static MetodoPagoUseCase metodoPagoUC;
     public final static MonedaUseCase monedaUC;
+    public final static OperacionBancariaUseCase operacionBancariaUC;
+    public final static OperacionContableUseCase operacionContableUC;
     public final static SubcuentaUseCase subcuentaUC;
-    public final static TipoDepositoUseCase tipoDepositoUC;
-    public final static TipoExtraccionUseCase tipoExtraccionUC;
+    public final static TipoCuentaUseCase tipoCuentaUC;
+    public final static TipoOperacionContableUseCase tipoOperacionContableUC;
 
     static {
         ContabilidadCoreModule.init(ContabilidadRepoModule.init());
-        
-        cuentaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaUseCase.class);
-        depositoUC = ContabilidadCoreModule.getInstance().getImplementation(DepositoCuentaUseCase.class);
-        extraccionUC = ContabilidadCoreModule.getInstance().getImplementation(ExtraccionCuentaUseCase.class);
+
+        cuentaBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class);
+        cuentaContableUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaContableUseCase.class);
         metodoPagoUC = ContabilidadCoreModule.getInstance().getImplementation(MetodoPagoUseCase.class);
         monedaUC = ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class);
+        operacionBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionBancariaUseCase.class);
+        operacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableUseCase.class);
         subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
-        tipoDepositoUC = ContabilidadCoreModule.getInstance().getImplementation(TipoDepositoUseCase.class);
-        tipoExtraccionUC = ContabilidadCoreModule.getInstance().getImplementation(TipoExtraccionUseCase.class);
-    
+        tipoCuentaUC = ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class);
+        tipoOperacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableUseCase.class);
+
         ResourceServiceImplementation.init();
     }
 
@@ -53,7 +55,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
-        System.out.println("Creando 'Cuenta'");
+        System.out.println("Creando 'Cuentas'");
         registerMainElements(app);
     }
 

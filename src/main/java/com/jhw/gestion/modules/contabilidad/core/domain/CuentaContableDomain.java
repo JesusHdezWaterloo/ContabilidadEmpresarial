@@ -34,11 +34,11 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
-    @NotNull(message = "#msg.module.contabilidad.validation.cuenta_contable_tipo_cuenta_null#")
-    private TipoCuentaDomain tipoCuentaFk;
-
     @NotNull(message = "#msg.module.contabilidad.validation.cuenta_moneda_null#")
     private MonedaDomain monedaFk;
+
+    @NotNull(message = "#msg.module.contabilidad.validation.cuenta_contable_tipo_cuenta_null#")
+    private TipoCuentaDomain tipoCuentaFk;
 
     public CuentaContableDomain() {
     }

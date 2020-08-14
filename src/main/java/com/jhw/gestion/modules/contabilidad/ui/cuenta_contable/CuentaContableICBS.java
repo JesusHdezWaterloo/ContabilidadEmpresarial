@@ -1,24 +1,25 @@
-package com.jhw.gestion.modules.contabilidad.ui.moneda;
+package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 
+import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.*;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.*;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class MonedaICBS extends ICBSNotEmptySeleccionable<MonedaDomain> {
+public class CuentaContableICBS extends ICBSNotEmptySeleccionable<CuentaContableDomain> {
 
-    public MonedaICBS() {
-        super("Moneda");
+    public CuentaContableICBS() {
+        super("Cuenta Contable");
     }
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.monedaUC.findAll());
+        setModel(ContabilidadSwingModule.cuentaContableUC.findAll());
     }
 
     @Override
@@ -32,6 +33,6 @@ public class MonedaICBS extends ICBSNotEmptySeleccionable<MonedaDomain> {
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new MonedaInputView());
+        new DialogInputCBS(this, new CuentaContableInputView());
     }
 }

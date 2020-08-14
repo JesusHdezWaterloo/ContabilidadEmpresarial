@@ -1,12 +1,10 @@
 package com.jhw.gestion.modules.contabilidad.ui.moneda;
 
-import com.jhw.gestion.modules.contabilidad.core.usecase_impl.MonedaUseCaseImpl;
-import com.jhw.gestion.modules.contabilidad.repo.entities.old.Moneda;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.old.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import java.util.Map;
@@ -66,14 +64,14 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     // End of variables declaration                   
 
     private void personalize() {
-        textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getTipoMoneda());
-        textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getTipoMoneda());
+        textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
+        textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
     }
 
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
-        bindFields.put("tipoMoneda", textFieldTipo);
+        bindFields.put("nombreMoneda", textFieldTipo);
         bindFields.put("compra", textFieldCompra);
         bindFields.put("venta", textFieldVenta);
         bindFields.put("descripcion", textAreaDescripcion);

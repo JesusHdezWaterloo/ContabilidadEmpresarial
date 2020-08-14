@@ -27,6 +27,9 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
     @Size(min = 16, max = 16, message = "#msg.module.contabilidad.validation.cuenta_numero_tamanno_incorrecto#")
     private String numeroCuenta;
 
+    @Size(max = 16, message = "#msg.module.contabilidad.validation.cuenta_tarjeta_tamanno_incorrecto#")
+    private String numeroTarjeta;
+
     @Size(max = 4, message = "#msg.module.contabilidad.validation.cuenta_pin_tamanno_incorrecto#")
     private String pin;
 
@@ -50,9 +53,10 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public CuentaBancariaDomain(String nombreCuenta, String numeroCuenta, String pin, String codigo, double debito, double credito, String descripcion, MonedaDomain monedaFk) {
+    public CuentaBancariaDomain(String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, String descripcion, MonedaDomain monedaFk) {
         this.nombreCuenta = nombreCuenta;
         this.numeroCuenta = numeroCuenta;
+        this.numeroTarjeta = numeroTarjeta;
         this.pin = pin;
         this.codigo = codigo;
         this.debito = debito;
@@ -60,6 +64,14 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
         this.descripcion = descripcion;
         this.monedaFk = monedaFk;
         validate();
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
     }
 
     public Integer getIdCuentaBancaria() {

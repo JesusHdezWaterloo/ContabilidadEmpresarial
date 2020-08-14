@@ -61,9 +61,15 @@ public class CuentaBancaria implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 16)
+    @Size(min = 16, max = 16)
     @Column(name = "numero_cuenta", nullable = false, length = 16)
     private String numeroCuenta;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 0, max = 16)
+    @Column(name = "numero_cuenta", nullable = false, length = 16)
+    private String numeroTarjeta;
 
     @Basic(optional = false)
     @NotNull
@@ -109,10 +115,11 @@ public class CuentaBancaria implements Serializable {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String pin, String codigo, double debito, double credito, Date fecha, String descripcion, Moneda monedaFk) {
+    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, Date fecha, String descripcion, Moneda monedaFk) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.nombreCuenta = nombreCuenta;
         this.numeroCuenta = numeroCuenta;
+        this.numeroTarjeta = numeroTarjeta;
         this.pin = pin;
         this.codigo = codigo;
         this.debito = debito;
@@ -120,6 +127,14 @@ public class CuentaBancaria implements Serializable {
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.monedaFk = monedaFk;
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
     }
 
     public Date getFecha() {

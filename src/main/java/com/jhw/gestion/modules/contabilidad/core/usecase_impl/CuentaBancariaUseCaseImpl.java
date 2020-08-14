@@ -14,4 +14,11 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
         super.setRepo(repo);
     }
 
+    @Override
+    public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
+        cuenta.setDebito(0);
+        cuenta.setCredito(0);
+        return super.create(cuenta);
+    }
+
 }

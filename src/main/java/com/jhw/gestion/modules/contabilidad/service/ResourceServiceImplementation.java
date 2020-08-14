@@ -18,7 +18,6 @@ public class ResourceServiceImplementation implements ResourceService {
 
     public static ResourceServiceImplementation init() {
         try {
-
             ResourceServiceImplementation res = new ResourceServiceImplementation();
             Resource.registerResourceService(res);
             return res;

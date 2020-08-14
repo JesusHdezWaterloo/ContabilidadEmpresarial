@@ -6,10 +6,10 @@ import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 
-public class MonedaRepoImpl extends JPACleanCRUDRepo<MonedaDomain, Moneda> implements MonedaRepo {
+public class TipoOperacionContableRepoImpl extends JPACleanCRUDRepo<TipoOperacionContableDomain, TipoOperacionContable> implements TipoOperacionContableRepo {
 
-    public MonedaRepoImpl() {
-        super(Resources.EMF, MonedaDomain.class, Moneda.class);
+    public TipoOperacionContableRepoImpl() {
+        super(Resources.EMF, TipoOperacionContableDomain.class, TipoOperacionContable.class);
     }
 
 }

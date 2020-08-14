@@ -21,7 +21,7 @@
     <class>com.jhw.gestion.modules.contabilidad.repo.entities.Subcuenta</class>
     <class>com.jhw.gestion.modules.contabilidad.repo.entities.Moneda</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:7733/meca_db?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:7733/sigecon_db?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>

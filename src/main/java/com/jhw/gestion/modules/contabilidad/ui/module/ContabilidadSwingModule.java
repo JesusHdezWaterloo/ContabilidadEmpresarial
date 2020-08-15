@@ -8,7 +8,6 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
 import com.jhw.gestion.modules.contabilidad.service.ResourceServiceImplementation;
-import com.jhw.gestion.modules.contabilidad.ui.main_section.CuentasMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.metodo_pago.MetodoPagoDetailView;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
@@ -69,13 +68,13 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         CollapseMenu menu = new CollapseMenu(MaterialIcons.LOCAL_ATM, ContabilidadModuleNavigator.CONTABILIDAD);
         dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, menu);
 
-        dash.addView(ContabilidadModuleNavigator.NAV_CUENTA, new CuentasMainPanel());
+        /*dash.addView(ContabilidadModuleNavigator.NAV_CUENTA, new CuentasMainPanel());
         menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUENTA, MaterialIcons.LOCAL_ATM) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_CUENTA);
             }
-        });
+        });*/
 
         dash.addView(ContabilidadModuleNavigator.NAV_MONEDA, new MonedaDetailView());
         menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.MONEDA, MaterialIcons.ATTACH_MONEY) {

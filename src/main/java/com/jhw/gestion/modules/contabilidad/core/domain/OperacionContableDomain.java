@@ -5,48 +5,27 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.clean.core.utils.SortBy;
+import com.jhw.gestion.modules.contabilidad.repo.entities.InfoOperacionContable;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
-import java.util.Date;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@SortBy(priority = {"documento", "nombre"})
-public class OperacionContableDomain extends EntityDomainObjectValidated implements Operacion {
+public class OperacionContableDomain extends EntityDomainObjectValidated {
 
     private Integer idOperacionContable;
-
-    @NotEmpty(message = "#msg.module.contabilidad.validation.operacion_documento_vacio#")
-    @Size(max = 95, message = "#msg.module.contabilidad.validation.operacion_documento_largo#")
-    private String documento;
-
-    @NotEmpty(message = "#msg.module.contabilidad.validation.operacion_nombre_vacio#")
-    @Size(max = 95, message = "#msg.module.contabilidad.validation.operacion_nombre_largo#")
-    private String nombre;
 
     private double debito;
 
     private double credito;
 
-    @NotNull(message = "#msg.module.contabilidad.validation.operacion_fecha_null#")
-    private Date fecha;
-
-    @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
-    private String descripcion;
-
     @NotNull(message = "#msg.module.contabilidad.validation.operacion_cuenta_null#")
     private CuentaContableDomain cuentaFk;
 
-    @NotNull(message = "#msg.module.contabilidad.validation.operacion_contable_tipo_op_null#")
-    private TipoOperacionContableDomain tipoOperacionContableFk;
-
-    @NotNull(message = "#msg.module.contabilidad.validation.operacion_contable_id_externo_null#")
-    private int idExterno;
+    @NotNull(message = "#msg.module.contabilidad.validation.operacion_info_null#")
+    private InfoOperacionContable infoOperacionContableFk;
 
     public OperacionContableDomain() {
     }
@@ -55,16 +34,11 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
         this.idOperacionContable = idOperacionContable;
     }
 
-    public OperacionContableDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaContableDomain cuentaFk, TipoOperacionContableDomain tipoOperacionContableFk, int idExterno) {
-        this.documento = documento;
-        this.nombre = nombre;
+    public OperacionContableDomain(double debito, double credito, CuentaContableDomain cuentaFk, InfoOperacionContable infoOperacionContableFk) {
         this.debito = debito;
         this.credito = credito;
-        this.fecha = fecha;
-        this.descripcion = descripcion;
         this.cuentaFk = cuentaFk;
-        this.tipoOperacionContableFk = tipoOperacionContableFk;
-        this.idExterno = idExterno;
+        this.infoOperacionContableFk = infoOperacionContableFk;
     }
 
     public Integer getIdOperacionContable() {
@@ -75,82 +49,20 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
         this.idOperacionContable = idOperacionContable;
     }
 
-    @Override
-    public Integer getIdOperacion() {
-        return getIdOperacionContable();
-    }
-
-    @Override
-    public void setIdOperacion(Integer idOperacion) {
-        setIdOperacionContable(idOperacion);
-    }
-
-    @Override
-    public String getDocumento() {
-        return documento;
-    }
-
-    @Override
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    @Override
     public double getDebito() {
         return debito;
     }
 
-    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
-    @Override
     public double getCredito() {
         return credito;
     }
 
-    @Override
     public void setCredito(double credito) {
         this.credito = credito;
-    }
-
-    @Override
-    public Date getFecha() {
-        return fecha;
-    }
-
-    @Override
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    @Override
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    @Override
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getIdExterno() {
-        return idExterno;
-    }
-
-    public void setIdExterno(int idExterno) {
-        this.idExterno = idExterno;
     }
 
     public CuentaContableDomain getCuentaFk() {
@@ -161,12 +73,12 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
         this.cuentaFk = cuentaFk;
     }
 
-    public TipoOperacionContableDomain getTipoOperacionContableFk() {
-        return tipoOperacionContableFk;
+    public InfoOperacionContable getInfoOperacionContableFk() {
+        return infoOperacionContableFk;
     }
 
-    public void setTipoOperacionContableFk(TipoOperacionContableDomain tipoOperacionContableFk) {
-        this.tipoOperacionContableFk = tipoOperacionContableFk;
+    public void setInfoOperacionContableFk(InfoOperacionContable infoOperacionContableFk) {
+        this.infoOperacionContableFk = infoOperacionContableFk;
     }
 
     @Override
@@ -191,7 +103,7 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
 
     @Override
     public String toString() {
-        return documento;
+        return infoOperacionContableFk.getDocumento();
     }
 
 }

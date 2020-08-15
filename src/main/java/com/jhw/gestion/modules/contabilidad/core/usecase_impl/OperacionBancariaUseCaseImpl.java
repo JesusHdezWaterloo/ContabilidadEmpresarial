@@ -6,7 +6,7 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 
-public class OperacionBancariaUseCaseImpl extends DefaultCRUDUseCase<OperacionBancariaDomain> implements OperacionBancariaUseCase {
+public class OperacionBancariaUseCaseImpl extends DefaultCRUDUseCase<Liquidacion> implements OperacionBancariaUseCase {
 
     private final OperacionBancariaRepo repo = ContabilidadCoreModule.getInstance().getImplementation(OperacionBancariaRepo.class);
 

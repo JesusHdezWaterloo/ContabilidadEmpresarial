@@ -142,7 +142,7 @@ public class Moneda implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.Moneda[ idMoneda=" + idMoneda + " ]";
+        return "testJPA.entities.contabilidad_empresarial.Moneda[ idMoneda=" + idMoneda + " ]";
     }
     
 }

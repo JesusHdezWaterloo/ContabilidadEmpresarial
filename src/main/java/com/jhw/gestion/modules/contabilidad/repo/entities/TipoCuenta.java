@@ -6,7 +6,9 @@
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -31,6 +34,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "TipoCuenta.findByIdTipoCuenta", query = "SELECT t FROM TipoCuenta t WHERE t.idTipoCuenta = :idTipoCuenta"),
     @NamedQuery(name = "TipoCuenta.findByNombreTipoCuenta", query = "SELECT t FROM TipoCuenta t WHERE t.nombreTipoCuenta = :nombreTipoCuenta"),
     @NamedQuery(name = "TipoCuenta.findByDebitoCredito", query = "SELECT t FROM TipoCuenta t WHERE t.debitoCredito = :debitoCredito"),
+    @NamedQuery(name = "TipoCuenta.findByLiquidable", query = "SELECT t FROM TipoCuenta t WHERE t.liquidable = :liquidable"),
     @NamedQuery(name = "TipoCuenta.findByDescripcion", query = "SELECT t FROM TipoCuenta t WHERE t.descripcion = :descripcion")})
 public class TipoCuenta implements Serializable {
 
@@ -54,6 +58,11 @@ public class TipoCuenta implements Serializable {
     
     @Basic(optional = false)
     @NotNull
+    @Column(name = "liquidable", nullable = false)
+    private boolean liquidable;
+    
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
@@ -65,10 +74,11 @@ public class TipoCuenta implements Serializable {
         this.idTipoCuenta = idTipoCuenta;
     }
 
-    public TipoCuenta(Integer idTipoCuenta, String nombreTipoCuenta, boolean debitoCredito, String descripcion) {
+    public TipoCuenta(Integer idTipoCuenta, String nombreTipoCuenta, boolean debitoCredito, boolean liquidable, String descripcion) {
         this.idTipoCuenta = idTipoCuenta;
         this.nombreTipoCuenta = nombreTipoCuenta;
         this.debitoCredito = debitoCredito;
+        this.liquidable = liquidable;
         this.descripcion = descripcion;
     }
 
@@ -94,6 +104,14 @@ public class TipoCuenta implements Serializable {
 
     public void setDebitoCredito(boolean debitoCredito) {
         this.debitoCredito = debitoCredito;
+    }
+
+    public boolean getLiquidable() {
+        return liquidable;
+    }
+
+    public void setLiquidable(boolean liquidable) {
+        this.liquidable = liquidable;
     }
 
     public String getDescripcion() {
@@ -126,7 +144,7 @@ public class TipoCuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.TipoCuenta[ idTipoCuenta=" + idTipoCuenta + " ]";
+        return "testJPA.entities.contabilidad_empresarial.TipoCuenta[ idTipoCuenta=" + idTipoCuenta + " ]";
     }
     
 }

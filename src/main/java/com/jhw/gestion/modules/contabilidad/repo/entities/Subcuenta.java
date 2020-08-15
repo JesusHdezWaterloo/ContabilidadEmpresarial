@@ -36,6 +36,7 @@ import javax.validation.constraints.Size;
 public class Subcuenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -136,7 +137,7 @@ public class Subcuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.Subcuenta[ idSubcuenta=" + idSubcuenta + " ]";
+        return "testJPA.entities.contabilidad_empresarial.Subcuenta[ idSubcuenta=" + idSubcuenta + " ]";
     }
     
 }

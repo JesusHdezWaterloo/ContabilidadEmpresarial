@@ -34,6 +34,7 @@ import javax.validation.constraints.Size;
 public class MetodoPago implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -111,7 +112,7 @@ public class MetodoPago implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.MetodoPago[ idMetodoPago=" + idMetodoPago + " ]";
+        return "testJPA.entities.contabilidad_empresarial.MetodoPago[ idMetodoPago=" + idMetodoPago + " ]";
     }
     
 }

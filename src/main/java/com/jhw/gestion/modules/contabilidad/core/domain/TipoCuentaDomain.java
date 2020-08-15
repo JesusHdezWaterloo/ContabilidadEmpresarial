@@ -25,6 +25,8 @@ public class TipoCuentaDomain extends EntityDomainObjectValidated {
 
     private boolean debitoCredito;
 
+    private boolean liquidable;
+
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
@@ -35,10 +37,19 @@ public class TipoCuentaDomain extends EntityDomainObjectValidated {
         this.idTipoCuenta = idTipoCuenta;
     }
 
-    public TipoCuentaDomain(String nombreTipoCuenta, boolean debitoCredito, String descripcion) {
+    public TipoCuentaDomain(String nombreTipoCuenta, boolean debitoCredito, boolean liquidable, String descripcion) {
         this.nombreTipoCuenta = nombreTipoCuenta;
         this.debitoCredito = debitoCredito;
+        this.liquidable = liquidable;
         this.descripcion = descripcion;
+    }
+
+    public boolean isLiquidable() {
+        return liquidable;
+    }
+
+    public void setLiquidable(boolean liquidable) {
+        this.liquidable = liquidable;
     }
 
     public Integer getIdTipoCuenta() {

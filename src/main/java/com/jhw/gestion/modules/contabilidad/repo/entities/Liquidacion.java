@@ -6,6 +6,7 @@
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,82 +28,91 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "operacion_bancaria")
+@Table(name = "liquidacion")
 @NamedQueries({
-    @NamedQuery(name = "OperacionBancaria.findAll", query = "SELECT o FROM OperacionBancaria o"),
-    @NamedQuery(name = "OperacionBancaria.findByIdOperacionBancaria", query = "SELECT o FROM OperacionBancaria o WHERE o.idOperacionBancaria = :idOperacionBancaria"),
-    @NamedQuery(name = "OperacionBancaria.findByDocumento", query = "SELECT o FROM OperacionBancaria o WHERE o.documento = :documento"),
-    @NamedQuery(name = "OperacionBancaria.findByNombre", query = "SELECT o FROM OperacionBancaria o WHERE o.nombre = :nombre"),
-    @NamedQuery(name = "OperacionBancaria.findByDebito", query = "SELECT o FROM OperacionBancaria o WHERE o.debito = :debito"),
-    @NamedQuery(name = "OperacionBancaria.findByCredito", query = "SELECT o FROM OperacionBancaria o WHERE o.credito = :credito"),
-    @NamedQuery(name = "OperacionBancaria.findByDescripcion", query = "SELECT o FROM OperacionBancaria o WHERE o.descripcion = :descripcion")})
-public class OperacionBancaria implements Serializable {
+    @NamedQuery(name = "Liquidacion.findAll", query = "SELECT l FROM Liquidacion l"),
+    @NamedQuery(name = "Liquidacion.findByIdLiquidacion", query = "SELECT l FROM Liquidacion l WHERE l.idLiquidacion = :idLiquidacion"),
+    @NamedQuery(name = "Liquidacion.findByDocumento", query = "SELECT l FROM Liquidacion l WHERE l.documento = :documento"),
+    @NamedQuery(name = "Liquidacion.findByNombre", query = "SELECT l FROM Liquidacion l WHERE l.nombre = :nombre"),
+    @NamedQuery(name = "Liquidacion.findByDebito", query = "SELECT l FROM Liquidacion l WHERE l.debito = :debito"),
+    @NamedQuery(name = "Liquidacion.findByCredito", query = "SELECT l FROM Liquidacion l WHERE l.credito = :credito"),
+    @NamedQuery(name = "Liquidacion.findByFecha", query = "SELECT l FROM Liquidacion l WHERE l.fecha = :fecha"),
+    @NamedQuery(name = "Liquidacion.findByDescripcion", query = "SELECT l FROM Liquidacion l WHERE l.descripcion = :descripcion")})
+public class Liquidacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_operacion_bancaria", nullable = false)
-    private Integer idOperacionBancaria;
-    
+    @Column(name = "id_liquidacion", nullable = false)
+    private Integer idLiquidacion;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "documento", nullable = false, length = 100)
     private String documento;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "debito", nullable = false)
     private double debito;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "credito", nullable = false)
     private double credito;
-    
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-    
+
     @JoinColumn(name = "cuenta_fk", referencedColumnName = "id_cuenta_bancaria", nullable = false)
     @ManyToOne(optional = false)
     private CuentaBancaria cuentaFk;
-    
-    @JoinColumn(name = "operacion_contable_fk", referencedColumnName = "id_operacion_contable", nullable = false)
+
+    @JoinColumn(name = "cuadre_fk", referencedColumnName = "id_cuadre", nullable = false)
     @ManyToOne(optional = false)
-    private OperacionContable operacionContableFk;
+    private Cuadre cuadreFk;
 
-    public OperacionBancaria() {
+    public Liquidacion() {
     }
 
-    public OperacionBancaria(Integer idOperacionBancaria) {
-        this.idOperacionBancaria = idOperacionBancaria;
+    public Liquidacion(Integer idOperacionBancaria) {
+        this.idLiquidacion = idOperacionBancaria;
     }
 
-    public OperacionBancaria(Integer idOperacionBancaria, String documento, String nombre, double debito, double credito, String descripcion) {
-        this.idOperacionBancaria = idOperacionBancaria;
+    public Liquidacion(Integer idOperacionBancaria, String documento, String nombre, double debito, double credito, Date fecha, String descripcion) {
+        this.idLiquidacion = idOperacionBancaria;
         this.documento = documento;
         this.nombre = nombre;
         this.debito = debito;
         this.credito = credito;
+        this.fecha = fecha;
         this.descripcion = descripcion;
     }
 
-    public Integer getIdOperacionBancaria() {
-        return idOperacionBancaria;
+    public Integer getIdLiquidacion() {
+        return idLiquidacion;
     }
 
-    public void setIdOperacionBancaria(Integer idOperacionBancaria) {
-        this.idOperacionBancaria = idOperacionBancaria;
+    public void setIdLiquidacion(Integer idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
     }
 
     public String getDocumento() {
@@ -135,12 +147,28 @@ public class OperacionBancaria implements Serializable {
         this.credito = credito;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Cuadre getCuadreFk() {
+        return cuadreFk;
+    }
+
+    public void setCuadreFk(Cuadre cuadreFk) {
+        this.cuadreFk = cuadreFk;
     }
 
     public CuentaBancaria getCuentaFk() {
@@ -151,29 +179,21 @@ public class OperacionBancaria implements Serializable {
         this.cuentaFk = cuentaFk;
     }
 
-    public OperacionContable getOperacionContableFk() {
-        return operacionContableFk;
-    }
-
-    public void setOperacionContableFk(OperacionContable operacionContableFk) {
-        this.operacionContableFk = operacionContableFk;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idOperacionBancaria != null ? idOperacionBancaria.hashCode() : 0);
+        hash += (idLiquidacion != null ? idLiquidacion.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OperacionBancaria)) {
+        if (!(object instanceof Liquidacion)) {
             return false;
         }
-        OperacionBancaria other = (OperacionBancaria) object;
-        if ((this.idOperacionBancaria == null && other.idOperacionBancaria != null) || (this.idOperacionBancaria != null && !this.idOperacionBancaria.equals(other.idOperacionBancaria))) {
+        Liquidacion other = (Liquidacion) object;
+        if ((this.idLiquidacion == null && other.idLiquidacion != null) || (this.idLiquidacion != null && !this.idLiquidacion.equals(other.idLiquidacion))) {
             return false;
         }
         return true;
@@ -181,7 +201,7 @@ public class OperacionBancaria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.OperacionBancaria[ idOperacionBancaria=" + idOperacionBancaria + " ]";
+        return "testJPA.entities.contabilidad_empresarial.Liquidacion[ idOperacionBancaria=" + idLiquidacion + " ]";
     }
-    
+
 }

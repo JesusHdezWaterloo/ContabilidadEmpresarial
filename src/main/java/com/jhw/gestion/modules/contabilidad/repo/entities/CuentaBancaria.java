@@ -6,7 +6,6 @@
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,6 +28,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "cuenta_bancaria", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"codigo"}),
+    @UniqueConstraint(columnNames = {"numero_tarjeta"}),
     @UniqueConstraint(columnNames = {"numero_cuenta"}),
     @UniqueConstraint(columnNames = {"nombre_cuenta"})})
 @NamedQueries({
@@ -38,6 +36,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "CuentaBancaria.findByIdCuentaBancaria", query = "SELECT c FROM CuentaBancaria c WHERE c.idCuentaBancaria = :idCuentaBancaria"),
     @NamedQuery(name = "CuentaBancaria.findByNombreCuenta", query = "SELECT c FROM CuentaBancaria c WHERE c.nombreCuenta = :nombreCuenta"),
     @NamedQuery(name = "CuentaBancaria.findByNumeroCuenta", query = "SELECT c FROM CuentaBancaria c WHERE c.numeroCuenta = :numeroCuenta"),
+    @NamedQuery(name = "CuentaBancaria.findByNumeroTarjeta", query = "SELECT c FROM CuentaBancaria c WHERE c.numeroTarjeta = :numeroTarjeta"),
     @NamedQuery(name = "CuentaBancaria.findByPin", query = "SELECT c FROM CuentaBancaria c WHERE c.pin = :pin"),
     @NamedQuery(name = "CuentaBancaria.findByCodigo", query = "SELECT c FROM CuentaBancaria c WHERE c.codigo = :codigo"),
     @NamedQuery(name = "CuentaBancaria.findByDebito", query = "SELECT c FROM CuentaBancaria c WHERE c.debito = :debito"),
@@ -46,64 +45,59 @@ import javax.validation.constraints.Size;
 public class CuentaBancaria implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_cuenta_bancaria", nullable = false)
     private Integer idCuentaBancaria;
-
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_cuenta", nullable = false, length = 100)
     private String nombreCuenta;
-
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 16, max = 16)
     @Column(name = "numero_cuenta", nullable = false, length = 16)
     private String numeroCuenta;
-
+    
     @Basic(optional = false)
     @NotNull
-    @Size(min = 0, max = 16)
-    @Column(name = "numero_cuenta", nullable = false, length = 16)
+    @Size(max = 16)
+    @Column(name = "numero_tarjeta", nullable = false, length = 16)
     private String numeroTarjeta;
-
+    
     @Basic(optional = false)
     @NotNull
-    @Size(min = 0, max = 4)
+    @Size(max = 4)
     @Column(name = "pin", nullable = false, length = 4)
     private String pin;
-
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "codigo", nullable = false, length = 5)
     private String codigo;
-
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "debito", nullable = false)
     private double debito;
-
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "credito", nullable = false)
     private double credito;
-
-    @Basic(optional = false)
-    @Column(name = "fecha", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-
+    
     @JoinColumn(name = "moneda_fk", referencedColumnName = "id_moneda", nullable = false)
     @ManyToOne(optional = false)
     private Moneda monedaFk;
@@ -115,7 +109,7 @@ public class CuentaBancaria implements Serializable {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, Date fecha, String descripcion, Moneda monedaFk) {
+    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, String descripcion) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.nombreCuenta = nombreCuenta;
         this.numeroCuenta = numeroCuenta;
@@ -124,25 +118,7 @@ public class CuentaBancaria implements Serializable {
         this.codigo = codigo;
         this.debito = debito;
         this.credito = credito;
-        this.fecha = fecha;
         this.descripcion = descripcion;
-        this.monedaFk = monedaFk;
-    }
-
-    public String getNumeroTarjeta() {
-        return numeroTarjeta;
-    }
-
-    public void setNumeroTarjeta(String numeroTarjeta) {
-        this.numeroTarjeta = numeroTarjeta;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public Integer getIdCuentaBancaria() {
@@ -167,6 +143,14 @@ public class CuentaBancaria implements Serializable {
 
     public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
     }
 
     public String getPin() {
@@ -239,7 +223,7 @@ public class CuentaBancaria implements Serializable {
 
     @Override
     public String toString() {
-        return "com.jhw.gestion.modules.contabilidad.repo.entities.CuentaBancaria[ idCuentaBancaria=" + idCuentaBancaria + " ]";
+        return "testJPA.entities.contabilidad_empresarial.CuentaBancaria[ idCuentaBancaria=" + idCuentaBancaria + " ]";
     }
-
+    
 }

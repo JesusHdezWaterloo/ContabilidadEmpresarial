@@ -6,6 +6,7 @@
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.clean.core.utils.SortBy;
+import com.jhw.gestion.modules.contabilidad.repo.entities.Cuadre;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
@@ -17,23 +18,23 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"documento", "nombre"})
-public class OperacionBancariaDomain extends EntityDomainObjectValidated implements Operacion {
+public class Liquidacion extends EntityDomainObjectValidated {
 
-    private Integer idOperacionBancaria;
+    private Integer idLiquidacion;
 
-    @NotEmpty(message = "#msg.module.contabilidad.validation.operacion_documento_vacio#")
-    @Size(max = 95, message = "#msg.module.contabilidad.validation.operacion_documento_largo#")
+    @NotEmpty(message = "#msg.module.contabilidad.validation.info_operacion_documento_vacio#")
+    @Size(max = 95, message = "#msg.module.contabilidad.validation.info_operacion_documento_largo#")
     private String documento;
 
-    @NotEmpty(message = "#msg.module.contabilidad.validation.operacion_nombre_vacio#")
-    @Size(max = 95, message = "#msg.module.contabilidad.validation.operacion_nombre_largo#")
+    @NotEmpty(message = "#msg.module.contabilidad.validation.info_operacion_nombre_vacio#")
+    @Size(max = 95, message = "#msg.module.contabilidad.validation.info_operacion_nombre_largo#")
     private String nombre;
 
     private double debito;
 
     private double credito;
 
-    @NotNull(message = "#msg.module.contabilidad.validation.operacion_fecha_null#")
+    @NotNull(message = "#msg.module.contabilidad.validation.info_operacion_fecha_null#")
     private Date fecha;
 
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
@@ -42,17 +43,17 @@ public class OperacionBancariaDomain extends EntityDomainObjectValidated impleme
     @NotNull(message = "#msg.module.contabilidad.validation.operacion_cuenta_null#")
     private CuentaBancariaDomain cuentaFk;
 
-    @NotNull(message = "#msg.module.contabilidad.validation.operacion_bancaria_operacion_contable_null#")
-    private OperacionContableDomain operacionContableFk;
+    @NotNull(message = "#msg.module.contabilidad.validation.liquidacion_cuadre_null#")
+    private Cuadre cuadreFk;
 
-    public OperacionBancariaDomain() {
+    public Liquidacion() {
     }
 
-    public OperacionBancariaDomain(Integer idOperacionBancaria) {
-        this.idOperacionBancaria = idOperacionBancaria;
+    public Liquidacion(Integer idOperacionBancaria) {
+        this.idLiquidacion = idOperacionBancaria;
     }
 
-    public OperacionBancariaDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, OperacionContableDomain operacionContableFk) {
+    public Liquidacion(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, Cuadre cuadreFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.debito = debito;
@@ -60,85 +61,63 @@ public class OperacionBancariaDomain extends EntityDomainObjectValidated impleme
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.cuentaFk = cuentaFk;
-        this.operacionContableFk = operacionContableFk;
+        this.cuadreFk = cuadreFk;
     }
 
-    public Integer getIdOperacionBancaria() {
-        return idOperacionBancaria;
+    public Integer getIdLiquidacion() {
+        return idLiquidacion;
     }
 
-    public void setIdOperacionBancaria(Integer idOperacionBancaria) {
-        this.idOperacionBancaria = idOperacionBancaria;
+    public void setIdLiquidacion(Integer idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
     }
 
-    @Override
-    public Integer getIdOperacion() {
-        return getIdOperacionBancaria();
-    }
-
-    @Override
-    public void setIdOperacion(Integer idOperacion) {
-        setIdOperacionBancaria(idOperacion);
-    }
-
-    @Override
     public String getDocumento() {
         return documento;
     }
 
-    @Override
     public void setDocumento(String documento) {
         this.documento = documento;
     }
 
-    @Override
     public String getNombre() {
         return nombre;
     }
 
-    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    @Override
     public double getDebito() {
         return debito;
     }
 
-    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
-    @Override
     public double getCredito() {
         return credito;
     }
 
-    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }
 
-    @Override
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    @Override
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    @Override
     public Date getFecha() {
         return fecha;
     }
 
-    @Override
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public CuentaBancariaDomain getCuentaFk() {
@@ -149,29 +128,29 @@ public class OperacionBancariaDomain extends EntityDomainObjectValidated impleme
         this.cuentaFk = cuentaFk;
     }
 
-    public OperacionContableDomain getOperacionContableFk() {
-        return operacionContableFk;
+    public Cuadre getCuadreFk() {
+        return cuadreFk;
     }
 
-    public void setOperacionContableFk(OperacionContableDomain operacionContableFk) {
-        this.operacionContableFk = operacionContableFk;
+    public void setCuadreFk(Cuadre cuadreFk) {
+        this.cuadreFk = cuadreFk;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idOperacionBancaria != null ? idOperacionBancaria.hashCode() : 0);
+        hash += (idLiquidacion != null ? idLiquidacion.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OperacionBancariaDomain)) {
+        if (!(object instanceof Liquidacion)) {
             return false;
         }
-        OperacionBancariaDomain other = (OperacionBancariaDomain) object;
-        if ((this.idOperacionBancaria == null && other.idOperacionBancaria != null) || (this.idOperacionBancaria != null && !this.idOperacionBancaria.equals(other.idOperacionBancaria))) {
+        Liquidacion other = (Liquidacion) object;
+        if ((this.idLiquidacion == null && other.idLiquidacion != null) || (this.idLiquidacion != null && !this.idLiquidacion.equals(other.idLiquidacion))) {
             return false;
         }
         return true;

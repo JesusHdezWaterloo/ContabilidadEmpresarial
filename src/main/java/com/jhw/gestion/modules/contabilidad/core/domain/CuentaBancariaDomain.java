@@ -24,13 +24,13 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
     @Size(max = 95, message = "#msg.module.contabilidad.validation.cuenta_nombre_largo#")
     private String nombreCuenta;
 
-    @Size(min = 16, max = 16, message = "#msg.module.contabilidad.validation.cuenta_numero_tamanno_incorrecto#")
+    @Size(min = 16, max = 16, message = "#msg.module.contabilidad.validation.cuenta_bancaria_numero_tamanno_incorrecto#")
     private String numeroCuenta;
 
-    @Size(max = 16, message = "#msg.module.contabilidad.validation.cuenta_tarjeta_tamanno_incorrecto#")
+    @Size(max = 16, message = "#msg.module.contabilidad.validation.cuenta_bancaria_tarjeta_tamanno_incorrecto#")
     private String numeroTarjeta;
 
-    @Size(max = 4, message = "#msg.module.contabilidad.validation.cuenta_pin_tamanno_incorrecto#")
+    @Size(max = 4, message = "#msg.module.contabilidad.validation.cuenta_bancaria_pin_tamanno_incorrecto#")
     private String pin;
 
     @Size(max = 5, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")

@@ -20,13 +20,13 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
     @Override
     public List<LiquidacionDomain> findAll(CuentaBancariaDomain cuenta) throws Exception {
         if (cuenta == null) {
-            return findAll(cuenta);
+            return findAll();
         } else {
             return findAllByCuenta(cuenta);
         }
     }
 
-    public List<LiquidacionDomain> findAllByCuenta(CuentaBancariaDomain cuenta) throws Exception {
+    private List<LiquidacionDomain> findAllByCuenta(CuentaBancariaDomain cuenta) throws Exception {
         EntityManager em = getEntityManager();
         try {
             List<Liquidacion> list = em.createQuery(Liquidacion_findByCuenta, Liquidacion.class).setParameter("cuentaFk", cuenta).getResultList();

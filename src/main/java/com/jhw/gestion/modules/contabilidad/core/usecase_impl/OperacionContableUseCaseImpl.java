@@ -5,6 +5,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
+import java.util.List;
 
 public class OperacionContableUseCaseImpl extends DefaultCRUDUseCase<OperacionContableDomain> implements OperacionContableUseCase {
 
@@ -12,6 +13,10 @@ public class OperacionContableUseCaseImpl extends DefaultCRUDUseCase<OperacionCo
 
     public OperacionContableUseCaseImpl() {
         super.setRepo(repo);
+    }
+
+    public List<OperacionContableDomain> findAll(CuentaContableDomain cuenta) throws Exception {
+        return repo.findAll(cuenta);
     }
 
 }

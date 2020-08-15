@@ -5,7 +5,6 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
@@ -41,7 +40,7 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
     private int idExterno;
 
     @NotNull(message = "#msg.module.contabilidad.validation.info_operacion_metodo_pago_null#")
-    private MetodoPago metodoPagoFk;
+    private MetodoPagoDomain metodoPagoFk;
 
     public InfoOperacionContableDomain() {
     }
@@ -50,7 +49,7 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idInfoOperacionContable = idInfoOperacionContable;
     }
 
-    public InfoOperacionContableDomain(String documento, String nombre, Date fecha, String descripcion, TipoOperacionContableDomain tipoOperacionFk, int idExterno, MetodoPago metodoPagoFk) {
+    public InfoOperacionContableDomain(String documento, String nombre, Date fecha, String descripcion, TipoOperacionContableDomain tipoOperacionFk, int idExterno, MetodoPagoDomain metodoPagoFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -116,11 +115,11 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idExterno = idExterno;
     }
 
-    public MetodoPago getMetodoPagoFk() {
+    public MetodoPagoDomain getMetodoPagoFk() {
         return metodoPagoFk;
     }
 
-    public void setMetodoPagoFk(MetodoPago metodoPagoFk) {
+    public void setMetodoPagoFk(MetodoPagoDomain metodoPagoFk) {
         this.metodoPagoFk = metodoPagoFk;
     }
 

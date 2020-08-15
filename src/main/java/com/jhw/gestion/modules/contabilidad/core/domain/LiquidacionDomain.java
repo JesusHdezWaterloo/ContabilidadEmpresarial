@@ -6,7 +6,6 @@
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.clean.core.utils.SortBy;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Cuadre;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
@@ -44,7 +43,7 @@ public class LiquidacionDomain extends EntityDomainObjectValidated {
     private CuentaBancariaDomain cuentaFk;
 
     @NotNull(message = "#msg.module.contabilidad.validation.liquidacion_cuadre_null#")
-    private Cuadre cuadreFk;
+    private CuadreDomain cuadreFk;
 
     public LiquidacionDomain() {
     }
@@ -53,7 +52,7 @@ public class LiquidacionDomain extends EntityDomainObjectValidated {
         this.idLiquidacion = idOperacionBancaria;
     }
 
-    public LiquidacionDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, Cuadre cuadreFk) {
+    public LiquidacionDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, CuadreDomain cuadreFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.debito = debito;
@@ -128,11 +127,11 @@ public class LiquidacionDomain extends EntityDomainObjectValidated {
         this.cuentaFk = cuentaFk;
     }
 
-    public Cuadre getCuadreFk() {
+    public CuadreDomain getCuadreFk() {
         return cuadreFk;
     }
 
-    public void setCuadreFk(Cuadre cuadreFk) {
+    public void setCuadreFk(CuadreDomain cuadreFk) {
         this.cuadreFk = cuadreFk;
     }
 

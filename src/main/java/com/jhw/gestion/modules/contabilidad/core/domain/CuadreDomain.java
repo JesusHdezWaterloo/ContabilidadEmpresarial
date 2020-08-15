@@ -5,7 +5,6 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,10 +25,10 @@ public class CuadreDomain extends EntityDomainObjectValidated {
     private String descripcion;
 
     @NotNull(message = "#msg.module.contabilidad.validation.cuadre_operacion_contable_null#")
-    private OperacionContable operacionContableCuadreFk;
+    private OperacionContableDomain operacionContableCuadreFk;
 
     @NotNull(message = "#msg.module.contabilidad.validation.cuadre_operacion_contable_null#")
-    private OperacionContable operacionContableFk;
+    private OperacionContableDomain operacionContableFk;
 
     public CuadreDomain() {
     }
@@ -38,7 +37,7 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.idCuadre = idCuadre;
     }
 
-    public CuadreDomain(boolean liquidada, String descripcion, OperacionContable operacionContableCuadreFk, OperacionContable operacionContableFk) {
+    public CuadreDomain(boolean liquidada, String descripcion, OperacionContableDomain operacionContableCuadreFk, OperacionContableDomain operacionContableFk) {
         this.liquidada = liquidada;
         this.descripcion = descripcion;
         this.operacionContableCuadreFk = operacionContableCuadreFk;
@@ -69,19 +68,19 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.descripcion = descripcion;
     }
 
-    public OperacionContable getOperacionContableCuadreFk() {
+    public OperacionContableDomain getOperacionContableCuadreFk() {
         return operacionContableCuadreFk;
     }
 
-    public void setOperacionContableCuadreFk(OperacionContable operacionContableCuadreFk) {
+    public void setOperacionContableCuadreFk(OperacionContableDomain operacionContableCuadreFk) {
         this.operacionContableCuadreFk = operacionContableCuadreFk;
     }
 
-    public OperacionContable getOperacionContableFk() {
+    public OperacionContableDomain getOperacionContableFk() {
         return operacionContableFk;
     }
 
-    public void setOperacionContableFk(OperacionContable operacionContableFk) {
+    public void setOperacionContableFk(OperacionContableDomain operacionContableFk) {
         this.operacionContableFk = operacionContableFk;
     }
 
@@ -107,7 +106,7 @@ public class CuadreDomain extends EntityDomainObjectValidated {
 
     @Override
     public String toString() {
-        return "testJPA.entities.contabilidad_empresarial.Cuadre[ idCuadre=" + idCuadre + " ]";
+        return operacionContableCuadreFk.toString();
     }
 
 }

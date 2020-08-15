@@ -5,7 +5,6 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.jhw.gestion.modules.contabilidad.repo.entities.InfoOperacionContable;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
 
@@ -25,7 +24,7 @@ public class OperacionContableDomain extends EntityDomainObjectValidated {
     private CuentaContableDomain cuentaFk;
 
     @NotNull(message = "#msg.module.contabilidad.validation.operacion_info_null#")
-    private InfoOperacionContable infoOperacionContableFk;
+    private InfoOperacionContableDomain infoOperacionContableFk;
 
     public OperacionContableDomain() {
     }
@@ -34,7 +33,7 @@ public class OperacionContableDomain extends EntityDomainObjectValidated {
         this.idOperacionContable = idOperacionContable;
     }
 
-    public OperacionContableDomain(double debito, double credito, CuentaContableDomain cuentaFk, InfoOperacionContable infoOperacionContableFk) {
+    public OperacionContableDomain(double debito, double credito, CuentaContableDomain cuentaFk, InfoOperacionContableDomain infoOperacionContableFk) {
         this.debito = debito;
         this.credito = credito;
         this.cuentaFk = cuentaFk;
@@ -73,11 +72,11 @@ public class OperacionContableDomain extends EntityDomainObjectValidated {
         this.cuentaFk = cuentaFk;
     }
 
-    public InfoOperacionContable getInfoOperacionContableFk() {
+    public InfoOperacionContableDomain getInfoOperacionContableFk() {
         return infoOperacionContableFk;
     }
 
-    public void setInfoOperacionContableFk(InfoOperacionContable infoOperacionContableFk) {
+    public void setInfoOperacionContableFk(InfoOperacionContableDomain infoOperacionContableFk) {
         this.infoOperacionContableFk = infoOperacionContableFk;
     }
 

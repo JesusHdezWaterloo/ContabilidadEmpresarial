@@ -5,6 +5,7 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
+import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import java.util.Map;
 
 /**

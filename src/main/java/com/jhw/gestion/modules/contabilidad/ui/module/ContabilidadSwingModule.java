@@ -20,11 +20,13 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
 
     private final ContabilidadModuleNavigator navigator = new ContabilidadModuleNavigator();
 
+    public final static CuadreUseCase cuadreUC;
     public final static CuentaBancariaUseCase cuentaBancariaUC;
     public final static CuentaContableUseCase cuentaContableUC;
+    public final static InfoOperacionContableUseCase infoOpUC;
+    public final static LiquidacionUseCase liquicadionUC;
     public final static MetodoPagoUseCase metodoPagoUC;
     public final static MonedaUseCase monedaUC;
-    public final static OperacionBancariaUseCase operacionBancariaUC;
     public final static OperacionContableUseCase operacionContableUC;
     public final static SubcuentaUseCase subcuentaUC;
     public final static TipoCuentaUseCase tipoCuentaUC;
@@ -33,11 +35,13 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
     static {
         ContabilidadCoreModule.init(ContabilidadRepoModule.init());
 
+        cuadreUC = ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class);
         cuentaBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class);
         cuentaContableUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaContableUseCase.class);
+        infoOpUC = ContabilidadCoreModule.getInstance().getImplementation(InfoOperacionContableUseCase.class);
+        liquicadionUC = ContabilidadCoreModule.getInstance().getImplementation(LiquidacionUseCase.class);
         metodoPagoUC = ContabilidadCoreModule.getInstance().getImplementation(MetodoPagoUseCase.class);
         monedaUC = ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class);
-        operacionBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionBancariaUseCase.class);
         operacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableUseCase.class);
         subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
         tipoCuentaUC = ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class);

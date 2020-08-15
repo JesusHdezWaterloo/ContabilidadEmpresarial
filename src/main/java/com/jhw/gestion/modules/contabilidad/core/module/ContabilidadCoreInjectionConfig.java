@@ -14,11 +14,13 @@ public class ContabilidadCoreInjectionConfig extends AbstractModule {
 
     @Override
     protected void configure() {
+        bind(CuadreUseCase.class).to(CuadreUseCaseImpl.class);
         bind(CuentaBancariaUseCase.class).to(CuentaBancariaUseCaseImpl.class);
         bind(CuentaContableUseCase.class).to(CuentaContableUseCaseImpl.class);
+        bind(InfoOperacionContableUseCase.class).to(InfoOperacionContableUseCaseImpl.class);
+        bind(LiquidacionUseCase.class).to(LiquidacionUseCaseImpl.class);
         bind(MetodoPagoUseCase.class).to(MetodoPagoUseCaseImpl.class);
         bind(MonedaUseCase.class).to(MonedaUseCaseImpl.class);
-        bind(OperacionBancariaUseCase.class).to(OperacionBancariaUseCaseImpl.class);
         bind(OperacionContableUseCase.class).to(OperacionContableUseCaseImpl.class);
         bind(SubcuentaUseCase.class).to(SubcuentaUseCaseImpl.class);
         bind(TipoCuentaUseCase.class).to(TipoCuentaUseCaseImpl.class);

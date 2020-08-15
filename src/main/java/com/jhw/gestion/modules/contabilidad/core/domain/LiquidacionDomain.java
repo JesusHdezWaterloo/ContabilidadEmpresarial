@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"documento", "nombre"})
-public class Liquidacion extends EntityDomainObjectValidated {
+public class LiquidacionDomain extends EntityDomainObjectValidated {
 
     private Integer idLiquidacion;
 
@@ -46,14 +46,14 @@ public class Liquidacion extends EntityDomainObjectValidated {
     @NotNull(message = "#msg.module.contabilidad.validation.liquidacion_cuadre_null#")
     private Cuadre cuadreFk;
 
-    public Liquidacion() {
+    public LiquidacionDomain() {
     }
 
-    public Liquidacion(Integer idOperacionBancaria) {
+    public LiquidacionDomain(Integer idOperacionBancaria) {
         this.idLiquidacion = idOperacionBancaria;
     }
 
-    public Liquidacion(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, Cuadre cuadreFk) {
+    public LiquidacionDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, Cuadre cuadreFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.debito = debito;
@@ -146,10 +146,10 @@ public class Liquidacion extends EntityDomainObjectValidated {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Liquidacion)) {
+        if (!(object instanceof LiquidacionDomain)) {
             return false;
         }
-        Liquidacion other = (Liquidacion) object;
+        LiquidacionDomain other = (LiquidacionDomain) object;
         if ((this.idLiquidacion == null && other.idLiquidacion != null) || (this.idLiquidacion != null && !this.idLiquidacion.equals(other.idLiquidacion))) {
             return false;
         }

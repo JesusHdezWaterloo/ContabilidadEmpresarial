@@ -13,11 +13,13 @@ public class ContabilidadRepoInjectionConfig extends AbstractModule {
 
     @Override
     protected void configure() {
+        bind(CuadreRepo.class).to(CuadreRepoImpl.class);
         bind(CuentaBancariaRepo.class).to(CuentaBancariaRepoImpl.class);
         bind(CuentaContableRepo.class).to(CuentaContableRepoImpl.class);
+        bind(InfoOperacionContableRepo.class).to(InfoOperacionContableRepoImpl.class);
+        bind(LiquidacionRepo.class).to(LiquidacionRepoImpl.class);
         bind(MetodoPagoRepo.class).to(MetodoPagoRepoImpl.class);
         bind(MonedaRepo.class).to(MonedaRepoImpl.class);
-        bind(OperacionBancariaRepo.class).to(OperacionBancariaRepoImpl.class);
         bind(OperacionContableRepo.class).to(OperacionContableRepoImpl.class);
         bind(SubcuentaRepo.class).to(SubcuentaRepoImpl.class);
         bind(TipoCuentaRepo.class).to(TipoCuentaRepoImpl.class);

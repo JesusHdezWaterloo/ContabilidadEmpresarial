@@ -6,10 +6,10 @@ import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 
-public class OperacionBancariaRepoImpl extends JPACleanCRUDRepo<Liquidacion, OperacionBancaria> implements OperacionBancariaRepo {
+public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liquidacion> implements LiquidacionRepo {
 
-    public OperacionBancariaRepoImpl() {
-        super(Resources.EMF, Liquidacion.class, OperacionBancaria.class);
+    public LiquidacionRepoImpl() {
+        super(Resources.EMF, LiquidacionDomain.class, Liquidacion.class);
     }
 
 }

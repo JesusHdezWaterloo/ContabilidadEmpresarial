@@ -74,7 +74,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new LiquidacionInputView());
+        new DialogModelInput(this, LiquidacionInputView.from());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
 
     @Override
     protected void editAction(LiquidacionDomain obj) {
-        new DialogModelInput(this, new LiquidacionInputView(obj));
+        new DialogModelInput(this, LiquidacionInputView.fromModel(obj));
     }
 
     @Override

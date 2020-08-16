@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
+@SortBy(priority = {"liquidada"}, order = SortBy.ASCENDING)
 public class CuadreDomain extends EntityDomainObjectValidated {
 
     private static final long serialVersionUID = 1L;

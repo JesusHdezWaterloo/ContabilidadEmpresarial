@@ -2,7 +2,6 @@ package com.jhw.gestion.modules.contabilidad.ui.cuadre;
 
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 

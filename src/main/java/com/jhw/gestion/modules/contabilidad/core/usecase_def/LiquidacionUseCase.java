@@ -8,4 +8,5 @@ public interface LiquidacionUseCase extends CRUDUseCase<LiquidacionDomain> {
 
     public List<LiquidacionDomain> findAll(CuentaBancariaDomain cuenta) throws Exception;
 
+    public LiquidacionDomain getLiquidacion(CuadreDomain cuadre) throws Exception;
 }

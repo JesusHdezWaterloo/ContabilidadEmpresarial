@@ -17,6 +17,20 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
     }
 
     @Override
+    public CuentaBancariaDomain findCuentaDefault(MonedaDomain moneda) throws Exception {
+        List<CuentaBancariaDomain> all = findAll();
+        if (all.isEmpty()) {
+            throw new RuntimeException("No hay ninguna cuenta bancaria creada.");
+        }
+        for (CuentaBancariaDomain c : all) {
+            if (c.getMonedaFk().equals(moneda)) {
+                return c;
+            }
+        }
+        return all.get(0);
+    }
+
+    @Override
     public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
         cuenta.setDebito(0);
         cuenta.setCredito(0);

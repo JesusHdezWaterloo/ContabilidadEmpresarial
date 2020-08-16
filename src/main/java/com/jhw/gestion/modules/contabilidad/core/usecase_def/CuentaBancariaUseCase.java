@@ -8,4 +8,5 @@ public interface CuentaBancariaUseCase extends CRUDUseCase<CuentaBancariaDomain>
 
     public List<Cuenta> findAllCuentas() throws Exception;
 
+    public CuentaBancariaDomain findCuentaDefault(MonedaDomain moneda) throws Exception;
 }

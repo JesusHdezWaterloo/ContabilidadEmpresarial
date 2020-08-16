@@ -10,6 +10,8 @@ public class ContabilidadModuleNavigator implements NavigationService {
 
     public static final String CONTABILIDAD = "Contabilidad";
     public static final String CUENTA = "Cuentas";
+    public static final String OPERACIONES = "Operaciones";
+    public static final String LIQUIDACIONES = "Liquidaciones";
     public static final String MONEDA = "Monedas";
     public static final String METODO_PAGO = "Métodos de pago";
     public static final String TIPO_CUENTA = "Tipo de cuenta";
@@ -17,6 +19,8 @@ public class ContabilidadModuleNavigator implements NavigationService {
     public static final String NAV_MONEDA = "modulos.cuenta.monedas";
     public static final String NAV_METODO_PAGO = "modulos.cuenta.metodo_pago";
     public static final String NAV_TIPO_CUENTA = "modulos.cuenta.tipo_cuenta";
+    public static final String NAV_OPERACIONES = "modulos.cuenta.operaciones";
+    public static final String NAV_LIQUIDACIONES = "modulos.cuenta.liquidacioens";
 
     @Override
     public void navigateTo(String string, Object... os) {

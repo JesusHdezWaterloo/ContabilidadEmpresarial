@@ -9,8 +9,10 @@ import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
 import com.jhw.gestion.modules.contabilidad.service.ResourceServiceImplementation;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
+import com.jhw.gestion.modules.contabilidad.ui.liquidacion.LiquidacionDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.metodo_pago.MetodoPagoDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.operacion_contable.OperacionContableDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaDetailView;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -71,10 +73,26 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, menu);
 
         dash.addView(ContabilidadModuleNavigator.NAV_CUENTA, new CuentasMainPanel());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUENTA, MaterialIcons.LOCAL_ATM) {
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUENTA, MaterialIcons.ACCOUNT_BALANCE) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_CUENTA);
+            }
+        });
+
+        dash.addView(ContabilidadModuleNavigator.NAV_LIQUIDACIONES, new LiquidacionDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.LIQUIDACIONES, MaterialIcons.ASSIGNMENT_TURNED_IN) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_LIQUIDACIONES);
+            }
+        });
+
+        dash.addView(ContabilidadModuleNavigator.NAV_OPERACIONES, new OperacionContableDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.OPERACIONES, MaterialIcons.ASSIGNMENT_LATE) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_OPERACIONES);
             }
         });
 
@@ -95,7 +113,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         });
 
         dash.addView(ContabilidadModuleNavigator.NAV_TIPO_CUENTA, new TipoCuentaDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_CUENTA, MaterialIcons.PAYMENT) {
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_CUENTA, MaterialIcons.NFC) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);

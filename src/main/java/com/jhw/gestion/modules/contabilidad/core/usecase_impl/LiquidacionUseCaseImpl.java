@@ -23,13 +23,22 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
         if (newObject.getCuadreFk().getLiquidada()) {
             throw new RuntimeException("No se puede liquidar dos veces el mismo cuadre");
         }
+        if (!newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
+            throw new RuntimeException("No se puede liquidar un cuadre de una cuenta que no es liquidable.");
+        }
+        newObject.setDebito(newObject.getCuadreFk().getOperacionContableCuadreFk().getDebito());
+        newObject.setCredito(newObject.getCuadreFk().getOperacionContableCuadreFk().getCredito());
         newObject.getCuadreFk().setLiquidada(true);
+        newObject.getCuentaFk().updateForCreate(newObject);
+        newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().updateForCreate(newObject);
         return super.create(newObject);
     }
 
     @Override
     public LiquidacionDomain destroy(LiquidacionDomain objectToDestroy) throws Exception {
         objectToDestroy.getCuadreFk().setLiquidada(false);
+        objectToDestroy.getCuentaFk().updateForDestroy(objectToDestroy);
+        objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().updateForDestroy(objectToDestroy);
         return super.destroy(objectToDestroy);
     }
 

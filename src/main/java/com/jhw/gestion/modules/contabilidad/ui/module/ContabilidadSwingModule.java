@@ -8,6 +8,7 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
 import com.jhw.gestion.modules.contabilidad.service.ResourceServiceImplementation;
+import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.liquidacion.LiquidacionDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
@@ -79,20 +80,12 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_CUENTA);
             }
         });
-
-        dash.addView(ContabilidadModuleNavigator.NAV_LIQUIDACIONES, new LiquidacionDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.LIQUIDACIONES, MaterialIcons.ASSIGNMENT_TURNED_IN) {
+        
+        dash.addView(ContabilidadModuleNavigator.NAV_CUADRE, new CuadreDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUADRE, MaterialIcons.ASSIGNMENT_TURNED_IN) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.navigateTo(ContabilidadModuleNavigator.NAV_LIQUIDACIONES);
-            }
-        });
-
-        dash.addView(ContabilidadModuleNavigator.NAV_OPERACIONES, new OperacionContableDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.OPERACIONES, MaterialIcons.ASSIGNMENT_LATE) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.navigateTo(ContabilidadModuleNavigator.NAV_OPERACIONES);
+                app.navigateTo(ContabilidadModuleNavigator.NAV_CUADRE);
             }
         });
 

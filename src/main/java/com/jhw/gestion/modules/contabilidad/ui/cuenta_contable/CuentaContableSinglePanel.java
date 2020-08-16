@@ -6,7 +6,7 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
-import com.jhw.gestion.modules.contabilidad.ui.main_section.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 
 /**

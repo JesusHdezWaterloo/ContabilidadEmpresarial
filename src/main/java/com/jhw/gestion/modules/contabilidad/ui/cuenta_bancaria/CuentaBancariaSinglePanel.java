@@ -7,7 +7,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.liquidacion.LiquidacionDetailView;
-import com.jhw.gestion.modules.contabilidad.ui.main_section.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
 import com.jhw.swing.models.detail.DialogDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 

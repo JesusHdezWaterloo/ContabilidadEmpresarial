@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jhw.gestion.modules.contabilidad.ui.main_section;
+package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button.prepared._buttonView;
+import com.jhw.swing.material.components.container.layout.VerticalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
@@ -83,9 +84,9 @@ public class CuentaSinglePanel extends _MaterialPanel implements Update {
 
         //center
         VerticalLayoutContainer.builder center = VerticalLayoutContainer.builder();
-        center.add(debito, true);
+        center.add(VerticalLayoutComponent.builder(debito).gapTop(5).build());
         center.add(credito, true);
-        center.add(saldo, true);
+        center.add(saldo);
 
         background.add(center.build());
 

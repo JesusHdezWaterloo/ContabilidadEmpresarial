@@ -25,6 +25,10 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
 
     private final CuentaBancariaDomain cuenta;
 
+    public LiquidacionDetailView() {
+        this(null);
+    }
+
     public LiquidacionDetailView(CuentaBancariaDomain cuenta) {
         super(
                 Column.builder().name(COL_DCUMENTO).build(),

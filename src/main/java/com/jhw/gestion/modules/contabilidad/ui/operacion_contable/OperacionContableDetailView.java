@@ -24,6 +24,10 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
 
     private final CuentaContableDomain cuenta;
 
+    public OperacionContableDetailView() {
+        this(null);
+    }
+
     public OperacionContableDetailView(CuentaContableDomain cuenta) {
         super(
                 Column.builder().name(COL_DCUMENTO).build(),

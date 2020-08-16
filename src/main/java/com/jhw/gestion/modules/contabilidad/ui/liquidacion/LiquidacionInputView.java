@@ -1,7 +1,5 @@
 package com.jhw.gestion.modules.contabilidad.ui.liquidacion;
 
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
@@ -9,7 +7,6 @@ import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreICBS;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.labels.prepared.*;
 import java.util.Map;
 
@@ -18,17 +15,32 @@ import java.util.Map;
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
 public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> {
-
-    public LiquidacionInputView() {
-        this(null);
+    
+    public static LiquidacionInputView fromBase(LiquidacionDomain base) {
+        return new LiquidacionInputView(base, null);
     }
-
-    public LiquidacionInputView(LiquidacionDomain model) {
+    
+    public static LiquidacionInputView fromModel(LiquidacionDomain model) {
+        return new LiquidacionInputView(null, model);
+    }
+    
+    public static LiquidacionInputView from() {
+        return new LiquidacionInputView(null, null);
+    }
+    
+    private final LiquidacionDomain base;
+    
+    private LiquidacionInputView(LiquidacionDomain base, LiquidacionDomain model) {
         super(model, ContabilidadSwingModule.liquicadionUC, LiquidacionDomain.class);
+        if (model != null) {
+            this.base = model;
+        } else {
+            this.base = base;
+        }
         initComponents();
         update();
     }
-
+    
     private void initComponents() {
         setHeader("Crear Liquidación", "Editar Liquidación");
 
@@ -43,15 +55,12 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         textFieldNombre.setLabel("Nombre de la Liquidación");
 
         //debito
-        _MaterialLabel labelDebito = new _MaterialLabel();
-        labelDebito.setText("Débito");
-        labelDebitoValue = new _labelPositive();
+        labelDebitoValue = new _labelDoubleMoneyPositive();
+        labelDebitoValue.setText("Débito");
 
         //credito
-        _MaterialLabel labelCredito = new _MaterialLabel();
-        labelCredito.setText("Crédito");
-
-        labelCreditoValue = new _labelNegativo();
+        labelCreditoValue = new _labelDoubleMoneyNegative();
+        labelCreditoValue.setText("Crédito");
 
         //fecha
         datePickerFecha = new _MaterialDatePicker();
@@ -65,35 +74,28 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-
+        
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldDocumento);
         vlc.add(textFieldNombre);
-
-        HorizontalLayoutContainer.builder hlDebito = HorizontalLayoutContainer.builder((int) labelDebito.getPreferredSize().getHeight());
-        hlDebito.add(HorizontalLayoutComponent.builder(labelDebito).gapRight(5).build());
-        hlDebito.add(HorizontalLayoutComponent.builder(labelDebitoValue).gapLeft(5).build());
-        vlc.add(hlDebito.build());
-
-        HorizontalLayoutContainer.builder hlCredito = HorizontalLayoutContainer.builder((int) labelCredito.getPreferredSize().getHeight());
-        hlCredito.add(HorizontalLayoutComponent.builder(labelCredito).gapRight(5).build());
-        hlCredito.add(HorizontalLayoutComponent.builder(labelCreditoValue).gapLeft(5).build());
-        vlc.add(hlCredito.build());
-
+        
+        vlc.add(labelDebitoValue);
+        vlc.add(labelCreditoValue);
+        
         vlc.add(datePickerFecha, true);
         vlc.add(cuadreICBS, true);
         vlc.add(cuentaICBS, true);
-
+        
         vlc.add(textAreaDescripcion, true);
-
+        
         this.setComponent(vlc.build());
     }
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldDocumento;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
-    private _labelPositive labelDebitoValue;
-    private _labelNegativo labelCreditoValue;
+    private _labelDoubleMoneyPositive labelDebitoValue;
+    private _labelDoubleMoneyNegative labelCreditoValue;
     private _MaterialDatePicker datePickerFecha;
     private CuentaBancariaICBS cuentaICBS;
     private CuadreICBS cuadreICBS;
@@ -103,8 +105,21 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     @Override
     public void update() {
         super.update();
+        cuadreICBS.setEnabled(base == null);
+        if (base == null) {
+            labelCreditoValue.setMoney(0, "");
+            labelDebitoValue.setMoney(0, "");
+        } else {
+            datePickerFecha.setDate(base.getFecha());
+            cuadreICBS.setSelectedItem(base.getCuadreFk());
+            cuentaICBS.setSelectedItem(base.getCuentaFk());
+            textFieldNombre.setText(base.getNombre());
+            textFieldDocumento.setText(base.getDocumento());
+            labelCreditoValue.setMoney(base.getCredito(), base.getCuentaFk().getMonedaFk());
+            labelDebitoValue.setMoney(base.getDebito(), base.getCuentaFk().getMonedaFk());
+        }
     }
-
+    
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();

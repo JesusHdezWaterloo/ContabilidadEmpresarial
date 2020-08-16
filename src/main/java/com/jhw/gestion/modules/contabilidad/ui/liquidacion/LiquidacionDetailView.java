@@ -57,15 +57,17 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
         try {
             setCollection(ContabilidadSwingModule.liquicadionUC.findAll(cuenta));
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
     @Override
     public Object[] getRowObject(LiquidacionDomain obj) {
-        return new Object[]{obj.getDocumento(),
+        return new Object[]{
+            obj.getDocumento(),
             obj.getNombre(),
-            obj.getDebito() == 0 ? "-" : MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
-            obj.getCredito() == 0 ? "-" : MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
+            MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
+            MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
             obj.getFecha(),
             obj.getCuentaFk(),
             obj.getCuadreFk()

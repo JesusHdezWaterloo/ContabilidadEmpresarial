@@ -8,7 +8,10 @@ import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
+import com.jhw.swing.util.Utils;
 import com.jhw.utils.others.SDF;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 /**
  *
@@ -38,7 +41,6 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
                 Column.builder().name(COL_FECHA).build(),
                 Column.builder().name(COL_CUENTA).build()
         );
-
         this.cuenta = cuenta;
 
         this.personalize();
@@ -48,7 +50,14 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
         setUpEditorsRenders();
         String cuentaStr = cuenta == null ? "" : " " + cuenta.toString();
         this.setHeaderText("Operaciones" + cuentaStr);
-        this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
+        this.setOptionPanelVisibility(false);
+        this.setActionColumnButtonsVisivility(false, false, false);//no pone el view, no esta implementado todavia
+        changeSize();
+    }
+
+    private void changeSize() {
+        Rectangle screen = Utils.getScreenSize();
+        setPreferredSize(new Dimension(screen.width * 8 / 10, screen.height * 8 / 10));
     }
 
     @Override

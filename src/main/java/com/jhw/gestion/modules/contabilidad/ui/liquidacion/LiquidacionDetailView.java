@@ -8,7 +8,10 @@ import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRe
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
+import com.jhw.swing.util.Utils;
 import com.jhw.utils.others.SDF;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 /**
  *
@@ -51,6 +54,12 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
         String cuentaStr = cuenta == null ? "" : " (" + cuenta.toString() + ")";
         this.setHeaderText("Liquidaciones" + cuentaStr);
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
+        changeSize();
+    }
+
+    private void changeSize() {
+        Rectangle screen = Utils.getScreenSize();
+        setPreferredSize(new Dimension(screen.width * 8 / 10, screen.height * 8 / 10));
     }
 
     @Override

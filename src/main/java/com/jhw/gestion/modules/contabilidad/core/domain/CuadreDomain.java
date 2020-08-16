@@ -44,6 +44,10 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.operacionContableFk = operacionContableFk;
     }
 
+    public InfoOperacionContableDomain info() {
+        return operacionContableCuadreFk.getInfoOperacionContableFk();
+    }
+
     public Integer getIdCuadre() {
         return idCuadre;
     }

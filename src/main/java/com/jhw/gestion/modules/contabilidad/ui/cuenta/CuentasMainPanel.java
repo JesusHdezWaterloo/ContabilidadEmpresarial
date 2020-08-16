@@ -8,6 +8,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaDetailMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableDetailMainPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 
@@ -25,11 +26,18 @@ public class CuentasMainPanel extends _PanelTransparent implements Update {
     private void initComponents() {
         setLayout(new BorderLayout());
 
+        _PanelTransparent background = new _PanelTransparent();
+        background.setLayout(new BorderLayout());
+
+        _MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
+        scroll.setViewportView(background);
+        this.add(scroll);
+
         cuentasBancarias = new CuentaBancariaDetailMainPanel();
-        this.add(cuentasBancarias, BorderLayout.NORTH);
+        background.add(cuentasBancarias, BorderLayout.NORTH);
 
         cuentasContables = new CuentaContableDetailMainPanel();
-        this.add(cuentasContables, BorderLayout.CENTER);
+        background.add(cuentasContables, BorderLayout.CENTER);
     }
     private CuentaBancariaDetailMainPanel cuentasBancarias;
     private CuentaContableDetailMainPanel cuentasContables;

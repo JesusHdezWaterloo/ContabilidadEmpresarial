@@ -7,6 +7,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
 import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
+import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
@@ -22,7 +23,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class CuentaDetailMainPanel<T extends Cuenta> extends _PanelTransparent implements Update {
+public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialPanel implements Update {
 
     public CuentaDetailMainPanel() {
         initComponents();
@@ -33,10 +34,10 @@ public class CuentaDetailMainPanel<T extends Cuenta> extends _PanelTransparent i
         this.setLayout(new BorderLayout());
 
         this.setBorder(new EmptyBorder(
-                MaterialShadow.OFFSET_TOP,
-                MaterialShadow.OFFSET_LEFT,
-                MaterialShadow.OFFSET_BOTTOM,
-                MaterialShadow.OFFSET_RIGHT));
+                MaterialShadow.OFFSET_TOP + 10,
+                MaterialShadow.OFFSET_LEFT + 10,
+                MaterialShadow.OFFSET_BOTTOM + 10,
+                MaterialShadow.OFFSET_RIGHT + 10));
 
         //actions
         _PanelTransparent header = new _PanelTransparent();
@@ -60,10 +61,6 @@ public class CuentaDetailMainPanel<T extends Cuenta> extends _PanelTransparent i
     private _buttonAddEdit buttonAddEdit;
     private _PanelTransparent panelCuentasSingle;
 
-    @Override
-    public void update() {
-    }
-
     public void setHeader(String text) {
         labelHeader.setText(text);
     }
@@ -78,9 +75,7 @@ public class CuentaDetailMainPanel<T extends Cuenta> extends _PanelTransparent i
         this.revalidate();
     }
 
-    protected CuentaSinglePanel buildSingle(T cuenta) {
-        return new CuentaSinglePanel(cuenta);
-    }
+    protected abstract CuentaSinglePanel buildSingle(T cuenta);
 
     private void addListeners() {
         buttonAddEdit.addActionListener((ActionEvent e) -> {
@@ -88,7 +83,6 @@ public class CuentaDetailMainPanel<T extends Cuenta> extends _PanelTransparent i
         });
     }
 
-    public void createAction() {
-    }
+    public abstract void createAction();
 
 }

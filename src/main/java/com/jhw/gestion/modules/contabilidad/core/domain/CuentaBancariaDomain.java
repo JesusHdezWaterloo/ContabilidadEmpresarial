@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@SortBy(priority = {"nombreCuenta", "codigo"})
+@SortBy(priority = {"codigo", "nombreCuenta"})
 public class CuentaBancariaDomain extends EntityDomainObjectValidated implements Cuenta {
 
     private Integer idCuentaBancaria;

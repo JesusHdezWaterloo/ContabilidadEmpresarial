@@ -29,7 +29,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class CuentaSinglePanel extends _MaterialPanel implements Update {
+public abstract class CuentaSinglePanel extends _MaterialPanel implements Update {
 
     private final Cuenta cuenta;
 
@@ -42,7 +42,9 @@ public class CuentaSinglePanel extends _MaterialPanel implements Update {
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-
+        
+        this.setBackground(MaterialColors.GREY_100);
+        
         this.setBorder(new EmptyBorder(
                 MaterialShadow.OFFSET_TOP,
                 MaterialShadow.OFFSET_LEFT,
@@ -109,11 +111,9 @@ public class CuentaSinglePanel extends _MaterialPanel implements Update {
         });
     }
 
-    protected void editAction() {
-    }
+    protected abstract void editAction();
 
-    protected void viewAction() {
-    }
+    protected abstract void viewAction();
 
     @Override
     public void update() {

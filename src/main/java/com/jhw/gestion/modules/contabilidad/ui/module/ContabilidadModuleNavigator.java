@@ -12,9 +12,11 @@ public class ContabilidadModuleNavigator implements NavigationService {
     public static final String CUENTA = "Cuentas";
     public static final String MONEDA = "Monedas";
     public static final String METODO_PAGO = "Métodos de pago";
+    public static final String TIPO_CUENTA = "Tipo de cuenta";
     public static final String NAV_CUENTA = "modulos.cuenta.cuentas";
     public static final String NAV_MONEDA = "modulos.cuenta.monedas";
     public static final String NAV_METODO_PAGO = "modulos.cuenta.metodo_pago";
+    public static final String NAV_TIPO_CUENTA = "modulos.cuenta.tipo_cuenta";
 
     @Override
     public void navigateTo(String string, Object... os) {

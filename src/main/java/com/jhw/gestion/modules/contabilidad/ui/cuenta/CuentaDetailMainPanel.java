@@ -10,6 +10,7 @@ import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
+import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.utils.interfaces.Update;
@@ -53,7 +54,13 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
         header.add(buttonAddEdit, BorderLayout.EAST);
         this.add(header, BorderLayout.NORTH);
 
+        //panel cuentas
         panelCuentasSingle = new _PanelTransparent();
+
+        //_MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
+        //scroll.remove(scroll.getHorizontalScrollBar());
+        //scroll.setViewportView(panelCuentasSingle);
+        //this.add(scroll);
         this.add(panelCuentasSingle);
     }
 

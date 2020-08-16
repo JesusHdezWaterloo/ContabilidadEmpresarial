@@ -11,9 +11,9 @@ package com.jhw.gestion.modules.contabilidad.core.domain;
  */
 public interface Cuenta {
 
-    public Integer getIdCuenta();
+    public Integer ggetIdCuenta();
 
-    public void setIdCuenta(Integer idCuenta);
+    public void ssetIdCuenta(Integer idCuenta);
 
     public String getNombreCuenta();
 

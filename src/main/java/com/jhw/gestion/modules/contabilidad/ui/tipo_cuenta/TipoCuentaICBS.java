@@ -6,20 +6,21 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.TipoCuentaDomain;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class TipoCuentaICBS extends ICBSNotEmptySeleccionable<MonedaDomain> {
+public class TipoCuentaICBS extends ICBSNotEmptySeleccionable<TipoCuentaDomain> {
 
     public TipoCuentaICBS() {
-        super("Moneda");
+        super("Tipo de cuenta");
     }
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.monedaUC.findAll());
+        setModel(ContabilidadSwingModule.tipoCuentaUC.findAll());
     }
 
     @Override

@@ -29,9 +29,9 @@ public class CuentasMainPanel extends _PanelTransparent implements Update {
         _PanelTransparent background = new _PanelTransparent();
         background.setLayout(new BorderLayout());
 
-        _MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
-        scroll.setViewportView(background);
-        this.add(scroll);
+        //_MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
+        //scroll.setViewportView(background);
+        this.add(background);
 
         cuentasBancarias = new CuentaBancariaDetailMainPanel();
         background.add(cuentasBancarias, BorderLayout.NORTH);

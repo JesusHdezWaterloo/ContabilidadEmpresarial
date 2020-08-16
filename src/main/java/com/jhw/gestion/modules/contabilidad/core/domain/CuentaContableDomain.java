@@ -66,12 +66,12 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
     }
 
     @Override
-    public Integer getIdCuenta() {
+    public Integer ggetIdCuenta() {
         return getIdCuentaContable();
     }
 
     @Override
-    public void setIdCuenta(Integer idCuenta) {
+    public void ssetIdCuenta(Integer idCuenta) {
         setIdCuentaContable(idCuenta);
     }
 

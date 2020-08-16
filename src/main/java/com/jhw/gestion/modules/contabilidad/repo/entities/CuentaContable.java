@@ -40,45 +40,45 @@ import javax.validation.constraints.Size;
 public class CuentaContable implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_cuenta_contable", nullable = false)
     private Integer idCuentaContable;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_cuenta", nullable = false, length = 100)
     private String nombreCuenta;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "codigo", nullable = false, length = 5)
     private String codigo;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "debito", nullable = false)
     private double debito;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "credito", nullable = false)
     private double credito;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-    
+
     @JoinColumn(name = "tipo_cuenta_fk", referencedColumnName = "id_tipo_cuenta", nullable = false)
     @ManyToOne(optional = false)
     private TipoCuenta tipoCuentaFk;
-    
+
     @JoinColumn(name = "moneda_fk", referencedColumnName = "id_moneda", nullable = false)
     @ManyToOne(optional = false)
     private Moneda monedaFk;
@@ -187,5 +187,5 @@ public class CuentaContable implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.CuentaContable[ idCuentaContable=" + idCuentaContable + " ]";
     }
-    
+
 }

@@ -7,6 +7,8 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.operacion_contable.OperacionContableDetailView;
+import com.jhw.swing.models.detail.DialogDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 
 /**
@@ -24,7 +26,7 @@ public class CuentaContableSinglePanel extends CuentaSinglePanel {
 
     @Override
     protected void viewAction() {
-        //new DialogDetail(this, "Operaciones", new LiquidacionDetailView(cuenta));
+        new DialogDetail(this, "Operaciones", new OperacionContableDetailView(cuenta));
     }
 
     @Override

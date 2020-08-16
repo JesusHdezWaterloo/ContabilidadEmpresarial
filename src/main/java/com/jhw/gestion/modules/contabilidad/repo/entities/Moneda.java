@@ -36,29 +36,29 @@ import javax.validation.constraints.Size;
 public class Moneda implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_moneda", nullable = false)
     private Integer idMoneda;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "nombre_moneda", nullable = false, length = 5)
     private String nombreMoneda;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "compra", nullable = false)
     private double compra;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "venta", nullable = false)
     private double venta;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
@@ -144,5 +144,5 @@ public class Moneda implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.Moneda[ idMoneda=" + idMoneda + " ]";
     }
-    
+
 }

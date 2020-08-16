@@ -36,28 +36,28 @@ import javax.validation.constraints.Size;
 public class Cuadre implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_cuadre", nullable = false)
     private Integer idCuadre;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "liquidada", nullable = false)
     private boolean liquidada;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-    
+
     @JoinColumn(name = "operacion_contable_cuadre_fk", referencedColumnName = "id_operacion_contable", nullable = false)
     @ManyToOne(optional = false)
     private OperacionContable operacionContableCuadreFk;
-    
+
     @JoinColumn(name = "operacion_contable_fk", referencedColumnName = "id_operacion_contable", nullable = false)
     @ManyToOne(optional = false)
     private OperacionContable operacionContableFk;
@@ -139,5 +139,5 @@ public class Cuadre implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.Cuadre[ idCuadre=" + idCuadre + " ]";
     }
-    
+
 }

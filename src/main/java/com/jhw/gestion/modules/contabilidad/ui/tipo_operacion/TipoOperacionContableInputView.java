@@ -11,17 +11,17 @@ import java.util.Map;
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
 public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOperacionContableDomain> {
-    
+
     public TipoOperacionContableInputView() {
         this(null);
     }
-    
+
     public TipoOperacionContableInputView(TipoOperacionContableDomain model) {
         super(model, ContabilidadSwingModule.tipoOperacionContableUC, TipoOperacionContableDomain.class);
         initComponents();
         update();
     }
-    
+
     private void initComponents() {
         setHeader("Crear Tipo de Operación", "Editar Tipo de Operación");
 
@@ -37,12 +37,12 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-        
+
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
         vlc.add(textFieldKey);
         vlc.add(textAreaDescripcion, true);
-        
+
         this.setComponent(vlc.build());
     }
 
@@ -57,7 +57,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         super.update();
         textFieldKey.setEnabled(getOldModel() == null);
     }
-    
+
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();

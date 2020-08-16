@@ -29,7 +29,6 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     private void initComponents() {
         setHeader("Crear Moneda", "Editar Moneda");
 
-
         //tipo
         textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
         textFieldTipo.setLabel("Moneda");
@@ -44,10 +43,10 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
         textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
-        
+
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-        
+
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
         HorizontalLayoutContainer.builder hlcCompraVenta = HorizontalLayoutContainer.builder((int) textFieldCompra.getPreferredSize().getHeight());

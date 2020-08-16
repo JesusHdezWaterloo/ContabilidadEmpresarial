@@ -42,9 +42,9 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        
+
         this.setBackground(MaterialColors.GREY_100);
-        
+
         this.setBorder(new EmptyBorder(
                 MaterialShadow.OFFSET_TOP,
                 MaterialShadow.OFFSET_LEFT,
@@ -117,7 +117,7 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
 
     @Override
     public void update() {
-        this.labelNombreCuenta.setText(cuenta.getCodigo() + " - " + cuenta.getNombreCuenta());
+        this.labelNombreCuenta.setText(cuenta.toString());
         this.debito.setMoney(cuenta.getDebito(), cuenta.getMonedaFk());
         this.credito.setMoney(cuenta.getCredito(), cuenta.getMonedaFk());
         this.saldo.setMoney(cuenta.saldo(), cuenta.getMonedaFk());

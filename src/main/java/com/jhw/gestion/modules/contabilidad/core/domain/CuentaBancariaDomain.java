@@ -190,7 +190,7 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
 
     @Override
     public String toString() {
-        return nombreCuenta + " (" + codigo + ")";
+        return codigo + " - " + nombreCuenta;
     }
 
 }

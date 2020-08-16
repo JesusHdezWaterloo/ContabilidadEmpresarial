@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@SortBy(priority = {"nombreCuenta", "codigo"})
+@SortBy(priority = {"codigo", "nombreCuenta"})
 public class CuentaContableDomain extends EntityDomainObjectValidated implements Cuenta {
 
     private Integer idCuentaContable;
@@ -165,6 +165,6 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
 
     @Override
     public String toString() {
-        return nombreCuenta + " (" + codigo + ")";
+        return codigo + " - " + nombreCuenta;
     }
 }

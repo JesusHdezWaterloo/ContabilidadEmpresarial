@@ -36,28 +36,28 @@ import javax.validation.constraints.Size;
 public class Subcuenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_subcuenta", nullable = false)
     private Integer idSubcuenta;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "pociento", nullable = false)
     private float pociento;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-    
+
     @JoinColumn(name = "cuenta_hijo_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
     private CuentaContable cuentaHijoFk;
-    
+
     @JoinColumn(name = "cuenta_padre_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
     private CuentaContable cuentaPadreFk;
@@ -139,5 +139,5 @@ public class Subcuenta implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.Subcuenta[ idSubcuenta=" + idSubcuenta + " ]";
     }
-    
+
 }

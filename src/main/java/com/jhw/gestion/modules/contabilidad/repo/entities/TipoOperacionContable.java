@@ -39,25 +39,25 @@ import javax.validation.constraints.Size;
 public class TipoOperacionContable implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_tipo_operacion", nullable = false)
     private Integer idTipoOperacion;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_operacion", nullable = false, length = 100)
     private String nombreOperacion;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "key_enum", nullable = false, length = 100)
     private String keyEnum;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)

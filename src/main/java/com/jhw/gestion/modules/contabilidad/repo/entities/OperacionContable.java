@@ -33,27 +33,27 @@ import javax.validation.constraints.NotNull;
 public class OperacionContable implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_operacion_contable", nullable = false)
     private Integer idOperacionContable;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "debito", nullable = false)
     private double debito;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "credito", nullable = false)
     private double credito;
-    
+
     @JoinColumn(name = "cuenta_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
     private CuentaContable cuentaFk;
-    
+
     @JoinColumn(name = "info_operacion_contable_fk", referencedColumnName = "id_info_operacion_contable", nullable = false)
     @ManyToOne(optional = false)
     private InfoOperacionContable infoOperacionContableFk;
@@ -135,5 +135,5 @@ public class OperacionContable implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.OperacionContable[ idOperacionContable=" + idOperacionContable + " ]";
     }
-    
+
 }

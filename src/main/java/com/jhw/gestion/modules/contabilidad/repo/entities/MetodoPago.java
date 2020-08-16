@@ -34,19 +34,19 @@ import javax.validation.constraints.Size;
 public class MetodoPago implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_metodo_pago", nullable = false)
     private Integer idMetodoPago;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_metodo_pago", nullable = false, length = 100)
     private String nombreMetodoPago;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
@@ -114,5 +114,5 @@ public class MetodoPago implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.MetodoPago[ idMetodoPago=" + idMetodoPago + " ]";
     }
-    
+
 }

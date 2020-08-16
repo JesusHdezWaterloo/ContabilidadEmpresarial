@@ -44,23 +44,23 @@ public class TipoCuenta implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_tipo_cuenta", nullable = false)
     private Integer idTipoCuenta;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_tipo_cuenta", nullable = false, length = 100)
     private String nombreTipoCuenta;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "debito_credito", nullable = false)
     private boolean debitoCredito;
-    
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "liquidable", nullable = false)
     private boolean liquidable;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 0, max = 500)
@@ -146,5 +146,5 @@ public class TipoCuenta implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.TipoCuenta[ idTipoCuenta=" + idTipoCuenta + " ]";
     }
-    
+
 }

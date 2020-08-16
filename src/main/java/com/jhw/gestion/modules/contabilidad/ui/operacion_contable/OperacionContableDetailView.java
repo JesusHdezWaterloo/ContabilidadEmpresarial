@@ -8,6 +8,7 @@ import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
+import com.jhw.utils.others.SDF;
 
 /**
  *
@@ -45,7 +46,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
 
     private void personalize() {
         setUpEditorsRenders();
-        String cuentaStr = cuenta == null ? "" : cuenta.toString();
+        String cuentaStr = cuenta == null ? "" : " " + cuenta.toString();
         this.setHeaderText("Operaciones" + cuentaStr);
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
@@ -55,16 +56,18 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
         try {
             setCollection(ContabilidadSwingModule.operacionContableUC.findAll(cuenta));
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
     @Override
     public Object[] getRowObject(OperacionContableDomain obj) {
-        return new Object[]{obj.getInfoOperacionContableFk().getDocumento(),
+        return new Object[]{
+            obj.getInfoOperacionContableFk().getDocumento(),
             obj.getInfoOperacionContableFk().getNombre(),
-            obj.getDebito() == 0 ? "-" : MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
-            obj.getCredito() == 0 ? "-" : MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
-            obj.getInfoOperacionContableFk().getFecha(),
+            MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
+            MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
+            SDF.format(obj.getInfoOperacionContableFk().getFecha()),
             obj.getCuentaFk()
         };
     }

@@ -6,13 +6,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria;
 
 import com.clean.core.app.services.ExceptionHandler;
-import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaDetailMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
-import java.util.function.Function;
 
 /**
  *

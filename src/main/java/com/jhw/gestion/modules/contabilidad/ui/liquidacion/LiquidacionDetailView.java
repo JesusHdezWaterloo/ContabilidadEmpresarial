@@ -8,6 +8,7 @@ import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRe
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
+import com.jhw.utils.others.SDF;
 
 /**
  *
@@ -68,7 +69,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
             obj.getNombre(),
             MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
-            obj.getFecha(),
+            SDF.format(obj.getFecha()),
             obj.getCuentaFk(),
             obj.getCuadreFk()
         };

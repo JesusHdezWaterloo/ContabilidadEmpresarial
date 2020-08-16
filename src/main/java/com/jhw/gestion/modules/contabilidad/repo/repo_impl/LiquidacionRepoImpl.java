@@ -8,6 +8,7 @@ import com.jhw.utils.jackson.JACKSON;
 import com.jhw.utils.jpa.ConverterService;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 import com.jhw.utils.jpa.NonExistingEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -26,16 +27,28 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
             em = getEntityManager();
             em.getTransaction().begin();
 
+            //crea la liquidacion
             Liquidacion liqEntity = ConverterService.convert(domain, Liquidacion.class);
             em.persist(liqEntity);
 
+            //update el cuadre
             Cuadre cuadreEntity = ConverterService.convert(domain.getCuadreFk(), Cuadre.class);
             em.merge(cuadreEntity);
 
+            //update la centa bancaria
+            CuentaBancaria cuentaBancariaEntity = ConverterService.convert(domain.getCuentaFk(), CuentaBancaria.class);
+            em.merge(cuentaBancariaEntity);
+
+            //update la cuenta contable
+            CuentaContable cuentaContableEntity = ConverterService.convert(domain.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk(), CuentaContable.class);
+            em.merge(cuentaContableEntity);
+            cuadreEntity.getOperacionContableCuadreFk().setCuentaFk(cuentaContableEntity);
+            
             em.getTransaction().commit();
 
             domain = ConverterService.convert(liqEntity, LiquidacionDomain.class);
             domain.setCuadreFk(ConverterService.convert(cuadreEntity, CuadreDomain.class));
+            domain.setCuentaFk(ConverterService.convert(cuentaBancariaEntity, CuentaBancariaDomain.class));
         } finally {
             if (em != null) {
                 em.close();
@@ -63,10 +76,19 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
             Cuadre cuadreEntity = ConverterService.convert(domain.getCuadreFk(), Cuadre.class);
             em.merge(cuadreEntity);
 
+            CuentaBancaria cuentaBancariaEntity = ConverterService.convert(domain.getCuentaFk(), CuentaBancaria.class);
+            em.merge(cuentaBancariaEntity);
+
+            //update la cuenta contable
+            CuentaContable cuentaContableEntity = ConverterService.convert(domain.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk(), CuentaContable.class);
+            em.merge(cuentaContableEntity);
+            cuadreEntity.getOperacionContableCuadreFk().setCuentaFk(cuentaContableEntity);
+            
             em.getTransaction().commit();
 
             domain = ConverterService.convert(persistedObject, LiquidacionDomain.class);
             domain.setCuadreFk(ConverterService.convert(cuadreEntity, CuadreDomain.class));
+            domain.setCuentaFk(ConverterService.convert(cuentaBancariaEntity, CuentaBancariaDomain.class));
         } finally {
             if (em != null) {
                 em.close();
@@ -87,8 +109,10 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
     private List<LiquidacionDomain> findAllByCuenta(CuentaBancariaDomain cuenta) throws Exception {
         EntityManager em = getEntityManager();
         try {
-            List<Liquidacion> list = em.createQuery(Liquidacion_findByCuenta, Liquidacion.class).setParameter("cuentaFk", cuenta).getResultList();
+            List<Liquidacion> list = em.createQuery(Liquidacion_findByCuenta, Liquidacion.class).setParameter("cuentaFk", JACKSON.convert(cuenta, CuentaBancaria.class)).getResultList();
             return JACKSON.convert(list, LiquidacionDomain.class);
+        } catch (Exception e) {
+            return new ArrayList<>();
         } finally {
             em.close();
         }

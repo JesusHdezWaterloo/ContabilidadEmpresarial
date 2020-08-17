@@ -31,14 +31,9 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
     private void initComponents() {
         textFieldDebito = new _MaterialTextFieldMoneyPositive();
-        textFieldDebito.setLabel("Débito");
-        textFieldDebito.setHint("Débito de la operación");
+        textFieldDebito.setLabel("Valor");
+        textFieldDebito.setHint("Valor de la operación");
         monedaDebito = new MonedaICBS();
-
-        textFieldCredito = new _MaterialTextFieldMoneyPositive();
-        textFieldCredito.setLabel("Crédito");
-        textFieldCredito.setHint("Crédito de la operación");
-        monedaCredito = new MonedaICBS();
 
         //cuenta
         cuentaICBS = new CuentaContableICBS();
@@ -58,11 +53,6 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         hlcDebito.add(HorizontalLayoutComponent.builder(monedaDebito).gapLeft(5).build());
         vlc.add(hlcDebito.build());
 
-        HorizontalLayoutContainer.builder hlcCredito = HorizontalLayoutContainer.builder((int) textFieldCredito.getPreferredSize().getHeight());
-        hlcCredito.add(HorizontalLayoutComponent.builder(textFieldCredito).gapRight(5).build());
-        hlcCredito.add(HorizontalLayoutComponent.builder(monedaCredito).gapLeft(5).build());
-        vlc.add(hlcCredito.build());
-
         vlc.add(cuentaICBS);
         vlc.add(cuentaCuadreICBS);
         vlc.add(infoInputView, true);
@@ -73,8 +63,6 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
     // Variables declaration - do not modify
     private _MaterialTextFieldMoneyPositive textFieldDebito;
     private MonedaICBS monedaDebito;
-    private _MaterialTextFieldMoneyPositive textFieldCredito;
-    private MonedaICBS monedaCredito;
     private CuentaContableICBS cuentaICBS;
     private CuentaContableICBS cuentaCuadreICBS;
     private InfoOpInputView infoInputView;
@@ -83,7 +71,6 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
     @Override
     public void update() {
         monedaDebito.update();
-        monedaCredito.update();
         cuentaICBS.update();
         cuentaCuadreICBS.update();
         if (getOldModel() == null) {
@@ -92,9 +79,6 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
             setHeader("Editar Cuadre");
             textFieldDebito.setMoney(getOldModel().getOperacionContableFk().getDebito(), getOldModel().getOperacionContableFk().getCuentaFk().getMonedaFk().toString());
             monedaDebito.setSelectedItem(getOldModel().getOperacionContableFk().getCuentaFk().getMonedaFk());
-
-            textFieldCredito.setMoney(getOldModel().getOperacionContableFk().getCredito(), getOldModel().getOperacionContableFk().getCuentaFk().getMonedaFk().toString());
-            monedaCredito.setSelectedItem(getOldModel().getOperacionContableFk().getCuentaFk().getMonedaFk());
 
             cuentaICBS.setSelectedItem(getOldModel().getOperacionContableFk().getCuentaFk());
             cuentaCuadreICBS.setSelectedItem(getOldModel().getOperacionContableCuadreFk().getCuentaFk());
@@ -108,16 +92,13 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         double debito = textFieldDebito.getMoney();
         MonedaDomain monedaDebito1 = monedaDebito.getSelectedItem();
 
-        double credito = textFieldCredito.getMoney();
-        MonedaDomain monedaCredito1 = monedaCredito.getSelectedItem();
-
         CuentaContableDomain cuenta = cuentaICBS.getSelectedItem();
         CuentaContableDomain cuentaCuadre = cuentaCuadreICBS.getSelectedItem();
 
         InfoOperacionContableDomain info = infoInputView.getNewModel();
         info.setTipoOperacionFk(TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO);
 
-        CuadreUI cuadre = new CuadreUI(debito, monedaDebito1, credito, monedaCredito1, cuenta, cuentaCuadre, info);
+        CuadreUI cuadre = new CuadreUI(debito, monedaDebito1, cuenta, cuentaCuadre, info);
         if (getOldModel() == null) {
             return new CuadreDomain(cuadre);
         } else {

@@ -16,57 +16,36 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
  */
 public class CuadreUI extends VolatileDomainObject {
 
-    private double debito;
-    private MonedaDomain monedaDebito1;
-
-    private double credito;
-    private MonedaDomain monedaCredito1;
+    private double valor;
+    private MonedaDomain moneda;
 
     private CuentaContableDomain cuenta;
     private CuentaContableDomain cuentaCuadre;
 
     private InfoOperacionContableDomain info;
 
-    public CuadreUI(double debito, MonedaDomain monedaDebito1, double credito, MonedaDomain monedaCredito1, CuentaContableDomain cuenta, CuentaContableDomain cuentaCuadre, InfoOperacionContableDomain info) {
-        this.debito = debito;
-        this.monedaDebito1 = monedaDebito1;
-        this.credito = credito;
-        this.monedaCredito1 = monedaCredito1;
+    public CuadreUI(double valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuentaCuadre, InfoOperacionContableDomain info) {
+        this.valor = valor;
+        this.moneda = moneda;
         this.cuenta = cuenta;
         this.cuentaCuadre = cuentaCuadre;
         this.info = info;
     }
 
-    public double getDebito() {
-        return debito;
+    public double getValor() {
+        return valor;
     }
 
-    public void setDebito(double debito) {
-        this.debito = debito;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public MonedaDomain getMonedaDebito1() {
-        return monedaDebito1;
+    public MonedaDomain getMoneda() {
+        return moneda;
     }
 
-    public void setMonedaDebito1(MonedaDomain monedaDebito1) {
-        this.monedaDebito1 = monedaDebito1;
-    }
-
-    public double getCredito() {
-        return credito;
-    }
-
-    public void setCredito(double credito) {
-        this.credito = credito;
-    }
-
-    public MonedaDomain getMonedaCredito1() {
-        return monedaCredito1;
-    }
-
-    public void setMonedaCredito1(MonedaDomain monedaCredito1) {
-        this.monedaCredito1 = monedaCredito1;
+    public void setMoneda(MonedaDomain moneda) {
+        this.moneda = moneda;
     }
 
     public CuentaContableDomain getCuenta() {

@@ -1,4 +1,4 @@
-package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
+package com.jhw.gestion.modules.contabilidad.ui.forma_pago;
 
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
@@ -10,14 +10,14 @@ import java.util.Map;
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class MetodoPagoInputView extends CleanCRUDInputView<MetodoPagoDomain> {
+public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
 
-    public MetodoPagoInputView() {
+    public FormaPagoInputView() {
         this(null);
     }
 
-    public MetodoPagoInputView(MetodoPagoDomain model) {
-        super(model, ContabilidadSwingModule.metodoPagoUC, MetodoPagoDomain.class);
+    public FormaPagoInputView(FormaPagoDomain model) {
+        super(model, ContabilidadSwingModule.tipoPagoUC, FormaPagoDomain.class);
         initComponents();
         update();
     }

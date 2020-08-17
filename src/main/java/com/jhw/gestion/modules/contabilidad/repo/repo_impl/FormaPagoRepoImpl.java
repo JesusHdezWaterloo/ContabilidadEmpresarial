@@ -6,10 +6,10 @@ import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 
-public class MetodoPagoRepoImpl extends JPACleanCRUDRepo<MetodoPagoDomain, MetodoPago> implements MetodoPagoRepo {
+public class FormaPagoRepoImpl extends JPACleanCRUDRepo<FormaPagoDomain, FormaPago> implements FormaPagoRepo {
 
-    public MetodoPagoRepoImpl() {
-        super(Resources.EMF, MetodoPagoDomain.class, MetodoPago.class);
+    public FormaPagoRepoImpl() {
+        super(Resources.EMF, FormaPagoDomain.class, FormaPago.class);
     }
 
 }

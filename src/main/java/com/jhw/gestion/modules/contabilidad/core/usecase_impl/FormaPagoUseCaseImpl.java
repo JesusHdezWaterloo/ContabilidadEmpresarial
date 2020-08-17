@@ -6,11 +6,11 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 
-public class MetodoPagoUseCaseImpl extends DefaultCRUDUseCase<MetodoPagoDomain> implements MetodoPagoUseCase {
+public class FormaPagoUseCaseImpl extends DefaultCRUDUseCase<FormaPagoDomain> implements FormaPagoUseCase {
 
-    private final MetodoPagoRepo repo = ContabilidadCoreModule.getInstance().getImplementation(MetodoPagoRepo.class);
+    private final FormaPagoRepo repo = ContabilidadCoreModule.getInstance().getImplementation(FormaPagoRepo.class);
 
-    public MetodoPagoUseCaseImpl() {
+    public FormaPagoUseCaseImpl() {
         super.setRepo(repo);
     }
 

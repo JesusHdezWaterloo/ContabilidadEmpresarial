@@ -19,7 +19,7 @@ public class ContabilidadCoreInjectionConfig extends AbstractModule {
         bind(CuentaContableUseCase.class).to(CuentaContableUseCaseImpl.class);
         bind(InfoOperacionContableUseCase.class).to(InfoOperacionContableUseCaseImpl.class);
         bind(LiquidacionUseCase.class).to(LiquidacionUseCaseImpl.class);
-        bind(MetodoPagoUseCase.class).to(MetodoPagoUseCaseImpl.class);
+        bind(FormaPagoUseCase.class).to(FormaPagoUseCaseImpl.class);
         bind(MonedaUseCase.class).to(MonedaUseCaseImpl.class);
         bind(OperacionContableUseCase.class).to(OperacionContableUseCaseImpl.class);
         bind(SubcuentaUseCase.class).to(SubcuentaUseCaseImpl.class);

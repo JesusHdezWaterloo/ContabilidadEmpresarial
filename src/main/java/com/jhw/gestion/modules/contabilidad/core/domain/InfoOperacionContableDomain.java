@@ -40,7 +40,7 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
     private int idExterno;
 
     @NotNull(message = "#msg.module.contabilidad.validation.info_operacion_metodo_pago_null#")
-    private MetodoPagoDomain metodoPagoFk;
+    private FormaPagoDomain metodoPagoFk;
 
     public InfoOperacionContableDomain() {
     }
@@ -49,7 +49,7 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idInfoOperacionContable = idInfoOperacionContable;
     }
 
-    public InfoOperacionContableDomain(String documento, String nombre, Date fecha, String descripcion, TipoOperacionContableDomain tipoOperacionFk, int idExterno, MetodoPagoDomain metodoPagoFk) {
+    public InfoOperacionContableDomain(String documento, String nombre, Date fecha, String descripcion, TipoOperacionContableDomain tipoOperacionFk, int idExterno, FormaPagoDomain metodoPagoFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -115,11 +115,11 @@ public class InfoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idExterno = idExterno;
     }
 
-    public MetodoPagoDomain getMetodoPagoFk() {
+    public FormaPagoDomain getMetodoPagoFk() {
         return metodoPagoFk;
     }
 
-    public void setMetodoPagoFk(MetodoPagoDomain metodoPagoFk) {
+    public void setMetodoPagoFk(FormaPagoDomain metodoPagoFk) {
         this.metodoPagoFk = metodoPagoFk;
     }
 

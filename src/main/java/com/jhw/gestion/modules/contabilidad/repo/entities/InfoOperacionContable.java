@@ -80,9 +80,9 @@ public class InfoOperacionContable implements Serializable {
     @Column(name = "id_externo", nullable = false)
     private int idExterno;
 
-    @JoinColumn(name = "metodo_pago_fk", referencedColumnName = "id_metodo_pago", nullable = false)
+    @JoinColumn(name = "forma_pago_fk", referencedColumnName = "id_forma_pago", nullable = false)
     @ManyToOne(optional = false)
-    private MetodoPago metodoPagoFk;
+    private FormaPago formaPagoFk;
 
     public InfoOperacionContable() {
     }
@@ -148,12 +148,12 @@ public class InfoOperacionContable implements Serializable {
         this.idExterno = idExterno;
     }
 
-    public MetodoPago getMetodoPagoFk() {
-        return metodoPagoFk;
+    public FormaPago getFormaPagoFk() {
+        return formaPagoFk;
     }
 
-    public void setMetodoPagoFk(MetodoPago metodoPagoFk) {
-        this.metodoPagoFk = metodoPagoFk;
+    public void setFormaPagoFk(FormaPago formaPagoFk) {
+        this.formaPagoFk = formaPagoFk;
     }
 
     public TipoOperacionContable getTipoOperacionFk() {

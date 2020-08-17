@@ -1,4 +1,4 @@
-package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
+package com.jhw.gestion.modules.contabilidad.ui.forma_pago;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import java.awt.event.ActionListener;
@@ -10,15 +10,15 @@ import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySel
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class MetodoPagoICBS extends ICBSNotEmptySeleccionable<MetodoPagoDomain> {
+public class FormaPagoICBS extends ICBSNotEmptySeleccionable<FormaPagoDomain> {
 
-    public MetodoPagoICBS() {
-        super("Método de Pago");
+    public FormaPagoICBS() {
+        super("Tipo de Pago");
     }
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.metodoPagoUC.findAll());
+        setModel(ContabilidadSwingModule.tipoPagoUC.findAll());
     }
 
     @Override
@@ -32,6 +32,6 @@ public class MetodoPagoICBS extends ICBSNotEmptySeleccionable<MetodoPagoDomain> 
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new MetodoPagoInputView());
+        new DialogInputCBS(this, new FormaPagoInputView());
     }
 }

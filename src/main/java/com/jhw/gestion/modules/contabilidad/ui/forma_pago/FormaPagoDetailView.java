@@ -1,4 +1,4 @@
-package com.jhw.gestion.modules.contabilidad.ui.metodo_pago;
+package com.jhw.gestion.modules.contabilidad.ui.forma_pago;
 
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.swing.material.components.table.Column;
@@ -11,12 +11,12 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class MetodoPagoDetailView extends _MaterialPanelDetail<MetodoPagoDomain> {
+public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
 
     private static final String COL_PAGO = "Pago";
     private static final String COL_DESC = "Descripción";
 
-    public MetodoPagoDetailView() {
+    public FormaPagoDetailView() {
         super(
                 Column.builder().name(COL_PAGO).build(),
                 Column.builder().name(COL_DESC).build()
@@ -26,34 +26,34 @@ public class MetodoPagoDetailView extends _MaterialPanelDetail<MetodoPagoDomain>
     }
 
     private void personalize() {
-        this.setHeaderText("Métodos de Pago");
+        this.setHeaderText("Tipos de Pago");
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
     @Override
     public void update() {
         try {
-            setCollection(ContabilidadSwingModule.metodoPagoUC.findAll());
+            setCollection(ContabilidadSwingModule.tipoPagoUC.findAll());
         } catch (Exception e) {
         }
     }
 
     @Override
-    public Object[] getRowObject(MetodoPagoDomain obj
+    public Object[] getRowObject(FormaPagoDomain obj
     ) {
-        return new Object[]{obj.getNombreMetodoPago(), obj.getDescripcion()};
+        return new Object[]{obj.getNombreFormaPago(), obj.getDescripcion()};
     }
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new MetodoPagoInputView());
+        new DialogModelInput(this, new FormaPagoInputView());
     }
 
     @Override
-    protected MetodoPagoDomain deleteAction(MetodoPagoDomain obj
+    protected FormaPagoDomain deleteAction(FormaPagoDomain obj
     ) {
         try {
-            ContabilidadSwingModule.metodoPagoUC.destroy(obj);
+            ContabilidadSwingModule.tipoPagoUC.destroy(obj);
             return obj;
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
@@ -62,13 +62,13 @@ public class MetodoPagoDetailView extends _MaterialPanelDetail<MetodoPagoDomain>
     }
 
     @Override
-    protected void editAction(MetodoPagoDomain obj
+    protected void editAction(FormaPagoDomain obj
     ) {
-        new DialogModelInput(this, new MetodoPagoInputView(obj));
+        new DialogModelInput(this, new FormaPagoInputView(obj));
     }
 
     @Override
-    protected void viewAction(MetodoPagoDomain obj
+    protected void viewAction(FormaPagoDomain obj
     ) {
         System.out.println("NO NECESARIO TODAVÍA.");
     }

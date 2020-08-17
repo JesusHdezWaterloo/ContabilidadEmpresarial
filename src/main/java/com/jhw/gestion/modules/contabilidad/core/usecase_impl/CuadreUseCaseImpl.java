@@ -16,6 +16,43 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
     }
 
     @Override
+    public CuadreDomain create(CuadreDomain newObject) throws Exception {
+        newObject.validate();
+        //si creo un cuadre, creo la operacion, y los valores de la cuenta suben
+        newObject.getOperacionContableFk().getCuentaFk().increase(newObject.getOperacionContableFk());
+        newObject.getOperacionContableCuadreFk().getCuentaFk().increase(newObject.getOperacionContableCuadreFk());
+        return super.create(newObject);
+    }
+
+    @Override
+    public CuadreDomain edit(CuadreDomain objectToUpdate) throws Exception {
+        if (objectToUpdate.getLiquidada()) {
+            throw new RuntimeException("No se puede editar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego edite el cuadre.");
+        }
+        //destruyo el viejo y arreglo las cuentas
+        CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
+        destroy(old);
+        
+        //corrijo las cuentas
+        objectToUpdate.getOperacionContableFk().setCuentaFk(old.getOperacionContableFk().getCuentaFk());
+        objectToUpdate.getOperacionContableCuadreFk().setCuentaFk(old.getOperacionContableCuadreFk().getCuentaFk());
+        return create(objectToUpdate);
+    }
+
+    @Override
+    public CuadreDomain destroy(CuadreDomain objectToDestroy) throws Exception {
+        if (objectToDestroy.getLiquidada()) {
+            throw new RuntimeException("No se puede eliminar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego el cuadre.");
+        }
+        objectToDestroy.validate();
+        //si destruyo un cuadre, destruyo la operacion, y los valores de la cuenta bajan
+        objectToDestroy.getOperacionContableFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableFk());
+        objectToDestroy.getOperacionContableCuadreFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableCuadreFk());
+
+        return repo.destroy(objectToDestroy);
+    }
+
+    @Override
     public List<CuadreDomain> findAllPending() throws Exception {
         return repo.findAllPending();
     }

@@ -56,15 +56,21 @@ public class CuadreDomain extends EntityDomainObjectValidated {
     }
 
     public void updateWith(CuadreUI cuadre) {
-        123
-        double debitoConvertidoCuenta = MonedaHandler.compra(cuadre.getDebito(), cuadre.getMonedaDebito1(), cuadre.getCuenta().getMonedaFk());
-        double creditoConvertidoCuenta = MonedaHandler.compra(cuadre.getCredito(), cuadre.getMonedaCredito1(), cuadre.getCuenta().getMonedaFk());
-        operacionContableFk = new OperacionContableDomain(debitoConvertidoCuenta, creditoConvertidoCuenta, cuadre.getCuenta(), cuadre.getInfo());
+        double valorConvertidoCuenta = MonedaHandler.venta(cuadre.getValor(), cuadre.getMoneda(), cuadre.getCuenta().getMonedaFk());
 
-        double debitoConvertidoCuentaCuadre = MonedaHandler.compra(cuadre.getDebito(), cuadre.getMonedaDebito1(), cuadre.getCuentaCuadre().getMonedaFk());
-        double creditoConvertidoCuentaCuadre = MonedaHandler.compra(cuadre.getCredito(), cuadre.getMonedaCredito1(), cuadre.getCuentaCuadre().getMonedaFk());
+        double debito1 = 0;
+        double credito1 = 0;
+        if (cuadre.getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
+            debito1 = valorConvertidoCuenta;
+        } else {
+            credito1 = valorConvertidoCuenta;
+        }
+        operacionContableFk = new OperacionContableDomain(debito1, credito1, cuadre.getCuenta(), cuadre.getInfo());
+
         //debito y credito invertido para mantener equilibrio
-        operacionContableCuadreFk = new OperacionContableDomain(creditoConvertidoCuentaCuadre, debitoConvertidoCuentaCuadre, cuadre.getCuentaCuadre(), cuadre.getInfo());
+        double debito2 = MonedaHandler.compra(credito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
+        double credito2 = MonedaHandler.compra(debito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
+        operacionContableCuadreFk = new OperacionContableDomain(debito2, credito2, cuadre.getCuentaCuadre(), cuadre.getInfo());
 
         descripcion = cuadre.getInfo().getDescripcion();
         liquidada = false;
@@ -148,10 +154,10 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
             v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
         }
-        if (getOperacionContableFk().getDebito() != MonedaHandler.compra(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
+        if (getOperacionContableFk().getDebito() != MonedaHandler.venta(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se debita en la cuenta inicial no coincide con lo que se acredita en el cuadre."));
         }
-        if (getOperacionContableFk().getCredito() != MonedaHandler.compra(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
+        if (getOperacionContableFk().getCredito() != MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se acredita en la cuenta inicial no coincide con lo que se debita en el cuadre."));
         }
         return v.throwException();

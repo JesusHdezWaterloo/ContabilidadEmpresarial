@@ -27,16 +27,21 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
         if (!newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
             throw new RuntimeException("No se puede liquidar un cuadre de una cuenta que no es liquidable.");
         }
-        123
+        //rebajo la cuenta contable
+        newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject);
+
+        //convierto a la moneda e incremento banco
         double debito = MonedaHandler.compra(newObject.getCuadreFk().getOperacionContableCuadreFk().getDebito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setDebito(debito);
         double credito = MonedaHandler.compra(newObject.getCuadreFk().getOperacionContableCuadreFk().getCredito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setCredito(credito);
-
-        newObject.getCuadreFk().setLiquidada(true);
         //si se crea una liquidacion se le quita esa cantidad a la cuenta, por eso el decrease al deb-cred
         newObject.getCuentaFk().increase(newObject);
-        newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject);
+
+        newObject.getCuadreFk().setLiquidada(true);
+
+        newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject.getCuadreFk().getOperacionContableCuadreFk());
+
         return super.create(newObject);
     }
 
@@ -45,7 +50,31 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
         objectToDestroy.getCuadreFk().setLiquidada(false);
         //si se elimina una liquidacion se le agrega esa cantidad a la cuenta, por eso el increase al deb-cred
         objectToDestroy.getCuentaFk().decrease(objectToDestroy);
-        objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().increase(objectToDestroy);
+
+        //conversion
+        /*objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().increase(new DebitoCredito() {
+            @Override
+            public double getDebito() {
+                return MonedaHandler.venta(objectToDestroy.getDebito(), objectToDestroy.getCuentaFk().getMonedaFk(), objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk());
+            }
+
+            @Override
+            public void setDebito(double debito) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public double getCredito() {
+                return MonedaHandler.venta(objectToDestroy.getCredito(), objectToDestroy.getCuentaFk().getMonedaFk(), objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk());
+            }
+
+            @Override
+            public void setCredito(double credito) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });*/
+        objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().increase(objectToDestroy.getCuadreFk().getOperacionContableCuadreFk());
+
         return repo.destroy(objectToDestroy);
     }
 

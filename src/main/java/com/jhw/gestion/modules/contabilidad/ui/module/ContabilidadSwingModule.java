@@ -8,9 +8,11 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
 import com.jhw.gestion.modules.contabilidad.service.ResourceServiceImplementation;
-import com.jhw.gestion.modules.contabilidad.ui.main_section.CuentasMainPanel;
+import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
-import com.jhw.gestion.modules.contabilidad.ui.metodo_pago.MetodoPagoDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.forma_pago.FormaPagoDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaDetailView;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
@@ -20,27 +22,33 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
 
     private final ContabilidadModuleNavigator navigator = new ContabilidadModuleNavigator();
 
-    public final static CuentaUseCase cuentaUC;
-    public final static DepositoCuentaUseCase depositoUC;
-    public final static ExtraccionCuentaUseCase extraccionUC;
-    public final static MetodoPagoUseCase metodoPagoUC;
+    public final static CuadreUseCase cuadreUC;
+    public final static CuentaBancariaUseCase cuentaBancariaUC;
+    public final static CuentaContableUseCase cuentaContableUC;
+    public final static InfoOperacionContableUseCase infoOpUC;
+    public final static LiquidacionUseCase liquicadionUC;
     public final static MonedaUseCase monedaUC;
+    public final static OperacionContableUseCase operacionContableUC;
     public final static SubcuentaUseCase subcuentaUC;
-    public final static TipoDepositoUseCase tipoDepositoUC;
-    public final static TipoExtraccionUseCase tipoExtraccionUC;
+    public final static TipoCuentaUseCase tipoCuentaUC;
+    public final static TipoOperacionContableUseCase tipoOperacionContableUC;
+    public final static FormaPagoUseCase tipoPagoUC;
 
     static {
         ContabilidadCoreModule.init(ContabilidadRepoModule.init());
-        
-        cuentaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaUseCase.class);
-        depositoUC = ContabilidadCoreModule.getInstance().getImplementation(DepositoCuentaUseCase.class);
-        extraccionUC = ContabilidadCoreModule.getInstance().getImplementation(ExtraccionCuentaUseCase.class);
-        metodoPagoUC = ContabilidadCoreModule.getInstance().getImplementation(MetodoPagoUseCase.class);
+
+        cuadreUC = ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class);
+        cuentaBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class);
+        cuentaContableUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaContableUseCase.class);
+        infoOpUC = ContabilidadCoreModule.getInstance().getImplementation(InfoOperacionContableUseCase.class);
+        liquicadionUC = ContabilidadCoreModule.getInstance().getImplementation(LiquidacionUseCase.class);
+        tipoPagoUC = ContabilidadCoreModule.getInstance().getImplementation(FormaPagoUseCase.class);
         monedaUC = ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class);
+        operacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableUseCase.class);
         subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
-        tipoDepositoUC = ContabilidadCoreModule.getInstance().getImplementation(TipoDepositoUseCase.class);
-        tipoExtraccionUC = ContabilidadCoreModule.getInstance().getImplementation(TipoExtraccionUseCase.class);
-    
+        tipoCuentaUC = ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class);
+        tipoOperacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableUseCase.class);
+
         ResourceServiceImplementation.init();
     }
 
@@ -53,7 +61,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
 
     @Override
     public void register(AbstractSwingApplication app) {
-        System.out.println("Creando 'Cuenta'");
+        System.out.println("Creando 'Cuentas'");
         registerMainElements(app);
     }
 
@@ -64,10 +72,18 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         dash.addKeyValue(DashboardConstants.MAIN_ELEMENT, menu);
 
         dash.addView(ContabilidadModuleNavigator.NAV_CUENTA, new CuentasMainPanel());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUENTA, MaterialIcons.LOCAL_ATM) {
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUENTA, MaterialIcons.ACCOUNT_BALANCE) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_CUENTA);
+            }
+        });
+        
+        dash.addView(ContabilidadModuleNavigator.NAV_CUADRE, new CuadreDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUADRE, MaterialIcons.ASSIGNMENT_TURNED_IN) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_CUADRE);
             }
         });
 
@@ -79,11 +95,19 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
             }
         });
 
-        dash.addView(ContabilidadModuleNavigator.NAV_METODO_PAGO, new MetodoPagoDetailView());
+        dash.addView(ContabilidadModuleNavigator.NAV_METODO_PAGO, new FormaPagoDetailView());
         menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.METODO_PAGO, MaterialIcons.PAYMENT) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_METODO_PAGO);
+            }
+        });
+
+        dash.addView(ContabilidadModuleNavigator.NAV_TIPO_CUENTA, new TipoCuentaDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_CUENTA, MaterialIcons.NFC) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);
             }
         });
     }

@@ -1,7 +1,5 @@
 package com.jhw.gestion.modules.contabilidad.ui.moneda;
 
-import com.jhw.gestion.modules.contabilidad.core.usecase_impl.MonedaUseCaseImpl;
-import com.jhw.gestion.modules.contabilidad.repo.entities.Moneda;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
@@ -29,25 +27,28 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     }
 
     private void initComponents() {
+        setHeader("Crear Moneda", "Editar Moneda");
 
+        //tipo
         textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
-        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
-        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-
-        setHeader("Nueva Moneda", "Editar Moneda");
-
-        textFieldTipo.setHint("Tipo de moneda. Ej.: EUR");
         textFieldTipo.setLabel("Moneda");
+        textFieldTipo.setHint("Nombre de moneda. Ej.: EUR");
 
+        //compra
+        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
+        //venta
+        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
+
+        //descripcion
+        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
-
         HorizontalLayoutContainer.builder hlcCompraVenta = HorizontalLayoutContainer.builder((int) textFieldCompra.getPreferredSize().getHeight());
         hlcCompraVenta.add(HorizontalLayoutComponent.builder(textFieldCompra).gapRight(5).build());
         hlcCompraVenta.add(HorizontalLayoutComponent.builder(textFieldVenta).gapLeft(5).build());
@@ -66,14 +67,14 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     // End of variables declaration                   
 
     private void personalize() {
-        textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getTipoMoneda());
-        textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getTipoMoneda());
+        textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
+        textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
     }
 
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
-        bindFields.put("tipoMoneda", textFieldTipo);
+        bindFields.put("nombreMoneda", textFieldTipo);
         bindFields.put("compra", textFieldCompra);
         bindFields.put("venta", textFieldVenta);
         bindFields.put("descripcion", textAreaDescripcion);

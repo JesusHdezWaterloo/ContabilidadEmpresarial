@@ -25,8 +25,8 @@ public class MonedaHandler {
      * @param quiero La moneda que quiero que me den a cambio.
      * @return la cantidad que me van a dar a cambio de lo que tengo.
      */
-    public static float venta(float cantidad, MonedaDomain tengo, MonedaDomain quiero) {
-        float devol = 0;
+    public static double venta(double cantidad, MonedaDomain tengo, MonedaDomain quiero) {
+        double devol = 0;
         if (tengo.equals(quiero)) {
             devol = cantidad;
         } else {
@@ -48,8 +48,8 @@ public class MonedaHandler {
      * @return la cantidad de lo que tengo que tengo que dar para comprar lo que
      * quiero.
      */
-    public static float compra(float cantidad, MonedaDomain quiero, MonedaDomain tengo) {
-        float devol = 0;
+    public static double compra(double cantidad, MonedaDomain quiero, MonedaDomain tengo) {
+        double devol = 0;
         if (quiero.equals(tengo)) {
             devol = cantidad;
         } else {
@@ -58,8 +58,8 @@ public class MonedaHandler {
         return devol;
     }
 
-    public static float ventaFull(float cantidad, MonedaDomain tengo, MonedaDomain quiero) {
-        float devol = 0;
+    public static double ventaFull(double cantidad, MonedaDomain tengo, MonedaDomain quiero) {
+        double devol = 0;
         if (tengo.equals(quiero)) {
             devol = cantidad;
         } else {
@@ -68,8 +68,8 @@ public class MonedaHandler {
         return devol;
     }
 
-    public static float compraFull(float cantidad, MonedaDomain quiero, MonedaDomain tengo) {
-        float devol = 0;
+    public static double compraFull(double cantidad, MonedaDomain quiero, MonedaDomain tengo) {
+        double devol = 0;
         if (quiero.equals(tengo)) {
             devol = cantidad;
         } else {

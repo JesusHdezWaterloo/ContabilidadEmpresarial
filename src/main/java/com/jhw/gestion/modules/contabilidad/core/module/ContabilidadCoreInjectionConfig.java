@@ -14,14 +14,17 @@ public class ContabilidadCoreInjectionConfig extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(CuentaUseCase.class).to(CuentaUseCaseImpl.class);
-        bind(DepositoCuentaUseCase.class).to(DepositoCuentaUseCaseImpl.class);
-        bind(ExtraccionCuentaUseCase.class).to(ExtraccionCuentaUseCaseImpl.class);
-        bind(MetodoPagoUseCase.class).to(MetodoPagoUseCaseImpl.class);
+        bind(CuadreUseCase.class).to(CuadreUseCaseImpl.class);
+        bind(CuentaBancariaUseCase.class).to(CuentaBancariaUseCaseImpl.class);
+        bind(CuentaContableUseCase.class).to(CuentaContableUseCaseImpl.class);
+        bind(InfoOperacionContableUseCase.class).to(InfoOperacionContableUseCaseImpl.class);
+        bind(LiquidacionUseCase.class).to(LiquidacionUseCaseImpl.class);
+        bind(FormaPagoUseCase.class).to(FormaPagoUseCaseImpl.class);
         bind(MonedaUseCase.class).to(MonedaUseCaseImpl.class);
+        bind(OperacionContableUseCase.class).to(OperacionContableUseCaseImpl.class);
         bind(SubcuentaUseCase.class).to(SubcuentaUseCaseImpl.class);
-        bind(TipoDepositoUseCase.class).to(TipoDepositoUseCaseImpl.class);
-        bind(TipoExtraccionUseCase.class).to(TipoExtraccionUseCaseImpl.class);
+        bind(TipoCuentaUseCase.class).to(TipoCuentaUseCaseImpl.class);
+        bind(TipoOperacionContableUseCase.class).to(TipoOperacionContableUseCaseImpl.class);
     }
 
 }

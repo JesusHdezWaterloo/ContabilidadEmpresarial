@@ -1,14 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.moneda;
 
 import com.clean.core.app.services.ExceptionHandler;
-import com.jhw.gestion.modules.contabilidad.core.domain.CuentaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -45,7 +42,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
 
     @Override
     public Object[] getRowObject(MonedaDomain obj) {
-        return new Object[]{obj.getTipoMoneda(), obj.getCompra(), obj.getVenta()};
+        return new Object[]{obj.getNombreMoneda(), obj.getCompra(), obj.getVenta()};
     }
 
     @Override

@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,24 +31,36 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
     @NamedQuery(name = "Subcuenta.findAll", query = "SELECT s FROM Subcuenta s"),
     @NamedQuery(name = "Subcuenta.findByIdSubcuenta", query = "SELECT s FROM Subcuenta s WHERE s.idSubcuenta = :idSubcuenta"),
+    @NamedQuery(name = "Subcuenta.findByPociento", query = "SELECT s FROM Subcuenta s WHERE s.pociento = :pociento"),
     @NamedQuery(name = "Subcuenta.findByDescripcion", query = "SELECT s FROM Subcuenta s WHERE s.descripcion = :descripcion")})
 public class Subcuenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_subcuenta", nullable = false)
     private Integer idSubcuenta;
+
     @Basic(optional = false)
+    @NotNull
+    @Column(name = "pociento", nullable = false)
+    private float pociento;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 0, max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
-    @JoinColumn(name = "cuenta_hijo_fk", referencedColumnName = "id_cuenta", nullable = false)
+
+    @JoinColumn(name = "cuenta_hijo_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
-    private Cuenta cuentaHijoFk;
-    @JoinColumn(name = "cuenta_padre_fk", referencedColumnName = "id_cuenta", nullable = false)
+    private CuentaContable cuentaHijoFk;
+
+    @JoinColumn(name = "cuenta_padre_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
-    private Cuenta cuentaPadreFk;
+    private CuentaContable cuentaPadreFk;
 
     public Subcuenta() {
     }
@@ -55,8 +69,9 @@ public class Subcuenta implements Serializable {
         this.idSubcuenta = idSubcuenta;
     }
 
-    public Subcuenta(Integer idSubcuenta, String descripcion) {
+    public Subcuenta(Integer idSubcuenta, float pociento, String descripcion) {
         this.idSubcuenta = idSubcuenta;
+        this.pociento = pociento;
         this.descripcion = descripcion;
     }
 
@@ -68,6 +83,14 @@ public class Subcuenta implements Serializable {
         this.idSubcuenta = idSubcuenta;
     }
 
+    public float getPociento() {
+        return pociento;
+    }
+
+    public void setPociento(float pociento) {
+        this.pociento = pociento;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -76,19 +99,19 @@ public class Subcuenta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Cuenta getCuentaHijoFk() {
+    public CuentaContable getCuentaHijoFk() {
         return cuentaHijoFk;
     }
 
-    public void setCuentaHijoFk(Cuenta cuentaHijoFk) {
+    public void setCuentaHijoFk(CuentaContable cuentaHijoFk) {
         this.cuentaHijoFk = cuentaHijoFk;
     }
 
-    public Cuenta getCuentaPadreFk() {
+    public CuentaContable getCuentaPadreFk() {
         return cuentaPadreFk;
     }
 
-    public void setCuentaPadreFk(Cuenta cuentaPadreFk) {
+    public void setCuentaPadreFk(CuentaContable cuentaPadreFk) {
         this.cuentaPadreFk = cuentaPadreFk;
     }
 
@@ -114,7 +137,7 @@ public class Subcuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "testJPA.entities.Subcuenta[ idSubcuenta=" + idSubcuenta + " ]";
+        return "testJPA.entities.contabilidad_empresarial.Subcuenta[ idSubcuenta=" + idSubcuenta + " ]";
     }
-    
+
 }

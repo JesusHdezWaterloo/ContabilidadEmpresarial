@@ -5,7 +5,6 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
-import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
@@ -15,7 +14,6 @@ import javax.validation.constraints.Size;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-@SortBy(priority = {"nombreMoneda"})
 public class MonedaDomain extends EntityDomainObjectValidated {
 
     private Integer idMoneda;

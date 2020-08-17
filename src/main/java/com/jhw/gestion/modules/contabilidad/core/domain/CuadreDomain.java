@@ -5,7 +5,9 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.facade.CuadreUI;
 import com.clean.core.utils.SortBy;
+import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,6 +46,26 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.descripcion = descripcion;
         this.operacionContableCuadreFk = operacionContableCuadreFk;
         this.operacionContableFk = operacionContableFk;
+    }
+
+    public CuadreDomain(CuadreUI cuadre) {
+        updateWith(cuadre);
+    }
+
+    public void updateWith(CuadreUI cuadre) {
+        double debitoConvertidoCuenta = MonedaHandler.venta(cuadre.getDebito(), cuadre.getMonedaDebito1(), cuadre.getCuenta().getMonedaFk());
+        double creditoConvertidoCuenta = MonedaHandler.venta(cuadre.getCredito(), cuadre.getMonedaCredito1(), cuadre.getCuenta().getMonedaFk());
+        operacionContableFk = new OperacionContableDomain(debitoConvertidoCuenta, creditoConvertidoCuenta, cuadre.getCuenta(), cuadre.getInfo());
+
+        double debitoConvertidoCuentaCuadre = MonedaHandler.venta(cuadre.getDebito(), cuadre.getMonedaDebito1(), cuadre.getCuentaCuadre().getMonedaFk());
+        double creditoConvertidoCuentaCuadre = MonedaHandler.venta(cuadre.getCredito(), cuadre.getMonedaCredito1(), cuadre.getCuentaCuadre().getMonedaFk());
+        //debito y credito invertido para mantener equilibrio
+        operacionContableFk = new OperacionContableDomain(creditoConvertidoCuentaCuadre, debitoConvertidoCuentaCuadre, cuadre.getCuentaCuadre(), cuadre.getInfo());
+
+        descripcion = cuadre.getInfo().getDescripcion();
+        liquidada = false;
+        
+        validate();
     }
 
     public InfoOperacionContableDomain info() {

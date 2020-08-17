@@ -5,6 +5,7 @@ import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.forma_pago.FormaPagoInputView;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -102,6 +103,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
+        new DialogModelInput(this, new CuadreInputView());
     }
 
     @Override

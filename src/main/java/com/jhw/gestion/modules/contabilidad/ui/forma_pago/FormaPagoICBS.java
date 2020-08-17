@@ -13,7 +13,7 @@ import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySel
 public class FormaPagoICBS extends ICBSNotEmptySeleccionable<FormaPagoDomain> {
 
     public FormaPagoICBS() {
-        super("Tipo de Pago");
+        super("Forma de Pago");
     }
 
     @Override

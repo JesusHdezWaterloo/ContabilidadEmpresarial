@@ -28,9 +28,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
 
     private boolean liquidada;
 
-    @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
-    private String descripcion;
-
     @NotNull(message = "#msg.module.contabilidad.validation.cuadre_operacion_contable_null#")
     private OperacionContableDomain operacionContableCuadreFk;
 
@@ -44,9 +41,8 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.idCuadre = idCuadre;
     }
 
-    public CuadreDomain(boolean liquidada, String descripcion, OperacionContableDomain operacionContableCuadreFk, OperacionContableDomain operacionContableFk) {
+    public CuadreDomain(boolean liquidada, OperacionContableDomain operacionContableCuadreFk, OperacionContableDomain operacionContableFk) {
         this.liquidada = liquidada;
-        this.descripcion = descripcion;
         this.operacionContableCuadreFk = operacionContableCuadreFk;
         this.operacionContableFk = operacionContableFk;
     }
@@ -72,7 +68,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         double credito2 = MonedaHandler.compra(debito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
         operacionContableCuadreFk = new OperacionContableDomain(debito2, credito2, cuadre.getCuentaCuadre(), cuadre.getInfo());
 
-        descripcion = cuadre.getInfo().getDescripcion();
         liquidada = false;
 
         validate();
@@ -96,14 +91,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
 
     public void setLiquidada(boolean liquidada) {
         this.liquidada = liquidada;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public OperacionContableDomain getOperacionContableCuadreFk() {

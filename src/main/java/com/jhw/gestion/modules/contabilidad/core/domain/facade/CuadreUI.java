@@ -16,60 +16,36 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
  */
 public class CuadreUI extends VolatileDomainObject {
 
-    private double valor;
-    private MonedaDomain moneda;
-
-    private CuentaContableDomain cuenta;
-    private CuentaContableDomain cuentaCuadre;
-
+    private OperacionCuadreDomain op;
     private InfoOperacionContableDomain info;
 
-    public CuadreUI(double valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuentaCuadre, InfoOperacionContableDomain info) {
-        this.valor = valor;
-        this.moneda = moneda;
-        this.cuenta = cuenta;
-        this.cuentaCuadre = cuentaCuadre;
+    public CuadreUI(OperacionCuadreDomain op, InfoOperacionContableDomain info) {
+        this.op = op;
         this.info = info;
     }
 
     public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
+        return op.getValor();
     }
 
     public MonedaDomain getMoneda() {
-        return moneda;
-    }
-
-    public void setMoneda(MonedaDomain moneda) {
-        this.moneda = moneda;
+        return op.getMoneda();
     }
 
     public CuentaContableDomain getCuenta() {
-        return cuenta;
-    }
-
-    public void setCuenta(CuentaContableDomain cuenta) {
-        this.cuenta = cuenta;
+        return op.getCuenta();
     }
 
     public CuentaContableDomain getCuentaCuadre() {
-        return cuentaCuadre;
-    }
-
-    public void setCuentaCuadre(CuentaContableDomain cuentaCuadre) {
-        this.cuentaCuadre = cuentaCuadre;
+        return op.getCuadre();
     }
 
     public InfoOperacionContableDomain getInfo() {
         return info;
     }
 
-    public void setInfo(InfoOperacionContableDomain info) {
-        this.info = info;
+    public OperacionCuadreDomain getOp() {
+        return op;
     }
 
 }

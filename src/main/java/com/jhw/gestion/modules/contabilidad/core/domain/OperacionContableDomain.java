@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class OperacionContableDomain extends EntityDomainObjectValidated {
+public class OperacionContableDomain extends EntityDomainObjectValidated implements DebitoCredito {
 
     private Integer idOperacionContable;
 
@@ -48,18 +48,22 @@ public class OperacionContableDomain extends EntityDomainObjectValidated {
         this.idOperacionContable = idOperacionContable;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"codigo", "nombreCuenta"})
-public class CuentaContableDomain extends EntityDomainObjectValidated implements Cuenta {
+public class CuentaContableDomain extends EntityDomainObjectValidated implements Cuenta, DebitoCredito {
 
     private Integer idCuentaContable;
 
@@ -168,19 +168,4 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
         return codigo + " - " + nombreCuenta;
     }
 
-    /**
-     * Si se crea una liquidacion se manda el dinero para el banco y se
-     * descuenta de aqui
-     *
-     * @param newObject
-     */
-    public void updateForCreate(LiquidacionDomain newObject) {
-        this.debito -= newObject.getDebito();
-        this.credito -= newObject.getCredito();
-    }
-
-    public void updateForDestroy(LiquidacionDomain newObject) {
-        this.debito += newObject.getDebito();
-        this.credito += newObject.getCredito();
-    }
 }

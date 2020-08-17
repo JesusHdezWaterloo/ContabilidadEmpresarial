@@ -4,7 +4,6 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
-import com.jhw.utils.jackson.JACKSON;
 import com.jhw.utils.jpa.ConverterService;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 import java.util.List;
@@ -31,7 +30,7 @@ public class OperacionContableRepoImpl extends JPACleanCRUDRepo<OperacionContabl
         EntityManager em = getEntityManager();
         try {
             List<CuentaContable> list = em.createQuery(OperacionContable_findByCuenta, CuentaContable.class).setParameter("cuentaFk", ConverterService.convert(cuenta, CuentaContable.class)).getResultList();
-            return JACKSON.convert(list, OperacionContableDomain.class);
+            return ConverterService.convert(list, OperacionContableDomain.class);
         } finally {
             em.close();
         }

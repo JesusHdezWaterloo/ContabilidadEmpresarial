@@ -39,8 +39,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     }
 
     @Override
-    public Object[] getRowObject(FormaPagoDomain obj
-    ) {
+    public Object[] getRowObject(FormaPagoDomain obj) {
         return new Object[]{obj.getNombreFormaPago(), obj.getDescripcion()};
     }
 

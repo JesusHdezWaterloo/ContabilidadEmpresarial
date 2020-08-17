@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @SortBy(priority = {"documento", "nombre"})
-public class LiquidacionDomain extends EntityDomainObjectValidated {
+public class LiquidacionDomain extends EntityDomainObjectValidated implements DebitoCredito {
 
     private Integer idLiquidacion;
 
@@ -87,18 +87,22 @@ public class LiquidacionDomain extends EntityDomainObjectValidated {
         this.nombre = nombre;
     }
 
+    @Override
     public double getDebito() {
         return debito;
     }
 
+    @Override
     public void setDebito(double debito) {
         this.debito = debito;
     }
 
+    @Override
     public double getCredito() {
         return credito;
     }
 
+    @Override
     public void setCredito(double credito) {
         this.credito = credito;
     }

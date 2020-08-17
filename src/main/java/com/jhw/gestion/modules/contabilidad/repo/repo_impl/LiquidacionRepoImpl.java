@@ -43,7 +43,7 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
             CuentaContable cuentaContableEntity = ConverterService.convert(domain.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk(), CuentaContable.class);
             em.merge(cuentaContableEntity);
             cuadreEntity.getOperacionContableCuadreFk().setCuentaFk(cuentaContableEntity);
-            
+
             em.getTransaction().commit();
 
             domain = ConverterService.convert(liqEntity, LiquidacionDomain.class);
@@ -83,7 +83,7 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
             CuentaContable cuentaContableEntity = ConverterService.convert(domain.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk(), CuentaContable.class);
             em.merge(cuentaContableEntity);
             cuadreEntity.getOperacionContableCuadreFk().setCuentaFk(cuentaContableEntity);
-            
+
             em.getTransaction().commit();
 
             domain = ConverterService.convert(persistedObject, LiquidacionDomain.class);
@@ -95,6 +95,11 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
             }
         }
         return domain;
+    }
+
+    @Override
+    public LiquidacionDomain destroyById(Object keyId) throws Exception {
+        throw new RuntimeException("Eliminar directo el objeto completo");
     }
 
     @Override

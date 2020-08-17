@@ -10,8 +10,31 @@ public class TipoOperacionContableUseCaseImpl extends DefaultCRUDUseCase<TipoOpe
 
     private final TipoOperacionContableRepo repo = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableRepo.class);
 
+    public static TipoOperacionContableDomain MOVIMIENTO_INTERNO;
+
     public TipoOperacionContableUseCaseImpl() {
         super.setRepo(repo);
+        loadTiposStatic();
+    }
+
+    @Override
+    public TipoOperacionContableDomain edit(TipoOperacionContableDomain objectToUpdate) throws Exception {
+        TipoOperacionContableDomain old = findBy(objectToUpdate.getIdTipoOperacion());
+        objectToUpdate.setKeyEnum(old.getKeyEnum());
+        return super.edit(objectToUpdate);
+    }
+
+    @Override
+    public TipoOperacionContableDomain findByKey(String key) {
+        try {
+            return repo.findByKey(key);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void loadTiposStatic() {
+        MOVIMIENTO_INTERNO = findByKey("tipo_operacion_contable.key.movimiento_interno");
     }
 
 }

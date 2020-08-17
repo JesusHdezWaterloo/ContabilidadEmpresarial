@@ -5,4 +5,5 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 
 public interface TipoOperacionContableUseCase extends CRUDUseCase<TipoOperacionContableDomain> {
 
+    public TipoOperacionContableDomain findByKey(String key);
 }

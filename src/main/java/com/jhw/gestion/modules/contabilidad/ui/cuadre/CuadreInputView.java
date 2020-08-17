@@ -12,6 +12,8 @@ import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -26,6 +28,7 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
     public CuadreInputView(CuadreDomain model) {
         super(model, ContabilidadSwingModule.cuadreUC);
         initComponents();
+        addListeners();
         update();
     }
 
@@ -107,4 +110,16 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         }
     }
 
+    private void addListeners() {
+        cuentaICBS.getComboBox().addActionListener((ActionEvent e) -> {
+            updateCuadreICBS();
+        });
+    }
+
+    private void updateCuadreICBS() {
+        try {
+            cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getSelectedItem().getTipoCuentaFk());
+        } catch (Exception e) {
+        }
+    }
 }

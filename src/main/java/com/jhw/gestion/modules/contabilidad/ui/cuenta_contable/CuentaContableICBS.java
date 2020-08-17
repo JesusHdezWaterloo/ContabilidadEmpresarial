@@ -1,6 +1,5 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 
-import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.*;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
@@ -20,6 +19,10 @@ public class CuentaContableICBS extends ICBSNotEmptySeleccionable<CuentaContable
     @Override
     public void updateComboBox() throws Exception {
         setModel(ContabilidadSwingModule.cuentaContableUC.findAll());
+    }
+
+    public void updateComboBoxCuadre(TipoCuentaDomain tipo) throws Exception {
+        setModel(ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo));
     }
 
     @Override

@@ -27,10 +27,10 @@ import javax.validation.constraints.Size;
 @Table(name = "forma_pago", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"nombre_forma_pago"})})
 @NamedQueries({
-    @NamedQuery(name = "FormaPago.findAll", query = "SELECT m FROM MetodoPago m"),
-    @NamedQuery(name = "FormaPago.findByIdMetodoPago", query = "SELECT m FROM MetodoPago m WHERE m.idMetodoPago = :idMetodoPago"),
-    @NamedQuery(name = "FormaPago.findByNombreMetodoPago", query = "SELECT m FROM MetodoPago m WHERE m.nombreMetodoPago = :nombreMetodoPago"),
-    @NamedQuery(name = "FormaPago.findByDescripcion", query = "SELECT m FROM MetodoPago m WHERE m.descripcion = :descripcion")})
+    @NamedQuery(name = "FormaPago.findAll", query = "SELECT m FROM FormaPago m"),
+    @NamedQuery(name = "FormaPago.findByIdMetodoPago", query = "SELECT m FROM FormaPago m WHERE m.idFormaPago = :idFormaPago"),
+    @NamedQuery(name = "FormaPago.findByNombreMetodoPago", query = "SELECT m FROM FormaPago m WHERE m.nombreFormaPago = :nombreFormaPago"),
+    @NamedQuery(name = "FormaPago.findByDescripcion", query = "SELECT m FROM FormaPago m WHERE m.descripcion = :descripcion")})
 public class FormaPago implements Serializable {
 
     private static final long serialVersionUID = 1L;

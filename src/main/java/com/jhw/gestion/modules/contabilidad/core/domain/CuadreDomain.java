@@ -138,14 +138,20 @@ public class CuadreDomain extends EntityDomainObjectValidated {
     public ValidationResult validate() throws ValidationException {
         ValidationResult v = super.validate();
 
-        if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
-            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
-        }
+        //debito-credito
         if (getOperacionContableFk().getDebito() != MonedaHandler.venta(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se debita en la cuenta inicial no coincide con lo que se acredita en el cuadre."));
         }
         if (getOperacionContableFk().getCredito() != MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se acredita en la cuenta inicial no coincide con lo que se debita en el cuadre."));
+        }
+        //diferentes tipos
+        if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
+        }
+        //liquidable
+        if (!getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));
         }
         return v.throwException();
     }

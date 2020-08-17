@@ -63,7 +63,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         addActionsExtra();
 
         this.setHeaderText("Operaciones - Cuadre");
-        this.setActionColumnButtonsVisivility(false, false, false);//no pone el view, no esta implementado todavia
+        this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
     @Override
@@ -119,6 +119,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void editAction(CuadreDomain obj) {
+        new DialogModelInput(this, new CuadreInputView(obj));
     }
 
     @Override

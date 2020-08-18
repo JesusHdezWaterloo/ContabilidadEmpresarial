@@ -5,7 +5,11 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.exceptions.ValidationException;
 import com.clean.core.utils.SortBy;
+import com.clean.core.utils.validation.ValidationMessage;
+import com.clean.core.utils.validation.ValidationResult;
+import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
@@ -162,6 +166,20 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
     @Override
     public String toString() {
         return documento;
+    }
+
+    @Override
+    public ValidationResult validate() throws ValidationException {
+        ValidationResult v = super.validate();
+        double debCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getDebito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
+        double credCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getCredito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
+        if (debito != debCuadre) {
+            v.add(ValidationMessage.from("debito", "El débito de la operación y la liquidación tienen que coincidir para mantener el cuadre."));
+        }
+        if (credito != credCuadre) {
+            v.add(ValidationMessage.from("credito", "El crédito de la operación y la liquidación tienen que coincidir para mantener el cuadre."));
+        }
+        return v.throwException();
     }
 
 }

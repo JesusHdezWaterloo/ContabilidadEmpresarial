@@ -30,6 +30,10 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
+    private TipoCuentaDomain tipoCuentaCuadreDefectoFk;
+
+    private TipoCuentaDomain tipoCuentaDefectoFk;
+
     public TipoOperacionContableDomain() {
     }
 
@@ -37,11 +41,12 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idTipoOperacion = idTipoOperacion;
     }
 
-    public TipoOperacionContableDomain(Integer idTipoOperacion, String nombreOperacion, String keyEnum, String descripcion) {
-        this.idTipoOperacion = idTipoOperacion;
+    public TipoOperacionContableDomain(String nombreOperacion, String keyEnum, String descripcion, TipoCuentaDomain tipoCuentaCuadreDefectoFk, TipoCuentaDomain tipoCuentaDefectoFk) {
         this.nombreOperacion = nombreOperacion;
         this.keyEnum = keyEnum;
         this.descripcion = descripcion;
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public Integer getIdTipoOperacion() {
@@ -58,6 +63,22 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
 
     public void setNombreOperacion(String nombreOperacion) {
         this.nombreOperacion = nombreOperacion;
+    }
+
+    public TipoCuentaDomain getTipoCuentaCuadreDefectoFk() {
+        return tipoCuentaCuadreDefectoFk;
+    }
+
+    public void setTipoCuentaCuadreDefectoFk(TipoCuentaDomain tipoCuentaCuadreDefectoFk) {
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+    }
+
+    public TipoCuentaDomain getTipoCuentaDefectoFk() {
+        return tipoCuentaDefectoFk;
+    }
+
+    public void setTipoCuentaDefectoFk(TipoCuentaDomain tipoCuentaDefectoFk) {
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public String getKeyEnum() {

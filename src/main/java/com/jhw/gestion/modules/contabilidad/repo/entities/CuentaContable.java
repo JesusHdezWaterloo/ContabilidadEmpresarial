@@ -82,6 +82,10 @@ public class CuentaContable implements Serializable {
     @JoinColumn(name = "moneda_fk", referencedColumnName = "id_moneda", nullable = false)
     @ManyToOne(optional = false)
     private Moneda monedaFk;
+    
+    @JoinColumn(name = "titular_fk", referencedColumnName = "id_titular", nullable = false)
+    @ManyToOne(optional = false)
+    private Titular titularFk;
 
     public CuentaContable() {
     }
@@ -90,14 +94,18 @@ public class CuentaContable implements Serializable {
         this.idCuentaContable = idCuentaContable;
     }
 
-    public CuentaContable(Integer idCuentaContable, String nombreCuenta, String codigo, double debito, double credito, String descripcion) {
+    public CuentaContable(Integer idCuentaContable, String nombreCuenta, String codigo, double debito, double credito, String descripcion, TipoCuenta tipoCuentaFk, Moneda monedaFk, Titular titularFk) {
         this.idCuentaContable = idCuentaContable;
         this.nombreCuenta = nombreCuenta;
         this.codigo = codigo;
         this.debito = debito;
         this.credito = credito;
         this.descripcion = descripcion;
+        this.tipoCuentaFk = tipoCuentaFk;
+        this.monedaFk = monedaFk;
+        this.titularFk = titularFk;
     }
+
 
     public Integer getIdCuentaContable() {
         return idCuentaContable;
@@ -113,6 +121,14 @@ public class CuentaContable implements Serializable {
 
     public void setNombreCuenta(String nombreCuenta) {
         this.nombreCuenta = nombreCuenta;
+    }
+
+    public Titular getTitularFk() {
+        return titularFk;
+    }
+
+    public void setTitularFk(Titular titularFk) {
+        this.titularFk = titularFk;
     }
 
     public String getCodigo() {

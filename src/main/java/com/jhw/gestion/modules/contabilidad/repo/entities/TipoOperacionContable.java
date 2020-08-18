@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -64,6 +66,14 @@ public class TipoOperacionContable implements Serializable {
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
 
+    @JoinColumn(name = "tipo_cuenta_cuadre_defecto_fk", referencedColumnName = "id_tipo_cuenta", nullable = false)
+    @ManyToOne(optional = false)
+    private TipoCuenta tipoCuentaCuadreDefectoFk;
+
+    @JoinColumn(name = "tipo_cuenta_defecto_fk", referencedColumnName = "id_tipo_cuenta", nullable = false)
+    @ManyToOne(optional = false)
+    private TipoCuenta tipoCuentaDefectoFk;
+
     public TipoOperacionContable() {
     }
 
@@ -71,11 +81,13 @@ public class TipoOperacionContable implements Serializable {
         this.idTipoOperacion = idTipoOperacion;
     }
 
-    public TipoOperacionContable(Integer idTipoOperacion, String nombreOperacion, String keyEnum, String descripcion) {
+    public TipoOperacionContable(Integer idTipoOperacion, String nombreOperacion, String keyEnum, String descripcion, TipoCuenta tipoCuentaCuadreDefectoFk, TipoCuenta tipoCuentaDefectoFk) {
         this.idTipoOperacion = idTipoOperacion;
         this.nombreOperacion = nombreOperacion;
         this.keyEnum = keyEnum;
         this.descripcion = descripcion;
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public Integer getIdTipoOperacion() {
@@ -84,6 +96,22 @@ public class TipoOperacionContable implements Serializable {
 
     public void setIdTipoOperacion(Integer idTipoOperacion) {
         this.idTipoOperacion = idTipoOperacion;
+    }
+
+    public TipoCuenta getTipoCuentaCuadreDefectoFk() {
+        return tipoCuentaCuadreDefectoFk;
+    }
+
+    public void setTipoCuentaCuadreDefectoFk(TipoCuenta tipoCuentaCuadreDefectoFk) {
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+    }
+
+    public TipoCuenta getTipoCuentaDefectoFk() {
+        return tipoCuentaDefectoFk;
+    }
+
+    public void setTipoCuentaDefectoFk(TipoCuenta tipoCuentaDefectoFk) {
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public String getNombreOperacion() {

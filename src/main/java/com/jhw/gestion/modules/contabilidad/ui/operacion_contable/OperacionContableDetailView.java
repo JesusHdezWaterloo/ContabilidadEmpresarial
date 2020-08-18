@@ -48,7 +48,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
 
     private void personalize() {
         setUpEditorsRenders();
-        String cuentaStr = cuenta == null ? "" : " " + cuenta.toString();
+        String cuentaStr = cuenta == null ? "" : ": " + cuenta.toString();
         this.setHeaderText("Operaciones" + cuentaStr);
         this.setOptionPanelVisibility(false);
         this.setActionColumnButtonsVisivility(false, false, false);//no pone el view, no esta implementado todavia

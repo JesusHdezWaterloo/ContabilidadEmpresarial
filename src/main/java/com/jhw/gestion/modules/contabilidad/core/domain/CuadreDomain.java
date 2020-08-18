@@ -28,9 +28,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
 
     private boolean liquidada;
 
-    @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
-    private String descripcion;
-
     @NotNull(message = "#msg.module.contabilidad.validation.cuadre_operacion_contable_null#")
     private OperacionContableDomain operacionContableCuadreFk;
 
@@ -44,9 +41,8 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.idCuadre = idCuadre;
     }
 
-    public CuadreDomain(boolean liquidada, String descripcion, OperacionContableDomain operacionContableCuadreFk, OperacionContableDomain operacionContableFk) {
+    public CuadreDomain(boolean liquidada, OperacionContableDomain operacionContableCuadreFk, OperacionContableDomain operacionContableFk) {
         this.liquidada = liquidada;
-        this.descripcion = descripcion;
         this.operacionContableCuadreFk = operacionContableCuadreFk;
         this.operacionContableFk = operacionContableFk;
     }
@@ -72,7 +68,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         double credito2 = MonedaHandler.compra(debito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
         operacionContableCuadreFk = new OperacionContableDomain(debito2, credito2, cuadre.getCuentaCuadre(), cuadre.getInfo());
 
-        descripcion = cuadre.getInfo().getDescripcion();
         liquidada = false;
 
         validate();
@@ -96,14 +91,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
 
     public void setLiquidada(boolean liquidada) {
         this.liquidada = liquidada;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public OperacionContableDomain getOperacionContableCuadreFk() {
@@ -151,14 +138,20 @@ public class CuadreDomain extends EntityDomainObjectValidated {
     public ValidationResult validate() throws ValidationException {
         ValidationResult v = super.validate();
 
-        if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
-            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
-        }
+        //debito-credito
         if (getOperacionContableFk().getDebito() != MonedaHandler.venta(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se debita en la cuenta inicial no coincide con lo que se acredita en el cuadre."));
         }
         if (getOperacionContableFk().getCredito() != MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se acredita en la cuenta inicial no coincide con lo que se debita en el cuadre."));
+        }
+        //diferentes tipos
+        if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
+        }
+        //liquidable
+        if (!getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));
         }
         return v.throwException();
     }

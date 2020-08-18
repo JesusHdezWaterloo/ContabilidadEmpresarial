@@ -51,7 +51,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
 
     private void personalize() {
         setUpEditorsRenders();
-        String cuentaStr = cuenta == null ? "" : " (" + cuenta.toString() + ")";
+        String cuentaStr = cuenta == null ? "" : ": " + cuenta.toString();
         this.setHeaderText("Liquidaciones" + cuentaStr);
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
         changeSize();

@@ -31,8 +31,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Cuadre.findAll", query = "SELECT c FROM Cuadre c"),
     @NamedQuery(name = "Cuadre.findByIdCuadre", query = "SELECT c FROM Cuadre c WHERE c.idCuadre = :idCuadre"),
-    @NamedQuery(name = "Cuadre.findByLiquidada", query = "SELECT c FROM Cuadre c WHERE c.liquidada = :liquidada"),
-    @NamedQuery(name = "Cuadre.findByDescripcion", query = "SELECT c FROM Cuadre c WHERE c.descripcion = :descripcion")})
+    @NamedQuery(name = "Cuadre.findByLiquidada", query = "SELECT c FROM Cuadre c WHERE c.liquidada = :liquidada")
+    })
 public class Cuadre implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,12 +47,6 @@ public class Cuadre implements Serializable {
     @NotNull
     @Column(name = "liquidada", nullable = false)
     private boolean liquidada;
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 0, max = 500)
-    @Column(name = "descripcion", nullable = false, length = 500)
-    private String descripcion;
 
     @JoinColumn(name = "operacion_contable_cuadre_fk", referencedColumnName = "id_operacion_contable", nullable = false)
     @ManyToOne(optional = false)
@@ -69,10 +63,9 @@ public class Cuadre implements Serializable {
         this.idCuadre = idCuadre;
     }
 
-    public Cuadre(Integer idCuadre, boolean liquidada, String descripcion) {
+    public Cuadre(Integer idCuadre, boolean liquidada) {
         this.idCuadre = idCuadre;
         this.liquidada = liquidada;
-        this.descripcion = descripcion;
     }
 
     public Integer getIdCuadre() {
@@ -89,14 +82,6 @@ public class Cuadre implements Serializable {
 
     public void setLiquidada(boolean liquidada) {
         this.liquidada = liquidada;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public OperacionContable getOperacionContableCuadreFk() {

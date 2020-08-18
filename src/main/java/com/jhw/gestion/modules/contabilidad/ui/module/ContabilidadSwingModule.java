@@ -33,6 +33,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
     public final static TipoCuentaUseCase tipoCuentaUC;
     public final static TipoOperacionContableUseCase tipoOperacionContableUC;
     public final static FormaPagoUseCase tipoPagoUC;
+    public final static TitularUseCase titularUC;
 
     static {
         ContabilidadCoreModule.init(ContabilidadRepoModule.init());
@@ -48,6 +49,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
         tipoCuentaUC = ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class);
         tipoOperacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableUseCase.class);
+        titularUC = ContabilidadCoreModule.getInstance().getImplementation(TitularUseCase.class);
 
         ResourceServiceImplementation.init();
     }

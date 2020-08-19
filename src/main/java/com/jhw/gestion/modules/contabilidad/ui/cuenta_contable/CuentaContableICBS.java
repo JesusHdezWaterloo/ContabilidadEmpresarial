@@ -5,6 +5,7 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import java.util.List;
 
 /**
  *
@@ -12,17 +13,30 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
  */
 public class CuentaContableICBS extends ICBSNotEmptySeleccionable<CuentaContableDomain> {
 
+    private List<CuentaContableDomain> actualList;
+
     public CuentaContableICBS() {
         super("Cuenta Contable");
     }
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.cuentaContableUC.findAll());
+        actualList = ContabilidadSwingModule.cuentaContableUC.findAll();
+        setModel(actualList);
     }
 
     public void updateComboBoxCuadre(TipoCuentaDomain tipo) throws Exception {
-        setModel(ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo));
+        actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo);
+        setModel(actualList);
+    }
+
+    public void setMatchingItem(TipoCuentaDomain tipo) {
+        for (CuentaContableDomain c : actualList) {
+            if (c.getTipoCuentaFk().equals(tipo)) {
+                setSelectedItem(c);
+                break;
+            }
+        }
     }
 
     @Override

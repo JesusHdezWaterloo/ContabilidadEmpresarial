@@ -57,11 +57,12 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
         //panel cuentas
         panelCuentasSingle = new _PanelTransparent();
 
-        _MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
+        //_MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
         //scroll.remove(scroll.getHorizontalScrollBar());
-        scroll.setViewportView(panelCuentasSingle);
-        this.add(scroll);
-        //this.add(panelCuentasSingle);
+        //scroll.setViewportView(panelCuentasSingle);
+        //this.add(scroll);
+        
+        this.add(panelCuentasSingle);
     }
 
     private _MaterialLabel labelHeader;

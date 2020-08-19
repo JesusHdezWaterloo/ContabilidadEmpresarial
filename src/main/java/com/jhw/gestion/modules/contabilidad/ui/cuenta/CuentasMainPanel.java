@@ -31,6 +31,8 @@ public class CuentasMainPanel extends _PanelTransparent implements Update {
 
         //_MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
         //scroll.setViewportView(background);
+        //this.add(scroll);
+        
         this.add(background);
 
         cuentasBancarias = new CuentaBancariaDetailMainPanel();

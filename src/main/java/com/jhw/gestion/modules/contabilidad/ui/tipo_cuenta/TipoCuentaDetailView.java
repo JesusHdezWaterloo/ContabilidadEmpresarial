@@ -42,9 +42,10 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     @Override
     public Object[] getRowObject(TipoCuentaDomain obj) {
-        return new Object[]{obj.getNombreTipoCuenta(),
-            obj.getDebitoCredito() ? "DEBITO" : "CREDITO",
-            obj.isLiquidable()};
+        return new Object[]{
+            obj.getNombreTipoCuenta(),
+            obj.debito_credito(),
+            obj.liquidable()};
     }
 
     @Override

@@ -72,6 +72,14 @@ public class TipoCuentaDomain extends EntityDomainObjectValidated {
         return debitoCredito;
     }
 
+    public String debito_credito() {
+        return getDebitoCredito() ? "DEBITO" : "CREDITO";
+    }
+
+    public String liquidable() {
+        return isLiquidable() ? "SI" : "NO";
+    }
+
     public void setDebitoCredito(boolean debitoCredito) {
         this.debitoCredito = debitoCredito;
     }

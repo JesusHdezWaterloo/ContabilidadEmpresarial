@@ -17,6 +17,18 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
     }
 
     @Override
+    public List<CuentaContableDomain> findAll(String searchText) throws Exception {
+        List<CuentaContableDomain> cuentasBancarias = findAll();
+        List<CuentaContableDomain> cuentas = new ArrayList<>();
+        for (CuentaContableDomain c : cuentasBancarias) {
+            if (c.test(searchText)) {
+                cuentas.add(c);
+            }
+        }
+        return cuentas;
+    }
+
+    @Override
     public List<Cuenta> findAllCuentas() throws Exception {
         List<CuentaContableDomain> cuentasContables = findAll();
         List<Cuenta> cuentas = new ArrayList<>(cuentasContables.size());

@@ -94,6 +94,7 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
 
         this.add(background);
     }
+    
     private _MaterialLabel labelNombreCuenta;
 
     private _labelDoubleMoneyPositive debito;

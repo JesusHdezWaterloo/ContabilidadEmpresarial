@@ -6,22 +6,20 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
-import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.components.searchfield._MaterialSearchField;
-import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.swing.models.detail.HeaderDetailPanel;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.border.EmptyBorder;
+import net.miginfocom.layout.AC;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -45,6 +43,12 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
 
         header = new HeaderDetailPanel();
         panelCuentasSingle = new _PanelTransparent();
+        MigLayout mig = new MigLayout(
+                new LC().align("center", "center").insetsAll("0").gridGap("0", "0"),
+                new AC(),
+                new AC().fill().grow()
+        );
+        panelCuentasSingle.setLayout(mig);
 
         this.add(header, BorderLayout.NORTH);
 
@@ -71,11 +75,14 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
 
     public void rellenarCuentas(List<T> cuentas) {
         panelCuentasSingle.removeAll();
-
-        panelCuentasSingle.setLayout(new GridLayout(cuentas.size() / 4 + 1, 0));
-        for (T c : cuentas) {
-            panelCuentasSingle.add(buildSingle(c));
+        for (int i = 0; i < cuentas.size() / 2; i++) {
+            panelCuentasSingle.add(buildSingle(cuentas.get(i)), "grow, push, newline");
+            panelCuentasSingle.add(buildSingle(cuentas.get(i + 1)), "grow, push");
         }
+        if (cuentas.size() % 2 != 0 && cuentas.size() >= 0) {
+            panelCuentasSingle.add(buildSingle(cuentas.get(cuentas.size() - 1)), "grow, push,  newline, spanx 2");
+        }
+
         this.revalidate();
     }
 

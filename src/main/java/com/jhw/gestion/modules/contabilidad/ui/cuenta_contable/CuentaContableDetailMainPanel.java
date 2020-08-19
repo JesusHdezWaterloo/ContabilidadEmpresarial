@@ -30,7 +30,7 @@ public class CuentaContableDetailMainPanel extends CuentaDetailMainPanel<CuentaC
     @Override
     public void update() {
         try {
-            rellenarCuentas(ContabilidadSwingModule.cuentaContableUC.findAll());
+            rellenarCuentas(ContabilidadSwingModule.cuentaContableUC.findAll(getSearchText()));
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }

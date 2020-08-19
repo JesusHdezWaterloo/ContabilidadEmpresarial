@@ -5,7 +5,11 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.exceptions.ValidationException;
 import com.clean.core.utils.SortBy;
+import com.clean.core.utils.validation.ValidationMessage;
+import com.clean.core.utils.validation.ValidationResult;
+import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -122,4 +126,18 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
         return nombreOperacion;
     }
 
+    @Override
+    public ValidationResult validate() throws ValidationException {
+        ValidationResult v = super.validate();
+
+        //diferentes tipos
+        if (getTipoCuentaDefectoFk().getDebitoCredito() == getTipoCuentaCuadreDefectoFk().getDebitoCredito()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
+        }
+        //liquidable
+        if (!getTipoCuentaCuadreDefectoFk().isLiquidable()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));
+        }
+        return v.throwException();
+    }
 }

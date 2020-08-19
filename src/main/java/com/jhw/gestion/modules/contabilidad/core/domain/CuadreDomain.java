@@ -13,7 +13,6 @@ import com.clean.core.utils.validation.ValidationResult;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *

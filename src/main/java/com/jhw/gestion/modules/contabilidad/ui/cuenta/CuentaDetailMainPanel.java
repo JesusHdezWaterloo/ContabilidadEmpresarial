@@ -75,7 +75,7 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
 
     public void rellenarCuentas(List<T> cuentas) {
         panelCuentasSingle.removeAll();
-        for (int i = 0; i < cuentas.size() / 2; i++) {
+        for (int i = 0; i < cuentas.size(); i += 2) {
             panelCuentasSingle.add(buildSingle(cuentas.get(i)), "grow, push, newline");
             panelCuentasSingle.add(buildSingle(cuentas.get(i + 1)), "grow, push");
         }

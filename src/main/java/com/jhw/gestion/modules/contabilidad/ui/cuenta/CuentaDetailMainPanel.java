@@ -11,12 +11,15 @@ import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
+import com.jhw.swing.material.components.searchfield._MaterialSearchField;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.swing.models.detail.HeaderDetailPanel;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.border.EmptyBorder;
 
@@ -32,45 +35,38 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
     }
 
     private void initComponents() {
-        this.setLayout(new BorderLayout());
-
         this.setBorder(new EmptyBorder(
                 MaterialShadow.OFFSET_TOP + 10,
                 MaterialShadow.OFFSET_LEFT + 10,
                 MaterialShadow.OFFSET_BOTTOM + 10,
                 MaterialShadow.OFFSET_RIGHT + 10));
 
-        //actions
-        _PanelTransparent header = new _PanelTransparent();
-        header.setBorder(new EmptyBorder(0, 10, 0, 0));
-        header.setLayout(new BorderLayout());
-        labelHeader = new _MaterialLabel();
-        labelHeader.setFont(MaterialFontRoboto.BOLD.deriveFont(30f));
-        labelHeader.setText("Cuentas");
-        header.add(labelHeader, BorderLayout.WEST);
+        this.setLayout(new BorderLayout());
 
-        buttonAddEdit = new _buttonAddEdit();
-        buttonAddEdit.isCreated(true);
-        header.add(buttonAddEdit, BorderLayout.EAST);
+        header = new HeaderDetailPanel();
+        panelCuentasSingle = new _PanelTransparent();
+
         this.add(header, BorderLayout.NORTH);
 
         //panel cuentas
-        panelCuentasSingle = new _PanelTransparent();
+        _MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
+        scroll.remove(scroll.getHorizontalScrollBar());
+        scroll.setViewportView(panelCuentasSingle);
+        this.add(scroll, BorderLayout.SOUTH);
 
-        //_MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
-        //scroll.remove(scroll.getHorizontalScrollBar());
-        //scroll.setViewportView(panelCuentasSingle);
-        //this.add(scroll);
-        
-        this.add(panelCuentasSingle);
+        //this.add(panelCuentasSingle);
+        //this.add(panelCuentasSingle,BorderLayout.SOUTH);
     }
 
-    private _MaterialLabel labelHeader;
-    private _buttonAddEdit buttonAddEdit;
+    private HeaderDetailPanel header;
     private _PanelTransparent panelCuentasSingle;
 
+    protected String getSearchText() {
+        return header.getSearchText();
+    }
+
     public void setHeader(String text) {
-        labelHeader.setText(text);
+        header.setHeaderText(text);
     }
 
     public void rellenarCuentas(List<T> cuentas) {
@@ -86,8 +82,11 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
     protected abstract CuentaSinglePanel buildSingle(T cuenta);
 
     private void addListeners() {
-        buttonAddEdit.addActionListener((ActionEvent e) -> {
+        header.addButtonNuevoActionListener((ActionEvent e) -> {
             createAction();
+        });
+        header.setSearchActionListener((ActionEvent e) -> {
+            update();
         });
     }
 

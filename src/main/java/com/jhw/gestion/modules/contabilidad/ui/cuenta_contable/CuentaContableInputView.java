@@ -44,7 +44,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
 
         //tipo de cuenta
         tipoCuentaICBS = new TipoCuentaICBS();
-        
+
         //titular
         titularICBS = new TitularICBS();
 
@@ -70,6 +70,13 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
     private TitularICBS titularICBS;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
+
+    @Override
+    public void update() {
+        super.update();
+        monedaICBS.setEnabled(getOldModel() == null);
+        tipoCuentaICBS.setEnabled(getOldModel() == null);
+    }
 
     @Override
     public Map<String, Object> bindFields() {

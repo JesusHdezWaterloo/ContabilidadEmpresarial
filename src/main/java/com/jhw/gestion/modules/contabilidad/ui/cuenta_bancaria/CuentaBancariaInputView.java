@@ -87,6 +87,12 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
     // End of variables declaration                   
 
     @Override
+    public void update() {
+        super.update();
+        monedaICBS.setEnabled(getOldModel() == null);
+    }
+
+    @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
         bindFields.put("nombreCuenta", textFieldNombreCuenta);

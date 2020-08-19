@@ -32,11 +32,11 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     private static final String COL_NOMBRE = "Nombre";
     private static final String COL_FECHA = "Fecha";
     private static final String COL_CUENTA = "Cuenta";
-    private static final String COL_DEBITO1 = "Débito 1";
-    private static final String COL_CREDITO1 = "Crédito 1";
+    private static final String COL_DEBITO1 = "+";
+    private static final String COL_CREDITO1 = "-";
     private static final String COL_CUADRE = "Cuadre";
-    private static final String COL_DEBITO2 = "Débito 2";
-    private static final String COL_CREDITO2 = "Crédito 2";
+    private static final String COL_DEBITO2 = "+ ";
+    private static final String COL_CREDITO2 = "- ";
 
     public CuadreDetailView() {
         super(

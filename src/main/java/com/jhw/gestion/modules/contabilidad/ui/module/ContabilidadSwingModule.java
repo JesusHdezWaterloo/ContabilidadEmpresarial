@@ -13,6 +13,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.forma_pago.FormaPagoDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.titular.TitularDetailView;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
@@ -80,7 +81,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_CUENTA);
             }
         });
-        
+
         dash.addView(ContabilidadModuleNavigator.NAV_CUADRE, new CuadreDetailView());
         menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.CUADRE, MaterialIcons.ASSIGNMENT_TURNED_IN) {
             @Override
@@ -97,11 +98,11 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
             }
         });
 
-        dash.addView(ContabilidadModuleNavigator.NAV_METODO_PAGO, new FormaPagoDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.METODO_PAGO, MaterialIcons.PAYMENT) {
+        dash.addView(ContabilidadModuleNavigator.NAV_TIPO_PAGO, new FormaPagoDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_PAGO, MaterialIcons.PAYMENT) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.navigateTo(ContabilidadModuleNavigator.NAV_METODO_PAGO);
+                app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_PAGO);
             }
         });
 
@@ -110,6 +111,13 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);
+            }
+        });
+        dash.addView(ContabilidadModuleNavigator.NAV_TITULAR, new TitularDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PERSON) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_TITULAR);
             }
         });
     }

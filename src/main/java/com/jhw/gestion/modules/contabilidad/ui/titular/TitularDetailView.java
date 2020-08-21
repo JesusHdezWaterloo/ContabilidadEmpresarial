@@ -36,6 +36,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
         try {
             setCollection(ContabilidadSwingModule.titularUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -53,8 +54,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
     @Override
     protected TitularDomain deleteAction(TitularDomain obj) {
         try {
-            ContabilidadSwingModule.titularUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.titularUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

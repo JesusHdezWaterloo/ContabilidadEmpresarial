@@ -113,9 +113,9 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);
             }
         });
-        
+
         dash.addView(ContabilidadModuleNavigator.NAV_TITULAR, new TitularDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PERSON) {
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PEOPLE) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TITULAR);

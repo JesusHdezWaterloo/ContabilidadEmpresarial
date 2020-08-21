@@ -35,6 +35,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
         try {
             setCollection(ContabilidadSwingModule.tipoPagoUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -49,11 +50,9 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     }
 
     @Override
-    protected FormaPagoDomain deleteAction(FormaPagoDomain obj
-    ) {
+    protected FormaPagoDomain deleteAction(FormaPagoDomain obj) {
         try {
-            ContabilidadSwingModule.tipoPagoUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.tipoPagoUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }
@@ -61,14 +60,12 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     }
 
     @Override
-    protected void editAction(FormaPagoDomain obj
-    ) {
+    protected void editAction(FormaPagoDomain obj) {
         new DialogModelInput(this, new FormaPagoInputView(obj));
     }
 
     @Override
-    protected void viewAction(FormaPagoDomain obj
-    ) {
+    protected void viewAction(FormaPagoDomain obj) {
         System.out.println("NO NECESARIO TODAVÍA.");
     }
 

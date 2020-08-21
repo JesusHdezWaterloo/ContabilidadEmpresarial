@@ -70,6 +70,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         try {
             setCollection(ContabilidadSwingModule.cuadreUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -108,8 +109,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     @Override
     protected CuadreDomain deleteAction(CuadreDomain obj) {
         try {
-            ContabilidadSwingModule.cuadreUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.cuadreUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

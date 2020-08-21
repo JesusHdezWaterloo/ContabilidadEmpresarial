@@ -89,8 +89,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
     @Override
     protected OperacionContableDomain deleteAction(OperacionContableDomain obj) {
         try {
-            ContabilidadSwingModule.operacionContableUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.operacionContableUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

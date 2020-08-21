@@ -37,6 +37,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
         try {
             setCollection(ContabilidadSwingModule.tipoCuentaUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -56,8 +57,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
     @Override
     protected TipoCuentaDomain deleteAction(TipoCuentaDomain obj) {
         try {
-            ContabilidadSwingModule.tipoCuentaUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.tipoCuentaUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

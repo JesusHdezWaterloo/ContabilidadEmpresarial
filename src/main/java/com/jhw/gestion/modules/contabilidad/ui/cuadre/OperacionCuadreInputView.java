@@ -25,8 +25,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
 
     public OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
         this((OperacionCuadreDomain) null);
-        this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
-        this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
+        setTipoOp(opDefecto);
     }
 
     public OperacionCuadreInputView(OperacionCuadreDomain model) {
@@ -97,5 +96,10 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
             cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getSelectedItem().getTipoCuentaFk());
         } catch (Exception e) {
         }
+    }
+
+    public void setTipoOp(TipoOperacionContableDomain opDefecto) {
+        this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
+        this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
     }
 }

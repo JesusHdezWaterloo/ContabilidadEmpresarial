@@ -33,13 +33,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
         if (objectToUpdate.getLiquidada()) {
             throw new RuntimeException("No se puede editar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego edite el cuadre.");
         }
-        //destruyo el viejo y arreglo las cuentas
-        CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
-        destroy(old);
-
-        //corrijo las cuentas
-        objectToUpdate.getOperacionContableFk().setCuentaFk(old.getOperacionContableFk().getCuentaFk());
-        objectToUpdate.getOperacionContableCuadreFk().setCuentaFk(old.getOperacionContableCuadreFk().getCuentaFk());
+        destroy(objectToUpdate);
         return create(objectToUpdate);
     }
 

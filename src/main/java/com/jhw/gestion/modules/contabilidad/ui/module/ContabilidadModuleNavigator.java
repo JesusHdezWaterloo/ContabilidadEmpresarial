@@ -14,13 +14,13 @@ public class ContabilidadModuleNavigator implements NavigationService {
     public static final String OPERACIONES = "Operaciones";
     public static final String LIQUIDACIONES = "Liquidaciones";
     public static final String MONEDA = "Monedas";
-    public static final String TIPO_PAGO = "Tipo de pago";
+    public static final String FORMA_PAGO = "Forma de pago";
     public static final String TIPO_CUENTA = "Tipo de cuenta";
     public static final String TITULAR = "Titular";
     public static final String NAV_CUENTA = "modulos.cuenta.cuentas";
     public static final String NAV_CUADRE = "modulos.cuenta.cuadre";
     public static final String NAV_MONEDA = "modulos.cuenta.monedas";
-    public static final String NAV_TIPO_PAGO = "modulos.cuenta.tipo_pago";
+    public static final String NAV_FORMA_PAGO = "modulos.cuenta.forma_pago";
     public static final String NAV_TIPO_CUENTA = "modulos.cuenta.tipo_cuenta";
     public static final String NAV_OPERACIONES = "modulos.cuenta.operaciones";
     public static final String NAV_LIQUIDACIONES = "modulos.cuenta.liquidacioens";

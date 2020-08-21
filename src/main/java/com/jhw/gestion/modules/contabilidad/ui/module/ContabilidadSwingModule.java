@@ -98,11 +98,11 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
             }
         });
 
-        dash.addView(ContabilidadModuleNavigator.NAV_TIPO_PAGO, new FormaPagoDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_PAGO, MaterialIcons.PAYMENT) {
+        dash.addView(ContabilidadModuleNavigator.NAV_FORMA_PAGO, new FormaPagoDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.FORMA_PAGO, MaterialIcons.PAYMENT) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_PAGO);
+                app.navigateTo(ContabilidadModuleNavigator.NAV_FORMA_PAGO);
             }
         });
 
@@ -113,6 +113,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);
             }
         });
+        
         dash.addView(ContabilidadModuleNavigator.NAV_TITULAR, new TitularDetailView());
         menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PERSON) {
             @Override

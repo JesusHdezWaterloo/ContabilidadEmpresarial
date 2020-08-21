@@ -3,7 +3,7 @@ package com.jhw.gestion.modules.contabilidad.repo.repo_impl;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.entities.*;
-import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import com.jhw.utils.jackson.JACKSON;
 import com.jhw.utils.jpa.ConverterService;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
@@ -17,7 +17,7 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
     private final String Liquidacion_findByCuenta = "SELECT l FROM Liquidacion l WHERE l.cuentaFk = :cuentaFk";
 
     public LiquidacionRepoImpl() {
-        super(Resources.EMF, LiquidacionDomain.class, Liquidacion.class);
+        super(ResourcesContabilidad.EMF, LiquidacionDomain.class, Liquidacion.class);
     }
 
     @Override

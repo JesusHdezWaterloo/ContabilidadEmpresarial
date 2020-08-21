@@ -17,7 +17,7 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
     }
 
     public FormaPagoInputView(FormaPagoDomain model) {
-        super(model, ContabilidadSwingModule.tipoPagoUC, FormaPagoDomain.class);
+        super(model, ContabilidadSwingModule.formaPagoUC, FormaPagoDomain.class);
         initComponents();
         update();
     }

@@ -33,7 +33,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     @Override
     public void update() {
         try {
-            setCollection(ContabilidadSwingModule.tipoPagoUC.findAll());
+            setCollection(ContabilidadSwingModule.formaPagoUC.findAll());
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -52,7 +52,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     @Override
     protected FormaPagoDomain deleteAction(FormaPagoDomain obj) {
         try {
-            return ContabilidadSwingModule.tipoPagoUC.destroy(obj);
+            return ContabilidadSwingModule.formaPagoUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

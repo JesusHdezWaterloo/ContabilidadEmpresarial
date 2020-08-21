@@ -4,7 +4,6 @@ import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDom
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.OperacionCuadreDomain;
-import com.jhw.gestion.modules.contabilidad.repo.entities.TipoOperacionContable;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;

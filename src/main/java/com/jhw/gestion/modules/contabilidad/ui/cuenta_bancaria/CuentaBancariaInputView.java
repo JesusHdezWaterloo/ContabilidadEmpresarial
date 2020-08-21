@@ -62,6 +62,8 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);
+        vlc.add(textFieldCodigo);
+        
         vlc.add(textFieldNumeroCuenta);
 
         HorizontalLayoutContainer.builder hlcTarjeta = HorizontalLayoutContainer.builder((int) textFieldNumeroTarjeta.getPreferredSize().getHeight());
@@ -69,7 +71,6 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         hlcTarjeta.add(HorizontalLayoutComponent.builder(textFieldPin).gapLeft(5).build());
         vlc.add(hlcTarjeta.build());
 
-        vlc.add(textFieldCodigo);
         vlc.add(monedaICBS);
         vlc.add(textAreaDescripcion, true);
 

@@ -6,19 +6,20 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
-import com.jhw.swing.material.components.button.prepared._buttonAddEdit;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
-import com.jhw.swing.material.components.labels._MaterialLabel;
 import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
-import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialShadow;
+import com.jhw.swing.models.detail.HeaderDetailPanel;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.border.EmptyBorder;
+import net.miginfocom.layout.AC;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -32,61 +33,67 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
     }
 
     private void initComponents() {
-        this.setLayout(new BorderLayout());
-
         this.setBorder(new EmptyBorder(
                 MaterialShadow.OFFSET_TOP + 10,
                 MaterialShadow.OFFSET_LEFT + 10,
                 MaterialShadow.OFFSET_BOTTOM + 10,
                 MaterialShadow.OFFSET_RIGHT + 10));
 
-        //actions
-        _PanelTransparent header = new _PanelTransparent();
-        header.setBorder(new EmptyBorder(0, 10, 0, 0));
-        header.setLayout(new BorderLayout());
-        labelHeader = new _MaterialLabel();
-        labelHeader.setFont(MaterialFontRoboto.BOLD.deriveFont(30f));
-        labelHeader.setText("Cuentas");
-        header.add(labelHeader, BorderLayout.WEST);
+        this.setLayout(new BorderLayout());
 
-        buttonAddEdit = new _buttonAddEdit();
-        buttonAddEdit.isCreated(true);
-        header.add(buttonAddEdit, BorderLayout.EAST);
+        header = new HeaderDetailPanel();
+        panelCuentasSingle = new _PanelTransparent();
+        MigLayout mig = new MigLayout(
+                new LC().align("center", "center").insetsAll("0").gridGap("0", "0"),
+                new AC(),
+                new AC().fill().grow()
+        );
+        panelCuentasSingle.setLayout(mig);
+
         this.add(header, BorderLayout.NORTH);
 
         //panel cuentas
-        panelCuentasSingle = new _PanelTransparent();
-
         _MaterialScrollPaneCore scroll = new _MaterialScrollPaneCore();
-        //scroll.remove(scroll.getHorizontalScrollBar());
+        scroll.remove(scroll.getHorizontalScrollBar());
         scroll.setViewportView(panelCuentasSingle);
-        this.add(scroll);
+        this.add(scroll, BorderLayout.SOUTH);
+
         //this.add(panelCuentasSingle);
+        //this.add(panelCuentasSingle,BorderLayout.SOUTH);
     }
 
-    private _MaterialLabel labelHeader;
-    private _buttonAddEdit buttonAddEdit;
+    private HeaderDetailPanel header;
     private _PanelTransparent panelCuentasSingle;
 
+    protected String getSearchText() {
+        return header.getSearchText();
+    }
+
     public void setHeader(String text) {
-        labelHeader.setText(text);
+        header.setHeaderText(text);
     }
 
     public void rellenarCuentas(List<T> cuentas) {
         panelCuentasSingle.removeAll();
-
-        panelCuentasSingle.setLayout(new GridLayout(cuentas.size() / 4 + 1, 0));
-        for (T c : cuentas) {
-            panelCuentasSingle.add(buildSingle(c));
+        for (int i = 0; i < cuentas.size() / 2; i++) {
+            panelCuentasSingle.add(buildSingle(cuentas.get(2 * i)), "grow, push, newline");
+            panelCuentasSingle.add(buildSingle(cuentas.get(2 * i + 1)), "grow, push");
         }
+        if (cuentas.size() % 2 != 0 && cuentas.size() >= 0) {
+            panelCuentasSingle.add(buildSingle(cuentas.get(cuentas.size() - 1)), "grow, push,  newline, spanx 2");
+        }
+
         this.revalidate();
     }
 
     protected abstract CuentaSinglePanel buildSingle(T cuenta);
 
     private void addListeners() {
-        buttonAddEdit.addActionListener((ActionEvent e) -> {
+        header.addButtonNuevoActionListener((ActionEvent e) -> {
             createAction();
+        });
+        header.setSearchActionListener((ActionEvent e) -> {
+            update();
         });
     }
 

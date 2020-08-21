@@ -62,6 +62,8 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);
+        vlc.add(textFieldCodigo);
+        
         vlc.add(textFieldNumeroCuenta);
 
         HorizontalLayoutContainer.builder hlcTarjeta = HorizontalLayoutContainer.builder((int) textFieldNumeroTarjeta.getPreferredSize().getHeight());
@@ -69,7 +71,6 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         hlcTarjeta.add(HorizontalLayoutComponent.builder(textFieldPin).gapLeft(5).build());
         vlc.add(hlcTarjeta.build());
 
-        vlc.add(textFieldCodigo);
         vlc.add(monedaICBS);
         vlc.add(textAreaDescripcion, true);
 
@@ -85,6 +86,12 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
     private MonedaICBS monedaICBS;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
+
+    @Override
+    public void update() {
+        super.update();
+        monedaICBS.setEnabled(getOldModel() == null);
+    }
 
     @Override
     public Map<String, Object> bindFields() {

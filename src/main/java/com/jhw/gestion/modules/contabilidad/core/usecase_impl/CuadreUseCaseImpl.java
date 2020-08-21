@@ -1,6 +1,9 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.clean.core.domain.services.Resource;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
@@ -13,6 +16,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
 
     public CuadreUseCaseImpl() {
         super.setRepo(repo);
+        checkIntegrity();
     }
 
     @Override
@@ -29,13 +33,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
         if (objectToUpdate.getLiquidada()) {
             throw new RuntimeException("No se puede editar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego edite el cuadre.");
         }
-        //destruyo el viejo y arreglo las cuentas
-        CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
-        destroy(old);
-        
-        //corrijo las cuentas
-        objectToUpdate.getOperacionContableFk().setCuentaFk(old.getOperacionContableFk().getCuentaFk());
-        objectToUpdate.getOperacionContableCuadreFk().setCuentaFk(old.getOperacionContableCuadreFk().getCuentaFk());
+        destroy(objectToUpdate);
         return create(objectToUpdate);
     }
 
@@ -67,4 +65,19 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
         return repo.findAllLiquidadas();
     }
 
+    private void checkIntegrity() {
+        try {
+            for (CuadreDomain cuadreDomain : super.findAll()) {
+                try {
+                    cuadreDomain.validate();
+                } catch (Exception e) {
+                    Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR,
+                            "Error en el cuadre con nombre: '" + cuadreDomain.info().getNombre() + "', documento: '" + cuadreDomain.info().getDocumento() + "'.\nAnótelo en una hoja aparte y reviselo cuando el sistema termine de cargar."
+                    );
+                }
+            }
+        } catch (Exception e) {
+            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR, Resource.getString("msg.default_config.error.check_integrity"));
+        }
+    }
 }

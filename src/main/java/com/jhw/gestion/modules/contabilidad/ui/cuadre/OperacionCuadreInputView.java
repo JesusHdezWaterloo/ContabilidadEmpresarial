@@ -1,8 +1,10 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuadre;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.OperacionCuadreDomain;
+import com.jhw.gestion.modules.contabilidad.repo.entities.TipoOperacionContable;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
@@ -18,7 +20,12 @@ import java.util.Map;
 public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadreDomain> {
 
     public OperacionCuadreInputView() {
-        this(null);
+        this((OperacionCuadreDomain) null);
+    }
+
+    public OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
+        this((OperacionCuadreDomain) null);
+        setTipoOp(opDefecto);
     }
 
     public OperacionCuadreInputView(OperacionCuadreDomain model) {
@@ -89,5 +96,10 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
             cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getSelectedItem().getTipoCuentaFk());
         } catch (Exception e) {
         }
+    }
+
+    public void setTipoOp(TipoOperacionContableDomain opDefecto) {
+        this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
+        this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
     }
 }

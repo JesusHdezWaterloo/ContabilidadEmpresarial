@@ -1,5 +1,6 @@
-package com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta;
+package com.jhw.gestion.modules.contabilidad.ui.titular;
 
+import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
@@ -11,17 +12,15 @@ import com.jhw.swing.models.detail._MaterialPanelDetail;
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain> {
+public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
 
-    private static final String COL_NOMBRE = "Tipo";
-    private static final String COL_DEB_CRED = "Débito - Crédito";
-    private static final String COL_LIQUIDABLE = "Liquidable";
+    private static final String COL_NOMBRE = "Titular";
+    private static final String COL_DESC = "Descripción";
 
-    public TipoCuentaDetailView() {
+    public TitularDetailView() {
         super(
                 Column.builder().name(COL_NOMBRE).build(),
-                Column.builder().name(COL_DEB_CRED).build(),
-                Column.builder().name(COL_LIQUIDABLE).build()
+                Column.builder().name(COL_DESC).build()
         );
 
         this.personalize();
@@ -35,28 +34,26 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
     @Override
     public void update() {
         try {
-            setCollection(ContabilidadSwingModule.tipoCuentaUC.findAll());
+            setCollection(ContabilidadSwingModule.titularUC.findAll());
         } catch (Exception e) {
         }
     }
 
     @Override
-    public Object[] getRowObject(TipoCuentaDomain obj) {
-        return new Object[]{
-            obj.getNombreTipoCuenta(),
-            obj.debito_credito(),
-            obj.liquidable()};
+    public Object[] getRowObject(TitularDomain obj) {
+        return new Object[]{obj.getNombreTitular(),
+            obj.getDescripcion()};
     }
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TipoCuentaInputView());
+        new DialogModelInput(this, new TitularInputView());
     }
 
     @Override
-    protected TipoCuentaDomain deleteAction(TipoCuentaDomain obj) {
+    protected TitularDomain deleteAction(TitularDomain obj) {
         try {
-            ContabilidadSwingModule.tipoCuentaUC.destroy(obj);
+            ContabilidadSwingModule.titularUC.destroy(obj);
             return obj;
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
@@ -65,12 +62,12 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
     }
 
     @Override
-    protected void editAction(TipoCuentaDomain obj) {
-        new DialogModelInput(this, new TipoCuentaInputView(obj));
+    protected void editAction(TitularDomain obj) {
+        new DialogModelInput(this, new TitularInputView(obj));
     }
 
     @Override
-    protected void viewAction(TipoCuentaDomain obj) {
+    protected void viewAction(TitularDomain obj) {
         System.out.println("NO NECESARIO TODAVÍA.");
     }
 

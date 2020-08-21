@@ -36,7 +36,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "InfoOperacionContable.findByNombre", query = "SELECT i FROM InfoOperacionContable i WHERE i.nombre = :nombre"),
     @NamedQuery(name = "InfoOperacionContable.findByFecha", query = "SELECT i FROM InfoOperacionContable i WHERE i.fecha = :fecha"),
     @NamedQuery(name = "InfoOperacionContable.findByDescripcion", query = "SELECT i FROM InfoOperacionContable i WHERE i.descripcion = :descripcion"),
-    @NamedQuery(name = "InfoOperacionContable.findByIdExterno", query = "SELECT i FROM InfoOperacionContable i WHERE i.idExterno = :idExterno")})
+    })
 public class InfoOperacionContable implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -75,11 +75,6 @@ public class InfoOperacionContable implements Serializable {
     @ManyToOne(optional = false)
     private TipoOperacionContable tipoOperacionFk;
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_externo", nullable = false)
-    private int idExterno;
-
     @JoinColumn(name = "forma_pago_fk", referencedColumnName = "id_forma_pago", nullable = false)
     @ManyToOne(optional = false)
     private FormaPago formaPagoFk;
@@ -91,13 +86,12 @@ public class InfoOperacionContable implements Serializable {
         this.idInfoOperacionContable = idInfoOperacionContable;
     }
 
-    public InfoOperacionContable(Integer idInfoOperacionContable, String documento, String nombre, Date fecha, String descripcion, int idExterno) {
+    public InfoOperacionContable(Integer idInfoOperacionContable, String documento, String nombre, Date fecha, String descripcion) {
         this.idInfoOperacionContable = idInfoOperacionContable;
         this.documento = documento;
         this.nombre = nombre;
         this.fecha = fecha;
         this.descripcion = descripcion;
-        this.idExterno = idExterno;
     }
 
     public Integer getIdInfoOperacionContable() {
@@ -138,14 +132,6 @@ public class InfoOperacionContable implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public int getIdExterno() {
-        return idExterno;
-    }
-
-    public void setIdExterno(int idExterno) {
-        this.idExterno = idExterno;
     }
 
     public FormaPago getFormaPagoFk() {

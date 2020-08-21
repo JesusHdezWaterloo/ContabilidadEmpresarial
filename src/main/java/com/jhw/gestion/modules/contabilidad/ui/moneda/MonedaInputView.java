@@ -67,8 +67,11 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     // End of variables declaration                   
 
     private void personalize() {
-        textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
-        textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
+        try {
+            textFieldCompra.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
+            textFieldVenta.setExtra(MonedaHandler.getMonedaBase().getNombreMoneda());
+        } catch (Exception e) {
+        }
     }
 
     @Override

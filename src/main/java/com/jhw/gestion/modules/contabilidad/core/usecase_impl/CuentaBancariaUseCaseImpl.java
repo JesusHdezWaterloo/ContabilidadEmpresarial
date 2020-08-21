@@ -1,6 +1,10 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
+import com.clean.core.app.services.Notification;
+import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.clean.core.domain.services.Resource;
+import com.clean.core.exceptions.ValidationException;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
@@ -14,6 +18,34 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
 
     public CuentaBancariaUseCaseImpl() {
         super.setRepo(repo);
+        checkIntegrity();
+    }
+
+    @Override
+    public CuentaBancariaDomain edit(CuentaBancariaDomain objectToUpdate) throws Exception {
+        CuentaBancariaDomain old = findBy(objectToUpdate.getIdCuentaBancaria());
+        if (old.getDebito() != objectToUpdate.getDebito()) {
+            throw new ValidationException("debito", "No se puede modificar el débito directamente, solo mediante operaciones.\nProbablemente alguien haya modificado la cuenta externamente.");
+        }
+        if (old.getCredito() != objectToUpdate.getCredito()) {
+            throw new ValidationException("credito", "No se puede modificar el crédito directamente, solo mediante operaciones.\nProbablemente alguien haya modificado la cuenta externamente.");
+        }
+        if (!old.getMonedaFk().equals(objectToUpdate.getMonedaFk())) {
+            throw new ValidationException("monedaFk", "No se puede cambiar la moneda de la cuenta.");
+        }
+        return super.edit(objectToUpdate);
+    }
+
+    @Override
+    public List<CuentaBancariaDomain> findAll(String searchText) throws Exception {
+        List<CuentaBancariaDomain> cuentasBancarias = findAll();
+        List<CuentaBancariaDomain> cuentas = new ArrayList<>();
+        for (CuentaBancariaDomain c : cuentasBancarias) {
+            if (c.test(searchText)) {
+                cuentas.add(c);
+            }
+        }
+        return cuentas;
     }
 
     @Override
@@ -45,5 +77,27 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
             cuentas.add(c);
         }
         return cuentas;
+    }
+
+    private void checkIntegrity() {
+        try {
+            LiquidacionUseCase liqUC = ContabilidadCoreModule.getInstance().getImplementation(LiquidacionUseCase.class);
+            for (CuentaBancariaDomain c : super.findAll()) {
+                double deb = 0;
+                double cred = 0;
+                for (LiquidacionDomain liquidacionDomain : liqUC.findAll(c)) {
+                    deb += liquidacionDomain.getDebito();
+                    cred += liquidacionDomain.getCredito();
+                }
+                if (c.getDebito() != deb || c.getCredito() != cred) {
+                    c.setDebito(deb);
+                    c.setCredito(cred);
+                    repo.edit(c);//directo pal repo pa que no pase las validaciones del edit
+                }
+            }
+        } catch (Exception e) {
+            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR, Resource.getString("msg.default_config.error.check_integrity"));
+
+        }
     }
 }

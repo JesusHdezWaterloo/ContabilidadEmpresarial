@@ -6,6 +6,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
+import com.jhw.gestion.modules.contabilidad.ui.titular.TitularICBS;
 import java.util.Map;
 
 /**
@@ -44,6 +45,9 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         //tipo de cuenta
         tipoCuentaICBS = new TipoCuentaICBS();
 
+        //titular
+        titularICBS = new TitularICBS();
+
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
 
@@ -52,6 +56,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         vlc.add(textFieldCodigo);
         vlc.add(monedaICBS);
         vlc.add(tipoCuentaICBS);
+        vlc.add(titularICBS);
         vlc.add(textAreaDescripcion, true);
 
         this.setComponent(vlc.build());
@@ -62,8 +67,16 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldCodigo;
     private MonedaICBS monedaICBS;
     private TipoCuentaICBS tipoCuentaICBS;
+    private TitularICBS titularICBS;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
+
+    @Override
+    public void update() {
+        super.update();
+        monedaICBS.setEnabled(getOldModel() == null);
+        tipoCuentaICBS.setEnabled(getOldModel() == null);
+    }
 
     @Override
     public Map<String, Object> bindFields() {
@@ -71,6 +84,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         bindFields.put("nombreCuenta", textFieldNombreCuenta);
         bindFields.put("codigo", textFieldCodigo);
         bindFields.put("monedaFk", monedaICBS);
+        bindFields.put("titularFk", titularICBS);
         bindFields.put("tipoCuentaFk", tipoCuentaICBS);
         bindFields.put("descripcion", textAreaDescripcion);
         return bindFields;

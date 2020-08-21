@@ -32,11 +32,11 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     private static final String COL_NOMBRE = "Nombre";
     private static final String COL_FECHA = "Fecha";
     private static final String COL_CUENTA = "Cuenta";
-    private static final String COL_DEBITO1 = "Débito 1";
-    private static final String COL_CREDITO1 = "Crédito 1";
+    private static final String COL_DEBITO1 = "+";
+    private static final String COL_CREDITO1 = "-";
     private static final String COL_CUADRE = "Cuadre";
-    private static final String COL_DEBITO2 = "Débito 2";
-    private static final String COL_CREDITO2 = "Crédito 2";
+    //private static final String COL_DEBITO2 = "+ ";
+    //private static final String COL_CREDITO2 = "- ";
 
     public CuadreDetailView() {
         super(
@@ -47,9 +47,9 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
                 Column.builder().name(COL_CUENTA).build(),
                 Column.builder().name(COL_DEBITO1).build(),
                 Column.builder().name(COL_CREDITO1).build(),
-                Column.builder().name(COL_CUADRE).build(),
-                Column.builder().name(COL_DEBITO2).build(),
-                Column.builder().name(COL_CREDITO2).build()
+                Column.builder().name(COL_CUADRE).build()
+                //Column.builder().name(COL_DEBITO2).build(),
+                //Column.builder().name(COL_CREDITO2).build()
         );
 
         this.personalize();
@@ -83,9 +83,9 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
             obj.getOperacionContableFk().getCuentaFk(),
             MoneyTableComponent.from(obj.getOperacionContableFk().getDebito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getOperacionContableFk().getCredito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
-            obj.getOperacionContableCuadreFk().getCuentaFk(),
-            MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getDebito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
-            MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getCredito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk())
+            obj.getOperacionContableCuadreFk().getCuentaFk()
+            //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getDebito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
+            //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getCredito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk())
         };
     }
 
@@ -133,8 +133,8 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
         getTable().getColumn(COL_DEBITO1).setCellRenderer(new MoneyCellRender());
         getTable().getColumn(COL_CREDITO1).setCellRenderer(new MoneyCellRender());
-        getTable().getColumn(COL_DEBITO2).setCellRenderer(new MoneyCellRender());
-        getTable().getColumn(COL_CREDITO2).setCellRenderer(new MoneyCellRender());
+        //getTable().getColumn(COL_DEBITO2).setCellRenderer(new MoneyCellRender());
+        //getTable().getColumn(COL_CREDITO2).setCellRenderer(new MoneyCellRender());
     }
 
     private void addActionsExtra() {

@@ -40,6 +40,9 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
     @NotNull(message = "#msg.module.contabilidad.validation.cuenta_contable_tipo_cuenta_null#")
     private TipoCuentaDomain tipoCuentaFk;
 
+    @NotNull(message = "#msg.module.contabilidad.validation.cuenta_contable_titular_null#")
+    private TitularDomain titularFk;
+
     public CuentaContableDomain() {
     }
 
@@ -47,14 +50,23 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
         this.idCuentaContable = idCuentaContable;
     }
 
-    public CuentaContableDomain(String nombreCuenta, String codigo, double debito, double credito, String descripcion, TipoCuentaDomain tipoCuentaFk, MonedaDomain monedaFk) {
+    public CuentaContableDomain(String nombreCuenta, String codigo, double debito, double credito, String descripcion, MonedaDomain monedaFk, TipoCuentaDomain tipoCuentaFk, TitularDomain titularFk) {
         this.nombreCuenta = nombreCuenta;
         this.codigo = codigo;
         this.debito = debito;
         this.credito = credito;
         this.descripcion = descripcion;
-        this.tipoCuentaFk = tipoCuentaFk;
         this.monedaFk = monedaFk;
+        this.tipoCuentaFk = tipoCuentaFk;
+        this.titularFk = titularFk;
+    }
+
+    public TitularDomain getTitularFk() {
+        return titularFk;
+    }
+
+    public void setTitularFk(TitularDomain titularFk) {
+        this.titularFk = titularFk;
     }
 
     public Integer getIdCuentaContable() {

@@ -3,6 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.tipo_operacion;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import java.util.Map;
 
@@ -35,12 +36,22 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         textFieldKey.setLabel("Key");
         textFieldKey.setHint("Key");
 
+        //cuenta
+        cuentaDefecto = new CuentaContableICBS();
+        cuentaDefecto.setLabel("Cuenta por defecto");
+
+        //cuadre
+        cuentaDefectoCuadre = new CuentaContableICBS();
+        cuentaDefectoCuadre.setLabel("Cuenta  de cuadre por defecto");
+
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
         vlc.add(textFieldKey);
+        vlc.add(cuentaDefecto);
+        vlc.add(cuentaDefectoCuadre);
         vlc.add(textAreaDescripcion, true);
 
         this.setComponent(vlc.build());
@@ -48,6 +59,8 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldTipo;
+    private CuentaContableICBS cuentaDefecto;
+    private CuentaContableICBS cuentaDefectoCuadre;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldKey;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
@@ -63,6 +76,8 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         Map<String, Object> bindFields = super.bindFields();
         bindFields.put("nombreOperacion", textFieldTipo);
         bindFields.put("keyEnum", textFieldKey);
+        bindFields.put("tipoCuentaDefectoFk", cuentaDefecto);
+        bindFields.put("tipoCuentaCuadreDefectoFk", cuentaDefectoCuadre);
         bindFields.put("descripcion", textAreaDescripcion);
         return bindFields;
     }

@@ -5,7 +5,11 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import com.clean.core.exceptions.ValidationException;
 import com.clean.core.utils.SortBy;
+import com.clean.core.utils.validation.ValidationMessage;
+import com.clean.core.utils.validation.ValidationResult;
+import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -30,6 +34,10 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
+    private TipoCuentaDomain tipoCuentaCuadreDefectoFk;
+
+    private TipoCuentaDomain tipoCuentaDefectoFk;
+
     public TipoOperacionContableDomain() {
     }
 
@@ -37,11 +45,12 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
         this.idTipoOperacion = idTipoOperacion;
     }
 
-    public TipoOperacionContableDomain(Integer idTipoOperacion, String nombreOperacion, String keyEnum, String descripcion) {
-        this.idTipoOperacion = idTipoOperacion;
+    public TipoOperacionContableDomain(String nombreOperacion, String keyEnum, String descripcion, TipoCuentaDomain tipoCuentaCuadreDefectoFk, TipoCuentaDomain tipoCuentaDefectoFk) {
         this.nombreOperacion = nombreOperacion;
         this.keyEnum = keyEnum;
         this.descripcion = descripcion;
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public Integer getIdTipoOperacion() {
@@ -58,6 +67,22 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
 
     public void setNombreOperacion(String nombreOperacion) {
         this.nombreOperacion = nombreOperacion;
+    }
+
+    public TipoCuentaDomain getTipoCuentaCuadreDefectoFk() {
+        return tipoCuentaCuadreDefectoFk;
+    }
+
+    public void setTipoCuentaCuadreDefectoFk(TipoCuentaDomain tipoCuentaCuadreDefectoFk) {
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+    }
+
+    public TipoCuentaDomain getTipoCuentaDefectoFk() {
+        return tipoCuentaDefectoFk;
+    }
+
+    public void setTipoCuentaDefectoFk(TipoCuentaDomain tipoCuentaDefectoFk) {
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     public String getKeyEnum() {
@@ -101,4 +126,18 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
         return nombreOperacion;
     }
 
+    @Override
+    public ValidationResult validate() throws ValidationException {
+        ValidationResult v = super.validate();
+
+        //diferentes tipos
+        if (getTipoCuentaDefectoFk().getDebitoCredito() == getTipoCuentaCuadreDefectoFk().getDebitoCredito()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
+        }
+        //liquidable
+        if (!getTipoCuentaCuadreDefectoFk().isLiquidable()) {
+            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));
+        }
+        return v.throwException();
+    }
 }

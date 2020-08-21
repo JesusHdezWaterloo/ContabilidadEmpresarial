@@ -114,7 +114,6 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
             cuadreICBS.setSelectedItem(base.getCuadreFk());
             cuentaICBS.setSelectedItem(base.getCuentaFk());
             textFieldNombre.setText(base.getNombre());
-            textFieldDocumento.setText(base.getDocumento());
             labelCreditoValue.setMoney(base.getCredito(), base.getCuentaFk().getMonedaFk());
             labelDebitoValue.setMoney(base.getDebito(), base.getCuentaFk().getMonedaFk());
         }

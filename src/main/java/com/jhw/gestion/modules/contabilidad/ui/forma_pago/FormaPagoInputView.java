@@ -51,7 +51,7 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
-        bindFields.put("nombreMetodoPago", textFieldNombre);
+        bindFields.put("nombreFormaPago", textFieldNombre);
         bindFields.put("descripcion", textAreaDescripcion);
         return bindFields;
     }

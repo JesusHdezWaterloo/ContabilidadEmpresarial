@@ -40,21 +40,34 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
                 Column.builder().name(COL_DEBITO).build(),
                 Column.builder().name(COL_CREDITO).build(),
                 Column.builder().name(COL_FECHA).build(),
-                Column.builder().name(COL_CUENTA).build(),
-                Column.builder().name(COL_REFERENCIA).build()
+                Column.builder().name(COL_REFERENCIA).build(),
+                Column.builder().name(COL_CUENTA).build()
         );
 
         this.cuenta = cuenta;
-
+        this.update();//update aqui ya que es un dialog que mas nadie lo actualiza
         this.personalize();
     }
 
     private void personalize() {
         setUpEditorsRenders();
+
         String cuentaStr = cuenta == null ? "" : ": " + cuenta.toString();
         this.setHeaderText("Liquidaciones" + cuentaStr);
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
         changeSize();
+
+        sizeColumnCuenta();
+    }
+
+    private void sizeColumnCuenta() {
+        //si es de una cuenta especifica no muestra la columna, es redundante
+        if (cuenta != null) {
+            getTable().getColumn(COL_CUENTA).setMaxWidth(0);
+            getTable().getColumn(COL_CUENTA).setMinWidth(0);
+            getTable().getColumn(COL_CUENTA).setPreferredWidth(0);
+        }
     }
 
     private void changeSize() {
@@ -79,8 +92,8 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
             MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
             SDF.format(obj.getFecha()),
-            obj.getCuentaFk(),
-            obj.getCuadreFk()
+            obj.getCuadreFk(),
+            obj.getCuentaFk()
         };
     }
 

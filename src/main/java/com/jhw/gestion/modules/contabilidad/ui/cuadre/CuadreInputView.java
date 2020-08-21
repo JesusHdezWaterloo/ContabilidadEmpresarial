@@ -34,7 +34,7 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         //info
         infoInputView = new InfoOpInputView();
 
-        VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
+        VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder(400);
 
         vlc.add(operacionInputView);
         vlc.add(infoInputView, true);

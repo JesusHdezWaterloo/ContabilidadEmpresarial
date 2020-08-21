@@ -7,7 +7,7 @@ import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.usecase_impl.*;
 
 /**
- * Configuracion del injection del modulo de job-core.
+ * Configuracion del injection del modulo de contabilidad-core.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */

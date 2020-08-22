@@ -50,28 +50,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         updateWith(cuadre);
     }
 
-    public void updateWith(CuadreUI cuadre) {
-        double valorConvertidoCuenta = MonedaHandler.venta(cuadre.getValor(), cuadre.getMoneda(), cuadre.getCuenta().getMonedaFk());
-
-        double debito1 = 0;
-        double credito1 = 0;
-        if (cuadre.getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
-            debito1 = valorConvertidoCuenta;
-        } else {
-            credito1 = valorConvertidoCuenta;
-        }
-        operacionContableFk = new OperacionContableDomain(debito1, credito1, cuadre.getCuenta(), cuadre.getInfo());
-
-        //debito y credito invertido para mantener equilibrio
-        double debito2 = MonedaHandler.compra(credito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
-        double credito2 = MonedaHandler.compra(debito1, cuadre.getCuenta().getMonedaFk(), cuadre.getCuentaCuadre().getMonedaFk());
-        operacionContableCuadreFk = new OperacionContableDomain(debito2, credito2, cuadre.getCuentaCuadre(), cuadre.getInfo());
-
-        liquidada = false;
-
-        validate();
-    }
-
     public InfoOperacionContableDomain info() {
         return operacionContableCuadreFk.getInfoOperacionContableFk();
     }

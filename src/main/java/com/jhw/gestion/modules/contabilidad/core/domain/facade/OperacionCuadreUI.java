@@ -14,24 +14,24 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class OperacionCuadreDomain extends VolatileDomainObject {
+public class OperacionCuadreUI extends VolatileDomainObject {
 
     private double valor;
     private MonedaDomain moneda;
     private CuentaContableDomain cuenta;
     private CuentaContableDomain cuadre;
 
-    public OperacionCuadreDomain() {
+    public OperacionCuadreUI() {
     }
 
-    public OperacionCuadreDomain(double valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre) {
+    public OperacionCuadreUI(double valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre) {
         this.valor = valor;
         this.moneda = moneda;
         this.cuenta = cuenta;
         this.cuadre = cuadre;
     }
 
-    public OperacionCuadreDomain(CuadreDomain cuadre) {
+    public OperacionCuadreUI(CuadreDomain cuadre) {
         this.valor = cuadre.getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() ? cuadre.getOperacionContableFk().getDebito() : cuadre.getOperacionContableFk().getCredito();
         this.moneda = cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk();
         this.cuenta = cuadre.getOperacionContableFk().getCuentaFk();

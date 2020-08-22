@@ -1,9 +1,9 @@
-package com.jhw.gestion.modules.contabilidad.ui.cuadre;
+package com.jhw.gestion.modules.contabilidad.ui.cuadre.pedazos;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
-import com.jhw.gestion.modules.contabilidad.core.domain.facade.OperacionCuadreDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.facade.OperacionCuadreUI;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
@@ -16,19 +16,19 @@ import java.util.Map;
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadreDomain> {
+public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadreUI> {
 
     public OperacionCuadreInputView() {
-        this((OperacionCuadreDomain) null);
+        this((OperacionCuadreUI) null);
     }
 
     public OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
-        this((OperacionCuadreDomain) null);
+        this((OperacionCuadreUI) null);
         setTipoOp(opDefecto);
     }
 
-    public OperacionCuadreInputView(OperacionCuadreDomain model) {
-        super(model, null, OperacionCuadreDomain.class);
+    public OperacionCuadreInputView(OperacionCuadreUI model) {
+        super(model, null, OperacionCuadreUI.class);
         initComponents();
         addListeners();
         update();
@@ -69,7 +69,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     // End of variables declaration                   
 
     @Override
-    public void setObject(OperacionCuadreDomain t) {
+    public void setObject(OperacionCuadreUI t) {
         setOldModel(t);
         update();
     }

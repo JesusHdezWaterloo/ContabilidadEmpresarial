@@ -9,9 +9,9 @@ import com.clean.core.exceptions.ValidationException;
 import com.clean.core.utils.SortBy;
 import com.clean.core.utils.validation.ValidationMessage;
 import com.clean.core.utils.validation.ValidationResult;
-import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -34,8 +34,10 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
 
+    @NotNull(message = "#msg.module.contabilidad.validation.tipo_operacion_cuenta#")
     private TipoCuentaDomain tipoCuentaCuadreDefectoFk;
 
+    @NotNull(message = "#msg.module.contabilidad.validation.tipo_operacion_cuenta_cuadre#")
     private TipoCuentaDomain tipoCuentaDefectoFk;
 
     public TipoOperacionContableDomain() {
@@ -69,22 +71,6 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
         this.nombreOperacion = nombreOperacion;
     }
 
-    public TipoCuentaDomain getTipoCuentaCuadreDefectoFk() {
-        return tipoCuentaCuadreDefectoFk;
-    }
-
-    public void setTipoCuentaCuadreDefectoFk(TipoCuentaDomain tipoCuentaCuadreDefectoFk) {
-        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
-    }
-
-    public TipoCuentaDomain getTipoCuentaDefectoFk() {
-        return tipoCuentaDefectoFk;
-    }
-
-    public void setTipoCuentaDefectoFk(TipoCuentaDomain tipoCuentaDefectoFk) {
-        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
-    }
-
     public String getKeyEnum() {
         return keyEnum;
     }
@@ -99,6 +85,22 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public TipoCuentaDomain getTipoCuentaCuadreDefectoFk() {
+        return tipoCuentaCuadreDefectoFk;
+    }
+
+    public void setTipoCuentaCuadreDefectoFk(TipoCuentaDomain tipoCuentaCuadreDefectoFk) {
+        this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
+    }
+
+    public TipoCuentaDomain getTipoCuentaDefectoFk() {
+        return tipoCuentaDefectoFk;
+    }
+
+    public void setTipoCuentaDefectoFk(TipoCuentaDomain tipoCuentaDefectoFk) {
+        this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
     }
 
     @Override

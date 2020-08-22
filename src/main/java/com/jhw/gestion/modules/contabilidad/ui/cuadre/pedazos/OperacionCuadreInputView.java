@@ -103,4 +103,16 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
             this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
         }
     }
+
+    public MonedaICBS getMoneda() {
+        return moneda;
+    }
+
+    public CuentaContableICBS getCuentaICBS() {
+        return cuentaICBS;
+    }
+
+    public CuentaContableICBS getCuentaCuadreICBS() {
+        return cuentaCuadreICBS;
+    }
 }

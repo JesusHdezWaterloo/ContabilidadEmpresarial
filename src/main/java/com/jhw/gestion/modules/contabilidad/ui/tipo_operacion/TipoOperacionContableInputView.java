@@ -5,6 +5,8 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
+import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
+import java.awt.event.ActionEvent;
 import java.util.Map;
 
 /**
@@ -20,6 +22,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     public TipoOperacionContableInputView(TipoOperacionContableDomain model) {
         super(model, ContabilidadSwingModule.tipoOperacionContableUC, TipoOperacionContableDomain.class);
         initComponents();
+        addListeners();
         update();
     }
 
@@ -37,11 +40,11 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         textFieldKey.setHint("Key");
 
         //cuenta
-        cuentaDefecto = new CuentaContableICBS();
+        cuentaDefecto = new TipoCuentaICBS();
         cuentaDefecto.setLabel("Cuenta por defecto");
 
         //cuadre
-        cuentaDefectoCuadre = new CuentaContableICBS();
+        cuentaDefectoCuadre = new TipoCuentaICBS();
         cuentaDefectoCuadre.setLabel("Cuenta  de cuadre por defecto");
 
         //descripcion
@@ -59,8 +62,8 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldTipo;
-    private CuentaContableICBS cuentaDefecto;
-    private CuentaContableICBS cuentaDefectoCuadre;
+    private TipoCuentaICBS cuentaDefecto;
+    private TipoCuentaICBS cuentaDefectoCuadre;
     private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldKey;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
@@ -72,6 +75,11 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     }
 
     @Override
+    public TipoOperacionContableDomain getNewModel() throws Exception {
+        return super.getNewModel(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
         bindFields.put("nombreOperacion", textFieldTipo);
@@ -80,5 +88,18 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         bindFields.put("tipoCuentaCuadreDefectoFk", cuentaDefectoCuadre);
         bindFields.put("descripcion", textAreaDescripcion);
         return bindFields;
+    }
+
+    private void addListeners() {
+        cuentaDefecto.getComboBox().addActionListener((ActionEvent e) -> {
+            updateCuadreICBS();
+        });
+    }
+
+    private void updateCuadreICBS() {
+        try {
+            cuentaDefectoCuadre.updateComboBoxCuadre(cuentaDefecto.getSelectedItem());
+        } catch (Exception e) {
+        }
     }
 }

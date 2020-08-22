@@ -46,10 +46,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         this.operacionContableFk = operacionContableFk;
     }
 
-    public CuadreDomain(CuadreUI cuadre) {
-        updateWith(cuadre);
-    }
-
     public InfoOperacionContableDomain info() {
         return operacionContableCuadreFk.getInfoOperacionContableFk();
     }

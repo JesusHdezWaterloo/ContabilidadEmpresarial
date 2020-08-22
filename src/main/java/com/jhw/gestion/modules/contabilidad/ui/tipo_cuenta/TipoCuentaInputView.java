@@ -1,16 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta;
 
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
-import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.swing.material.components.toggle._MaterialCheckBox;
-import java.awt.CheckboxGroup;
 import java.util.Map;
-import javax.swing.JCheckBox;
 
 /**
  *

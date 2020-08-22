@@ -22,9 +22,17 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
     @Override
     public CuadreDomain create(CuadreDomain newObject) throws Exception {
         newObject.validate();
+
+        CuentaContableUseCase cuentaContableUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaContableUseCase.class);
         //si creo un cuadre, creo la operacion, y los valores de la cuenta suben
-        newObject.getOperacionContableFk().getCuentaFk().increase(newObject.getOperacionContableFk());
-        newObject.getOperacionContableCuadreFk().getCuentaFk().increase(newObject.getOperacionContableCuadreFk());
+        CuentaContableDomain cta1 = cuentaContableUC.findBy(newObject.getOperacionContableFk().getCuentaFk().getIdCuentaContable());
+        cta1.increase(newObject.getOperacionContableFk());
+        newObject.getOperacionContableFk().setCuentaFk(cta1);
+
+        CuentaContableDomain cta2 = cuentaContableUC.findBy(newObject.getOperacionContableCuadreFk().getCuentaFk().getIdCuentaContable());
+        cta2.increase(newObject.getOperacionContableCuadreFk());
+        newObject.getOperacionContableCuadreFk().setCuentaFk(cta2);
+
         return super.create(newObject);
     }
 
@@ -33,16 +41,25 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
         if (objectToUpdate.getLiquidada()) {
             throw new RuntimeException("No se puede editar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego edite el cuadre.");
         }
+        //destruyo el viejo y arreglo las cuentas 
+        //CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
         destroy(objectToUpdate);
+
+        //corrijo las cuentas 
+        //objectToUpdate.getOperacionContableFk().setCuentaFk(old.getOperacionContableFk().getCuentaFk());
+        //objectToUpdate.getOperacionContableCuadreFk().setCuentaFk(old.getOperacionContableCuadreFk().getCuentaFk());
+
         return create(objectToUpdate);
     }
 
     @Override
     public CuadreDomain destroy(CuadreDomain objectToDestroy) throws Exception {
+        objectToDestroy = findBy(objectToDestroy.getIdCuadre());
         if (objectToDestroy.getLiquidada()) {
             throw new RuntimeException("No se puede eliminar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego el cuadre.");
         }
         objectToDestroy.validate();
+        
         //si destruyo un cuadre, destruyo la operacion, y los valores de la cuenta bajan
         objectToDestroy.getOperacionContableFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableFk());
         objectToDestroy.getOperacionContableCuadreFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableCuadreFk());

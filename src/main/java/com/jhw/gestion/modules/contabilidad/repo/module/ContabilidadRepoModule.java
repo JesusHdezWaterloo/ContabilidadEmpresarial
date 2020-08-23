@@ -3,7 +3,7 @@ package com.jhw.gestion.modules.contabilidad.repo.module;
 import com.clean.core.app.modules.DefaultAbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 
 /**
  * Modulo de contabilidad-repo.
@@ -17,7 +17,7 @@ public class ContabilidadRepoModule extends DefaultAbstractModule {
     private static ContabilidadRepoModule INSTANCE;
 
     private ContabilidadRepoModule() {
-        Resources.initEMF();
+        ResourcesContabilidad.initEMF();
     }
 
     public static ContabilidadRepoModule getInstance() {

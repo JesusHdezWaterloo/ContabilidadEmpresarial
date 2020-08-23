@@ -37,7 +37,8 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
     public void update() {
         try {
             setCollection(ContabilidadSwingModule.tipoOperacionContableUC.findAll());
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            ExceptionHandler.handleException(ex);
         }
     }
 
@@ -56,8 +57,7 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
     @Override
     protected TipoOperacionContableDomain deleteAction(TipoOperacionContableDomain obj) {
         try {
-            ContabilidadSwingModule.tipoOperacionContableUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.tipoOperacionContableUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

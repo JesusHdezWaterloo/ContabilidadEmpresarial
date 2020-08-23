@@ -9,6 +9,7 @@ import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
@@ -27,8 +28,10 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
     @Size(max = 5, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")
     private String codigo;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
     private double debito;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
     private double credito;
 
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")

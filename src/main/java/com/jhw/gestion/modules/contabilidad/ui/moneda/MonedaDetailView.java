@@ -37,6 +37,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
         try {
             setCollection(ContabilidadSwingModule.monedaUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -53,8 +54,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
     @Override
     protected MonedaDomain deleteAction(MonedaDomain obj) {
         try {
-            ContabilidadSwingModule.monedaUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.monedaUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

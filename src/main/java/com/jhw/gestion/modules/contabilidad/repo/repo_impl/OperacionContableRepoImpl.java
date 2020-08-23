@@ -3,7 +3,7 @@ package com.jhw.gestion.modules.contabilidad.repo.repo_impl;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.entities.*;
-import com.jhw.gestion.modules.contabilidad.repo.utils.Resources;
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import com.jhw.utils.jpa.ConverterService;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 import java.util.List;
@@ -14,7 +14,7 @@ public class OperacionContableRepoImpl extends JPACleanCRUDRepo<OperacionContabl
     private final String OperacionContable_findByCuenta = "SELECT o FROM OperacionContable o WHERE o.cuentaFk = :cuentaFk";
 
     public OperacionContableRepoImpl() {
-        super(Resources.EMF, OperacionContableDomain.class, OperacionContable.class);
+        super(ResourcesContabilidad.EMF, OperacionContableDomain.class, OperacionContable.class);
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.jhw.utils.clean.EntityDomainObjectValidated;
 import java.util.Date;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
@@ -33,8 +34,10 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
     @Size(max = 95, message = "#msg.module.contabilidad.validation.info_operacion_nombre_largo#")
     private String nombre;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
     private double debito;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
     private double credito;
 
     @NotNull(message = "#msg.module.contabilidad.validation.info_operacion_fecha_null#")

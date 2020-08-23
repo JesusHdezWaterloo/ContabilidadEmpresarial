@@ -19,6 +19,7 @@ import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.utils.others.SDF;
 import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 
 /**
@@ -70,6 +71,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         try {
             setCollection(ContabilidadSwingModule.cuadreUC.findAll());
         } catch (Exception e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -108,8 +110,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     @Override
     protected CuadreDomain deleteAction(CuadreDomain obj) {
         try {
-            ContabilidadSwingModule.cuadreUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.cuadreUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }
@@ -138,12 +139,12 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     }
 
     private void addActionsExtra() {
-        _MaterialButtonIconTransparent btnLiquidar = new _MaterialButtonIconTransparent();
-        btnLiquidar.setIcon(MaterialIcons.ASSIGNMENT_TURNED_IN.deriveIcon(18f));
-        btnLiquidar.addActionListener((ActionEvent e) -> {
-            onLiquidarMaterialActionPerformed();
+        this.addActionExtra(new AbstractAction("Liquidar", MaterialIcons.ASSIGNMENT_TURNED_IN.deriveIcon(18f)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onLiquidarMaterialActionPerformed();
+            }
         });
-        this.addActionExtra(btnLiquidar);
     }
 
     private void onLiquidarMaterialActionPerformed() {

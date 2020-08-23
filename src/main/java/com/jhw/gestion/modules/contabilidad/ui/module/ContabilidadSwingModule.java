@@ -33,7 +33,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
     public final static SubcuentaUseCase subcuentaUC;
     public final static TipoCuentaUseCase tipoCuentaUC;
     public final static TipoOperacionContableUseCase tipoOperacionContableUC;
-    public final static FormaPagoUseCase tipoPagoUC;
+    public final static FormaPagoUseCase formaPagoUC;
     public final static TitularUseCase titularUC;
 
     static {
@@ -44,7 +44,7 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
         cuentaContableUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaContableUseCase.class);
         infoOpUC = ContabilidadCoreModule.getInstance().getImplementation(InfoOperacionContableUseCase.class);
         liquicadionUC = ContabilidadCoreModule.getInstance().getImplementation(LiquidacionUseCase.class);
-        tipoPagoUC = ContabilidadCoreModule.getInstance().getImplementation(FormaPagoUseCase.class);
+        formaPagoUC = ContabilidadCoreModule.getInstance().getImplementation(FormaPagoUseCase.class);
         monedaUC = ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class);
         operacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableUseCase.class);
         subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
@@ -113,9 +113,9 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_CUENTA);
             }
         });
-        
+
         dash.addView(ContabilidadModuleNavigator.NAV_TITULAR, new TitularDetailView());
-        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PERSON) {
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TITULAR, MaterialIcons.PEOPLE) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TITULAR);

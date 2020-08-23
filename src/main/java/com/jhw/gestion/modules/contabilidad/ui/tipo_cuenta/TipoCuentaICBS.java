@@ -7,6 +7,7 @@ import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoCuentaDomain;
+import java.util.List;
 
 /**
  *
@@ -23,6 +24,10 @@ public class TipoCuentaICBS extends ICBSNotEmptySeleccionable<TipoCuentaDomain> 
         setModel(ContabilidadSwingModule.tipoCuentaUC.findAll());
     }
 
+    public void updateComboBoxCuadre(TipoCuentaDomain selectedItem)  throws Exception{
+        setModel(ContabilidadSwingModule.tipoCuentaUC.findAllCuadre(selectedItem));
+    }
+
     @Override
     public ActionListener buttonAddAction() {
         return new java.awt.event.ActionListener() {
@@ -36,4 +41,5 @@ public class TipoCuentaICBS extends ICBSNotEmptySeleccionable<TipoCuentaDomain> 
     private void onButtonAddActionPerformed() {
         new DialogInputCBS(this, new TipoCuentaInputView());
     }
+
 }

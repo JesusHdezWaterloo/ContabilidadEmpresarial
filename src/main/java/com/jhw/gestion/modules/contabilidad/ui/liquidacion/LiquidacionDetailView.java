@@ -105,8 +105,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
     @Override
     protected LiquidacionDomain deleteAction(LiquidacionDomain obj) {
         try {
-            ContabilidadSwingModule.liquicadionUC.destroy(obj);
-            return obj;
+            return ContabilidadSwingModule.liquicadionUC.destroy(obj);
         } catch (Exception ex) {
             ExceptionHandler.handleException(ex);
         }

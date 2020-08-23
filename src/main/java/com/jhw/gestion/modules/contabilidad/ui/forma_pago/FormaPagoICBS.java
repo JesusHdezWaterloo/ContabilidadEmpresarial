@@ -18,7 +18,7 @@ public class FormaPagoICBS extends ICBSNotEmptySeleccionable<FormaPagoDomain> {
 
     @Override
     public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.tipoPagoUC.findAll());
+        setModel(ContabilidadSwingModule.formaPagoUC.findAll());
     }
 
     @Override

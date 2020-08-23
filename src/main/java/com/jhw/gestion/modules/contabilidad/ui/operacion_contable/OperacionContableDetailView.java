@@ -44,14 +44,22 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
         this.cuenta = cuenta;
 
         this.personalize();
+
+        //actualizarlo a mano xq es un popup que mas nadie actualzia
+        this.update();
     }
 
     private void personalize() {
         setUpEditorsRenders();
         String cuentaStr = cuenta == null ? "" : ": " + cuenta.toString();
         this.setHeaderText("Operaciones" + cuentaStr);
+
         this.setOptionPanelVisibility(false);
+
         this.setActionColumnButtonsVisivility(false, false, false);//no pone el view, no esta implementado todavia
+
+        this.setAdjustColumns(true);
+
         changeSize();
     }
 

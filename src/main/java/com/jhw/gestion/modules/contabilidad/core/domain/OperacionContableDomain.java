@@ -7,6 +7,7 @@ package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.jhw.utils.clean.EntityDomainObjectValidated;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  *
@@ -16,8 +17,10 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
 
     private Integer idOperacionContable;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
     private double debito;
 
+    @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
     private double credito;
 
     @NotNull(message = "#msg.module.contabilidad.validation.operacion_cuenta_null#")

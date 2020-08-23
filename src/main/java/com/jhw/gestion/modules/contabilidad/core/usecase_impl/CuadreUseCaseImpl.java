@@ -38,28 +38,24 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
 
     @Override
     public CuadreDomain edit(CuadreDomain objectToUpdate) throws Exception {
-        if (objectToUpdate.getLiquidada()) {
+        CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
+        if (old.getLiquidada()) {
             throw new RuntimeException("No se puede editar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego edite el cuadre.");
         }
-        //destruyo el viejo y arreglo las cuentas 
-        //CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
+        //destruyo y creo
         destroy(objectToUpdate);
-
-        //corrijo las cuentas 
-        //objectToUpdate.getOperacionContableFk().setCuentaFk(old.getOperacionContableFk().getCuentaFk());
-        //objectToUpdate.getOperacionContableCuadreFk().setCuentaFk(old.getOperacionContableCuadreFk().getCuentaFk());
-
         return create(objectToUpdate);
     }
 
     @Override
     public CuadreDomain destroy(CuadreDomain objectToDestroy) throws Exception {
+        //cargo el viejo que es el que tiene los valores correctos
         objectToDestroy = findBy(objectToDestroy.getIdCuadre());
         if (objectToDestroy.getLiquidada()) {
             throw new RuntimeException("No se puede eliminar un cuadre que ha sido liquidado.\nElimine primero la liquidación y luego el cuadre.");
         }
         objectToDestroy.validate();
-        
+
         //si destruyo un cuadre, destruyo la operacion, y los valores de la cuenta bajan
         objectToDestroy.getOperacionContableFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableFk());
         objectToDestroy.getOperacionContableCuadreFk().getCuentaFk().decrease(objectToDestroy.getOperacionContableCuadreFk());

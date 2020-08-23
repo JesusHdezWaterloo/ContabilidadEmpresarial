@@ -115,4 +115,8 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     public CuentaContableICBS getCuentaCuadreICBS() {
         return cuentaCuadreICBS;
     }
+
+    public _MaterialTextFieldMoneyPositive getTextFieldValor() {
+        return textFieldValor;
+    }
 }

@@ -9,6 +9,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
 
     @Override
     public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
-        cuenta.setDebito(0);
-        cuenta.setCredito(0);
+        cuenta.setDebito(BigDecimal.ZERO);
+        cuenta.setCredito(BigDecimal.ZERO);
         return super.create(cuenta);
     }
 
@@ -83,11 +84,11 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
         try {
             LiquidacionUseCase liqUC = ContabilidadCoreModule.getInstance().getImplementation(LiquidacionUseCase.class);
             for (CuentaBancariaDomain c : super.findAll()) {
-                double deb = 0;
-                double cred = 0;
+                BigDecimal deb = BigDecimal.ZERO;
+                BigDecimal cred = BigDecimal.ZERO;
                 for (LiquidacionDomain liquidacionDomain : liqUC.findAll(c)) {
-                    deb += liquidacionDomain.getDebito();
-                    cred += liquidacionDomain.getCredito();
+                    deb = deb.add(liquidacionDomain.getDebito());
+                    cred = deb.add(liquidacionDomain.getCredito());
                 }
                 if (c.getDebito() != deb || c.getCredito() != cred) {
                     c.setDebito(deb);

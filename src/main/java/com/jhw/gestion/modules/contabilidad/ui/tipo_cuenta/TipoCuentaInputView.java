@@ -30,7 +30,7 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
         setHeader("Crear Tipo de Cuenta", "Editar Tipo de Cuenta");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldTipo.setLabel("Tipo de cuenta");
         textFieldTipo.setHint("Nombre del tipo de cuenta. Ej.: Cuenta por Pagar");
 
@@ -69,7 +69,7 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldTipo;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
     private _MaterialCheckBox checkBoxDebito;
     private _MaterialCheckBox checkBoxCredito;
     private _MaterialCheckBox checkBoxLiquidable;

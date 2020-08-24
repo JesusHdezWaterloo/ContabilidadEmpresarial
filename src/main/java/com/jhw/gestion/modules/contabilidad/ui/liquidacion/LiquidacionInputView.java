@@ -45,12 +45,12 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         setHeader("Crear Liquidación", "Editar Liquidación");
 
         //tipo
-        textFieldDocumento = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
 
         //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Liquidación");
 
@@ -92,8 +92,8 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldDocumento;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldDocumento;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
     private _labelDoubleMoneyPositive labelDebitoValue;
     private _labelDoubleMoneyNegative labelCreditoValue;
     private _MaterialDatePicker datePickerFecha;

@@ -30,17 +30,17 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
         setHeader("Crear Moneda", "Editar Moneda");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldTipo.setLabel("Moneda");
         textFieldTipo.setHint("Nombre de moneda. Ej.: EUR");
 
         //compra
-        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
+        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
         //venta
-        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive();
+        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
 
@@ -61,9 +61,9 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive textFieldCompra;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldTipo;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive textFieldVenta;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney textFieldCompra;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldVenta;
     // End of variables declaration                   
 
     private void personalize() {

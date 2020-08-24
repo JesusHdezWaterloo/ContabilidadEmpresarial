@@ -26,7 +26,7 @@ public class TitularInputView extends CleanCRUDInputView<TitularDomain> {
         setHeader("Crear Titular", "Editar Titular");
 
         //tipo
-        textFieldnombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldnombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldnombre.setLabel("Titular");
         textFieldnombre.setHint("Nombre del titilar");
 
@@ -41,7 +41,7 @@ public class TitularInputView extends CleanCRUDInputView<TitularDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldnombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldnombre;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
 

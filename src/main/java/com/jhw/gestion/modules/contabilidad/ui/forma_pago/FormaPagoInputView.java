@@ -28,7 +28,7 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
         setHeader("Crear Tipo de Pago", "Editar Tipo de Pago");
 
         //nombre
-        textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldNombre.setLabel("Tipo de pago");
         textFieldNombre.setHint("Nombre del tipo de pago. Ej: Efectivo");
 
@@ -45,7 +45,7 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
     // End of variables declaration                   
 
     @Override

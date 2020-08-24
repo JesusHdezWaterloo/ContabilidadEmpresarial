@@ -25,12 +25,12 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
         setHeader("", "");
 
         //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Operación");
 
         //doc
-        textFieldDocumento = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
 
@@ -42,8 +42,8 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldDocumento;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldDocumento;
     // End of variables declaration                   
 
     /*@Override

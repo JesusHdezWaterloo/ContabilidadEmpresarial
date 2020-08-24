@@ -6,6 +6,8 @@
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.jhw.utils.clean.EntityDomainObjectValidated;
+import java.math.BigDecimal;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
@@ -18,10 +20,12 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
     private Integer idOperacionContable;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
-    private double debito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal debito;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
-    private double credito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal credito;
 
     @NotNull(message = "#msg.module.contabilidad.validation.operacion_cuenta_null#")
     private CuentaContableDomain cuentaFk;
@@ -36,7 +40,7 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
         this.idOperacionContable = idOperacionContable;
     }
 
-    public OperacionContableDomain(double debito, double credito, CuentaContableDomain cuentaFk, InfoOperacionContableDomain infoOperacionContableFk) {
+    public OperacionContableDomain(BigDecimal debito, BigDecimal credito, CuentaContableDomain cuentaFk, InfoOperacionContableDomain infoOperacionContableFk) {
         this.debito = debito;
         this.credito = credito;
         this.cuentaFk = cuentaFk;
@@ -52,22 +56,22 @@ public class OperacionContableDomain extends EntityDomainObjectValidated impleme
     }
 
     @Override
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
     @Override
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
     @Override
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
     @Override
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 

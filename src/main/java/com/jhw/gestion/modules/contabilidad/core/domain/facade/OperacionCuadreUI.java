@@ -9,6 +9,7 @@ import com.clean.core.domain.VolatileDomainObject;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuadreDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import java.math.BigDecimal;
 
 /**
  *
@@ -16,7 +17,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
  */
 public class OperacionCuadreUI extends VolatileDomainObject {
 
-    private double valor;
+    private BigDecimal valor;
     private MonedaDomain moneda;
     private CuentaContableDomain cuenta;
     private CuentaContableDomain cuadre;
@@ -24,7 +25,7 @@ public class OperacionCuadreUI extends VolatileDomainObject {
     public OperacionCuadreUI() {
     }
 
-    public OperacionCuadreUI(double valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre) {
+    public OperacionCuadreUI(BigDecimal valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre) {
         this.valor = valor;
         this.moneda = moneda;
         this.cuenta = cuenta;
@@ -38,11 +39,11 @@ public class OperacionCuadreUI extends VolatileDomainObject {
         this.cuadre = cuadre.getOperacionContableCuadreFk().getCuentaFk();
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

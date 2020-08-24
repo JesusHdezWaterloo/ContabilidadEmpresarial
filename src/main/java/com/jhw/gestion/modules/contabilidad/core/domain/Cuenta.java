@@ -5,6 +5,8 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
@@ -23,16 +25,16 @@ public interface Cuenta {
 
     public void setCodigo(String codigo);
 
-    public double getDebito();
+    public BigDecimal getDebito();
 
-    public void setDebito(double debito);
+    public void setDebito(BigDecimal debito);
 
-    public double getCredito();
+    public BigDecimal getCredito();
 
-    public void setCredito(double credito);
+    public void setCredito(BigDecimal credito);
 
-    public default double saldo() {
-        return Math.abs(getDebito() - getCredito());
+    public default BigDecimal saldo() {
+        return getDebito().subtract(getCredito()).abs();
     }
 
     public String getDescripcion();

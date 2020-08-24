@@ -6,7 +6,6 @@
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.clean.core.exceptions.ValidationException;
-import com.jhw.gestion.modules.contabilidad.core.domain.facade.CuadreUI;
 import com.clean.core.utils.SortBy;
 import com.clean.core.utils.validation.ValidationMessage;
 import com.clean.core.utils.validation.ValidationResult;

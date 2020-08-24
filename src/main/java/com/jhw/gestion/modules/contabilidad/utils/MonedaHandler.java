@@ -4,6 +4,7 @@ import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.MonedaUseCase;
+import java.math.BigDecimal;
 
 /**
  *
@@ -25,12 +26,12 @@ public class MonedaHandler {
      * @param quiero La moneda que quiero que me den a cambio.
      * @return la cantidad que me van a dar a cambio de lo que tengo.
      */
-    public static double venta(double cantidad, MonedaDomain tengo, MonedaDomain quiero) {
-        double devol = 0;
+    public static BigDecimal venta(BigDecimal cantidad, MonedaDomain tengo, MonedaDomain quiero) {
+        BigDecimal devol;
         if (tengo.equals(quiero)) {
             devol = cantidad;
         } else {
-            devol = cantidad * tengo.getVenta() / quiero.getCompra();
+            devol = cantidad.multiply(tengo.getVenta()).divide(quiero.getCompra());
         }
         return devol;
     }
@@ -48,32 +49,32 @@ public class MonedaHandler {
      * @return la cantidad de lo que tengo que tengo que dar para comprar lo que
      * quiero.
      */
-    public static double compra(double cantidad, MonedaDomain quiero, MonedaDomain tengo) {
-        double devol = 0;
+    public static BigDecimal compra(BigDecimal cantidad, MonedaDomain quiero, MonedaDomain tengo) {
+        BigDecimal devol;
         if (quiero.equals(tengo)) {
             devol = cantidad;
         } else {
-            devol = cantidad * quiero.getCompra() / tengo.getVenta();
+            devol = cantidad.multiply(quiero.getCompra()).divide(tengo.getVenta());
         }
         return devol;
     }
 
-    public static double ventaFull(double cantidad, MonedaDomain tengo, MonedaDomain quiero) {
-        double devol = 0;
+    public static BigDecimal ventaFull(BigDecimal cantidad, MonedaDomain tengo, MonedaDomain quiero) {
+        BigDecimal devol;
         if (tengo.equals(quiero)) {
             devol = cantidad;
         } else {
-            devol = cantidad * tengo.getVenta() / quiero.getVenta();
+            devol = cantidad.multiply(tengo.getVenta()).divide(quiero.getVenta());
         }
         return devol;
     }
 
-    public static double compraFull(double cantidad, MonedaDomain quiero, MonedaDomain tengo) {
-        double devol = 0;
+    public static BigDecimal compraFull(BigDecimal cantidad, MonedaDomain quiero, MonedaDomain tengo) {
+        BigDecimal devol;
         if (quiero.equals(tengo)) {
             devol = cantidad;
         } else {
-            devol = cantidad * quiero.getCompra() / tengo.getCompra();
+            devol = cantidad.multiply(quiero.getCompra()).divide(tengo.getCompra());
         }
         return devol;
     }

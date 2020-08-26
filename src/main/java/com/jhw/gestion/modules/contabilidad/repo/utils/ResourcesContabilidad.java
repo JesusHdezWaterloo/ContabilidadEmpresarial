@@ -21,7 +21,7 @@ public class ResourcesContabilidad {
 
     public static void initEMF() {
         try {
-            EMF = Persistence.createEntityManagerFactory("ContabilidadPU"/*, MySQLHandler.propertiesMap()*/);
+            EMF = Persistence.createEntityManagerFactory("ContabilidadPU", MySQLHandler.propertiesMap(SCHEMA));
         } catch (Exception e) {
             e.printStackTrace();
         }

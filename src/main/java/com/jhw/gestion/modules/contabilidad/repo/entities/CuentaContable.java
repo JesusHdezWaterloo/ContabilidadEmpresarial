@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -29,9 +30,10 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "cuenta_contable", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"codigo"}),
-    @UniqueConstraint(columnNames = {"nombre_cuenta"})})
+@Table(name = "cuenta_contable", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"codigo"}),
+            @UniqueConstraint(columnNames = {"nombre_cuenta"})})
 @NamedQueries({
     @NamedQuery(name = "CuentaContable.findAll", query = "SELECT c FROM CuentaContable c"),
     @NamedQuery(name = "CuentaContable.findByIdCuentaContable", query = "SELECT c FROM CuentaContable c WHERE c.idCuentaContable = :idCuentaContable"),

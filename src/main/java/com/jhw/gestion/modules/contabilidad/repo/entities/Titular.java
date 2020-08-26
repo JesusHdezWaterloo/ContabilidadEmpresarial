@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -26,8 +27,9 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "titular", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"nombre_titular"})})
+@Table(name = "titular", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"nombre_titular"})})
 @NamedQueries({
     @NamedQuery(name = "Titular.findAll", query = "SELECT t FROM Titular t"),
     @NamedQuery(name = "Titular.findByIdTitular", query = "SELECT t FROM Titular t WHERE t.idTitular = :idTitular"),
@@ -41,13 +43,13 @@ public class Titular implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_titular", nullable = false)
     private Integer idTitular;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "nombre_titular", nullable = false, length = 100)
     private String nombreTitular;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(max = 500)
@@ -115,5 +117,5 @@ public class Titular implements Serializable {
     public String toString() {
         return "testJPA.entities.contabilidad_empresarial.Titular[ idTitular=" + idTitular + " ]";
     }
-    
+
 }

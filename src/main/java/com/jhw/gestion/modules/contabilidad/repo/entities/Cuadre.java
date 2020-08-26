@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,20 +20,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "cuadre", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"operacion_contable_fk", "operacion_contable_cuadre_fk"})})
+@Table(name = "cuadre", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"operacion_contable_fk", "operacion_contable_cuadre_fk"})})
 @NamedQueries({
     @NamedQuery(name = "Cuadre.findAll", query = "SELECT c FROM Cuadre c"),
     @NamedQuery(name = "Cuadre.findByIdCuadre", query = "SELECT c FROM Cuadre c WHERE c.idCuadre = :idCuadre"),
     @NamedQuery(name = "Cuadre.findByLiquidada", query = "SELECT c FROM Cuadre c WHERE c.liquidada = :liquidada")
-    })
+})
 public class Cuadre implements Serializable {
 
     private static final long serialVersionUID = 1L;

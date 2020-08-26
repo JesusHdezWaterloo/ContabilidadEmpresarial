@@ -5,27 +5,29 @@
  */
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 public interface DebitoCredito {
 
-    public double getDebito();
+    public BigDecimal getDebito();
 
-    public void setDebito(double debito);
+    public void setDebito(BigDecimal debito);
 
-    public double getCredito();
+    public BigDecimal getCredito();
 
-    public void setCredito(double credito);
+    public void setCredito(BigDecimal credito);
 
     public default void increase(DebitoCredito newObject) {
-        setDebito(getDebito() + newObject.getDebito());
-        setCredito(getCredito() + newObject.getCredito());
+        setDebito(getDebito().add(newObject.getDebito()));
+        setCredito(getCredito().add(newObject.getCredito()));
     }
 
     public default void decrease(DebitoCredito newObject) {
-        setDebito(getDebito() - newObject.getDebito());
-        setCredito(getCredito() - newObject.getCredito());
+        setDebito(getDebito().subtract(newObject.getDebito()));
+        setCredito(getCredito().subtract(newObject.getCredito()));
     }
 }

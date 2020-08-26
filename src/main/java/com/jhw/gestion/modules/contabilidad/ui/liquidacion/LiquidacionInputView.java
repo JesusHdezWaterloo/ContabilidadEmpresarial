@@ -8,6 +8,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICB
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
 import com.jhw.swing.material.components.labels.prepared.*;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -107,8 +108,8 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         super.update();
         cuadreICBS.setEnabled(base == null);
         if (base == null) {
-            labelCreditoValue.setMoney(0, "");
-            labelDebitoValue.setMoney(0, "");
+            labelCreditoValue.setMoney(BigDecimal.ZERO, "");
+            labelDebitoValue.setMoney(BigDecimal.ZERO, "");
         } else {
             datePickerFecha.setDate(base.getFecha());
             cuadreICBS.setSelectedItem(base.getCuadreFk());

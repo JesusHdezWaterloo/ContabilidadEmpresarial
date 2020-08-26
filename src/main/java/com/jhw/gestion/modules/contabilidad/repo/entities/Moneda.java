@@ -6,6 +6,7 @@
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
@@ -51,13 +54,17 @@ public class Moneda implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "compra", nullable = false)
-    private double compra;
+    @Column(name = "compra", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal compra;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "venta", nullable = false)
-    private double venta;
+    @Column(name = "venta", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal venta;
 
     @Basic(optional = false)
     @NotNull
@@ -72,7 +79,7 @@ public class Moneda implements Serializable {
         this.idMoneda = idMoneda;
     }
 
-    public Moneda(Integer idMoneda, String nombreMoneda, double compra, double venta, String descripcion) {
+    public Moneda(Integer idMoneda, String nombreMoneda, BigDecimal compra, BigDecimal venta, String descripcion) {
         this.idMoneda = idMoneda;
         this.nombreMoneda = nombreMoneda;
         this.compra = compra;
@@ -96,19 +103,19 @@ public class Moneda implements Serializable {
         this.nombreMoneda = nombreMoneda;
     }
 
-    public double getCompra() {
+    public BigDecimal getCompra() {
         return compra;
     }
 
-    public void setCompra(double compra) {
+    public void setCompra(BigDecimal compra) {
         this.compra = compra;
     }
 
-    public double getVenta() {
+    public BigDecimal getVenta() {
         return venta;
     }
 
-    public void setVenta(double venta) {
+    public void setVenta(BigDecimal venta) {
         this.venta = venta;
     }
 

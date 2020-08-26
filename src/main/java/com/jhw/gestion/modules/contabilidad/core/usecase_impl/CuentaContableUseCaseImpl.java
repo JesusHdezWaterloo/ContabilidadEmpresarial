@@ -9,6 +9,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,8 +79,8 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
         try {
             HashMap<Integer, CuentaContableDomain> h = new HashMap<>();
             for (CuentaContableDomain c : super.findAll()) {
-                c.setDebito(0);
-                c.setCredito(0);
+                c.setDebito(BigDecimal.ZERO);
+                c.setCredito(BigDecimal.ZERO);
                 h.put(c.getIdCuentaContable(), c);
             }
 
@@ -89,13 +90,13 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
                     c.validate();
 
                     CuentaContableDomain ctaMap = h.get(c.getOperacionContableFk().getCuentaFk().getIdCuentaContable());
-                    ctaMap.setDebito(ctaMap.getDebito() + c.getOperacionContableFk().getDebito());
-                    ctaMap.setCredito(ctaMap.getCredito() + c.getOperacionContableFk().getCredito());
+                    ctaMap.setDebito(ctaMap.getDebito().add(c.getOperacionContableFk().getDebito()));
+                    ctaMap.setCredito(ctaMap.getCredito().add(c.getOperacionContableFk().getCredito()));
 
                     if (!c.getLiquidada()) {
                         CuentaContableDomain ctaMapCuadre = h.get(c.getOperacionContableCuadreFk().getCuentaFk().getIdCuentaContable());
-                        ctaMapCuadre.setDebito(ctaMapCuadre.getDebito() + c.getOperacionContableCuadreFk().getDebito());
-                        ctaMapCuadre.setCredito(ctaMapCuadre.getCredito() + c.getOperacionContableCuadreFk().getCredito());
+                        ctaMapCuadre.setDebito(ctaMapCuadre.getDebito().add(c.getOperacionContableCuadreFk().getDebito()));
+                        ctaMapCuadre.setCredito(ctaMapCuadre.getCredito().add(c.getOperacionContableCuadreFk().getCredito()));
                     }
                 } catch (Exception e) {
                 }

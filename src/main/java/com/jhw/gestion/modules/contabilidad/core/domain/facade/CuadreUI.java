@@ -14,6 +14,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.OperacionContableDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -39,10 +40,10 @@ public class CuadreUI extends VolatileDomainObject {
 
     public CuadreDomain buildCuadre() {
         CuadreDomain cuadreNew = new CuadreDomain();
-        double valorConvertidoCuenta = MonedaHandler.venta(getValor(), getMoneda(), getCuenta().getMonedaFk());
+        BigDecimal valorConvertidoCuenta = MonedaHandler.venta(getValor(), getMoneda(), getCuenta().getMonedaFk());
 
-        double debito1 = 0;
-        double credito1 = 0;
+        BigDecimal debito1 = BigDecimal.ZERO;
+        BigDecimal credito1 = BigDecimal.ZERO;
         if (getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
             debito1 = valorConvertidoCuenta;
         } else {
@@ -51,8 +52,8 @@ public class CuadreUI extends VolatileDomainObject {
         cuadreNew.setOperacionContableFk(new OperacionContableDomain(debito1, credito1, getCuenta(), getInfo()));
 
         //debito y credito invertido para mantener equilibrio
-        double debito2 = MonedaHandler.compra(credito1, getCuenta().getMonedaFk(), getCuentaCuadre().getMonedaFk());
-        double credito2 = MonedaHandler.compra(debito1, getCuenta().getMonedaFk(), getCuentaCuadre().getMonedaFk());
+        BigDecimal debito2 = MonedaHandler.compra(credito1, getCuenta().getMonedaFk(), getCuentaCuadre().getMonedaFk());
+        BigDecimal credito2 = MonedaHandler.compra(debito1, getCuenta().getMonedaFk(), getCuentaCuadre().getMonedaFk());
         cuadreNew.setOperacionContableCuadreFk(new OperacionContableDomain(debito2, credito2, getCuentaCuadre(), getInfo()));
 
         cuadreNew.setLiquidada(false);
@@ -75,7 +76,7 @@ public class CuadreUI extends VolatileDomainObject {
         return tipoOp;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return op.getValor();
     }
 

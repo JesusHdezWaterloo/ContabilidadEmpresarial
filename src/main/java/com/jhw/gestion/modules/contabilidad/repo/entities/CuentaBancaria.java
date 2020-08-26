@@ -6,6 +6,7 @@
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
@@ -84,13 +87,17 @@ public class CuentaBancaria implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "debito", nullable = false)
-    private double debito;
+    @Column(name = "debito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal debito;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "credito", nullable = false)
-    private double credito;
+    @Column(name = "credito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal credito;
 
     @Basic(optional = false)
     @NotNull
@@ -109,7 +116,7 @@ public class CuentaBancaria implements Serializable {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, String descripcion) {
+    public CuentaBancaria(Integer idCuentaBancaria, String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, BigDecimal debito, BigDecimal credito, String descripcion) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.nombreCuenta = nombreCuenta;
         this.numeroCuenta = numeroCuenta;
@@ -169,19 +176,19 @@ public class CuentaBancaria implements Serializable {
         this.codigo = codigo;
     }
 
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 

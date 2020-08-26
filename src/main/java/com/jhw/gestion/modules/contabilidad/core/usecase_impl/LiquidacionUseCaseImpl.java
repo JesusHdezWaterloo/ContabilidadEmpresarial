@@ -6,6 +6,7 @@ import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -31,9 +32,9 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
         newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject);
 
         //convierto a la moneda e incremento banco
-        double debito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getDebito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
+        BigDecimal debito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getDebito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setDebito(debito);
-        double credito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getCredito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
+        BigDecimal credito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getCredito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setCredito(credito);
         //si se crea una liquidacion se le quita esa cantidad a la cuenta, por eso el decrease al deb-cred
         newObject.getCuentaFk().increase(newObject);

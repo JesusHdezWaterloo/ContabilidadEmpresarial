@@ -45,8 +45,9 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
         );
 
         this.cuenta = cuenta;
-        this.update();//update aqui ya que es un dialog que mas nadie lo actualiza
         this.personalize();
+        
+        this.update();//update aqui ya que es un dialog que mas nadie lo actualiza
     }
 
     private void personalize() {

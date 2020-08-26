@@ -11,7 +11,9 @@ import com.clean.core.utils.validation.ValidationMessage;
 import com.clean.core.utils.validation.ValidationResult;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
+import java.math.BigDecimal;
 import java.util.Date;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -35,10 +37,12 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
     private String nombre;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
-    private double debito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal debito;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
-    private double credito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal credito;
 
     @NotNull(message = "#msg.module.contabilidad.validation.info_operacion_fecha_null#")
     private Date fecha;
@@ -59,7 +63,7 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
         this.idLiquidacion = idOperacionBancaria;
     }
 
-    public LiquidacionDomain(String documento, String nombre, double debito, double credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, CuadreDomain cuadreFk) {
+    public LiquidacionDomain(String documento, String nombre, BigDecimal debito, BigDecimal credito, Date fecha, String descripcion, CuentaBancariaDomain cuentaFk, CuadreDomain cuadreFk) {
         this.documento = documento;
         this.nombre = nombre;
         this.debito = debito;
@@ -95,22 +99,22 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
     }
 
     @Override
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
     @Override
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
     @Override
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
     @Override
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 
@@ -174,8 +178,8 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
     @Override
     public ValidationResult validate() throws ValidationException {
         ValidationResult v = super.validate();
-        double debCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getDebito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
-        double credCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getCredito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
+        BigDecimal debCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getDebito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
+        BigDecimal credCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getCredito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
         if (debito != debCuadre) {
             v.add(ValidationMessage.from("debito", "El débito de la operación y la liquidación tienen que coincidir para mantener el cuadre."));
         }

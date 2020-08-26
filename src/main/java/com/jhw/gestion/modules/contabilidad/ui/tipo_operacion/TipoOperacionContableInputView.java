@@ -30,12 +30,12 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         setHeader("Crear Tipo de Operación", "Editar Tipo de Operación");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldTipo.setLabel("Tipo de operación");
         textFieldTipo.setHint("Nombre del tipo de operación. Ej.: Gasto");
 
         //key
-        textFieldKey = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldKey = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldKey.setLabel("Key");
         textFieldKey.setHint("Key");
 
@@ -61,10 +61,10 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldTipo;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
     private TipoCuentaICBS cuentaDefecto;
     private TipoCuentaICBS cuentaDefectoCuadre;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldKey;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldKey;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
 

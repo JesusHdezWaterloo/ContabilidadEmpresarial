@@ -8,7 +8,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICB
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyPositive;
+import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
@@ -35,7 +35,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void initComponents() {
-        textFieldValor = new _MaterialTextFieldMoneyPositive();
+        textFieldValor = new _MaterialTextFieldMoney();
         textFieldValor.setLabel("Valor");
         textFieldValor.setHint("Valor de la operación");
         moneda = new MonedaICBS();
@@ -62,7 +62,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     // Variables declaration - do not modify
-    private _MaterialTextFieldMoneyPositive textFieldValor;
+    private _MaterialTextFieldMoney textFieldValor;
     private MonedaICBS moneda;
     private CuentaContableICBS cuentaICBS;
     private CuentaContableICBS cuentaCuadreICBS;
@@ -116,7 +116,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
         return cuentaCuadreICBS;
     }
 
-    public _MaterialTextFieldMoneyPositive getTextFieldValor() {
+    public _MaterialTextFieldMoney getTextFieldValor() {
         return textFieldValor;
     }
 }

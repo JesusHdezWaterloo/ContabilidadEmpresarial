@@ -27,7 +27,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
 
     private void initComponents() {
         //header
-        setHeader("Crear Cuenta Contable", "Editar Cuenta Cpntable");
+        setHeader("Crear Cuenta Contable", "Editar Cuenta Contable");
 
         //nombre
         textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextField();

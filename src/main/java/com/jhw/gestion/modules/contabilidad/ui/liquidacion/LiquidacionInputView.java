@@ -8,6 +8,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICB
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
 import com.jhw.swing.material.components.labels.prepared.*;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -45,12 +46,12 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         setHeader("Crear Liquidación", "Editar Liquidación");
 
         //tipo
-        textFieldDocumento = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
 
         //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Liquidación");
 
@@ -92,8 +93,8 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldDocumento;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldStringNotEmpty textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldDocumento;
+    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
     private _labelDoubleMoneyPositive labelDebitoValue;
     private _labelDoubleMoneyNegative labelCreditoValue;
     private _MaterialDatePicker datePickerFecha;
@@ -107,8 +108,8 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         super.update();
         cuadreICBS.setEnabled(base == null);
         if (base == null) {
-            labelCreditoValue.setMoney(0, "");
-            labelDebitoValue.setMoney(0, "");
+            labelCreditoValue.setMoney(BigDecimal.ZERO, "");
+            labelDebitoValue.setMoney(BigDecimal.ZERO, "");
         } else {
             datePickerFecha.setDate(base.getFecha());
             cuadreICBS.setSelectedItem(base.getCuadreFk());

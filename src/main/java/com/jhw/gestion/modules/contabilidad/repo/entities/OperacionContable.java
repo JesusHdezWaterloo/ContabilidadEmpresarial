@@ -5,7 +5,9 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,14 +19,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "operacion_contable")
+@Table(name = "operacion_contable", schema = ResourcesContabilidad.SCHEMA)
 @NamedQueries({
     @NamedQuery(name = "OperacionContable.findAll", query = "SELECT o FROM OperacionContable o"),
     @NamedQuery(name = "OperacionContable.findByIdOperacionContable", query = "SELECT o FROM OperacionContable o WHERE o.idOperacionContable = :idOperacionContable"),
@@ -42,13 +46,17 @@ public class OperacionContable implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "debito", nullable = false)
-    private double debito;
+    @Column(name = "debito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal debito;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "credito", nullable = false)
-    private double credito;
+    @Column(name = "credito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal credito;
 
     @JoinColumn(name = "cuenta_fk", referencedColumnName = "id_cuenta_contable", nullable = false)
     @ManyToOne(optional = false)
@@ -65,7 +73,7 @@ public class OperacionContable implements Serializable {
         this.idOperacionContable = idOperacionContable;
     }
 
-    public OperacionContable(Integer idOperacionContable, double debito, double credito) {
+    public OperacionContable(Integer idOperacionContable, BigDecimal debito, BigDecimal credito) {
         this.idOperacionContable = idOperacionContable;
         this.debito = debito;
         this.credito = credito;
@@ -79,19 +87,19 @@ public class OperacionContable implements Serializable {
         this.idOperacionContable = idOperacionContable;
     }
 
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 

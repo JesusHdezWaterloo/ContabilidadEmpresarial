@@ -49,8 +49,8 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
                 Column.builder().name(COL_DEBITO1).build(),
                 Column.builder().name(COL_CREDITO1).build(),
                 Column.builder().name(COL_CUADRE).build()
-                //Column.builder().name(COL_DEBITO2).build(),
-                //Column.builder().name(COL_CREDITO2).build()
+        //Column.builder().name(COL_DEBITO2).build(),
+        //Column.builder().name(COL_CREDITO2).build()
         );
 
         this.personalize();
@@ -64,6 +64,8 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
         this.setHeaderText("Operaciones - Cuadre");
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
+        
+        this.setAdjustColumns(true);
     }
 
     @Override
@@ -86,8 +88,8 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
             MoneyTableComponent.from(obj.getOperacionContableFk().getDebito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getOperacionContableFk().getCredito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
             obj.getOperacionContableCuadreFk().getCuentaFk()
-            //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getDebito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
-            //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getCredito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk())
+        //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getDebito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
+        //MoneyTableComponent.from(obj.getOperacionContableCuadreFk().getCredito(), obj.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk())
         };
     }
 

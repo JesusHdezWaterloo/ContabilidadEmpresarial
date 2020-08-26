@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -28,15 +29,14 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "info_operacion_contable")
+@Table(name = "info_operacion_contable", schema = ResourcesContabilidad.SCHEMA)
 @NamedQueries({
     @NamedQuery(name = "InfoOperacionContable.findAll", query = "SELECT i FROM InfoOperacionContable i"),
     @NamedQuery(name = "InfoOperacionContable.findByIdInfoOperacionContable", query = "SELECT i FROM InfoOperacionContable i WHERE i.idInfoOperacionContable = :idInfoOperacionContable"),
     @NamedQuery(name = "InfoOperacionContable.findByDocumento", query = "SELECT i FROM InfoOperacionContable i WHERE i.documento = :documento"),
     @NamedQuery(name = "InfoOperacionContable.findByNombre", query = "SELECT i FROM InfoOperacionContable i WHERE i.nombre = :nombre"),
     @NamedQuery(name = "InfoOperacionContable.findByFecha", query = "SELECT i FROM InfoOperacionContable i WHERE i.fecha = :fecha"),
-    @NamedQuery(name = "InfoOperacionContable.findByDescripcion", query = "SELECT i FROM InfoOperacionContable i WHERE i.descripcion = :descripcion"),
-    })
+    @NamedQuery(name = "InfoOperacionContable.findByDescripcion", query = "SELECT i FROM InfoOperacionContable i WHERE i.descripcion = :descripcion"),})
 public class InfoOperacionContable implements Serializable {
 
     private static final long serialVersionUID = 1L;

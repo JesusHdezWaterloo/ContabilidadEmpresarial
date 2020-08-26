@@ -5,7 +5,9 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +20,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,9 +30,10 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "cuenta_contable", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"codigo"}),
-    @UniqueConstraint(columnNames = {"nombre_cuenta"})})
+@Table(name = "cuenta_contable", schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"codigo"}),
+            @UniqueConstraint(columnNames = {"nombre_cuenta"})})
 @NamedQueries({
     @NamedQuery(name = "CuentaContable.findAll", query = "SELECT c FROM CuentaContable c"),
     @NamedQuery(name = "CuentaContable.findByIdCuentaContable", query = "SELECT c FROM CuentaContable c WHERE c.idCuentaContable = :idCuentaContable"),
@@ -61,13 +66,17 @@ public class CuentaContable implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "debito", nullable = false)
-    private double debito;
+    @Column(name = "debito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal debito;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "credito", nullable = false)
-    private double credito;
+    @Column(name = "credito", nullable = false, precision = 19, scale = 4)
+    @PositiveOrZero
+    @Max(value = Long.MAX_VALUE)
+    private BigDecimal credito;
 
     @Basic(optional = false)
     @NotNull
@@ -82,7 +91,7 @@ public class CuentaContable implements Serializable {
     @JoinColumn(name = "moneda_fk", referencedColumnName = "id_moneda", nullable = false)
     @ManyToOne(optional = false)
     private Moneda monedaFk;
-    
+
     @JoinColumn(name = "titular_fk", referencedColumnName = "id_titular", nullable = false)
     @ManyToOne(optional = false)
     private Titular titularFk;
@@ -94,7 +103,7 @@ public class CuentaContable implements Serializable {
         this.idCuentaContable = idCuentaContable;
     }
 
-    public CuentaContable(Integer idCuentaContable, String nombreCuenta, String codigo, double debito, double credito, String descripcion, TipoCuenta tipoCuentaFk, Moneda monedaFk, Titular titularFk) {
+    public CuentaContable(Integer idCuentaContable, String nombreCuenta, String codigo, BigDecimal debito, BigDecimal credito, String descripcion, TipoCuenta tipoCuentaFk, Moneda monedaFk, Titular titularFk) {
         this.idCuentaContable = idCuentaContable;
         this.nombreCuenta = nombreCuenta;
         this.codigo = codigo;
@@ -105,7 +114,6 @@ public class CuentaContable implements Serializable {
         this.monedaFk = monedaFk;
         this.titularFk = titularFk;
     }
-
 
     public Integer getIdCuentaContable() {
         return idCuentaContable;
@@ -139,19 +147,19 @@ public class CuentaContable implements Serializable {
         this.codigo = codigo;
     }
 
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 

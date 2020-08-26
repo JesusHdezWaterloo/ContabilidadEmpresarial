@@ -6,6 +6,8 @@
 package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.jhw.utils.clean.EntityDomainObjectValidated;
+import java.math.BigDecimal;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
@@ -23,10 +25,12 @@ public class MonedaDomain extends EntityDomainObjectValidated {
     private String nombreMoneda;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.moneda_compra_negativo#")
-    private double compra;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal compra;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.moneda_venta_negativo#")
-    private double venta;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal venta;
 
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
@@ -38,7 +42,7 @@ public class MonedaDomain extends EntityDomainObjectValidated {
         this.idMoneda = idMoneda;
     }
 
-    public MonedaDomain(String nombreMoneda, float compra, float venta, String descripcion) {
+    public MonedaDomain(String nombreMoneda, BigDecimal compra, BigDecimal venta, String descripcion) {
         this.nombreMoneda = nombreMoneda;
         this.compra = compra;
         this.venta = venta;
@@ -61,19 +65,19 @@ public class MonedaDomain extends EntityDomainObjectValidated {
         this.nombreMoneda = nombreMoneda;
     }
 
-    public double getCompra() {
+    public BigDecimal getCompra() {
         return compra;
     }
 
-    public void setCompra(double compra) {
+    public void setCompra(BigDecimal compra) {
         this.compra = compra;
     }
 
-    public double getVenta() {
+    public BigDecimal getVenta() {
         return venta;
     }
 
-    public void setVenta(double venta) {
+    public void setVenta(BigDecimal venta) {
         this.venta = venta;
     }
 

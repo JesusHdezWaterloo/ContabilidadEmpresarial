@@ -1,12 +1,13 @@
 package com.jhw.gestion.modules.contabilidad.ui.module;
 
 import com.clean.swing.app.AbstractSwingApplication;
-import com.clean.swing.app.AbstractSwingMainModule;
+import com.clean.swing.app.DefaultAbstractSwingMainModule;
 import com.clean.swing.app.dashboard.DashBoardSimple;
 import com.clean.swing.app.dashboard.DashboardConstants;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.module.ContabilidadRepoModule;
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import com.jhw.gestion.modules.contabilidad.service.ResourceServiceImplementation;
 import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
@@ -18,8 +19,9 @@ import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+import com.jhw.mysql.services.MySQLHandler;
 
-public class ContabilidadSwingModule implements AbstractSwingMainModule {
+public class ContabilidadSwingModule extends DefaultAbstractSwingMainModule {
 
     private final ContabilidadModuleNavigator navigator = new ContabilidadModuleNavigator();
 
@@ -126,6 +128,11 @@ public class ContabilidadSwingModule implements AbstractSwingMainModule {
     @Override
     public void navigateTo(String string, Object... o) {
         navigator.navigateTo(string, o);
+    }
+
+    @Override
+    public void closeModule() {
+        MySQLHandler.save(ResourcesContabilidad.SCHEMA);
     }
 
 }

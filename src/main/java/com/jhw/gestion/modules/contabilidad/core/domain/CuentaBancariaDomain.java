@@ -7,6 +7,8 @@ package com.jhw.gestion.modules.contabilidad.core.domain;
 
 import com.clean.core.utils.SortBy;
 import com.jhw.utils.clean.EntityDomainObjectValidated;
+import java.math.BigDecimal;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -38,10 +40,12 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
     private String codigo;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")
-    private double debito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal debito;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.credito_negativo#")
-    private double credito;
+    @Max(value = Long.MAX_VALUE, message = "#msg.module.contabilidad.validation.valor_muy_grande#")
+    private BigDecimal credito;
 
     @Size(max = 495, message = "#msg.module.contabilidad.validation.descripcion_larga#")
     private String descripcion;
@@ -56,7 +60,7 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public CuentaBancariaDomain(String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, double debito, double credito, String descripcion, MonedaDomain monedaFk) {
+    public CuentaBancariaDomain(String nombreCuenta, String numeroCuenta, String numeroTarjeta, String pin, String codigo, BigDecimal debito, BigDecimal credito, String descripcion, MonedaDomain monedaFk) {
         this.nombreCuenta = nombreCuenta;
         this.numeroCuenta = numeroCuenta;
         this.numeroTarjeta = numeroTarjeta;
@@ -132,22 +136,22 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
     }
 
     @Override
-    public double getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
     @Override
-    public void setDebito(double debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
     @Override
-    public double getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
     @Override
-    public void setCredito(double credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 

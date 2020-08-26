@@ -111,10 +111,10 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         ValidationResult v = super.validate();
 
         //debito-credito
-        if (getOperacionContableFk().getDebito() != MonedaHandler.venta(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
+        if (0 != getOperacionContableFk().getDebito().compareTo(MonedaHandler.venta(getOperacionContableCuadreFk().getCredito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk()))) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se debita en la cuenta inicial no coincide con lo que se acredita en el cuadre."));
         }
-        if (getOperacionContableFk().getCredito() != MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk())) {
+        if (0 != getOperacionContableFk().getCredito().compareTo(MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk()))) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se acredita en la cuenta inicial no coincide con lo que se debita en el cuadre."));
         }
         //diferentes tipos

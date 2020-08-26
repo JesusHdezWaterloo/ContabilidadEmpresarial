@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -27,7 +28,7 @@ import javax.validation.constraints.PositiveOrZero;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "operacion_contable")
+@Table(name = "operacion_contable", schema = ResourcesContabilidad.SCHEMA)
 @NamedQueries({
     @NamedQuery(name = "OperacionContable.findAll", query = "SELECT o FROM OperacionContable o"),
     @NamedQuery(name = "OperacionContable.findByIdOperacionContable", query = "SELECT o FROM OperacionContable o WHERE o.idOperacionContable = :idOperacionContable"),

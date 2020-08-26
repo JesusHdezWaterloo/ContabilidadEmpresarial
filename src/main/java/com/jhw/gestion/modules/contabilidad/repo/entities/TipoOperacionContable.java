@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -26,9 +27,10 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "tipo_operacion_contable", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"nombre_operacion"}),
-    @UniqueConstraint(columnNames = {"key_enum"})})
+@Table(name = "tipo_operacion_contable", schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"nombre_operacion"}),
+            @UniqueConstraint(columnNames = {"key_enum"})})
 @NamedQueries({
     @NamedQuery(name = "TipoOperacionContable.findAll", query = "SELECT t FROM TipoOperacionContable t"),
     @NamedQuery(name = "TipoOperacionContable.findByIdTipoOperacion", query = "SELECT t FROM TipoOperacionContable t WHERE t.idTipoOperacion = :idTipoOperacion"),

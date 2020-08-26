@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,7 +32,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "liquidacion")
+@Table(name = "liquidacion", schema = ResourcesContabilidad.SCHEMA)
 @NamedQueries({
     @NamedQuery(name = "Liquidacion.findAll", query = "SELECT l FROM Liquidacion l"),
     @NamedQuery(name = "Liquidacion.findByIdLiquidacion", query = "SELECT l FROM Liquidacion l WHERE l.idLiquidacion = :idLiquidacion"),

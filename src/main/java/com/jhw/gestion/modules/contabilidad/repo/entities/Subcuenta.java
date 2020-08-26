@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.entities;
 
+import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -26,8 +27,9 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "subcuenta", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"cuenta_padre_fk", "cuenta_hijo_fk"})})
+@Table(name = "subcuenta", schema = ResourcesContabilidad.SCHEMA,
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"cuenta_padre_fk", "cuenta_hijo_fk"})})
 @NamedQueries({
     @NamedQuery(name = "Subcuenta.findAll", query = "SELECT s FROM Subcuenta s"),
     @NamedQuery(name = "Subcuenta.findByIdSubcuenta", query = "SELECT s FROM Subcuenta s WHERE s.idSubcuenta = :idSubcuenta"),

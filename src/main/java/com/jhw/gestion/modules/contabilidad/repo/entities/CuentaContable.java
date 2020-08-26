@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "cuenta_contable", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+@Table(name = "cuenta_contable", schema = ResourcesContabilidad.SCHEMA,
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"codigo"}),
             @UniqueConstraint(columnNames = {"nombre_cuenta"})})

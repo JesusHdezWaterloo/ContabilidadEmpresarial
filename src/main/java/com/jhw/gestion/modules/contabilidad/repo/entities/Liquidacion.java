@@ -32,7 +32,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "liquidacion", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA)
+@Table(name = "liquidacion", schema = ResourcesContabilidad.SCHEMA)
 @NamedQueries({
     @NamedQuery(name = "Liquidacion.findAll", query = "SELECT l FROM Liquidacion l"),
     @NamedQuery(name = "Liquidacion.findByIdLiquidacion", query = "SELECT l FROM Liquidacion l WHERE l.idLiquidacion = :idLiquidacion"),

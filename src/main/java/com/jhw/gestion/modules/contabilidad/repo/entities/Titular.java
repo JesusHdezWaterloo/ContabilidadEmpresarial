@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "titular", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+@Table(name = "titular", schema = ResourcesContabilidad.SCHEMA,
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"nombre_titular"})})
 @NamedQueries({

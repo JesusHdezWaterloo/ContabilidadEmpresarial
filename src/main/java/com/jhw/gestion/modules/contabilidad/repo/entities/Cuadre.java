@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @Entity
-@Table(name = "cuadre", catalog = ResourcesContabilidad.SCHEMA, schema = ResourcesContabilidad.SCHEMA,
+@Table(name = "cuadre", schema = ResourcesContabilidad.SCHEMA,
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"operacion_contable_fk", "operacion_contable_cuadre_fk"})})
 @NamedQueries({

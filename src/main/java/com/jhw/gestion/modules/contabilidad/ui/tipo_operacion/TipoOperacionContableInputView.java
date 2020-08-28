@@ -3,7 +3,6 @@ package com.jhw.gestion.modules.contabilidad.ui.tipo_operacion;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
-import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import java.awt.event.ActionEvent;
@@ -34,25 +33,19 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         textFieldTipo.setLabel("Tipo de operación");
         textFieldTipo.setHint("Nombre del tipo de operación. Ej.: Gasto");
 
-        //key
-        textFieldKey = new com.jhw.swing.material.components.textfield._MaterialTextField();
-        textFieldKey.setLabel("Key");
-        textFieldKey.setHint("Key");
-
         //cuenta
         cuentaDefecto = new TipoCuentaICBS();
-        cuentaDefecto.setLabel("Cuenta por defecto");
+        cuentaDefecto.setLabel("Tipo de cuenta por defecto");
 
         //cuadre
         cuentaDefectoCuadre = new TipoCuentaICBS();
-        cuentaDefectoCuadre.setLabel("Cuenta  de cuadre por defecto");
+        cuentaDefectoCuadre.setLabel("Tipo de cuenta de cuadre");
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
-        vlc.add(textFieldKey);
         vlc.add(cuentaDefecto);
         vlc.add(cuentaDefectoCuadre);
         vlc.add(textAreaDescripcion, true);
@@ -64,26 +57,18 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
     private TipoCuentaICBS cuentaDefecto;
     private TipoCuentaICBS cuentaDefectoCuadre;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldKey;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   
 
     @Override
     public void update() {
         super.update();
-        textFieldKey.setEnabled(getOldModel() == null);
-    }
-
-    @Override
-    public TipoOperacionContableDomain getNewModel() throws Exception {
-        return super.getNewModel(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
         bindFields.put("nombreOperacion", textFieldTipo);
-        bindFields.put("keyEnum", textFieldKey);
         bindFields.put("tipoCuentaDefectoFk", cuentaDefecto);
         bindFields.put("tipoCuentaCuadreDefectoFk", cuentaDefectoCuadre);
         bindFields.put("descripcion", textAreaDescripcion);

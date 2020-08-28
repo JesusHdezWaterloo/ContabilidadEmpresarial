@@ -15,13 +15,11 @@ import com.jhw.swing.models.detail._MaterialPanelDetail;
 public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOperacionContableDomain> {
 
     private static final String COL_NOMBRE = "Tipo";
-    private static final String COL_KEY = "key";
     private static final String COL_DESC = "Descripción";
 
     public TipoOperacionContableDetailView() {
         super(
                 Column.builder().name(COL_NOMBRE).build(),
-                Column.builder().name(COL_KEY).build(),
                 Column.builder().name(COL_DESC).build()
         );
 
@@ -44,8 +42,8 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     @Override
     public Object[] getRowObject(TipoOperacionContableDomain obj) {
-        return new Object[]{obj.getNombreOperacion(),
-            obj.getKeyEnum(),
+        return new Object[]{
+            obj.getNombreOperacion(),
             obj.getDescripcion()};
     }
 

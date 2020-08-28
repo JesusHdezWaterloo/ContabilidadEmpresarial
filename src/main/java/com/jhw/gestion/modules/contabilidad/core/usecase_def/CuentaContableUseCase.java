@@ -8,8 +8,10 @@ public interface CuentaContableUseCase extends CRUDUseCase<CuentaContableDomain>
 
     public List<Cuenta> findAllCuentas() throws Exception;
 
+    public List<CuentaContableDomain> findAllCuenta(TipoCuentaDomain tipo) throws Exception;
+
     public List<CuentaContableDomain> findAllCuadre(TipoCuentaDomain tipo) throws Exception;
 
     public List<CuentaContableDomain> findAll(String text) throws Exception;
-    
+
 }

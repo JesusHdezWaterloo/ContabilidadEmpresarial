@@ -75,6 +75,18 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
         return cuentas;
     }
 
+    @Override
+    public List<CuentaContableDomain> findAllCuenta(TipoCuentaDomain tipo) throws Exception {
+        List<CuentaContableDomain> cuentasContables = findAll();
+        List<CuentaContableDomain> cuentas = new ArrayList<>(cuentasContables.size());
+        for (CuentaContableDomain c : cuentasContables) {
+            if (c.getTipoCuentaFk().equals(tipo)) {
+                cuentas.add(c);
+            }
+        }
+        return cuentas;
+    }
+
     private void checkIntegrity() {
         try {
             HashMap<Integer, CuentaContableDomain> h = new HashMap<>();

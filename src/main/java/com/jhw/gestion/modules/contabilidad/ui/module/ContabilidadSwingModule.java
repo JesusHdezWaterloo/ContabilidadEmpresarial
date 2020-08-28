@@ -14,6 +14,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentasMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.forma_pago.FormaPagoDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaDetailView;
+import com.jhw.gestion.modules.contabilidad.ui.tipo_operacion.TipoOperacionContableDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.titular.TitularDetailView;
 import com.jhw.swing.material.components.taskpane.CollapseMenu;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -121,6 +122,13 @@ public class ContabilidadSwingModule extends DefaultAbstractSwingMainModule {
             @Override
             public void actionPerformed(ActionEvent e) {
                 app.navigateTo(ContabilidadModuleNavigator.NAV_TITULAR);
+            }
+        });
+        dash.addView(ContabilidadModuleNavigator.NAV_TIPO_OPERACION, new TipoOperacionContableDetailView());
+        menu.addMenuItem(new AbstractAction(ContabilidadModuleNavigator.TIPO_OPERACION, MaterialIcons.OPACITY) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                app.navigateTo(ContabilidadModuleNavigator.NAV_TIPO_OPERACION);
             }
         });
     }

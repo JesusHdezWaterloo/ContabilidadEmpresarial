@@ -1,5 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuadre.pedazos;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
@@ -92,7 +93,9 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
 
     private void updateCuadreICBS() {
         try {
+            CuentaContableDomain old = cuentaCuadreICBS.getSelectedItem();
             cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getSelectedItem().getTipoCuentaFk());
+            cuentaCuadreICBS.setSelectedItem(old);
         } catch (Exception e) {
         }
     }

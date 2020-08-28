@@ -99,8 +99,14 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
 
     public void setTipoOp(TipoOperacionContableDomain opDefecto) {
         if (opDefecto != null) {
-            this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
-            this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
+            try {
+                this.cuentaICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaDefectoFk());
+                this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
+
+                this.cuentaCuadreICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaCuadreDefectoFk());
+                this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
+            } catch (Exception e) {
+            }
         }
     }
 

@@ -27,7 +27,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
     }
 
     private void personalize() {
-        this.setHeaderText("Tipos de Cuenta");
+        this.setHeaderText("Titulares de cuenta");
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 

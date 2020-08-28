@@ -1,10 +1,12 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.clean.core.domain.services.Resource;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;
 import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
+import com.jhw.utils.security.SHA;
 
 public class TipoOperacionContableUseCaseImpl extends DefaultCRUDUseCase<TipoOperacionContableDomain> implements TipoOperacionContableUseCase {
 
@@ -15,6 +17,14 @@ public class TipoOperacionContableUseCaseImpl extends DefaultCRUDUseCase<TipoOpe
     public TipoOperacionContableUseCaseImpl() {
         super.setRepo(repo);
         loadTiposStatic();
+    }
+
+    @Override
+    public TipoOperacionContableDomain create(TipoOperacionContableDomain newObject) throws Exception {
+        if (newObject.getKeyEnum() == null || newObject.getKeyEnum().isEmpty()) {
+            newObject.setKeyEnum(SHA.hash256(newObject.getNombreOperacion()));
+        }
+        return super.create(newObject);
     }
 
     @Override

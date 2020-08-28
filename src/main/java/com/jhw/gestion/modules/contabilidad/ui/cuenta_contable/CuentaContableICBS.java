@@ -25,6 +25,11 @@ public class CuentaContableICBS extends ICBSNotEmptySeleccionable<CuentaContable
         setModel(actualList);
     }
 
+    public void updateComboBoxCuenta(TipoCuentaDomain tipo) throws Exception {
+        actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuenta(tipo);
+        setModel(actualList);
+    }
+
     public void updateComboBoxCuadre(TipoCuentaDomain tipo) throws Exception {
         actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo);
         setModel(actualList);

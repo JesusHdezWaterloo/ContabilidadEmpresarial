@@ -26,16 +26,14 @@ public class CuadreUI extends VolatileDomainObject {
     private DocNombreUI docNombre;
     private OperacionCuadreUI op;
     private FechaDescUI fechaDesc;
-    private TipoOperacionContableDomain tipoOp;
 
     public CuadreUI() {
     }
 
-    public CuadreUI(DocNombreUI docNombre, OperacionCuadreUI op, FechaDescUI fechaDesc, TipoOperacionContableDomain tipoOp) {
+    public CuadreUI(DocNombreUI docNombre, OperacionCuadreUI op, FechaDescUI fechaDesc) {
         this.docNombre = docNombre;
         this.op = op;
         this.fechaDesc = fechaDesc;
-        this.tipoOp = tipoOp;
     }
 
     public CuadreDomain buildCuadre() {
@@ -68,12 +66,12 @@ public class CuadreUI extends VolatileDomainObject {
                 getNombre(),
                 getFecha(),
                 getDescripcion(),
-                tipoOp,
+                getTipoOp(),
                 getFormaPagoFk());
     }
 
     public TipoOperacionContableDomain getTipoOp() {
-        return tipoOp;
+        return op.getTipoOp();
     }
 
     public BigDecimal getValor() {

@@ -19,8 +19,6 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
  */
 public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
-    private final TipoOperacionContableDomain tipo = TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO;
-
     public CuadreInputView() {
         this(null);
     }
@@ -36,7 +34,7 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         docNombreInputView = new DocNombreInputView();
 
         //valor, cuentas ....
-        operacionInputView = new OperacionCuadreInputView(tipo);
+        operacionInputView = new OperacionCuadreInputView(TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO);
 
         //fecha, desc ....
         fechaDescInputView = new FechaDescInputView();
@@ -73,7 +71,7 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         OperacionCuadreUI op = operacionInputView.getNewModel();
         FechaDescUI fechaDesc = fechaDescInputView.getNewModel();
 
-        CuadreUI cuadre = new CuadreUI(docNombre, op, fechaDesc, tipo);
+        CuadreUI cuadre = new CuadreUI(docNombre, op, fechaDesc);
         if (getOldModel() == null) {
             return cuadre.buildCuadre();
         } else {

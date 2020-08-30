@@ -9,6 +9,7 @@ import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaDetailMainPanel;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 
@@ -20,6 +21,7 @@ public class CuentaContableDetailMainPanel extends CuentaDetailMainPanel<CuentaC
 
     public CuentaContableDetailMainPanel() {
         setHeader("Cuentas Contables");
+        setIcon(ContabilidadModuleNavigator.ICON_CUENTA_CONTABLE);
     }
 
     @Override

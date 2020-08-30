@@ -3,6 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.operacion_contable;
 import com.jhw.gestion.modules.contabilidad.ui.liquidacion.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
@@ -53,6 +54,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
         setUpEditorsRenders();
         String cuentaStr = cuenta == null ? "" : ": " + cuenta.toString();
         this.setHeaderText("Operaciones" + cuentaStr);
+        this.setIcon(ContabilidadModuleNavigator.ICON_OPERACION);
 
         this.setOptionPanelVisibility(false);
 

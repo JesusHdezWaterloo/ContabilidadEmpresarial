@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.layout.AC;
 import net.miginfocom.layout.LC;
@@ -64,6 +65,10 @@ public abstract class CuentaDetailMainPanel<T extends Cuenta> extends _MaterialP
 
     private HeaderDetailPanel header;
     private _PanelTransparent panelCuentasSingle;
+
+    public void setIcon(ImageIcon icon) {
+        header.setIcon(icon);
+    }
 
     protected String getSearchText() {
         return header.getSearchText();

@@ -8,6 +8,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICB
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
 import com.jhw.swing.material.components.labels.prepared.*;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -16,21 +17,21 @@ import java.util.Map;
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
 public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> {
-    
+
     public static LiquidacionInputView fromBase(LiquidacionDomain base) {
         return new LiquidacionInputView(base, null);
     }
-    
+
     public static LiquidacionInputView fromModel(LiquidacionDomain model) {
         return new LiquidacionInputView(null, model);
     }
-    
+
     public static LiquidacionInputView from() {
         return new LiquidacionInputView(null, null);
     }
-    
+
     private final LiquidacionDomain base;
-    
+
     private LiquidacionInputView(LiquidacionDomain base, LiquidacionDomain model) {
         super(model, ContabilidadSwingModule.liquicadionUC, LiquidacionDomain.class);
         if (model != null) {
@@ -41,19 +42,21 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         initComponents();
         update();
     }
-    
+
     private void initComponents() {
         setHeader("Crear Liquidación", "Editar Liquidación");
 
-        //tipo
-        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextField();
-        textFieldDocumento.setLabel("Documento");
-        textFieldDocumento.setHint("Factura o Transacción asociada");
-
-        //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        //nombre
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Liquidación");
+        textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
+
+        //documento
+        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldDocumento.setLabel("Documento");
+        textFieldDocumento.setHint("Factura o Transacción asociada");
+        textFieldDocumento.setIcon(MaterialIcons.DRAFTS);
 
         //debito
         labelDebitoValue = new _labelDoubleMoneyPositive();
@@ -75,26 +78,26 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
-        
+
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldDocumento);
         vlc.add(textFieldNombre);
-        
+
         vlc.add(labelDebitoValue);
         vlc.add(labelCreditoValue);
-        
+
         vlc.add(datePickerFecha, true);
         vlc.add(cuadreICBS, true);
         vlc.add(cuentaICBS, true);
-        
+
         vlc.add(textAreaDescripcion, true);
-        
+
         this.setComponent(vlc.build());
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldDocumento;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldDocumento;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
     private _labelDoubleMoneyPositive labelDebitoValue;
     private _labelDoubleMoneyNegative labelCreditoValue;
     private _MaterialDatePicker datePickerFecha;
@@ -119,7 +122,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
             labelDebitoValue.setMoney(base.getDebito(), base.getCuentaFk().getMonedaFk());
         }
     }
-    
+
     @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();

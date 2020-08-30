@@ -8,6 +8,7 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.toggle.ToggleGroup;
 import com.jhw.swing.material.components.toggle._MaterialCheckBox;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -16,11 +17,15 @@ import java.util.Map;
  */
 public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
 
-    public TipoCuentaInputView() {
-        this(null);
+    public static TipoCuentaInputView from() {
+        return new TipoCuentaInputView(null);
     }
 
-    public TipoCuentaInputView(TipoCuentaDomain model) {
+    public static TipoCuentaInputView fromModel(TipoCuentaDomain model) {
+        return new TipoCuentaInputView(model);
+    }
+
+    private TipoCuentaInputView(TipoCuentaDomain model) {
         super(model, ContabilidadSwingModule.tipoCuentaUC, TipoCuentaDomain.class);
         initComponents();
         update();
@@ -30,9 +35,10 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
         setHeader("Crear Tipo de Cuenta", "Editar Tipo de Cuenta");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldTipo.setLabel("Tipo de cuenta");
         textFieldTipo.setHint("Nombre del tipo de cuenta. Ej.: Cuenta por Pagar");
+        textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //debito
         checkBoxDebito = new _MaterialCheckBox();
@@ -61,7 +67,7 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
         hlcDebCred.add(checkBoxDebito);
         hlcDebCred.add(checkBoxCredito);
         vlc.add(hlcDebCred.build());
-        
+
         vlc.add(checkBoxLiquidable);
 
         vlc.add(textAreaDescripcion, true);
@@ -69,7 +75,7 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
     private _MaterialCheckBox checkBoxDebito;
     private _MaterialCheckBox checkBoxCredito;
     private _MaterialCheckBox checkBoxLiquidable;

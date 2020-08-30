@@ -10,7 +10,8 @@ import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_operacion.TipoOperacionContableICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
+import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
@@ -20,11 +21,15 @@ import java.util.Map;
  */
 public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadreUI> {
 
-    public OperacionCuadreInputView() {
-        this((OperacionCuadreUI) null);
+    public static OperacionCuadreInputView from() {
+        return new OperacionCuadreInputView((OperacionCuadreUI) null);
     }
 
-    public OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
+    public static OperacionCuadreInputView fromTipoOp(TipoOperacionContableDomain opDefecto) {
+        return new OperacionCuadreInputView(opDefecto);
+    }
+
+    private OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
         this((OperacionCuadreUI) null);
         setTipoOp(opDefecto);
     }
@@ -37,9 +42,11 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void initComponents() {
-        textFieldValor = new _MaterialTextFieldMoney();
+        textFieldValor = new _MaterialTextFieldMoneyIcon();
         textFieldValor.setLabel("Valor");
         textFieldValor.setHint("Valor de la operación");
+        textFieldValor.setIcon(MaterialIcons.ATTACH_MONEY);
+
         moneda = new MonedaICBS();
         tipoOperICBS = new TipoOperacionContableICBS();
 
@@ -66,7 +73,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     // Variables declaration - do not modify
-    private _MaterialTextFieldMoney textFieldValor;
+    private _MaterialTextFieldMoneyIcon textFieldValor;
     private MonedaICBS moneda;
     private CuentaContableICBS cuentaICBS;
     private CuentaContableICBS cuentaCuadreICBS;
@@ -139,7 +146,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
         return cuentaCuadreICBS;
     }
 
-    public _MaterialTextFieldMoney getTextFieldValor() {
+    public _MaterialTextFieldMoneyIcon getTextFieldValor() {
         return textFieldValor;
     }
 

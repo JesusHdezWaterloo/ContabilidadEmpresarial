@@ -31,7 +31,7 @@ public class CuentaBancariaSinglePanel extends CuentaSinglePanel {
 
     @Override
     protected void editAction() {
-        new DialogModelInput(this, new CuentaBancariaInputView(cuenta));
+        new DialogModelInput(this, CuentaBancariaInputView.fromModel(cuenta));
     }
 
 }

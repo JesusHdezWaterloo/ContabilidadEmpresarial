@@ -31,7 +31,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
     private void personalize() {
         this.setHeaderText("Monedas");
         this.setIcon(ContabilidadModuleNavigator.ICON_MONEDA);
-        
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -51,7 +51,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new MonedaInputView());
+        new DialogModelInput(this, MonedaInputView.from());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
 
     @Override
     protected void editAction(MonedaDomain obj) {
-        new DialogModelInput(this, new MonedaInputView(obj));
+        new DialogModelInput(this, MonedaInputView.fromModel(obj));
     }
 
     @Override

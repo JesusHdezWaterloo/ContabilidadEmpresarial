@@ -5,6 +5,7 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
@@ -14,6 +15,7 @@ public class CuentaBancariaICBS extends InputComboBoxSelection<CuentaBancariaDom
 
     public CuentaBancariaICBS() {
         super("Cuenta bancaria");
+        setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
     }
 
     @Override
@@ -32,6 +34,6 @@ public class CuentaBancariaICBS extends InputComboBoxSelection<CuentaBancariaDom
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new CuentaBancariaInputView());
+        new DialogInputCBS(this, CuentaBancariaInputView.from());
     }
 }

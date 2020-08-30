@@ -32,6 +32,6 @@ public class MonedaICBS extends InputComboBoxSelection<MonedaDomain> {
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new MonedaInputView());
+        new DialogInputCBS(this, MonedaInputView.from());
     }
 }

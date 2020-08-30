@@ -31,7 +31,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
     private void personalize() {
         this.setHeaderText("Tipos de Cuenta");
         this.setIcon(ContabilidadModuleNavigator.ICON_TIPO_CUENTA);
-        
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -54,7 +54,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TipoCuentaInputView());
+        new DialogModelInput(this, TipoCuentaInputView.from());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     @Override
     protected void editAction(TipoCuentaDomain obj) {
-        new DialogModelInput(this, new TipoCuentaInputView(obj));
+        new DialogModelInput(this, TipoCuentaInputView.fromModel(obj));
     }
 
     @Override

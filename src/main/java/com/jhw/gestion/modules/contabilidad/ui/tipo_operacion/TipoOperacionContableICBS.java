@@ -5,6 +5,7 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
@@ -14,6 +15,7 @@ public class TipoOperacionContableICBS extends InputComboBoxSelection<TipoOperac
 
     public TipoOperacionContableICBS() {
         super("Operación");
+        setIcon(ContabilidadModuleNavigator.ICON_TIPO_OPERACION);
     }
 
     @Override
@@ -32,6 +34,6 @@ public class TipoOperacionContableICBS extends InputComboBoxSelection<TipoOperac
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new TipoOperacionContableInputView());
+        new DialogInputCBS(this, TipoOperacionContableInputView.from());
     }
 }

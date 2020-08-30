@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class FechaDescInputView extends CleanCRUDInputView<FechaDescUI> {
 
-    public FechaDescInputView() {
-        this(null);
+    public static FechaDescInputView from() {
+        return new FechaDescInputView(null);
     }
 
     private FechaDescInputView(FechaDescUI model) {

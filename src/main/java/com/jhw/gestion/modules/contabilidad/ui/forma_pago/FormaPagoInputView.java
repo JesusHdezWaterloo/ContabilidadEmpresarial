@@ -4,6 +4,7 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -12,25 +13,29 @@ import java.util.Map;
  */
 public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
 
-    public FormaPagoInputView() {
-        this(null);
+    public static FormaPagoInputView from() {
+        return new FormaPagoInputView(null);
     }
 
-    public FormaPagoInputView(FormaPagoDomain model) {
+    public static FormaPagoInputView fromModel(FormaPagoDomain model) {
+        return new FormaPagoInputView(model);
+    }
+
+    private FormaPagoInputView(FormaPagoDomain model) {
         super(model, ContabilidadSwingModule.formaPagoUC, FormaPagoDomain.class);
         initComponents();
         update();
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
         //header
         setHeader("Crear Tipo de Pago", "Editar Tipo de Pago");
 
         //nombre
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNombre.setLabel("Tipo de pago");
         textFieldNombre.setHint("Nombre del tipo de pago. Ej: Efectivo");
+        textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
@@ -45,7 +50,7 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
     // End of variables declaration                   
 
     @Override

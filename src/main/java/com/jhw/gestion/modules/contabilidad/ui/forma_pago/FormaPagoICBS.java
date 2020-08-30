@@ -4,13 +4,13 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
-import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
+import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class FormaPagoICBS extends ICBSNotEmptySeleccionable<FormaPagoDomain> {
+public class FormaPagoICBS extends InputComboBoxSelection<FormaPagoDomain> {
 
     public FormaPagoICBS() {
         super("Forma de Pago");

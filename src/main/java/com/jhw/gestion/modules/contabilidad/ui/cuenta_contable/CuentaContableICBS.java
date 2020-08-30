@@ -3,7 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
-import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
+import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class CuentaContableICBS extends ICBSNotEmptySeleccionable<CuentaContableDomain> {
+public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDomain> {
     
     private List<CuentaContableDomain> actualList;
     

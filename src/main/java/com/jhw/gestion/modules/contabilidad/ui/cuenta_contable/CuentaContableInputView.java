@@ -3,10 +3,12 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.titular.TitularICBS;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -15,11 +17,15 @@ import java.util.Map;
  */
 public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDomain> {
 
-    public CuentaContableInputView() {
-        this(null);
+    public static CuentaContableInputView from() {
+        return new CuentaContableInputView(null);
     }
 
-    public CuentaContableInputView(CuentaContableDomain model) {
+    public static CuentaContableInputView fromModel(CuentaContableDomain model) {
+        return new CuentaContableInputView(model);
+    }
+
+    private CuentaContableInputView(CuentaContableDomain model) {
         super(model, ContabilidadSwingModule.cuentaContableUC, CuentaContableDomain.class);
         initComponents();
         update();
@@ -30,17 +36,20 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         setHeader("Crear Cuenta Contable", "Editar Cuenta Contable");
 
         //nombre
-        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNombreCuenta.setLabel("Nombre");
         textFieldNombreCuenta.setHint("Nombre de la cuenta");
+        textFieldNombreCuenta.setIcon(ContabilidadModuleNavigator.ICON_CUENTA_CONTABLE);
 
         //codigo
-        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldCodigo.setLabel("Código contable");
         textFieldCodigo.setHint("Código de identificación. Ej: 110");
+        textFieldCodigo.setIcon(MaterialIcons.GRID_ON);
 
         //moneda
         monedaICBS = new MonedaICBS();
+        monedaICBS.setIcon(MaterialIcons.ATTACH_MONEY);
 
         //tipo de cuenta
         tipoCuentaICBS = new TipoCuentaICBS();
@@ -63,8 +72,8 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombreCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldCodigo;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombreCuenta;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldCodigo;
     private MonedaICBS monedaICBS;
     private TipoCuentaICBS tipoCuentaICBS;
     private TitularICBS titularICBS;

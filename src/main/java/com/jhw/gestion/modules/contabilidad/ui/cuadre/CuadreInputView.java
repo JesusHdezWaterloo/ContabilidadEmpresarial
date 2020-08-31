@@ -19,13 +19,15 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
  */
 public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
-    private final TipoOperacionContableDomain tipo = TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO;
-
-    public CuadreInputView() {
-        this(null);
+    public static CuadreInputView from() {
+        return new CuadreInputView(null);
     }
 
-    public CuadreInputView(CuadreDomain model) {
+    public static CuadreInputView fromModel(CuadreDomain model) {
+        return new CuadreInputView(model);
+    }
+
+    private CuadreInputView(CuadreDomain model) {
         super(model, ContabilidadSwingModule.cuadreUC);
         initComponents();
         update();
@@ -33,13 +35,13 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
     private void initComponents() {
         //doc, nombre ....
-        docNombreInputView = new DocNombreInputView();
+        docNombreInputView = DocNombreInputView.from();
 
         //valor, cuentas ....
-        operacionInputView = new OperacionCuadreInputView(tipo);
+        operacionInputView = OperacionCuadreInputView.fromTipoOp(TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO);
 
         //fecha, desc ....
-        fechaDescInputView = new FechaDescInputView();
+        fechaDescInputView = FechaDescInputView.from();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder(400);
         vlc.add(docNombreInputView);
@@ -73,7 +75,7 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
         OperacionCuadreUI op = operacionInputView.getNewModel();
         FechaDescUI fechaDesc = fechaDescInputView.getNewModel();
 
-        CuadreUI cuadre = new CuadreUI(docNombre, op, fechaDesc, tipo);
+        CuadreUI cuadre = new CuadreUI(docNombre, op, fechaDesc);
         if (getOldModel() == null) {
             return cuadre.buildCuadre();
         } else {

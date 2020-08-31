@@ -3,6 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.titular;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
@@ -27,7 +28,9 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
     }
 
     private void personalize() {
-        this.setHeaderText("Tipos de Cuenta");
+        this.setHeaderText("Titulares de cuenta");
+        this.setIcon(ContabilidadModuleNavigator.ICON_TITULAR);
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -48,7 +51,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TitularInputView());
+        new DialogModelInput(this, TitularInputView.from());
     }
 
     @Override
@@ -63,7 +66,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
 
     @Override
     protected void editAction(TitularDomain obj) {
-        new DialogModelInput(this, new TitularInputView(obj));
+        new DialogModelInput(this, TitularInputView.fromModel(obj));
     }
 
     @Override

@@ -28,20 +28,20 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
         if (!newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
             throw new RuntimeException("No se puede liquidar un cuadre de una cuenta que no es liquidable.");
         }
-        //rebajo la cuenta contable
-        newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject);
 
         //convierto a la moneda e incremento banco
         BigDecimal debito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getDebito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setDebito(debito);
         BigDecimal credito = MonedaHandler.venta(newObject.getCuadreFk().getOperacionContableCuadreFk().getCredito(), newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), newObject.getCuentaFk().getMonedaFk());
         newObject.setCredito(credito);
+
         //si se crea una liquidacion se le quita esa cantidad a la cuenta, por eso el decrease al deb-cred
         newObject.getCuentaFk().increase(newObject);
 
-        newObject.getCuadreFk().setLiquidada(true);
-
+        //rebajo la cuenta contable
         newObject.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().decrease(newObject.getCuadreFk().getOperacionContableCuadreFk());
+
+        newObject.getCuadreFk().setLiquidada(true);
 
         return super.create(newObject);
     }

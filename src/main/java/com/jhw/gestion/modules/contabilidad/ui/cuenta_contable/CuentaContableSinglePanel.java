@@ -31,7 +31,7 @@ public class CuentaContableSinglePanel extends CuentaSinglePanel {
 
     @Override
     protected void editAction() {
-        new DialogModelInput(this, new CuentaContableInputView(cuenta));
+        new DialogModelInput(this, CuentaContableInputView.fromModel(cuenta));
     }
 
 }

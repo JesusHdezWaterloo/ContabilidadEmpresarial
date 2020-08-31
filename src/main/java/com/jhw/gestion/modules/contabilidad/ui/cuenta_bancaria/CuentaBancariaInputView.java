@@ -5,8 +5,10 @@ import com.jhw.swing.material.components.container.layout.HorizontalLayoutContai
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -15,11 +17,15 @@ import java.util.Map;
  */
 public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDomain> {
 
-    public CuentaBancariaInputView() {
-        this(null);
+    public static CuentaBancariaInputView from() {
+        return new CuentaBancariaInputView(null);
     }
 
-    public CuentaBancariaInputView(CuentaBancariaDomain model) {
+    public static CuentaBancariaInputView fromModel(CuentaBancariaDomain model) {
+        return new CuentaBancariaInputView(model);
+    }
+
+    private CuentaBancariaInputView(CuentaBancariaDomain model) {
         super(model, ContabilidadSwingModule.cuentaBancariaUC, CuentaBancariaDomain.class);
         initComponents();
         update();
@@ -30,32 +36,38 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         setHeader("Crear Cuenta Bancaria", "Editar Cuenta Bancaria");
 
         //nombre
-        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNombreCuenta.setLabel("Nombre");
         textFieldNombreCuenta.setHint("Nombre de la cuenta");
+        textFieldNombreCuenta.setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
 
         //numero cuenta
-        textFieldNumeroCuenta = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNumeroCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNumeroCuenta.setLabel("Número de cuenta");
         textFieldNumeroCuenta.setHint("Número de la cuenta bancaria. Ej: 0598...");
+        textFieldNumeroCuenta.setIcon(MaterialIcons.BUSINESS_CENTER);
 
         //numero tarjeta
-        textFieldNumeroTarjeta = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNumeroTarjeta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNumeroTarjeta.setLabel("Número de tarjeta");
         textFieldNumeroTarjeta.setHint("Número de la tarjeta magnética asociada");
+        textFieldNumeroTarjeta.setIcon(MaterialIcons.CREDIT_CARD);
 
         //pin
-        textFieldPin = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldPin = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldPin.setLabel("Pin");
         textFieldPin.setHint("Pin de la tarjeta");
+        textFieldPin.setIcon(MaterialIcons.SECURITY);
 
         //codigo
-        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldCodigo.setLabel("Código contable");
         textFieldCodigo.setHint("Código de identificación. Ej: 110");
+        textFieldCodigo.setIcon(MaterialIcons.GRID_ON);
 
         //moneda
         monedaICBS = new MonedaICBS();
+        monedaICBS.setIcon(MaterialIcons.ATTACH_MONEY);
 
         //descripcion
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
@@ -63,7 +75,7 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);
         vlc.add(textFieldCodigo);
-        
+
         vlc.add(textFieldNumeroCuenta);
 
         HorizontalLayoutContainer.builder hlcTarjeta = HorizontalLayoutContainer.builder((int) textFieldNumeroTarjeta.getPreferredSize().getHeight());
@@ -78,11 +90,11 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombreCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNumeroCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNumeroTarjeta;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldPin;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldCodigo;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombreCuenta;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNumeroCuenta;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNumeroTarjeta;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldPin;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldCodigo;
     private MonedaICBS monedaICBS;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
     // End of variables declaration                   

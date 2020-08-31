@@ -2,17 +2,19 @@ package com.jhw.gestion.modules.contabilidad.ui.cuadre;
 
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
+import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class CuadreICBS extends ICBSNotEmptySeleccionable<CuadreDomain> {
+public class CuadreICBS extends InputComboBoxSelection<CuadreDomain> {
 
     public CuadreICBS() {
         super("Cuadre");
+        setIcon(ContabilidadModuleNavigator.ICON_CUADRE);
     }
 
     @Override

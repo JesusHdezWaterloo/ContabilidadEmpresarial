@@ -3,17 +3,19 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
-import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
+import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class CuentaBancariaICBS extends ICBSNotEmptySeleccionable<CuentaBancariaDomain> {
+public class CuentaBancariaICBS extends InputComboBoxSelection<CuentaBancariaDomain> {
 
     public CuentaBancariaICBS() {
         super("Cuenta bancaria");
+        setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
     }
 
     @Override
@@ -32,6 +34,6 @@ public class CuentaBancariaICBS extends ICBSNotEmptySeleccionable<CuentaBancaria
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new CuentaBancariaInputView());
+        new DialogInputCBS(this, CuentaBancariaInputView.from());
     }
 }

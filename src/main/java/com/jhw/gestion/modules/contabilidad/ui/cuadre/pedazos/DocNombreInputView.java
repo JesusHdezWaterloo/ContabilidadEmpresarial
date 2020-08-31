@@ -3,6 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.cuadre.pedazos;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.DocNombreUI;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Map;
  */
 public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
 
-    public DocNombreInputView() {
-        this(null);
+    public static DocNombreInputView from() {
+        return new DocNombreInputView(null);
     }
 
     private DocNombreInputView(DocNombreUI model) {
@@ -25,14 +26,16 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
         setHeader("", "");
 
         //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Operación");
+        textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //doc
-        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
+        textFieldDocumento.setIcon(MaterialIcons.DRAFTS);
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombre);
@@ -42,22 +45,9 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldNombre;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldDocumento;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldDocumento;
     // End of variables declaration                   
-
-    /*@Override
-    public void update() {
-        if (getOldModel() != null) {
-            textFieldDocumento.setText(getOldModel().getDocumento());
-            textFieldNombre.setText(getOldModel().getNombre());
-        }
-    }
-
-    @Override
-    public DocNombreUI getNewModel() throws Exception {
-        return new DocNombreUI(textFieldNombre.getText(), textFieldDocumento.getText());
-    }*/
 
     @Override
     public Map<String, Object> bindFields() {

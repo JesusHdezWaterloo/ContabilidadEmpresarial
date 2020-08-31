@@ -3,6 +3,7 @@ package com.jhw.gestion.modules.contabilidad.ui.tipo_operacion;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
@@ -15,13 +16,11 @@ import com.jhw.swing.models.detail._MaterialPanelDetail;
 public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOperacionContableDomain> {
 
     private static final String COL_NOMBRE = "Tipo";
-    private static final String COL_KEY = "key";
     private static final String COL_DESC = "Descripción";
 
     public TipoOperacionContableDetailView() {
         super(
                 Column.builder().name(COL_NOMBRE).build(),
-                Column.builder().name(COL_KEY).build(),
                 Column.builder().name(COL_DESC).build()
         );
 
@@ -30,6 +29,8 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     private void personalize() {
         this.setHeaderText("Tipos de operaciones");
+        this.setIcon(ContabilidadModuleNavigator.ICON_TIPO_OPERACION);
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -44,14 +45,14 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     @Override
     public Object[] getRowObject(TipoOperacionContableDomain obj) {
-        return new Object[]{obj.getNombreOperacion(),
-            obj.getKeyEnum(),
+        return new Object[]{
+            obj.getNombreOperacion(),
             obj.getDescripcion()};
     }
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TipoOperacionContableInputView());
+        new DialogModelInput(this, TipoOperacionContableInputView.from());
     }
 
     @Override
@@ -66,7 +67,7 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     @Override
     protected void editAction(TipoOperacionContableDomain obj) {
-        new DialogModelInput(this, new TipoOperacionContableInputView(obj));
+        new DialogModelInput(this, TipoOperacionContableInputView.fromModel(obj));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.container.panel._PanelGradient;
@@ -63,8 +64,10 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         addActionsExtra();
 
         this.setHeaderText("Operaciones - Cuadre");
+        this.setIcon(ContabilidadModuleNavigator.ICON_CUADRE);
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
-        
+
         this.setAdjustColumns(true);
     }
 
@@ -106,7 +109,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new CuadreInputView());
+        new DialogModelInput(this, CuadreInputView.from());
     }
 
     @Override
@@ -121,7 +124,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void editAction(CuadreDomain obj) {
-        new DialogModelInput(this, new CuadreInputView(obj));
+        new DialogModelInput(this, CuadreInputView.fromModel(obj));
     }
 
     @Override
@@ -141,7 +144,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
     }
 
     private void addActionsExtra() {
-        this.addActionExtra(new AbstractAction("Liquidar", MaterialIcons.ASSIGNMENT_TURNED_IN.deriveIcon(18f)) {
+        this.addActionExtra(new AbstractAction("Liquidar", ContabilidadModuleNavigator.ICON_LIQUIDACIONES.deriveIcon(18f)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 onLiquidarMaterialActionPerformed();
@@ -163,17 +166,4 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         }
     }
 
-    /*private void addOptionsElements() {
-        //detalles de todas las operaciones
-        _MaterialButtonIconTransparent btnLiquidarAll = new _MaterialButtonIconTransparent();
-        btnLiquidarAll.setIcon(MaterialIcons.VISIBILITY.deriveIcon(30f));
-        btnLiquidarAll.addActionListener((ActionEvent e) -> {
-            onLiquidarAllMaterialActionPerformed();
-        });
-        this.addOptionElement(btnLiquidarAll);
-    }
-
-    private void onLiquidarAllMaterialActionPerformed() {
-        System.out.println("Liquidar todo");
-    }*/
 }

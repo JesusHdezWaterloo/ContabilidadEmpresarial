@@ -5,6 +5,7 @@ import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 
 /**
@@ -26,7 +27,9 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
     }
 
     private void personalize() {
-        this.setHeaderText("Tipos de Pago");
+        this.setHeaderText("Forma de Pago");
+        this.setIcon(ContabilidadModuleNavigator.ICON_FORMA_PAGO);
+        
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -46,7 +49,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new FormaPagoInputView());
+        new DialogModelInput(this, FormaPagoInputView.from());
     }
 
     @Override
@@ -61,7 +64,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
 
     @Override
     protected void editAction(FormaPagoDomain obj) {
-        new DialogModelInput(this, new FormaPagoInputView(obj));
+        new DialogModelInput(this, FormaPagoInputView.fromModel(obj));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta;
 
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.table.Column;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
@@ -29,6 +30,8 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     private void personalize() {
         this.setHeaderText("Tipos de Cuenta");
+        this.setIcon(ContabilidadModuleNavigator.ICON_TIPO_CUENTA);
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -51,7 +54,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TipoCuentaInputView());
+        new DialogModelInput(this, TipoCuentaInputView.from());
     }
 
     @Override
@@ -66,7 +69,7 @@ public class TipoCuentaDetailView extends _MaterialPanelDetail<TipoCuentaDomain>
 
     @Override
     protected void editAction(TipoCuentaDomain obj) {
-        new DialogModelInput(this, new TipoCuentaInputView(obj));
+        new DialogModelInput(this, TipoCuentaInputView.fromModel(obj));
     }
 
     @Override

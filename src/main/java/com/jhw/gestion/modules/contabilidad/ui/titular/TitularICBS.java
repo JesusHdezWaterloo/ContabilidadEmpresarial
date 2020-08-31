@@ -3,17 +3,19 @@ package com.jhw.gestion.modules.contabilidad.ui.titular;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
-import com.jhw.swing.material.components.combobox.icbs.validated.ICBSNotEmptySeleccionable;
+import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.TitularDomain;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
  * @author Jesús Hernández Barrios (jhernandezb96@gmail.com)
  */
-public class TitularICBS extends ICBSNotEmptySeleccionable<TitularDomain> {
+public class TitularICBS extends InputComboBoxSelection<TitularDomain> {
 
     public TitularICBS() {
         super("Titular");
+        setIcon(ContabilidadModuleNavigator.ICON_TITULAR);
     }
 
     @Override
@@ -32,6 +34,6 @@ public class TitularICBS extends ICBSNotEmptySeleccionable<TitularDomain> {
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new TitularInputView());
+        new DialogInputCBS(this, TitularInputView.from());
     }
 }

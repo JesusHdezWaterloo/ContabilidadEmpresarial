@@ -7,6 +7,7 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
 /**
@@ -15,11 +16,15 @@ import java.util.Map;
  */
 public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
 
-    public MonedaInputView() {
-        this(null);
+    public static MonedaInputView from() {
+        return new MonedaInputView(null);
     }
 
-    public MonedaInputView(MonedaDomain model) {
+    public static MonedaInputView fromModel(MonedaDomain model) {
+        return new MonedaInputView(model);
+    }
+
+    private MonedaInputView(MonedaDomain model) {
         super(model, ContabilidadSwingModule.monedaUC, MonedaDomain.class);
         initComponents();
         personalize();
@@ -30,17 +35,18 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
         setHeader("Crear Moneda", "Editar Moneda");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldTipo.setLabel("Moneda");
         textFieldTipo.setHint("Nombre de moneda. Ej.: EUR");
+        textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //compra
-        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney();
+        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
         //venta
-        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney();
+        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
 
@@ -61,9 +67,9 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
 
     // Variables declaration - do not modify
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney textFieldCompra;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldVenta;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon textFieldCompra;
+    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon textFieldVenta;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
     // End of variables declaration                   
 
     private void personalize() {

@@ -1,14 +1,17 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuadre.pedazos;
 
+import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.OperacionCuadreUI;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableICBS;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
+import com.jhw.gestion.modules.contabilidad.ui.tipo_operacion.TipoOperacionContableICBS;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoney;
+import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
@@ -18,11 +21,15 @@ import java.util.Map;
  */
 public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadreUI> {
 
-    public OperacionCuadreInputView() {
-        this((OperacionCuadreUI) null);
+    public static OperacionCuadreInputView from() {
+        return new OperacionCuadreInputView((OperacionCuadreUI) null);
     }
 
-    public OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
+    public static OperacionCuadreInputView fromTipoOp(TipoOperacionContableDomain opDefecto) {
+        return new OperacionCuadreInputView(opDefecto);
+    }
+
+    private OperacionCuadreInputView(TipoOperacionContableDomain opDefecto) {
         this((OperacionCuadreUI) null);
         setTipoOp(opDefecto);
     }
@@ -35,10 +42,13 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void initComponents() {
-        textFieldValor = new _MaterialTextFieldMoney();
+        textFieldValor = new _MaterialTextFieldMoneyIcon();
         textFieldValor.setLabel("Valor");
         textFieldValor.setHint("Valor de la operación");
+        textFieldValor.setIcon(MaterialIcons.ATTACH_MONEY);
+
         moneda = new MonedaICBS();
+        tipoOperICBS = new TipoOperacionContableICBS();
 
         //cuenta
         cuentaICBS = new CuentaContableICBS();
@@ -57,15 +67,17 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
 
         vlc.add(cuentaICBS);
         vlc.add(cuentaCuadreICBS);
+        vlc.add(tipoOperICBS);
 
         this.setComponent(vlc.build());
     }
 
     // Variables declaration - do not modify
-    private _MaterialTextFieldMoney textFieldValor;
+    private _MaterialTextFieldMoneyIcon textFieldValor;
     private MonedaICBS moneda;
     private CuentaContableICBS cuentaICBS;
     private CuentaContableICBS cuentaCuadreICBS;
+    private TipoOperacionContableICBS tipoOperICBS;
     // End of variables declaration                   
 
     @Override
@@ -81,6 +93,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
         bindFields.put("moneda", moneda);
         bindFields.put("cuenta", cuentaICBS);
         bindFields.put("cuadre", cuentaCuadreICBS);
+        bindFields.put("tipoOp", tipoOperICBS);
         return bindFields;
     }
 
@@ -88,20 +101,37 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
         cuentaICBS.getComboBox().addActionListener((ActionEvent e) -> {
             updateCuadreICBS();
         });
+        tipoOperICBS.getComboBox().addActionListener((ActionEvent e) -> {
+            changeTipoOp();
+        });
     }
 
     private void updateCuadreICBS() {
         try {
+            CuentaContableDomain old = cuentaCuadreICBS.getSelectedItem();
             cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getSelectedItem().getTipoCuentaFk());
+            cuentaCuadreICBS.setSelectedItem(old);
         } catch (Exception e) {
         }
     }
 
     public void setTipoOp(TipoOperacionContableDomain opDefecto) {
         if (opDefecto != null) {
-            this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk());
-            this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk());
+            try {
+                this.cuentaICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaDefectoFk());
+                this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk(), moneda.getSelectedItem());
+
+                this.cuentaCuadreICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaCuadreDefectoFk());
+                this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk(), moneda.getSelectedItem());
+
+                tipoOperICBS.setSelectedItem(opDefecto);
+            } catch (Exception e) {
+            }
         }
+    }
+
+    public TipoOperacionContableICBS getTipoOperICBS() {
+        return tipoOperICBS;
     }
 
     public MonedaICBS getMoneda() {
@@ -116,7 +146,14 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
         return cuentaCuadreICBS;
     }
 
-    public _MaterialTextFieldMoney getTextFieldValor() {
+    public _MaterialTextFieldMoneyIcon getTextFieldValor() {
         return textFieldValor;
+    }
+
+    private void changeTipoOp() {
+        try {
+            setTipoOp(tipoOperICBS.getSelectedItem());
+        } catch (Exception e) {
+        }
     }
 }

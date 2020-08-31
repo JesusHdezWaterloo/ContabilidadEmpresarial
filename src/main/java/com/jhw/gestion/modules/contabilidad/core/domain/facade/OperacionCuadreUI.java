@@ -9,6 +9,7 @@ import com.clean.core.domain.VolatileDomainObject;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuadreDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.TipoOperacionContableDomain;
 import java.math.BigDecimal;
 
 /**
@@ -21,15 +22,17 @@ public class OperacionCuadreUI extends VolatileDomainObject {
     private MonedaDomain moneda;
     private CuentaContableDomain cuenta;
     private CuentaContableDomain cuadre;
+    private TipoOperacionContableDomain tipoOp;
 
     public OperacionCuadreUI() {
     }
 
-    public OperacionCuadreUI(BigDecimal valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre) {
+    public OperacionCuadreUI(BigDecimal valor, MonedaDomain moneda, CuentaContableDomain cuenta, CuentaContableDomain cuadre, TipoOperacionContableDomain tipoOp) {
         this.valor = valor;
         this.moneda = moneda;
         this.cuenta = cuenta;
         this.cuadre = cuadre;
+        this.tipoOp = tipoOp;
     }
 
     public OperacionCuadreUI(CuadreDomain cuadre) {
@@ -37,6 +40,15 @@ public class OperacionCuadreUI extends VolatileDomainObject {
         this.moneda = cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk();
         this.cuenta = cuadre.getOperacionContableFk().getCuentaFk();
         this.cuadre = cuadre.getOperacionContableCuadreFk().getCuentaFk();
+        this.tipoOp = cuadre.info().getTipoOperacionFk();
+    }
+
+    public TipoOperacionContableDomain getTipoOp() {
+        return tipoOp;
+    }
+
+    public void setTipoOp(TipoOperacionContableDomain tipoOp) {
+        this.tipoOp = tipoOp;
     }
 
     public BigDecimal getValor() {

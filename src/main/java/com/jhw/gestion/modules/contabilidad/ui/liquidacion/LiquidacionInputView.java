@@ -9,6 +9,8 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
 import com.jhw.swing.material.components.labels.prepared.*;
 import com.jhw.swing.material.standards.MaterialIcons;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -40,6 +42,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
             this.base = base;
         }
         initComponents();
+        addListeners();
         update();
     }
 
@@ -80,8 +83,8 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
-        vlc.add(textFieldDocumento);
         vlc.add(textFieldNombre);
+        vlc.add(textFieldDocumento);
 
         vlc.add(labelDebitoValue);
         vlc.add(labelCreditoValue);
@@ -133,5 +136,20 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         bindFields.put("cuadreFk", cuadreICBS);
         bindFields.put("descripcion", textAreaDescripcion);
         return bindFields;
+    }
+
+    private void addListeners() {
+        cuadreICBS.getComboBox().addActionListener((ActionEvent e) -> {
+            onCuadreICBSActionPerformed();
+        });
+    }
+
+    private void onCuadreICBSActionPerformed() {
+        try {
+            CuadreDomain cuadre = cuadreICBS.getSelectedItem();
+            labelCreditoValue.setMoney(cuadre.getOperacionContableFk().getDebito(), cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk());
+            labelDebitoValue.setMoney(cuadre.getOperacionContableFk().getCredito(), cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk());
+        } catch (Exception e) {
+        }
     }
 }

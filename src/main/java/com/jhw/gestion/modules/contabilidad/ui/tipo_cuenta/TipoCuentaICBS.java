@@ -1,13 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta;
 
-import com.jhw.gestion.modules.contabilidad.ui.moneda.*;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
-import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.core.domain.TipoCuentaDomain;
-import java.util.List;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 
 /**
  *
@@ -17,6 +15,7 @@ public class TipoCuentaICBS extends InputComboBoxSelection<TipoCuentaDomain> {
 
     public TipoCuentaICBS() {
         super("Tipo de cuenta");
+        setIcon(ContabilidadModuleNavigator.ICON_TIPO_CUENTA);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class TipoCuentaICBS extends InputComboBoxSelection<TipoCuentaDomain> {
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new TipoCuentaInputView());
+        new DialogInputCBS(this, TipoCuentaInputView.from());
     }
 
 }

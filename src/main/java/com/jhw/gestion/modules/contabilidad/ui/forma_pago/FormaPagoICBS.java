@@ -1,6 +1,7 @@
 package com.jhw.gestion.modules.contabilidad.ui.forma_pago;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
@@ -14,6 +15,7 @@ public class FormaPagoICBS extends InputComboBoxSelection<FormaPagoDomain> {
 
     public FormaPagoICBS() {
         super("Forma de Pago");
+        setIcon(ContabilidadModuleNavigator.ICON_FORMA_PAGO);
     }
 
     @Override
@@ -32,6 +34,6 @@ public class FormaPagoICBS extends InputComboBoxSelection<FormaPagoDomain> {
     }
 
     private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, new FormaPagoInputView());
+        new DialogInputCBS(this, FormaPagoInputView.from());
     }
 }

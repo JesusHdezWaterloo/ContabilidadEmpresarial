@@ -109,7 +109,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new CuadreInputView());
+        new DialogModelInput(this, CuadreInputView.from());
     }
 
     @Override
@@ -124,7 +124,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
 
     @Override
     protected void editAction(CuadreDomain obj) {
-        new DialogModelInput(this, new CuadreInputView(obj));
+        new DialogModelInput(this, CuadreInputView.fromModel(obj));
     }
 
     @Override

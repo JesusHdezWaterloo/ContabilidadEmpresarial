@@ -26,7 +26,7 @@ public class CuentaContableDetailMainPanel extends CuentaDetailMainPanel<CuentaC
 
     @Override
     public void createAction() {
-        new DialogModelInput(this, new CuentaContableInputView());
+        new DialogModelInput(this, CuentaContableInputView.from());
     }
 
     @Override

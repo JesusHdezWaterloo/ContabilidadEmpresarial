@@ -51,7 +51,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TitularInputView());
+        new DialogModelInput(this, TitularInputView.from());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class TitularDetailView extends _MaterialPanelDetail<TitularDomain> {
 
     @Override
     protected void editAction(TitularDomain obj) {
-        new DialogModelInput(this, new TitularInputView(obj));
+        new DialogModelInput(this, TitularInputView.fromModel(obj));
     }
 
     @Override

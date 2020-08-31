@@ -26,7 +26,7 @@ public class CuentaBancariaDetailMainPanel extends CuentaDetailMainPanel<CuentaB
 
     @Override
     public void createAction() {
-        new DialogModelInput(this, new CuentaBancariaInputView());
+        new DialogModelInput(this, CuentaBancariaInputView.from());
     }
 
     @Override

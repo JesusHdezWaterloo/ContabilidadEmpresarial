@@ -19,11 +19,15 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
  */
 public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
-    public CuadreInputView() {
-        this(null);
+    public static CuadreInputView from() {
+        return new CuadreInputView(null);
     }
 
-    public CuadreInputView(CuadreDomain model) {
+    public static CuadreInputView fromModel(CuadreDomain model) {
+        return new CuadreInputView(model);
+    }
+
+    private CuadreInputView(CuadreDomain model) {
         super(model, ContabilidadSwingModule.cuadreUC);
         initComponents();
         update();
@@ -31,13 +35,13 @@ public class CuadreInputView extends CleanCRUDInputView<CuadreDomain> {
 
     private void initComponents() {
         //doc, nombre ....
-        docNombreInputView = new DocNombreInputView();
+        docNombreInputView = DocNombreInputView.from();
 
         //valor, cuentas ....
-        operacionInputView = new OperacionCuadreInputView(TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO);
+        operacionInputView = OperacionCuadreInputView.fromTipoOp(TipoOperacionContableUseCaseImpl.MOVIMIENTO_INTERNO);
 
         //fecha, desc ....
-        fechaDescInputView = new FechaDescInputView();
+        fechaDescInputView = FechaDescInputView.from();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder(400);
         vlc.add(docNombreInputView);

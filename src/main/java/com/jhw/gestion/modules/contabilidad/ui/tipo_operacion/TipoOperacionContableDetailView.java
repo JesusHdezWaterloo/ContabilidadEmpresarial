@@ -30,7 +30,7 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
     private void personalize() {
         this.setHeaderText("Tipos de operaciones");
         this.setIcon(ContabilidadModuleNavigator.ICON_TIPO_OPERACION);
-        
+
         this.setActionColumnButtonsVisivility(true, true, false);//no pone el view, no esta implementado todavia
     }
 
@@ -52,7 +52,7 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new TipoOperacionContableInputView());
+        new DialogModelInput(this, TipoOperacionContableInputView.from());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class TipoOperacionContableDetailView extends _MaterialPanelDetail<TipoOp
 
     @Override
     protected void editAction(TipoOperacionContableDomain obj) {
-        new DialogModelInput(this, new TipoOperacionContableInputView(obj));
+        new DialogModelInput(this, TipoOperacionContableInputView.fromModel(obj));
     }
 
     @Override

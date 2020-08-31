@@ -49,7 +49,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
 
     @Override
     protected void buttonNuevoActionListener() {
-        new DialogModelInput(this, new FormaPagoInputView());
+        new DialogModelInput(this, FormaPagoInputView.from());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class FormaPagoDetailView extends _MaterialPanelDetail<FormaPagoDomain> {
 
     @Override
     protected void editAction(FormaPagoDomain obj) {
-        new DialogModelInput(this, new FormaPagoInputView(obj));
+        new DialogModelInput(this, FormaPagoInputView.fromModel(obj));
     }
 
     @Override

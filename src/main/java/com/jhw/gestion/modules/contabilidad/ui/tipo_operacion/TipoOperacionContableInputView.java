@@ -5,6 +5,7 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
+import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
@@ -14,11 +15,15 @@ import java.util.Map;
  */
 public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOperacionContableDomain> {
 
-    public TipoOperacionContableInputView() {
-        this(null);
+    public static TipoOperacionContableInputView fromModel(TipoOperacionContableDomain model) {
+        return new TipoOperacionContableInputView(model);
     }
 
-    public TipoOperacionContableInputView(TipoOperacionContableDomain model) {
+    public static TipoOperacionContableInputView from() {
+        return new TipoOperacionContableInputView(null);
+    }
+
+    private TipoOperacionContableInputView(TipoOperacionContableDomain model) {
         super(model, ContabilidadSwingModule.tipoOperacionContableUC, TipoOperacionContableDomain.class);
         initComponents();
         addListeners();
@@ -29,9 +34,10 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         setHeader("Crear Tipo de Operación", "Editar Tipo de Operación");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextField();
+        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
         textFieldTipo.setLabel("Tipo de operación");
         textFieldTipo.setHint("Nombre del tipo de operación. Ej.: Gasto");
+        textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //cuenta
         cuentaDefecto = new TipoCuentaICBS();
@@ -54,7 +60,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextField textFieldTipo;
+    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
     private TipoCuentaICBS cuentaDefecto;
     private TipoCuentaICBS cuentaDefectoCuadre;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;

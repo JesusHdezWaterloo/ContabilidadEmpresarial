@@ -6,7 +6,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreICBS;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.swing.material.components.datepicker._MaterialDatePicker;
+import com.jhw.swing.material.components.datepicker._MaterialDatePickerIcon;
 import com.jhw.swing.material.components.labels.prepared.*;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
@@ -70,7 +70,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         labelCreditoValue.setText("Crédito");
 
         //fecha
-        datePickerFecha = new _MaterialDatePicker();
+        datePickerFecha = new _MaterialDatePickerIcon();
         datePickerFecha.setLabel("Fecha");
 
         //cuenta
@@ -103,7 +103,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
     private _labelDoubleMoneyPositive labelDebitoValue;
     private _labelDoubleMoneyNegative labelCreditoValue;
-    private _MaterialDatePicker datePickerFecha;
+    private _MaterialDatePickerIcon datePickerFecha;
     private CuentaBancariaICBS cuentaICBS;
     private CuadreICBS cuadreICBS;
     private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;

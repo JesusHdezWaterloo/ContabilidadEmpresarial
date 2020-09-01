@@ -4,7 +4,12 @@ import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
+import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.swing.material.components.table.Column;
+import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellEditor;
+import com.jhw.swing.material.components.table.editors_renders.component.ComponentCellRender;
+import com.jhw.swing.material.components.table.editors_renders.money.MoneyCellRender;
+import com.jhw.swing.material.components.table.editors_renders.money.MoneyTableComponent;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
 import com.jhw.swing.models.detail._MaterialPanelDetail;
 
@@ -29,6 +34,8 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
     }
 
     private void personalize() {
+        setUpEditorsRenders();
+
         this.setHeaderText("Monedas");
         this.setIcon(ContabilidadModuleNavigator.ICON_MONEDA);
 
@@ -46,7 +53,10 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
 
     @Override
     public Object[] getRowObject(MonedaDomain obj) {
-        return new Object[]{obj.getNombreMoneda(), obj.getCompra(), obj.getVenta()};
+        return new Object[]{
+            obj.getNombreMoneda(),
+            MoneyTableComponent.from(obj.getCompra(), MonedaHandler.getMonedaBase()),
+            MoneyTableComponent.from(obj.getVenta(), MonedaHandler.getMonedaBase())};
     }
 
     @Override
@@ -74,4 +84,8 @@ public class MonedaDetailView extends _MaterialPanelDetail<MonedaDomain> {
         System.out.println("NO NECESARIO TODAVÍA.");
     }
 
+    private void setUpEditorsRenders() {
+        getTable().getColumn(COL_COMPRA).setCellRenderer(new MoneyCellRender());
+        getTable().getColumn(COL_VENTA).setCellRenderer(new MoneyCellRender());
+    }
 }

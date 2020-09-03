@@ -86,7 +86,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
             getLiquidado(obj),
             obj.info().getDocumento(),
             obj.info().getNombre(),
-            SDF.format(obj.info().getFecha()),
+            SDF.SDF.format(obj.info().getFecha()),
             obj.getOperacionContableFk().getCuentaFk(),
             MoneyTableComponent.from(obj.getOperacionContableFk().getDebito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getOperacionContableFk().getCredito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),

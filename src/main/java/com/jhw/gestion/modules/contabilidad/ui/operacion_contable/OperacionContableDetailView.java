@@ -86,7 +86,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
             obj.getInfoOperacionContableFk().getNombre(),
             MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
-            SDF.format(obj.getInfoOperacionContableFk().getFecha()),
+            SDF.SDF.format(obj.getInfoOperacionContableFk().getFecha()),
             obj.getCuentaFk()
         };
     }

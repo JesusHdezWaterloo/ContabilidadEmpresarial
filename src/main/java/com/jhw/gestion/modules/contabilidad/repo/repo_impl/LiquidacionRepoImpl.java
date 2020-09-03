@@ -5,7 +5,7 @@ import com.jhw.gestion.modules.contabilidad.core.repo_def.*;
 import com.jhw.gestion.modules.contabilidad.repo.entities.*;
 import com.jhw.gestion.modules.contabilidad.repo.utils.ResourcesContabilidad;
 import com.jhw.utils.jackson.JACKSON;
-import com.jhw.utils.jpa.ConverterService;
+import com.jhw.utils.services.ConverterService;
 import com.jhw.utils.jpa.JPACleanCRUDRepo;
 import com.jhw.utils.jpa.NonExistingEntityException;
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
+import com.clean.core.app.services.ExceptionHandler;
 import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
@@ -90,7 +91,8 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
                 }
             }
         } catch (Exception e) {
-            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR, Resource.getString("msg.default_config.error.check_integrity"));
+            ExceptionHandler.handleException(e);
+            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, Resource.getString("msg.default_config.error.check_integrity"));
         }
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.jhw.gestion.modules.contabilidad.repo.utils;
 
+import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.mysql.services.MySQLHandler;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,7 +24,7 @@ public class ResourcesContabilidad {
         try {
             EMF = Persistence.createEntityManagerFactory("ContabilidadPU", MySQLHandler.propertiesMap(SCHEMA));
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.handleException(e);
         }
     }
 }

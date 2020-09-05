@@ -32,15 +32,9 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         return new LiquidacionInputView(null, null);
     }
 
-    private final LiquidacionDomain base;
-
     private LiquidacionInputView(LiquidacionDomain base, LiquidacionDomain model) {
         super(model, ContabilidadSwingModule.liquicadionUC, LiquidacionDomain.class);
-        if (model != null) {
-            this.base = model;
-        } else {
-            this.base = base;
-        }
+        setBase(base);
         initComponents();
         addListeners();
         update();
@@ -112,17 +106,10 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     @Override
     public void update() {
         super.update();
-        cuadreICBS.setEnabled(base == null);
-        if (base == null) {
-            labelCreditoValue.setMoney(BigDecimal.ZERO, "");
+        cuadreICBS.setEnabled(getBase() == null);
+        if (getBase() == null) {
+            labelCreditoValue.setMoney(BigDecimal.ZERO, "");//en el edit se actualizan por el get selected del cuadreICBS
             labelDebitoValue.setMoney(BigDecimal.ZERO, "");
-        } else {
-            datePickerFecha.setDate(base.getFecha());
-            cuadreICBS.setSelectedItem(base.getCuadreFk());
-            cuentaICBS.setSelectedItem(base.getCuentaFk());
-            textFieldNombre.setText(base.getNombre());
-            labelCreditoValue.setMoney(base.getCredito(), base.getCuentaFk().getMonedaFk());
-            labelDebitoValue.setMoney(base.getDebito(), base.getCuentaFk().getMonedaFk());
         }
     }
 

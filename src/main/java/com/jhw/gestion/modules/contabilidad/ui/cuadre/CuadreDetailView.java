@@ -147,12 +147,12 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         this.addActionExtra(new AbstractAction("Liquidar", ContabilidadModuleNavigator.ICON_LIQUIDACIONES.deriveIcon(18f)) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onLiquidarMaterialActionPerformed();
+                onLiquidarCuadreActionPerformed();
             }
         });
     }
 
-    private void onLiquidarMaterialActionPerformed() {
+    private void onLiquidarCuadreActionPerformed() {
         try {
             CuadreDomain obj = getSelectedElement();
             if (obj.getLiquidada()) {

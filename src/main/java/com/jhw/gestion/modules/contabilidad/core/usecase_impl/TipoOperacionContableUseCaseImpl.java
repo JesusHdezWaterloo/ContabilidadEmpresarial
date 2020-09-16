@@ -1,7 +1,6 @@
 package com.jhw.gestion.modules.contabilidad.core.usecase_impl;
 
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
-import com.clean.core.domain.services.Resource;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.gestion.modules.contabilidad.core.usecase_def.*;

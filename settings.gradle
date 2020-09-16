@@ -18,3 +18,7 @@ include 'module-default-config', 'module-licence', 'module-mysql'
 project(':module-default-config').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Modulos Utils\\DefaultConfiguration" as File
 project(':module-licence').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Modulos Utils\\Licence" as File
 project(':module-mysql').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Modulos Utils\\MySQL" as File
+
+include 'module-export', 'module-files'
+project(':module-export').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Modulos Utils\\Export" as File
+project(':module-files').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\Modulos Utils\\Files" as File

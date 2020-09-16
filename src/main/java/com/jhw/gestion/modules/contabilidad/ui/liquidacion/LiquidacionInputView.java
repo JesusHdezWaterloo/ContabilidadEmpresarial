@@ -7,10 +7,13 @@ import com.jhw.gestion.modules.contabilidad.ui.cuadre.CuadreICBS;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.datepicker._MaterialDatePickerIcon;
-import com.jhw.swing.material.components.labels.prepared.*;
+import com.jhw.swing.material.components.labels.MaterialLabelDobleMoney;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -32,15 +35,9 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         return new LiquidacionInputView(null, null);
     }
 
-    private final LiquidacionDomain base;
-
     private LiquidacionInputView(LiquidacionDomain base, LiquidacionDomain model) {
         super(model, ContabilidadSwingModule.liquicadionUC, LiquidacionDomain.class);
-        if (model != null) {
-            this.base = model;
-        } else {
-            this.base = base;
-        }
+        setBase(base);
         initComponents();
         addListeners();
         update();
@@ -50,23 +47,23 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         setHeader("Crear Liquidación", "Editar Liquidación");
 
         //nombre
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombre = MaterialTextFactory.buildIcon();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Liquidación");
         textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //documento
-        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldDocumento= MaterialTextFactory.buildIcon();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
         textFieldDocumento.setIcon(MaterialIcons.DRAFTS);
 
         //debito
-        labelDebitoValue = new _labelDoubleMoneyPositive();
+        labelDebitoValue = MaterialLabelsFactory.buildDoubleMoneyPositive();
         labelDebitoValue.setText("Débito");
 
         //credito
-        labelCreditoValue = new _labelDoubleMoneyNegative();
+        labelCreditoValue  = MaterialLabelsFactory.buildDoubleMoneyNegative();
         labelCreditoValue.setText("Crédito");
 
         //fecha
@@ -99,30 +96,23 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldDocumento;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
-    private _labelDoubleMoneyPositive labelDebitoValue;
-    private _labelDoubleMoneyNegative labelCreditoValue;
+    private MaterialTextFieldIcon textFieldDocumento;
+    private MaterialTextFieldIcon textFieldNombre;
+    private MaterialLabelDobleMoney labelDebitoValue;
+    private MaterialLabelDobleMoney labelCreditoValue;
     private _MaterialDatePickerIcon datePickerFecha;
     private CuentaBancariaICBS cuentaICBS;
     private CuadreICBS cuadreICBS;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override
     public void update() {
         super.update();
-        cuadreICBS.setEnabled(base == null);
-        if (base == null) {
-            labelCreditoValue.setMoney(BigDecimal.ZERO, "");
+        cuadreICBS.setEnabled(getBase() == null);
+        if (getBase() == null) {
+            labelCreditoValue.setMoney(BigDecimal.ZERO, "");//en el edit se actualizan por el get selected del cuadreICBS
             labelDebitoValue.setMoney(BigDecimal.ZERO, "");
-        } else {
-            datePickerFecha.setDate(base.getFecha());
-            cuadreICBS.setSelectedItem(base.getCuadreFk());
-            cuentaICBS.setSelectedItem(base.getCuentaFk());
-            textFieldNombre.setText(base.getNombre());
-            labelCreditoValue.setMoney(base.getCredito(), base.getCuentaFk().getMonedaFk());
-            labelDebitoValue.setMoney(base.getDebito(), base.getCuentaFk().getMonedaFk());
         }
     }
 
@@ -146,7 +136,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
 
     private void onCuadreICBSActionPerformed() {
         try {
-            CuadreDomain cuadre = cuadreICBS.getSelectedItem();
+            CuadreDomain cuadre = cuadreICBS.getObject();
             labelCreditoValue.setMoney(cuadre.getOperacionContableFk().getDebito(), cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk());
             labelDebitoValue.setMoney(cuadre.getOperacionContableFk().getCredito(), cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk());
         } catch (Exception e) {

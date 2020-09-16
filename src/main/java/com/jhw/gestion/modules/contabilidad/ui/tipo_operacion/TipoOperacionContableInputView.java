@@ -5,6 +5,10 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.awt.event.ActionEvent;
 import java.util.Map;
@@ -34,7 +38,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         setHeader("Crear Tipo de Operación", "Editar Tipo de Operación");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldTipo = MaterialTextFactory.buildIcon();
         textFieldTipo.setLabel("Tipo de operación");
         textFieldTipo.setHint("Nombre del tipo de operación. Ej.: Gasto");
         textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
@@ -48,7 +52,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         cuentaDefectoCuadre.setLabel("Tipo de cuenta de cuadre");
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
@@ -60,10 +64,10 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
+    private MaterialTextFieldIcon textFieldTipo;
     private TipoCuentaICBS cuentaDefecto;
     private TipoCuentaICBS cuentaDefectoCuadre;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override
@@ -89,7 +93,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
 
     private void updateCuadreICBS() {
         try {
-            cuentaDefectoCuadre.updateComboBoxCuadre(cuentaDefecto.getSelectedItem());
+            cuentaDefectoCuadre.updateComboBoxCuadre(cuentaDefecto.getObject());
         } catch (Exception e) {
         }
     }

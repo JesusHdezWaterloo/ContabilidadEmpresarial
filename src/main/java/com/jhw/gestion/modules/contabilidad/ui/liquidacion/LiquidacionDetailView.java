@@ -94,7 +94,7 @@ public class LiquidacionDetailView extends _MaterialPanelDetail<LiquidacionDomai
             obj.getNombre(),
             MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
-            SDF.format(obj.getFecha()),
+            SDF.SDF.format(obj.getFecha()),
             obj.getCuadreFk(),
             obj.getCuentaFk()
         };

@@ -37,6 +37,9 @@ dependencies {
     implementation project(':module-licence')
     implementation project(':module-mysql')
     
+    implementation project(':module-export')
+    implementation project(':module-files')
+    
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
     
     //EclipseLink

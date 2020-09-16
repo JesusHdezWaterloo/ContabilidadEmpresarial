@@ -86,7 +86,7 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
             getLiquidado(obj),
             obj.info().getDocumento(),
             obj.info().getNombre(),
-            SDF.format(obj.info().getFecha()),
+            SDF.SDF.format(obj.info().getFecha()),
             obj.getOperacionContableFk().getCuentaFk(),
             MoneyTableComponent.from(obj.getOperacionContableFk().getDebito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getOperacionContableFk().getCredito(), obj.getOperacionContableFk().getCuentaFk().getMonedaFk()),
@@ -147,12 +147,12 @@ public class CuadreDetailView extends _MaterialPanelDetail<CuadreDomain> {
         this.addActionExtra(new AbstractAction("Liquidar", ContabilidadModuleNavigator.ICON_LIQUIDACIONES.deriveIcon(18f)) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                onLiquidarMaterialActionPerformed();
+                onLiquidarCuadreActionPerformed();
             }
         });
     }
 
-    private void onLiquidarMaterialActionPerformed() {
+    private void onLiquidarCuadreActionPerformed() {
         try {
             CuadreDomain obj = getSelectedElement();
             if (obj.getLiquidada()) {

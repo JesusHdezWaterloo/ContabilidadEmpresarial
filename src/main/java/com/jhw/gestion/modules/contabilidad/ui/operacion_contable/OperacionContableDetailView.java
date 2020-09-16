@@ -1,6 +1,5 @@
 package com.jhw.gestion.modules.contabilidad.ui.operacion_contable;
 
-import com.jhw.gestion.modules.contabilidad.ui.liquidacion.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
@@ -86,7 +85,7 @@ public class OperacionContableDetailView extends _MaterialPanelDetail<OperacionC
             obj.getInfoOperacionContableFk().getNombre(),
             MoneyTableComponent.from(obj.getDebito(), obj.getCuentaFk().getMonedaFk()),
             MoneyTableComponent.from(obj.getCredito(), obj.getCuentaFk().getMonedaFk()),
-            SDF.format(obj.getInfoOperacionContableFk().getFecha()),
+            SDF.SDF.format(obj.getInfoOperacionContableFk().getFecha()),
             obj.getCuentaFk()
         };
     }

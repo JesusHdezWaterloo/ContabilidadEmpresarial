@@ -40,7 +40,7 @@ public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDom
     public void setMatchingItem(TipoCuentaDomain tipo, MonedaDomain moneda) {
         for (CuentaContableDomain c : actualList) {
             if (c.getTipoCuentaFk().equals(tipo) && c.getMonedaFk().equals(moneda)) {
-                setSelectedItem(c);
+                setObject(c);
                 break;
             }
         }

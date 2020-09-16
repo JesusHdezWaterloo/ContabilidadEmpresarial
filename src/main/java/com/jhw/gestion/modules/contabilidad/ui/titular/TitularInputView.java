@@ -4,6 +4,10 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
@@ -30,13 +34,13 @@ public class TitularInputView extends CleanCRUDInputView<TitularDomain> {
         setHeader("Crear Titular", "Editar Titular");
 
         //tipo
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombre = MaterialTextFactory.buildIcon();
         textFieldNombre.setLabel("Titular");
         textFieldNombre.setHint("Nombre del titilar");
         textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion  = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombre);
@@ -46,8 +50,8 @@ public class TitularInputView extends CleanCRUDInputView<TitularDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextFieldIcon textFieldNombre;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override

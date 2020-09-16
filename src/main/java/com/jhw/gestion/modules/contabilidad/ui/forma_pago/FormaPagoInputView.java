@@ -4,6 +4,10 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
@@ -32,13 +36,13 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
         setHeader("Crear Tipo de Pago", "Editar Tipo de Pago");
 
         //nombre
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombre = MaterialTextFactory.buildIcon();
         textFieldNombre.setLabel("Tipo de pago");
         textFieldNombre.setHint("Nombre del tipo de pago. Ej: Efectivo");
         textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion  = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
 
@@ -48,10 +52,8 @@ public class FormaPagoInputView extends CleanCRUDInputView<FormaPagoDomain> {
         this.setComponent(vlc.build());
     }
 
-    // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
-    // End of variables declaration                   
+    private MaterialTextFieldIcon textFieldNombre;
+    private MaterialTextArea textAreaDescripcion;
 
     @Override
     public Map<String, Object> bindFields() {

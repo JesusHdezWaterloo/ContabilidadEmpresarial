@@ -4,7 +4,11 @@ import com.jhw.swing.material.components.container.layout.VerticalLayoutContaine
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.FechaDescUI;
 import com.jhw.gestion.modules.contabilidad.ui.forma_pago.FormaPagoICBS;
+import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
+import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
 import com.jhw.swing.material.components.datepicker._MaterialDatePickerIcon;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
 import java.util.Map;
 
 /**
@@ -27,14 +31,14 @@ public class FechaDescInputView extends CleanCRUDInputView<FechaDescUI> {
         setHeader("", "");
 
         //fecha
-        datePickerFecha = new _MaterialDatePickerIcon();
+        datePickerFecha = MaterialDatePickersFactory.buildIcon();
         datePickerFecha.setLabel("Fecha");
 
         //forma de pago
         formaPagoICBS = new FormaPagoICBS();
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(datePickerFecha);
@@ -45,9 +49,9 @@ public class FechaDescInputView extends CleanCRUDInputView<FechaDescUI> {
     }
 
     // Variables declaration - do not modify
-    private _MaterialDatePickerIcon datePickerFecha;
+    private MaterialDatePickerIcon datePickerFecha;
     private FormaPagoICBS formaPagoICBS;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override

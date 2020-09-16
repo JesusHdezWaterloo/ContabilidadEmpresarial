@@ -6,6 +6,12 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
+import com.jhw.swing.material.components.toggle.MaterialToggleButton;
+import com.jhw.swing.material.components.toggle.MaterialToggleFactory;
 import com.jhw.swing.material.components.toggle.ToggleGroup;
 import com.jhw.swing.material.components.toggle._MaterialCheckBox;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -35,30 +41,30 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
         setHeader("Crear Tipo de Cuenta", "Editar Tipo de Cuenta");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldTipo = MaterialTextFactory.buildIcon();
         textFieldTipo.setLabel("Tipo de cuenta");
         textFieldTipo.setHint("Nombre del tipo de cuenta. Ej.: Cuenta por Pagar");
         textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //debito
-        checkBoxDebito = new _MaterialCheckBox();
+        checkBoxDebito = MaterialToggleFactory.buildCheckBox();
         checkBoxDebito.setText("Débito");
         checkBoxDebito.setSelected(true);
 
         //credito
-        checkBoxCredito = new _MaterialCheckBox();
+        checkBoxCredito = MaterialToggleFactory.buildCheckBox();
         checkBoxCredito.setText("Crédito");
 
-        ToggleGroup group = new ToggleGroup();
+        ToggleGroup group = MaterialToggleFactory.buildGroup();
         group.add(checkBoxDebito);
         group.add(checkBoxCredito);
 
         //liquidable
-        checkBoxLiquidable = new _MaterialCheckBox();
+        checkBoxLiquidable = MaterialToggleFactory.buildCheckBox();
         checkBoxLiquidable.setText("Liquidable");
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
@@ -75,11 +81,11 @@ public class TipoCuentaInputView extends CleanCRUDInputView<TipoCuentaDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
-    private _MaterialCheckBox checkBoxDebito;
-    private _MaterialCheckBox checkBoxCredito;
-    private _MaterialCheckBox checkBoxLiquidable;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextFieldIcon textFieldTipo;
+    private MaterialToggleButton checkBoxDebito;
+    private MaterialToggleButton checkBoxCredito;
+    private MaterialToggleButton checkBoxLiquidable;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override

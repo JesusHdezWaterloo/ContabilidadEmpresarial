@@ -6,16 +6,20 @@
 package com.jhw.gestion.modules.contabilidad.ui.cuenta;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.Cuenta;
+import com.jhw.swing.material.components.button.MaterialButton;
+import com.jhw.swing.material.components.button.MaterialButtonIcon;
+import com.jhw.swing.material.components.button.MaterialButtonsFactory;
 import com.jhw.swing.material.components.button._MaterialButtonIconTransparent;
 import com.jhw.swing.material.components.button.prepared._buttonView;
+import com.jhw.swing.material.components.container.MaterialContainersFactory;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.container.panel._MaterialPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
+import com.jhw.swing.material.components.labels.MaterialLabel;
+import com.jhw.swing.material.components.labels.MaterialLabelDobleMoney;
+import com.jhw.swing.material.components.labels.MaterialLabelsFactory;
 import com.jhw.swing.material.components.labels._MaterialLabel;
-import com.jhw.swing.material.components.labels.prepared._labelDoubleMoney;
-import com.jhw.swing.material.components.labels.prepared._labelDoubleMoneyNegative;
-import com.jhw.swing.material.components.labels.prepared._labelDoubleMoneyPositive;
 import com.jhw.swing.material.standards.MaterialColors;
 import com.jhw.swing.material.standards.MaterialFontRoboto;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -23,6 +27,7 @@ import com.jhw.swing.material.standards.MaterialShadow;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -55,33 +60,33 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
         _PanelTransparent actions = new _PanelTransparent();
         actions.setLayout(new BorderLayout());
 
-        buttonEdit = new _MaterialButtonIconTransparent();
+        buttonEdit = MaterialButtonsFactory.buildIconTransparent();
         buttonEdit.setIcon(MaterialIcons.EDIT);
         buttonEdit.setRippleColor(MaterialColors.BLUEA_400);
         actions.add(buttonEdit, BorderLayout.WEST);
 
-        buttonView = new _buttonView();
+        buttonView = MaterialButtonsFactory.buildView();
         buttonView.setText("Detalles");
         actions.add(buttonView, BorderLayout.EAST);
         this.add(actions, BorderLayout.SOUTH);
 
         //background
-        _PanelTransparent background = new _PanelTransparent();
+        JPanel background = MaterialContainersFactory.buildPanelTransparent();
         background.setLayout(new BorderLayout());
         background.setBorder(new EmptyBorder(5, 10, 0, 10));
 
         //nombre
-        labelNombreCuenta = new _MaterialLabel();
+        labelNombreCuenta = MaterialLabelsFactory.build();
         labelNombreCuenta.setFont(MaterialFontRoboto.BOLD.deriveFont(24f));
         background.add(labelNombreCuenta, BorderLayout.NORTH);
 
-        debito = new _labelDoubleMoneyPositive();
+        debito = MaterialLabelsFactory.buildDoubleMoneyPositive();
         debito.setText("Débito");
 
-        credito = new _labelDoubleMoneyNegative();
+        credito = MaterialLabelsFactory.buildDoubleMoneyNegative();
         credito.setText("Crédito");
 
-        saldo = new _labelDoubleMoney();
+        saldo = MaterialLabelsFactory.buildDoubleMoney();
         saldo.setText("Saldo");
 
         //center
@@ -95,13 +100,12 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
         this.add(background);
     }
     
-    private _MaterialLabel labelNombreCuenta;
-
-    private _labelDoubleMoneyPositive debito;
-    private _labelDoubleMoneyNegative credito;
-    private _labelDoubleMoney saldo;
-    private _buttonView buttonView;
-    private _MaterialButtonIconTransparent buttonEdit;
+    private MaterialLabel labelNombreCuenta;
+    private MaterialLabelDobleMoney debito;
+    private MaterialLabelDobleMoney credito;
+    private MaterialLabelDobleMoney saldo;
+    private MaterialButton buttonView;
+    private MaterialButtonIcon buttonEdit;
 
     private void addListeners() {
         buttonEdit.addActionListener((ActionEvent e) -> {

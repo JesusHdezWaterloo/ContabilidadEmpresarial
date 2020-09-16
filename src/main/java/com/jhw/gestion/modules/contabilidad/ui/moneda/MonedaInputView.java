@@ -7,7 +7,14 @@ import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -35,23 +42,23 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
         setHeader("Crear Moneda", "Editar Moneda");
 
         //tipo
-        textFieldTipo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldTipo = MaterialTextFactory.buildIcon();
         textFieldTipo.setLabel("Moneda");
         textFieldTipo.setHint("Nombre de moneda. Ej.: EUR");
         textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //compra
-        textFieldCompra = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon();
+        textFieldCompra = MaterialTextFactory.buildFormatedMoneyIcon();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
         //venta
-        textFieldVenta = new com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon();
+        textFieldVenta = MaterialTextFactory.buildFormatedMoneyIcon();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);
@@ -66,10 +73,10 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon textFieldCompra;
-    private com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon textFieldVenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldTipo;
+    private MaterialTextArea textAreaDescripcion;
+    private MaterialFormatedTextFieldIcon<BigDecimal> textFieldCompra;
+    private MaterialFormatedTextFieldIcon<BigDecimal> textFieldVenta;
+    private MaterialTextFieldIcon textFieldTipo;
     // End of variables declaration                   
 
     private void personalize() {

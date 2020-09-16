@@ -8,6 +8,12 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
+import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
@@ -36,31 +42,31 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         setHeader("Crear Cuenta Bancaria", "Editar Cuenta Bancaria");
 
         //nombre
-        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombreCuenta = MaterialTextFactory.buildIcon();
         textFieldNombreCuenta.setLabel("Nombre");
         textFieldNombreCuenta.setHint("Nombre de la cuenta");
         textFieldNombreCuenta.setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
 
         //numero cuenta
-        textFieldNumeroCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNumeroCuenta = MaterialTextFactory.buildFormatedRuntimeIcon(null);
         textFieldNumeroCuenta.setLabel("Número de cuenta");
         textFieldNumeroCuenta.setHint("Número de la cuenta bancaria. Ej: 0598...");
         textFieldNumeroCuenta.setIcon(MaterialIcons.BUSINESS_CENTER);
 
         //numero tarjeta
-        textFieldNumeroTarjeta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNumeroTarjeta = MaterialTextFactory.buildFormatedRuntimeIcon(null);
         textFieldNumeroTarjeta.setLabel("Número de tarjeta");
         textFieldNumeroTarjeta.setHint("Número de la tarjeta magnética asociada");
         textFieldNumeroTarjeta.setIcon(MaterialIcons.CREDIT_CARD);
 
         //pin
-        textFieldPin = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldPin = MaterialTextFactory.buildIcon();
         textFieldPin.setLabel("Pin");
         textFieldPin.setHint("Pin de la tarjeta");
         textFieldPin.setIcon(MaterialIcons.SECURITY);
 
         //codigo
-        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldCodigo = MaterialTextFactory.buildIcon();
         textFieldCodigo.setLabel("Código contable");
         textFieldCodigo.setHint("Código de identificación. Ej: 110");
         textFieldCodigo.setIcon(MaterialIcons.GRID_ON);
@@ -70,7 +76,7 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         monedaICBS.setIcon(MaterialIcons.ATTACH_MONEY);
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);
@@ -90,13 +96,13 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombreCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNumeroCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNumeroTarjeta;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldPin;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldCodigo;
+    private MaterialTextFieldIcon<String> textFieldNombreCuenta;
+    private MaterialFormatedTextFieldIcon<String> textFieldNumeroCuenta;
+    private MaterialFormatedTextFieldIcon<String> textFieldNumeroTarjeta;
+    private MaterialTextFieldIcon<String> textFieldPin;
+    private MaterialTextFieldIcon<String> textFieldCodigo;
     private MonedaICBS monedaICBS;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override

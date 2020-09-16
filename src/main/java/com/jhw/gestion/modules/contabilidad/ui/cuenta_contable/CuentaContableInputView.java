@@ -8,6 +8,10 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.titular.TitularICBS;
+import com.jhw.swing.material.components.textarea.MaterialTextArea;
+import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
@@ -36,13 +40,13 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         setHeader("Crear Cuenta Contable", "Editar Cuenta Contable");
 
         //nombre
-        textFieldNombreCuenta = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombreCuenta = MaterialTextFactory.buildIcon();
         textFieldNombreCuenta.setLabel("Nombre");
         textFieldNombreCuenta.setHint("Nombre de la cuenta");
         textFieldNombreCuenta.setIcon(ContabilidadModuleNavigator.ICON_CUENTA_CONTABLE);
 
         //codigo
-        textFieldCodigo = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldCodigo = MaterialTextFactory.buildIcon();
         textFieldCodigo.setLabel("Código contable");
         textFieldCodigo.setHint("Código de identificación. Ej: 110");
         textFieldCodigo.setIcon(MaterialIcons.GRID_ON);
@@ -58,7 +62,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         titularICBS = new TitularICBS();
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);
@@ -72,12 +76,12 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombreCuenta;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldCodigo;
+    private MaterialTextFieldIcon textFieldNombreCuenta;
+    private MaterialTextFieldIcon textFieldCodigo;
     private MonedaICBS monedaICBS;
     private TipoCuentaICBS tipoCuentaICBS;
     private TitularICBS titularICBS;
-    private com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion textAreaDescripcion;
+    private MaterialTextArea textAreaDescripcion;
     // End of variables declaration                   
 
     @Override

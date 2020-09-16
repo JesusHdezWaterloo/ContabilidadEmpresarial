@@ -1,6 +1,5 @@
 package com.jhw.gestion.modules.contabilidad.ui.operacion_contable;
 
-import com.jhw.gestion.modules.contabilidad.ui.liquidacion.*;
 import com.clean.core.app.services.ExceptionHandler;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;

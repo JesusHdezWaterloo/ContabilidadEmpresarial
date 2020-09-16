@@ -3,6 +3,8 @@ package com.jhw.gestion.modules.contabilidad.ui.cuadre.pedazos;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.models.clean.CleanCRUDInputView;
 import com.jhw.gestion.modules.contabilidad.core.domain.facade.DocNombreUI;
+import com.jhw.swing.material.components.textfield.MaterialTextFactory;
+import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
 import java.util.Map;
 
@@ -26,13 +28,13 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
         setHeader("", "");
 
         //compra
-        textFieldNombre = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldNombre = MaterialTextFactory.buildIcon();
         textFieldNombre.setHint("Nombre");
         textFieldNombre.setLabel("Nombre de la Operación");
         textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //doc
-        textFieldDocumento = new com.jhw.swing.material.components.textfield._MaterialTextFieldIcon();
+        textFieldDocumento = MaterialTextFactory.buildIcon();
         textFieldDocumento.setLabel("Documento");
         textFieldDocumento.setHint("Factura o Transacción asociada");
         textFieldDocumento.setIcon(MaterialIcons.DRAFTS);
@@ -45,8 +47,8 @@ public class DocNombreInputView extends CleanCRUDInputView<DocNombreUI> {
     }
 
     // Variables declaration - do not modify
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldNombre;
-    private com.jhw.swing.material.components.textfield._MaterialTextFieldIcon textFieldDocumento;
+    private MaterialTextFieldIcon<String> textFieldNombre;
+    private MaterialTextFieldIcon<String> textFieldDocumento;
     // End of variables declaration                   
 
     @Override

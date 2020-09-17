@@ -9,7 +9,7 @@ import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import com.jhw.gestion.modules.contabilidad.ui.titular.TitularICBS;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
-import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -62,7 +62,7 @@ public class CuentaContableInputView extends CleanCRUDInputView<CuentaContableDo
         titularICBS = new TitularICBS();
 
         //descripcion
-        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
+        textAreaDescripcion = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);

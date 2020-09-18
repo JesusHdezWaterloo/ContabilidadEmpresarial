@@ -9,11 +9,11 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.utils.MonedaHandler;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
 import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
-import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.prepared.textfield.MaterialPreparedTextFactory;
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -48,12 +48,12 @@ public class MonedaInputView extends CleanCRUDInputView<MonedaDomain> {
         textFieldTipo.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //compra
-        textFieldCompra = MaterialTextFactory.buildFormatedMoneyIcon();
+        textFieldCompra = MaterialPreparedTextFactory.buildFormatedMoneyIcon();
         textFieldCompra.setHint("Precio de compra");
         textFieldCompra.setLabel("Compra");
 
         //venta
-        textFieldVenta = MaterialTextFactory.buildFormatedMoneyIcon();
+        textFieldVenta = MaterialPreparedTextFactory.buildFormatedMoneyIcon();
         textFieldVenta.setHint("Precio de venta");
         textFieldVenta.setLabel("Venta");
 

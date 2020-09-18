@@ -66,7 +66,7 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
 
     @Override
     public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
-        cuenta.setDebito(BigDecimal.ZERO);
+        cuenta.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
         cuenta.setCredito(BigDecimal.ZERO);
         return super.create(cuenta);
     }

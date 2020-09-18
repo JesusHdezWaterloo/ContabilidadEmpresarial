@@ -9,12 +9,13 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigato
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.moneda.MonedaICBS;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
-import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextField;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.utils.formateer.CreditCardFormateer;
 import java.util.Map;
 
 /**
@@ -48,13 +49,13 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         textFieldNombreCuenta.setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
 
         //numero cuenta
-        textFieldNumeroCuenta = MaterialTextFactory.buildFormatedRuntimeIcon(null);
+        textFieldNumeroCuenta = MaterialTextFactory.buildFormatedRuntimeIcon(CreditCardFormateer.from());
         textFieldNumeroCuenta.setLabel("Número de cuenta");
         textFieldNumeroCuenta.setHint("Número de la cuenta bancaria. Ej: 0598...");
         textFieldNumeroCuenta.setIcon(MaterialIcons.BUSINESS_CENTER);
 
         //numero tarjeta
-        textFieldNumeroTarjeta = MaterialTextFactory.buildFormatedRuntimeIcon(null);
+        textFieldNumeroTarjeta = MaterialTextFactory.buildFormatedRuntimeIcon(CreditCardFormateer.from());
         textFieldNumeroTarjeta.setLabel("Número de tarjeta");
         textFieldNumeroTarjeta.setHint("Número de la tarjeta magnética asociada");
         textFieldNumeroTarjeta.setIcon(MaterialIcons.CREDIT_CARD);
@@ -76,7 +77,7 @@ public class CuentaBancariaInputView extends CleanCRUDInputView<CuentaBancariaDo
         monedaICBS.setIcon(MaterialIcons.ATTACH_MONEY);
 
         //descripcion
-        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
+        textAreaDescripcion = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombreCuenta);

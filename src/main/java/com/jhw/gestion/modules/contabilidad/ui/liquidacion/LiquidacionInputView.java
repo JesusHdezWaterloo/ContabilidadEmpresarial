@@ -13,6 +13,7 @@ import com.jhw.swing.material.components.textarea.MaterialTextArea;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
         cuadreICBS = new CuadreICBS();
 
         //descripcion
-        textAreaDescripcion = new com.jhw.swing.material.components.textarea.prepared._MaterialTextAreaDescripcion();
+        textAreaDescripcion = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombre);

@@ -11,5 +11,4 @@ public class CuentaContableRepoImpl extends JPACleanCRUDRepo<CuentaContableDomai
     public CuentaContableRepoImpl() {
         super(ResourcesContabilidad.EMF, CuentaContableDomain.class, CuentaContable.class);
     }
-
 }

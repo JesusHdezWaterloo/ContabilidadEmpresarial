@@ -43,6 +43,13 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
     }
 
     @Override
+    public CuentaContableDomain create(CuentaContableDomain newObject) throws Exception {
+        newObject.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
+        newObject.setCredito(BigDecimal.ZERO);
+        return super.create(newObject);
+    }
+
+    @Override
     public List<CuentaContableDomain> findAll(String searchText) throws Exception {
         List<CuentaContableDomain> cuentasBancarias = findAll();
         List<CuentaContableDomain> cuentas = new ArrayList<>();

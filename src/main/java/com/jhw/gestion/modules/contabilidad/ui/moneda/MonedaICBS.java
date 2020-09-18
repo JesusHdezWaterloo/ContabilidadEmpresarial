@@ -14,6 +14,7 @@ public class MonedaICBS extends InputComboBoxSelection<MonedaDomain> {
 
     public MonedaICBS() {
         super("Moneda");
+        setIcon(null);
     }
 
     @Override

@@ -11,9 +11,8 @@ import com.jhw.gestion.modules.contabilidad.ui.tipo_operacion.TipoOperacionConta
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutComponent;
 import com.jhw.swing.material.components.container.layout.HorizontalLayoutContainer;
 import com.jhw.swing.material.components.textfield.MaterialFormatedTextFieldIcon;
-import com.jhw.swing.material.components.textfield.MaterialTextFactory;
-import com.jhw.swing.material.components.textfield.validated._MaterialTextFieldMoneyIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
+import com.jhw.swing.prepared.textfield.MaterialPreparedTextFactory;
 import java.awt.event.ActionEvent;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void initComponents() {
-        textFieldValor = MaterialTextFactory.buildFormatedMoneyIcon();
+        textFieldValor = MaterialPreparedTextFactory.buildFormatedMoneyIcon();
         textFieldValor.setLabel("Valor");
         textFieldValor.setHint("Valor de la operación");
         textFieldValor.setIcon(MaterialIcons.ATTACH_MONEY);

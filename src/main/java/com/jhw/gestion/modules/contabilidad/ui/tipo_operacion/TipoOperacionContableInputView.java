@@ -6,7 +6,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.tipo_cuenta.TipoCuentaICBS;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
-import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -52,7 +52,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         cuentaDefectoCuadre.setLabel("Tipo de cuenta de cuadre");
 
         //descripcion
-        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
+        textAreaDescripcion = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldTipo);

@@ -5,7 +5,7 @@ import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.material.components.container.layout.VerticalLayoutContainer;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
-import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
@@ -40,7 +40,7 @@ public class TitularInputView extends CleanCRUDInputView<TitularDomain> {
         textFieldNombre.setIcon(MaterialIcons.PRIORITY_HIGH);
 
         //descripcion
-        textAreaDescripcion  = MaterialTextAreaFactory.buildDescripcion();
+        textAreaDescripcion  = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(textFieldNombre);

@@ -8,7 +8,7 @@ import com.jhw.swing.material.components.datepicker.MaterialDatePickerIcon;
 import com.jhw.swing.material.components.datepicker.MaterialDatePickersFactory;
 import com.jhw.swing.material.components.datepicker._MaterialDatePickerIcon;
 import com.jhw.swing.material.components.textarea.MaterialTextArea;
-import com.jhw.swing.material.components.textarea.MaterialTextAreaFactory;
+import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import java.util.Map;
 
 /**
@@ -38,7 +38,7 @@ public class FechaDescInputView extends CleanCRUDInputView<FechaDescUI> {
         formaPagoICBS = new FormaPagoICBS();
 
         //descripcion
-        textAreaDescripcion = MaterialTextAreaFactory.buildDescripcion();
+        textAreaDescripcion = MaterialPreparedTextAreaFactory.buildDescripcion();
 
         VerticalLayoutContainer.builder vlc = VerticalLayoutContainer.builder();
         vlc.add(datePickerFecha);

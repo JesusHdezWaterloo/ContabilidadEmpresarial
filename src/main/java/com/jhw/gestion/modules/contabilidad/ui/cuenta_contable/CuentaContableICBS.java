@@ -6,6 +6,8 @@ import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
+import com.jhw.gestion.modules.contabilidad.ui.titular.TitularInputView;
+import com.jhw.swing.models.input.panels.ModelPanel;
 import java.util.List;
 
 /**
@@ -17,24 +19,29 @@ public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDom
     private List<CuentaContableDomain> actualList;
 
     public CuentaContableICBS() {
-        super("Cuenta Contable");
+        setLabel("Cuenta Contable");
         setIcon(ContabilidadModuleNavigator.ICON_CUENTA_CONTABLE);
     }
 
     @Override
-    public void updateComboBox() throws Exception {
+    public List<CuentaContableDomain> getList() throws Exception{
         actualList = ContabilidadSwingModule.cuentaContableUC.findAll();
-        setModel(actualList);
+        return actualList;
+    }
+
+    @Override
+    public ModelPanel<CuentaContableDomain> inputPanel() {
+        return CuentaContableInputView.from();
     }
 
     public void updateComboBoxCuenta(TipoCuentaDomain tipo) throws Exception {
         actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuenta(tipo);
-        setModel(actualList);
+        setUpList(actualList);
     }
 
     public void updateComboBoxCuadre(TipoCuentaDomain tipo) throws Exception {
         actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo);
-        setModel(actualList);
+        setUpList(actualList);
     }
 
     public void setMatchingItem(TipoCuentaDomain tipo, MonedaDomain moneda) {
@@ -46,17 +53,4 @@ public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDom
         }
     }
 
-    @Override
-    public ActionListener buttonAddAction() {
-        return new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonAddActionPerformed();
-            }
-        };
-    }
-
-    private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, CuentaContableInputView.from());
-    }
 }

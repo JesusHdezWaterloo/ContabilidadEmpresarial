@@ -130,7 +130,7 @@ public class LiquidacionInputView extends CleanCRUDInputView<LiquidacionDomain> 
     }
 
     private void addListeners() {
-        cuadreICBS.getComboBox().addActionListener((ActionEvent e) -> {
+        cuadreICBS.addActionListener((ActionEvent e) -> {
             onCuadreICBSActionPerformed();
         });
     }

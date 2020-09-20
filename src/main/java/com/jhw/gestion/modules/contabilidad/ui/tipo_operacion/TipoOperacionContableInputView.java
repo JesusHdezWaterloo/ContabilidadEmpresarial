@@ -86,7 +86,7 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     }
 
     private void addListeners() {
-        cuentaDefecto.getComboBox().addActionListener((ActionEvent e) -> {
+        cuentaDefecto.addActionListener((ActionEvent e) -> {
             updateCuadreICBS();
         });
     }

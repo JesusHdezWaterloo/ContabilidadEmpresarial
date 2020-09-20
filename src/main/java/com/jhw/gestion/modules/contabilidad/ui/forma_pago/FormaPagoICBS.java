@@ -2,10 +2,10 @@ package com.jhw.gestion.modules.contabilidad.ui.forma_pago;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.*;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
-import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
+import com.jhw.swing.models.input.panels.ModelPanel;
+import java.util.List;
 
 /**
  *
@@ -14,26 +14,18 @@ import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 public class FormaPagoICBS extends InputComboBoxSelection<FormaPagoDomain> {
 
     public FormaPagoICBS() {
-        super("Forma de Pago");
+        setLabel("Forma de Pago");
         setIcon(ContabilidadModuleNavigator.ICON_FORMA_PAGO);
     }
 
     @Override
-    public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.formaPagoUC.findAll());
+    public List<FormaPagoDomain> getList() throws Exception{
+        return ContabilidadSwingModule.formaPagoUC.findAll();
     }
 
     @Override
-    public ActionListener buttonAddAction() {
-        return new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonAddActionPerformed();
-            }
-        };
+    public ModelPanel<FormaPagoDomain> inputPanel() {
+        return FormaPagoInputView.from();
     }
 
-    private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, FormaPagoInputView.from());
-    }
 }

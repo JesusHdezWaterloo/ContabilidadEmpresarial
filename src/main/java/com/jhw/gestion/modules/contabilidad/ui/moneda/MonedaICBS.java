@@ -5,6 +5,10 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
+import com.jhw.gestion.modules.contabilidad.core.domain.TitularDomain;
+import com.jhw.gestion.modules.contabilidad.ui.titular.TitularInputView;
+import com.jhw.swing.models.input.panels.ModelPanel;
+import java.util.List;
 
 /**
  *
@@ -13,26 +17,17 @@ import com.jhw.gestion.modules.contabilidad.core.domain.MonedaDomain;
 public class MonedaICBS extends InputComboBoxSelection<MonedaDomain> {
 
     public MonedaICBS() {
-        super("Moneda");
+        setLabel("Moneda");
         setIcon(null);
     }
 
     @Override
-    public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.monedaUC.findAll());
+    public List<MonedaDomain> getList() throws Exception{
+        return ContabilidadSwingModule.monedaUC.findAll();
     }
 
     @Override
-    public ActionListener buttonAddAction() {
-        return new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonAddActionPerformed();
-            }
-        };
-    }
-
-    private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, MonedaInputView.from());
+    public ModelPanel<MonedaDomain> inputPanel() {
+        return MonedaInputView.from();
     }
 }

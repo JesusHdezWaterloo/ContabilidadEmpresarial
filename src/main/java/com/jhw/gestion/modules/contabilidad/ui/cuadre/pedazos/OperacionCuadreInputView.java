@@ -99,10 +99,10 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void addListeners() {
-        cuentaICBS.getComboBox().addActionListener((ActionEvent e) -> {
+        cuentaICBS.addActionListener((ActionEvent e) -> {
             updateCuadreICBS();
         });
-        tipoOperICBS.getComboBox().addActionListener((ActionEvent e) -> {
+        tipoOperICBS.addActionListener((ActionEvent e) -> {
             changeTipoOp();
         });
     }

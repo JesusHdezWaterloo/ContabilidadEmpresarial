@@ -1,11 +1,11 @@
 package com.jhw.gestion.modules.contabilidad.ui.titular;
 
-import java.awt.event.ActionListener;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
-import com.jhw.swing.models.input.dialogs.DialogInputCBS;
 import com.jhw.swing.models.input.icbs.InputComboBoxSelection;
 import com.jhw.gestion.modules.contabilidad.core.domain.TitularDomain;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
+import com.jhw.swing.models.input.panels.ModelPanel;
+import java.util.List;
 
 /**
  *
@@ -14,26 +14,18 @@ import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigato
 public class TitularICBS extends InputComboBoxSelection<TitularDomain> {
 
     public TitularICBS() {
-        super("Titular");
+        setLabel("Titular");
         setIcon(ContabilidadModuleNavigator.ICON_TITULAR);
     }
 
     @Override
-    public void updateComboBox() throws Exception {
-        setModel(ContabilidadSwingModule.titularUC.findAll());
+    public List<TitularDomain> getList() throws Exception{
+        return ContabilidadSwingModule.titularUC.findAll();
     }
 
     @Override
-    public ActionListener buttonAddAction() {
-        return new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonAddActionPerformed();
-            }
-        };
+    public ModelPanel<TitularDomain> inputPanel() {
+        return TitularInputView.from();
     }
 
-    private void onButtonAddActionPerformed() {
-        new DialogInputCBS(this, TitularInputView.from());
-    }
 }

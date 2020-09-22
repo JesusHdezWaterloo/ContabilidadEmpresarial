@@ -22,12 +22,17 @@ public class MonedaICBS extends InputComboBoxSelection<MonedaDomain> {
     }
 
     @Override
-    public List<MonedaDomain> getList() throws Exception{
+    public List<MonedaDomain> getList() throws Exception {
         return ContabilidadSwingModule.monedaUC.findAll();
     }
 
     @Override
     public ModelPanel<MonedaDomain> inputPanel() {
         return MonedaInputView.from();
+    }
+
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.monedaUC.addPropertyChangeListener(this);
     }
 }

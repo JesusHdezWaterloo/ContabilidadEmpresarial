@@ -115,7 +115,7 @@ public class LiquidacionRepoImpl extends JPACleanCRUDRepo<LiquidacionDomain, Liq
         EntityManager em = getEntityManager();
         try {
             List<Liquidacion> list = em.createQuery(Liquidacion_findByCuenta, Liquidacion.class).setParameter("cuentaFk", ConverterService.convert(cuenta, CuentaBancaria.class)).getResultList();
-            return JACKSON.convert(list, LiquidacionDomain.class);
+            return ConverterService.convert(list, LiquidacionDomain.class);
         } catch (Exception e) {
             return new ArrayList<>();
         } finally {

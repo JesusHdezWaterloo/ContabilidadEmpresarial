@@ -32,4 +32,8 @@ public class TipoCuentaICBS extends InputComboBoxSelection<TipoCuentaDomain> {
         return TipoCuentaInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.tipoCuentaUC.addPropertyChangeListener(this);
+    }
 }

@@ -28,4 +28,8 @@ public class CuadreICBS extends InputComboBoxSelection<CuadreDomain> {
         return CuadreInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.cuadreUC.addPropertyChangeListener(this);
+    }
 }

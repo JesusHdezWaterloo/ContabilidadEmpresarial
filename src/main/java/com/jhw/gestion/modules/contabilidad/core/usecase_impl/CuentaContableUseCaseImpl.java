@@ -27,10 +27,10 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
     @Override
     public CuentaContableDomain edit(CuentaContableDomain objectToUpdate) throws Exception {
         CuentaContableDomain old = findBy(objectToUpdate.getIdCuentaContable());
-        if (old.getDebito() != objectToUpdate.getDebito()) {
+        if (old.getDebito().compareTo(objectToUpdate.getDebito()) != 0) {
             throw new ValidationException("debito", "No se puede modificar el débito directamente, solo mediante operaciones.\nProbablemente alguien haya modificado la cuenta externamente.");
         }
-        if (old.getCredito() != objectToUpdate.getCredito()) {
+        if (old.getCredito().compareTo(objectToUpdate.getCredito()) != 0) {
             throw new ValidationException("credito", "No se puede modificar el crédito directamente, solo mediante operaciones.\nProbablemente alguien haya modificado la cuenta externamente.");
         }
         if (!old.getMonedaFk().equals(objectToUpdate.getMonedaFk())) {

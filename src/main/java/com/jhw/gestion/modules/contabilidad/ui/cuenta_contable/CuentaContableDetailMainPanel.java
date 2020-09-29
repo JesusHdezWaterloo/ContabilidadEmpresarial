@@ -12,6 +12,7 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
+import com.jhw.swing.models.utils.UpdateListener;
 
 /**
  *
@@ -19,14 +20,22 @@ import com.jhw.swing.models.input.dialogs.DialogModelInput;
  */
 public class CuentaContableDetailMainPanel extends CuentaDetailMainPanel<CuentaContableDomain> {
 
+    private final UpdateListener updList = new UpdateListener(this) {
+        @Override
+        public String[] propertiesToListenFor() {
+            return new String[]{"create", "destroy", "destroyById"};
+        }
+    };
+
     public CuentaContableDetailMainPanel() {
         setHeader("Cuentas Contables");
         setIcon(ContabilidadModuleNavigator.ICON_CUENTA_CONTABLE);
+        addPropertyChange();
     }
 
     @Override
     public void createAction() {
-        new DialogModelInput(this, CuentaContableInputView.from());
+        DialogModelInput.from(CuentaContableInputView.from());
     }
 
     @Override
@@ -43,4 +52,7 @@ public class CuentaContableDetailMainPanel extends CuentaDetailMainPanel<CuentaC
         return new CuentaContableSinglePanel(cuenta);
     }
 
+    private void addPropertyChange() {
+        ContabilidadSwingModule.cuentaContableUC.addPropertyChangeListener(updList);
+    }
 }

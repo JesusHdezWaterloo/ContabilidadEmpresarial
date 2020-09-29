@@ -7,9 +7,11 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_contable;
 
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.gestion.modules.contabilidad.ui.operacion_contable.OperacionContableDetailView;
 import com.jhw.swing.models.detail.DialogDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
+import com.jhw.swing.models.utils.UpdateListener;
 
 /**
  *
@@ -17,11 +19,18 @@ import com.jhw.swing.models.input.dialogs.DialogModelInput;
  */
 public class CuentaContableSinglePanel extends CuentaSinglePanel {
 
+    private final UpdateListener updList = new UpdateListener(this) {
+        @Override
+        public String[] propertiesToListenFor() {
+            return new String[]{"edit"};
+        }
+    };
     private final CuentaContableDomain cuenta;
 
     public CuentaContableSinglePanel(CuentaContableDomain cuenta) {
         super(cuenta);
         this.cuenta = cuenta;
+        addPropertyChange();
     }
 
     @Override
@@ -31,7 +40,10 @@ public class CuentaContableSinglePanel extends CuentaSinglePanel {
 
     @Override
     protected void editAction() {
-        new DialogModelInput(this, CuentaContableInputView.fromModel(cuenta));
+        DialogModelInput.from(CuentaContableInputView.fromModel(cuenta));
     }
 
+    private void addPropertyChange() {
+        ContabilidadSwingModule.cuentaContableUC.addPropertyChangeListener(updList);
+    }
 }

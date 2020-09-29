@@ -12,6 +12,8 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadModuleNavigator;
 import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
+import com.jhw.swing.models.utils.UpdateListener;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
@@ -19,14 +21,22 @@ import com.jhw.swing.models.input.dialogs.DialogModelInput;
  */
 public class CuentaBancariaDetailMainPanel extends CuentaDetailMainPanel<CuentaBancariaDomain> {
 
+    private final UpdateListener updList = new UpdateListener(this) {
+        @Override
+        public String[] propertiesToListenFor() {
+            return new String[]{"create", "destroy", "destroyById"};
+        }
+    };
+
     public CuentaBancariaDetailMainPanel() {
         setHeader("Cuentas Bancarias");
         setIcon(ContabilidadModuleNavigator.ICON_CUENTA_BANCARIA);
+        addPropertyChange();
     }
 
     @Override
     public void createAction() {
-        new DialogModelInput(this, CuentaBancariaInputView.from());
+        DialogModelInput.from(CuentaBancariaInputView.from());
     }
 
     @Override
@@ -41,5 +51,9 @@ public class CuentaBancariaDetailMainPanel extends CuentaDetailMainPanel<CuentaB
     @Override
     protected CuentaSinglePanel buildSingle(CuentaBancariaDomain cuenta) {
         return new CuentaBancariaSinglePanel(cuenta);
+    }
+
+    private void addPropertyChange() {
+        ContabilidadSwingModule.cuentaBancariaUC.addPropertyChangeListener(updList);
     }
 }

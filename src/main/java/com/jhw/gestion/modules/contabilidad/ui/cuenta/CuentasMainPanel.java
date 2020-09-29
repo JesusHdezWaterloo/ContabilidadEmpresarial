@@ -9,7 +9,6 @@ import com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria.CuentaBancariaDet
 import com.jhw.gestion.modules.contabilidad.ui.cuenta_contable.CuentaContableDetailMainPanel;
 import com.jhw.swing.material.components.container.panel._PanelTransparent;
 import com.jhw.swing.material.components.scrollpane.SmoothScrollMouseWheelListener;
-import com.jhw.swing.material.components.scrollpane._MaterialScrollPaneCore;
 import com.jhw.utils.interfaces.Update;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;

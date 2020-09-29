@@ -36,7 +36,7 @@ public class CuentaBancariaDomain extends EntityDomainObjectValidated implements
     @Size(max = 4, message = "#msg.module.contabilidad.validation.cuenta_bancaria_pin_tamanno_incorrecto#")
     private String pin;
 
-    @Size(max = 5, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")
+    @Size(max = 10, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")
     private String codigo;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")

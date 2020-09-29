@@ -83,7 +83,7 @@ public class CuentaBancaria implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 5)
+    @Size(min = 1, max = 10)
     @Column(name = "codigo", nullable = false, length = 5)
     private String codigo;
 

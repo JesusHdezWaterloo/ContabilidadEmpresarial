@@ -53,4 +53,8 @@ public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDom
         }
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.cuentaContableUC.addPropertyChangeListener(this);
+    }
 }

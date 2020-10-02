@@ -27,7 +27,7 @@ public class CuentaContableDomain extends EntityDomainObjectValidated implements
     @Size(max = 95, message = "#msg.module.contabilidad.validation.cuenta_nombre_largo#")
     private String nombreCuenta;
 
-    @Size(max = 5, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")
+    @Size(max = 10, message = "#msg.module.contabilidad.validation.cuenta_codigo_tamanno_incorrecto#")
     private String codigo;
 
     @PositiveOrZero(message = "#msg.module.contabilidad.validation.debito_negativo#")

@@ -8,8 +8,10 @@ package com.jhw.gestion.modules.contabilidad.ui.cuenta_bancaria;
 import com.jhw.gestion.modules.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.gestion.modules.contabilidad.ui.liquidacion.LiquidacionDetailView;
 import com.jhw.gestion.modules.contabilidad.ui.cuenta.CuentaSinglePanel;
+import com.jhw.gestion.modules.contabilidad.ui.module.ContabilidadSwingModule;
 import com.jhw.swing.models.detail.DialogDetail;
 import com.jhw.swing.models.input.dialogs.DialogModelInput;
+import com.jhw.swing.models.utils.UpdateListener;
 
 /**
  *
@@ -17,11 +19,18 @@ import com.jhw.swing.models.input.dialogs.DialogModelInput;
  */
 public class CuentaBancariaSinglePanel extends CuentaSinglePanel {
 
+    private final UpdateListener updList = new UpdateListener(this) {
+        @Override
+        public String[] propertiesToListenFor() {
+            return new String[]{"edit"};
+        }
+    };
     private final CuentaBancariaDomain cuenta;
 
     public CuentaBancariaSinglePanel(CuentaBancariaDomain cuenta) {
         super(cuenta);
         this.cuenta = cuenta;
+        addPropertyChange();
     }
 
     @Override
@@ -31,7 +40,10 @@ public class CuentaBancariaSinglePanel extends CuentaSinglePanel {
 
     @Override
     protected void editAction() {
-        new DialogModelInput(this, CuentaBancariaInputView.fromModel(cuenta));
+        DialogModelInput.from(CuentaBancariaInputView.fromModel(cuenta));
     }
 
+    private void addPropertyChange() {
+        ContabilidadSwingModule.cuentaBancariaUC.addPropertyChangeListener(updList);
+    }
 }

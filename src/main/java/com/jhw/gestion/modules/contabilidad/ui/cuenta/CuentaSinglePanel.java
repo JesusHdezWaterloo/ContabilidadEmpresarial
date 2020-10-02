@@ -124,6 +124,7 @@ public abstract class CuentaSinglePanel extends _MaterialPanel implements Update
         this.debito.setMoney(cuenta.getDebito(), cuenta.getMonedaFk());
         this.credito.setMoney(cuenta.getCredito(), cuenta.getMonedaFk());
         this.saldo.setMoney(cuenta.saldo(), cuenta.getMonedaFk());
+        this.setToolTipText(cuenta.getDescripcion());
     }
 
 }

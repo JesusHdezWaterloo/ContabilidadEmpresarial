@@ -28,4 +28,8 @@ public class CuentaBancariaICBS extends InputComboBoxSelection<CuentaBancariaDom
         return CuentaBancariaInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.cuentaBancariaUC.addPropertyChangeListener(this);
+    }
 }

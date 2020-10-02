@@ -28,4 +28,8 @@ public class FormaPagoICBS extends InputComboBoxSelection<FormaPagoDomain> {
         return FormaPagoInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.formaPagoUC.addPropertyChangeListener(this);
+    }
 }

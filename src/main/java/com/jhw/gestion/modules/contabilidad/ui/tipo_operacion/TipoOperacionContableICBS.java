@@ -28,4 +28,8 @@ public class TipoOperacionContableICBS extends InputComboBoxSelection<TipoOperac
         return TipoOperacionContableInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.tipoOperacionContableUC.addPropertyChangeListener(this);
+    }
 }

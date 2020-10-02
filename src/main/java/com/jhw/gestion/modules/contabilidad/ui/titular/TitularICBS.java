@@ -28,4 +28,8 @@ public class TitularICBS extends InputComboBoxSelection<TitularDomain> {
         return TitularInputView.from();
     }
 
+    @Override
+    protected void addPropertyChange() {
+        ContabilidadSwingModule.titularUC.addPropertyChangeListener(this);
+    }
 }

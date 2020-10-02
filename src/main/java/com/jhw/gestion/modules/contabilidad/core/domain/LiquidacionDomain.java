@@ -180,10 +180,10 @@ public class LiquidacionDomain extends EntityDomainObjectValidated implements De
         ValidationResult v = super.validate();
         BigDecimal debCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getDebito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
         BigDecimal credCuadre = MonedaHandler.venta(cuadreFk.getOperacionContableFk().getCredito(), cuadreFk.getOperacionContableFk().getCuentaFk().getMonedaFk(), getCuentaFk().getMonedaFk());
-        if (debito != debCuadre) {
+        if (debito.compareTo(credCuadre) != 0) {
             v.add(ValidationMessage.from("debito", "El débito de la operación y la liquidación tienen que coincidir para mantener el cuadre."));
         }
-        if (credito != credCuadre) {
+        if (credito.compareTo(debCuadre) != 0) {
             v.add(ValidationMessage.from("credito", "El crédito de la operación y la liquidación tienen que coincidir para mantener el cuadre."));
         }
         return v.throwException();

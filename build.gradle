@@ -2,20 +2,11 @@ plugins {
     id 'java'
 }
 
-group = 'com.jhw.gestion.modules.contabilidad'
+group = 'com.jhw.module.gestion'
 
 repositories {
     jcenter()
     mavenCentral()
-}
-
-allprojects{
-    gradle.projectsEvaluated{
-        tasks.withType(JavaCompile){
-            //options.compilerArgs << "-Xlint:deprecation"
-            //options.compilerArgs << "-Xlint:unchecked"
-        }
-    }
 }
 
 dependencies {
@@ -38,7 +29,7 @@ dependencies {
     
     implementation project(':module-util-default_configuration')
     implementation project(':module-util-licence')
-    implementation project(':module-util-my_sql')
+    implementation project(':module-util-mysql')
     
     implementation project(':utils-export')
     implementation project(':utils-files')

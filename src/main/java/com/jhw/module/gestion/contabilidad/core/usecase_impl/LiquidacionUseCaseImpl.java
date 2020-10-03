@@ -57,7 +57,7 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
 
         objectToDestroy.getCuadreFk().getOperacionContableCuadreFk().getCuentaFk().increase(objectToDestroy.getCuadreFk().getOperacionContableCuadreFk());
 
-        return repo.destroy(objectToDestroy);
+        return super.destroy(objectToDestroy);
     }
 
     @Override

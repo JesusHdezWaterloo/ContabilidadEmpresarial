@@ -54,5 +54,6 @@ public class CuentaBancariaDetailMainPanel extends CuentaDetailMainPanel<CuentaB
 
     private void addPropertyChange() {
         ContabilidadSwingModule.cuentaBancariaUC.addPropertyChangeListener(updList);
+        ContabilidadSwingModule.liquicadionUC.addPropertyChangeListener(updList);
     }
 }

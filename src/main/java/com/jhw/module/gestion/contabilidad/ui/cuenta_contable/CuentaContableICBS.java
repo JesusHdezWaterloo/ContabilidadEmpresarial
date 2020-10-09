@@ -32,17 +32,7 @@ public class CuentaContableICBS extends InputComboBoxSelection<CuentaContableDom
     public ModelPanel<CuentaContableDomain> inputPanel() {
         return CuentaContableInputView.from();
     }
-
-    public void updateComboBoxCuenta(TipoCuentaDomain tipo) throws Exception {
-        actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuenta(tipo);
-        setUpList(actualList);
-    }
-
-    public void updateComboBoxCuadre(TipoCuentaDomain tipo) throws Exception {
-        actualList = ContabilidadSwingModule.cuentaContableUC.findAllCuadre(tipo);
-        setUpList(actualList);
-    }
-
+    
     public void setMatchingItem(TipoCuentaDomain tipo, MonedaDomain moneda) {
         for (CuentaContableDomain c : actualList) {
             if (c.getTipoCuentaFk().equals(tipo) && c.getMonedaFk().equals(moneda)) {

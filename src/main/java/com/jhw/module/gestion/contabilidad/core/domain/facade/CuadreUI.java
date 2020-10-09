@@ -42,11 +42,22 @@ public class CuadreUI extends VolatileDomainObject {
 
         BigDecimal debito1 = BigDecimal.ZERO;
         BigDecimal credito1 = BigDecimal.ZERO;
-        if (getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
-            debito1 = valorConvertidoCuenta;
-        } else {
-            credito1 = valorConvertidoCuenta;
+        if (valorConvertidoCuenta.compareTo(BigDecimal.ZERO) >= 0) {
+            valorConvertidoCuenta = valorConvertidoCuenta.abs();
+            if (getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
+                debito1 = valorConvertidoCuenta;
+            } else {
+                credito1 = valorConvertidoCuenta;
+            }
+        } else {// si es neg lo invierto            
+            valorConvertidoCuenta = valorConvertidoCuenta.abs();
+            if (getCuenta().getTipoCuentaFk().getDebitoCredito()) {//debito
+                credito1 = valorConvertidoCuenta;
+            } else {
+                debito1 = valorConvertidoCuenta;
+            }
         }
+
         cuadreNew.setOperacionContableFk(new OperacionContableDomain(debito1, credito1, getCuenta(), getInfo()));
 
         //debito y credito invertido para mantener equilibrio

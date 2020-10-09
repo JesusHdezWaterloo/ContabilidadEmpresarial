@@ -43,7 +43,7 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void initComponents() {
-        textFieldValor = MaterialPreparedTextFactory.buildFormatedMoneyIcon();
+        textFieldValor = MaterialPreparedTextFactory.buildFormatedMoneyIcon(true);
         textFieldValor.setLabel("Valor");
         textFieldValor.setHint("Valor de la operación");
         textFieldValor.setIcon(MaterialIcons.ATTACH_MONEY);
@@ -99,30 +99,16 @@ public class OperacionCuadreInputView extends CleanCRUDInputView<OperacionCuadre
     }
 
     private void addListeners() {
-        cuentaICBS.addActionListener((ActionEvent e) -> {
-            updateCuadreICBS();
-        });
         tipoOperICBS.addActionListener((ActionEvent e) -> {
             changeTipoOp();
         });
     }
 
-    private void updateCuadreICBS() {
-        try {
-            CuentaContableDomain old = cuentaCuadreICBS.getObject();
-            cuentaCuadreICBS.updateComboBoxCuadre(cuentaICBS.getObject().getTipoCuentaFk());
-            cuentaCuadreICBS.setObject(old);
-        } catch (Exception e) {
-        }
-    }
-
     public void setTipoOp(TipoOperacionContableDomain opDefecto) {
         if (opDefecto != null) {
             try {
-                this.cuentaICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaDefectoFk());
                 this.cuentaICBS.setMatchingItem(opDefecto.getTipoCuentaDefectoFk(), moneda.getObject());
 
-                this.cuentaCuadreICBS.updateComboBoxCuenta(opDefecto.getTipoCuentaCuadreDefectoFk());
                 this.cuentaCuadreICBS.setMatchingItem(opDefecto.getTipoCuentaCuadreDefectoFk(), moneda.getObject());
 
                 tipoOperICBS.setObject(opDefecto);

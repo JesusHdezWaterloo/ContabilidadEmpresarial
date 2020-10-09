@@ -10,7 +10,6 @@ import com.jhw.swing.prepared.textarea.MaterialPreparedTextAreaFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFactory;
 import com.jhw.swing.material.components.textfield.MaterialTextFieldIcon;
 import com.jhw.swing.material.standards.MaterialIcons;
-import java.awt.event.ActionEvent;
 import java.util.Map;
 
 /**
@@ -30,7 +29,6 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     private TipoOperacionContableInputView(TipoOperacionContableDomain model) {
         super(model, ContabilidadSwingModule.tipoOperacionContableUC, TipoOperacionContableDomain.class);
         initComponents();
-        addListeners();
         update();
     }
 
@@ -71,11 +69,6 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
     // End of variables declaration                   
 
     @Override
-    public void update() {
-        super.update();
-    }
-
-    @Override
     public Map<String, Object> bindFields() {
         Map<String, Object> bindFields = super.bindFields();
         bindFields.put("nombreOperacion", textFieldTipo);
@@ -85,16 +78,4 @@ public class TipoOperacionContableInputView extends CleanCRUDInputView<TipoOpera
         return bindFields;
     }
 
-    private void addListeners() {
-        cuentaDefecto.addActionListener((ActionEvent e) -> {
-            updateCuadreICBS();
-        });
-    }
-
-    private void updateCuadreICBS() {
-        try {
-            cuentaDefectoCuadre.updateComboBoxCuadre(cuentaDefecto.getObject());
-        } catch (Exception e) {
-        }
-    }
 }

@@ -36,7 +36,7 @@ public class OperacionCuadreUI extends VolatileDomainObject {
     }
 
     public OperacionCuadreUI(CuadreDomain cuadre) {
-        this.valor = cuadre.getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() ? cuadre.getOperacionContableFk().getDebito() : cuadre.getOperacionContableFk().getCredito();
+        this.valor = cuadre.getOperacionContableFk().getDebito().subtract(cuadre.getOperacionContableFk().getCredito());
         this.moneda = cuadre.getOperacionContableFk().getCuentaFk().getMonedaFk();
         this.cuenta = cuadre.getOperacionContableFk().getCuentaFk();
         this.cuadre = cuadre.getOperacionContableCuadreFk().getCuentaFk();

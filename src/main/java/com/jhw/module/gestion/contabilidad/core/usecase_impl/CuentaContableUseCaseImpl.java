@@ -76,18 +76,6 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
     }
 
     @Override
-    public List<CuentaContableDomain> findAllCuadre(TipoCuentaDomain tipo) throws Exception {
-        List<CuentaContableDomain> cuentasContables = findAll();
-        List<CuentaContableDomain> cuentas = new ArrayList<>(cuentasContables.size());
-        for (CuentaContableDomain c : cuentasContables) {
-            if (c.getTipoCuentaFk().getDebitoCredito() != tipo.getDebitoCredito() && c.getTipoCuentaFk().isLiquidable()) {
-                cuentas.add(c);
-            }
-        }
-        return cuentas;
-    }
-
-    @Override
     public List<CuentaContableDomain> findAllCuenta(TipoCuentaDomain tipo) throws Exception {
         List<CuentaContableDomain> cuentasContables = findAll();
         List<CuentaContableDomain> cuentas = new ArrayList<>(cuentasContables.size());

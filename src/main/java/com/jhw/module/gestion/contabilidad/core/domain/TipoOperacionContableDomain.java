@@ -132,10 +132,6 @@ public class TipoOperacionContableDomain extends EntityDomainObjectValidated {
     public ValidationResult validate() throws ValidationException {
         ValidationResult v = super.validate();
 
-        //diferentes tipos
-        if (getTipoCuentaDefectoFk().getDebitoCredito() == getTipoCuentaCuadreDefectoFk().getDebitoCredito()) {
-            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
-        }
         //liquidable
         if (!getTipoCuentaCuadreDefectoFk().isLiquidable()) {
             v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));

@@ -117,10 +117,6 @@ public class CuadreDomain extends EntityDomainObjectValidated {
         if (0 != getOperacionContableFk().getCredito().compareTo(MonedaHandler.venta(getOperacionContableCuadreFk().getDebito(), getOperacionContableCuadreFk().getCuentaFk().getMonedaFk(), getOperacionContableFk().getCuentaFk().getMonedaFk()))) {
             v.add(ValidationMessage.from("operacionContableFk", "Lo que se acredita en la cuenta inicial no coincide con lo que se debita en el cuadre."));
         }
-        //diferentes tipos
-        if (getOperacionContableFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito() == getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().getDebitoCredito()) {
-            v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede crear un cuadre entre 2 cuentas del mismo tipo.\nUna tiene que ser deudora y otra acreedora para mantenerse cuadradas. ☺"));
-        }
         //liquidable
         if (!getOperacionContableCuadreFk().getCuentaFk().getTipoCuentaFk().isLiquidable()) {
             v.add(ValidationMessage.from("operacionContableCuadreFk", "No se puede hacer un cuadre contra una cuenta que no sea liquidable."));

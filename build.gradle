@@ -18,6 +18,7 @@ dependencies {
     implementation project(':utils-spring')
     
     implementation project(':clean-core-full')
+    implementation project(':module-util-mysql')
     implementation project(':module-gestion-contabilidad_empresarial-standard')
     
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'

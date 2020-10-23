@@ -11,3 +11,6 @@ project(':utils-core').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle
 
 include ':module-gestion-contabilidad_empresarial-standard'
 project(':module-gestion-contabilidad_empresarial-standard').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\module-gestion-contabilidad_empresarial-standard" as File
+
+include ':module-util-mysql'
+project(':module-util-mysql').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\module-util-mysql" as File

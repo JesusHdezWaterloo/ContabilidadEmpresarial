@@ -1,5 +1,17 @@
 package com.jhw.module.gestion.contabilidad.core.module;
 
+import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoOperacionContableUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.SubcuentaUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.MonedaUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaContableUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.TitularUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoCuentaUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.InfoOperacionContableUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.OperacionContableUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.FormaPagoUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.*;

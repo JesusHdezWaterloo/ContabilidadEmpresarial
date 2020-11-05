@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @RestController
-@RequestMapping(value = TIPO_CUENTA_PATH)
+@RequestMapping(value = TIPO_CUENTA_GENERAL_PATH)
 public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain> implements TipoCuentaUseCase {
 
     private final TipoCuentaUseCase tipoCuentaUC = A_ModuleGestionContabilidadEmpresarial.tipoCuentaUC;
@@ -27,7 +27,7 @@ public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain>
     }
 
     @Override
-    @GetMapping(TIPO_CUENTA_PATH_FIND_ALL_CUADRE_PATH)
+    @GetMapping(TIPO_CUENTA_FIND_ALL_CUADRE_PATH)
     public List<TipoCuentaDomain> findAllCuadre(@PathVariable(TIPO_CUENTA) TipoCuentaDomain selectedItem) throws Exception {
         return tipoCuentaUC.findAllCuadre(selectedItem);
     }

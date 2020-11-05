@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @RestController
-@RequestMapping(value = TIPO_OPERACION_PATH)
+@RequestMapping(value = TIPO_OPERACION_GENERAL_PATH)
 public class TipoOperacionRESTService extends RESTServiceTemplate<TipoOperacionContableDomain> implements TipoOperacionContableUseCase {
 
     private final TipoOperacionContableUseCase tipoOperacionContableUC = A_ModuleGestionContabilidadEmpresarial.tipoOperacionContableUC;

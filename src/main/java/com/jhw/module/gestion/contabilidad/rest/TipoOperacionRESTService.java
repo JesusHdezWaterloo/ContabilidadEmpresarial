@@ -9,7 +9,6 @@ import static com.jhw.module.gestion.contabilidad.core.ModuleGestionContabilidad
 import com.jhw.module.gestion.contabilidad.core.domain.*;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.*;
 import com.jhw.utils.spring.server.*;
-import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 /**

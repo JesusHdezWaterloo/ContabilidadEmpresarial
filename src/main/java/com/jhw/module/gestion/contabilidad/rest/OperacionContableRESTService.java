@@ -28,7 +28,7 @@ public class OperacionContableRESTService extends RESTServiceTemplate<OperacionC
 
     @Override
     @GetMapping(OPERACION_CONTABLE_FIND_ALL_PATH)
-    public List<OperacionContableDomain> findAll(CuentaContableDomain cuenta) throws Exception {
+    public List<OperacionContableDomain> findAll(@PathVariable(CUENTA) CuentaContableDomain cuenta) throws Exception {
         return operacionContableUC.findAll(cuenta);
     }
 

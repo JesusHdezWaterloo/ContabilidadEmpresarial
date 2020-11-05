@@ -93,7 +93,7 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
                 BigDecimal cred = BigDecimal.ZERO;
                 for (LiquidacionDomain liquidacionDomain : liqUC.findAll(c)) {
                     deb = deb.add(liquidacionDomain.getDebito());
-                    cred = deb.add(liquidacionDomain.getCredito());
+                    cred = cred.add(liquidacionDomain.getCredito());
                 }
                 if (c.getDebito() != deb || c.getCredito() != cred) {
                     c.setDebito(deb);

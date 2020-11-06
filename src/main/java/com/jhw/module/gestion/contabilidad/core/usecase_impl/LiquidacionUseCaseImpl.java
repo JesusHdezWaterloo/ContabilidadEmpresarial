@@ -10,7 +10,7 @@ import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCas
 import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
 import com.jhw.module.gestion.contabilidad.utils.MonedaHandler;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain> implements LiquidacionUseCase {
@@ -72,7 +72,7 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
                 cuadre.info().getNombre(),
                 cuadre.getOperacionContableCuadreFk().getDebito(),
                 cuadre.getOperacionContableCuadreFk().getCredito(),
-                new Date(),
+                LocalDate.now(),
                 cuadre.info().getDescripcion(),
                 cuentaUC.findCuentaDefault(cuadre.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
                 cuadre);

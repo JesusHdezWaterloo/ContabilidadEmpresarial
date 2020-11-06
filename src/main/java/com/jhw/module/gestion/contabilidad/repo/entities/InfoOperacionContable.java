@@ -7,7 +7,7 @@ package com.jhw.module.gestion.contabilidad.repo.entities;
 
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,8 +62,7 @@ public class InfoOperacionContable implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
     @Basic(optional = false)
     @NotNull
@@ -86,7 +85,7 @@ public class InfoOperacionContable implements Serializable {
         this.idInfoOperacionContable = idInfoOperacionContable;
     }
 
-    public InfoOperacionContable(Integer idInfoOperacionContable, String documento, String nombre, Date fecha, String descripcion) {
+    public InfoOperacionContable(Integer idInfoOperacionContable, String documento, String nombre, LocalDate fecha, String descripcion) {
         this.idInfoOperacionContable = idInfoOperacionContable;
         this.documento = documento;
         this.nombre = nombre;
@@ -118,11 +117,11 @@ public class InfoOperacionContable implements Serializable {
         this.nombre = nombre;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

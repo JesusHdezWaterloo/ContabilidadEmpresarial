@@ -27,4 +27,16 @@ public class TipoCuentaUseCaseImpl extends DefaultCRUDUseCase<TipoCuentaDomain> 
         }
         return answ;
     }
+
+    /**
+     * Delegate de findAllCuadre(TipoCuentaDomain tipo)
+     *
+     * @param idTipoCuenta
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<TipoCuentaDomain> findAllCuadre(Integer idTipoCuenta) throws Exception {
+        return findAllCuadre(ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class).findBy(idTipoCuenta));
+    }
 }

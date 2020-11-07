@@ -6,6 +6,7 @@ import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.LiquidacionRepo;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
 import com.jhw.module.gestion.contabilidad.utils.MonedaHandler;
@@ -78,9 +79,33 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
                 cuadre);
     }
 
+    /**
+     * Delegate de getLiquidacion(CuadreDomain cuadre)
+     *
+     * @param idCuadre
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public LiquidacionDomain getLiquidacion(Integer idCuadre) throws Exception {
+        return getLiquidacion(ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class).findBy(idCuadre));
+    }
+
     @Override
     public List<LiquidacionDomain> findAll(CuentaBancariaDomain cuenta) throws Exception {
         return repo.findAll(cuenta);
+    }
+
+    /**
+     * Delegate de findAll(CuentaBancariaDomain cuenta)
+     *
+     * @param IdCuentaBancaria
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<LiquidacionDomain> findAll(Integer IdCuentaBancaria) throws Exception {
+        return findAll(ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class).findBy(IdCuentaBancaria));
     }
 
     @Override

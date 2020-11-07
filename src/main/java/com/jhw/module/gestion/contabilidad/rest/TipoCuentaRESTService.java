@@ -26,10 +26,25 @@ public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain>
         setUseCase(tipoCuentaUC);
     }
 
+    /**
+     * Use findAllCuadre(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta) para
+     * lightweight
+     *
+     * @param selectedItem
+     * @return
+     * @throws Exception
+     * @deprecated
+     */
+    @Override
+    @Deprecated
+    public List<TipoCuentaDomain> findAllCuadre(TipoCuentaDomain selectedItem) throws Exception {
+        return tipoCuentaUC.findAllCuadre(selectedItem);
+    }
+
     @Override
     @GetMapping(TIPO_CUENTA_FIND_ALL_CUADRE_PATH)
-    public List<TipoCuentaDomain> findAllCuadre(@PathVariable(TIPO_CUENTA) TipoCuentaDomain selectedItem) throws Exception {
-        return tipoCuentaUC.findAllCuadre(selectedItem);
+    public List<TipoCuentaDomain> findAllCuadre(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta) throws Exception {
+        return tipoCuentaUC.findAllCuadre(idTipoCuenta);
     }
 
 }

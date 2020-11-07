@@ -26,10 +26,25 @@ public class OperacionContableRESTService extends RESTServiceTemplate<OperacionC
         setUseCase(operacionContableUC);
     }
 
+    /**
+     * Use findAll(@PathVariable(CUENTA) Integer idCuentaContable) para
+     * lightweight
+     *
+     * @param cuenta
+     * @return
+     * @throws Exception
+     * @deprecated
+     */
+    @Override
+    @Deprecated
+    public List<OperacionContableDomain> findAll(CuentaContableDomain cuenta) throws Exception {
+        return operacionContableUC.findAll(cuenta);
+    }
+
     @Override
     @GetMapping(OPERACION_CONTABLE_FIND_ALL_PATH)
-    public List<OperacionContableDomain> findAll(@PathVariable(CUENTA) CuentaContableDomain cuenta) throws Exception {
-        return operacionContableUC.findAll(cuenta);
+    public List<OperacionContableDomain> findAll(@PathVariable(CUENTA) Integer idCuentaContable) throws Exception {
+        return operacionContableUC.findAll(idCuentaContable);
     }
 
 }

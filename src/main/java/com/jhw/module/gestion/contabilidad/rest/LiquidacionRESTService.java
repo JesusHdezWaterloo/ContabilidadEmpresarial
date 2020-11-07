@@ -26,15 +26,44 @@ public class LiquidacionRESTService extends RESTServiceTemplate<LiquidacionDomai
         setUseCase(liquicadionUC);
     }
 
+    /**
+     * Use findAll(@PathVariable(CUENTA) Integer IdCuentaBancaria) para
+     * lightweight
+     *
+     * @param cuenta
+     * @return
+     * @throws Exception
+     * @deprecated
+     */
     @Override
-    @GetMapping(LIQUIDACION_FIND_ALL_PATH)
-    public List<LiquidacionDomain> findAll(@PathVariable(CUENTA) CuentaBancariaDomain cuenta) throws Exception {
+    @Deprecated
+    public List<LiquidacionDomain> findAll(CuentaBancariaDomain cuenta) throws Exception {
         return liquicadionUC.findAll(cuenta);
     }
 
     @Override
-    @GetMapping(LIQUIDACION_GET_PATH)
-    public LiquidacionDomain getLiquidacion(@PathVariable(CUADRE) CuadreDomain cuadre) throws Exception {
+    @GetMapping(LIQUIDACION_FIND_ALL_PATH)
+    public List<LiquidacionDomain> findAll(@PathVariable(CUENTA) Integer IdCuentaBancaria) throws Exception {
+        return liquicadionUC.findAll(IdCuentaBancaria);
+    }
+
+    /**
+     * Use getLiquidacion(@PathVariable(CUADRE) Integer idCuadre) para
+     * lightweight
+     *
+     * @param cuadre
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Deprecated
+    public LiquidacionDomain getLiquidacion(CuadreDomain cuadre) throws Exception {
         return liquicadionUC.getLiquidacion(cuadre);
+    }
+
+    @Override
+    @GetMapping(LIQUIDACION_GET_PATH)
+    public LiquidacionDomain getLiquidacion(@PathVariable(CUADRE) Integer idCuadre) throws Exception {
+        return liquicadionUC.getLiquidacion(idCuadre);
     }
 }

@@ -32,10 +32,25 @@ public class CuentaBancariaRESTService extends RESTServiceTemplate<CuentaBancari
         return cuentaBancariaUC.findAllCuentas();
     }
 
+    /**
+     * Use findCuentaDefault(@PathVariable(MONEDA) Integer idMoneda) para
+     * lightweight
+     *
+     * @param moneda
+     * @return
+     * @throws Exception
+     * @deprecated
+     */
+    @Override
+    @Deprecated
+    public CuentaBancariaDomain findCuentaDefault(MonedaDomain moneda) throws Exception {
+        return cuentaBancariaUC.findCuentaDefault(moneda);
+    }
+
     @Override
     @GetMapping(CUENTA_BANCARIA_FIND_DEFAULT_PATH)
-    public CuentaBancariaDomain findCuentaDefault(@PathVariable(LIQUIDADA) MonedaDomain moneda) throws Exception {
-        return cuentaBancariaUC.findCuentaDefault(moneda);
+    public CuentaBancariaDomain findCuentaDefault(@PathVariable(MONEDA) Integer idMoneda) throws Exception {
+        return cuentaBancariaUC.findCuentaDefault(idMoneda);
     }
 
     @Override

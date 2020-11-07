@@ -6,11 +6,12 @@ import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.LiquidacionRepo;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
 import com.jhw.module.gestion.contabilidad.utils.MonedaHandler;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain> implements LiquidacionUseCase {
@@ -72,15 +73,39 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
                 cuadre.info().getNombre(),
                 cuadre.getOperacionContableCuadreFk().getDebito(),
                 cuadre.getOperacionContableCuadreFk().getCredito(),
-                new Date(),
+                LocalDate.now(),
                 cuadre.info().getDescripcion(),
                 cuentaUC.findCuentaDefault(cuadre.getOperacionContableCuadreFk().getCuentaFk().getMonedaFk()),
                 cuadre);
     }
 
+    /**
+     * Delegate de getLiquidacion(CuadreDomain cuadre)
+     *
+     * @param idCuadre
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public LiquidacionDomain getLiquidacion(Integer idCuadre) throws Exception {
+        return getLiquidacion(ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class).findBy(idCuadre));
+    }
+
     @Override
     public List<LiquidacionDomain> findAll(CuentaBancariaDomain cuenta) throws Exception {
         return repo.findAll(cuenta);
+    }
+
+    /**
+     * Delegate de findAll(CuentaBancariaDomain cuenta)
+     *
+     * @param IdCuentaBancaria
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<LiquidacionDomain> findAll(Integer IdCuentaBancaria) throws Exception {
+        return findAll(ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class).findBy(IdCuentaBancaria));
     }
 
     @Override

@@ -8,7 +8,7 @@ package com.jhw.module.gestion.contabilidad.repo.entities;
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -81,8 +79,7 @@ public class Liquidacion implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
     @Basic(optional = false)
     @NotNull
@@ -105,7 +102,7 @@ public class Liquidacion implements Serializable {
         this.idLiquidacion = idOperacionBancaria;
     }
 
-    public Liquidacion(Integer idOperacionBancaria, String documento, String nombre, BigDecimal debito, BigDecimal credito, Date fecha, String descripcion) {
+    public Liquidacion(Integer idOperacionBancaria, String documento, String nombre, BigDecimal debito, BigDecimal credito, LocalDate fecha, String descripcion) {
         this.idLiquidacion = idOperacionBancaria;
         this.documento = documento;
         this.nombre = nombre;
@@ -155,11 +152,11 @@ public class Liquidacion implements Serializable {
         this.credito = credito;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

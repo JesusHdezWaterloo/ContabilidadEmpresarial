@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @RestController
-@RequestMapping(value = SUBCUENTA_PATH)
+@RequestMapping(value = SUBCUENTA_GENERAL_PATH)
 public class SubcuentaRESTService extends RESTServiceTemplate<SubcuentaDomain> implements SubcuentaUseCase {
 
     private final SubcuentaUseCase subcuentaUC = A_ModuleGestionContabilidadEmpresarial.subcuentaUC;

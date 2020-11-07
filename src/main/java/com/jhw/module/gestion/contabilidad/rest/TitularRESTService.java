@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
 @RestController
-@RequestMapping(value = TITULAR_PATH)
+@RequestMapping(value = TITULAR_GENERAL_PATH)
 public class TitularRESTService extends RESTServiceTemplate<TitularDomain> implements TitularUseCase {
 
     private final TitularUseCase titularUC = A_ModuleGestionContabilidadEmpresarial.titularUC;

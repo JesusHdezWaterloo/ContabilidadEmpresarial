@@ -14,6 +14,7 @@ import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.CuentaContableRepo;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaContableUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoCuentaUseCase;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +88,18 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
         return cuentas;
     }
 
+    /**
+     * Delegate al findAllCuenta(TipoCuentaDomain tipo)
+     *
+     * @param idTipoCuenta
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<CuentaContableDomain> findAllCuenta(Integer idTipoCuenta) throws Exception {
+        return findAllCuenta(ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class).findBy(idTipoCuenta));
+    }
+
     private void checkIntegrity() {
         try {
             HashMap<Integer, CuentaContableDomain> h = new HashMap<>();
@@ -121,4 +134,5 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
             Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, Resource.getString("msg.default_config.error.check_integrity"));
         }
     }
+
 }

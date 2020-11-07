@@ -14,6 +14,7 @@ import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.CuentaBancariaRepo;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCase;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
+import com.jhw.module.gestion.contabilidad.core.usecase_def.MonedaUseCase;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,18 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
         return all.get(0);
     }
 
+    /**
+     * Delegate al findCuentaDefault(MonedaDomain moneda)
+     *
+     * @param idMoneda
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public CuentaBancariaDomain findCuentaDefault(Integer idMoneda) throws Exception {
+        return findCuentaDefault(ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class).findBy(idMoneda));
+    }
+
     @Override
     public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
         cuenta.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
@@ -106,4 +119,5 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
             Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, Resource.getString("msg.default_config.error.check_integrity"));
         }
     }
+
 }

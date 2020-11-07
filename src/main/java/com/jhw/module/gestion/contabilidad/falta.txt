@@ -1,8 +1,0 @@
-Falta:
--   Cuenta single:
-fire al delete para que actualize
-
-sql con insert inicial de moneda, tipo de op contable, y tipos de cuenta
-
-
-check box del tipo de cuenta

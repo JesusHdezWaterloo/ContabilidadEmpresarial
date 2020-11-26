@@ -1,4 +1,4 @@
-rootProject.name = 'module-gestion-contabilidad_empresarial'
+rootProject.name = 'module-gestion-contabilidad_empresarial-server'
 
 include ':clean-core-full'
 project(':clean-core-full').projectDir = "E:\\Trabajos\\Projects\\GIT Projects Gradle\\clean-core-full" as File

@@ -41,7 +41,7 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
         if (!old.getMonedaFk().equals(objectToUpdate.getMonedaFk())) {
             throw new ValidationException("monedaFk", "No se puede cambiar la moneda de la cuenta.");
         }
-        if (!old.getTipoCuentaFk().equals(objectToUpdate.getTipoCuentaFk())) {
+        if (!old.getTipoCuentaFk().equivalent(objectToUpdate.getTipoCuentaFk())) {
             throw new ValidationException("tipoCuentaFk", "No se puede cambiar el tipo cuenta.");
         }
         return super.edit(objectToUpdate);

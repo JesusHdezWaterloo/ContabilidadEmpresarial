@@ -1,22 +1,9 @@
 package com.jhw.module.gestion.contabilidad.core.module;
 
-import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoOperacionContableUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.SubcuentaUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.MonedaUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaContableUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.TitularUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.CuentaBancariaUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoCuentaUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.InfoOperacionContableUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.OperacionContableUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.LiquidacionUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.FormaPagoUseCase;
-import com.jhw.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.*;
 import com.jhw.module.gestion.contabilidad.core.usecase_impl.*;
-
 
 /**
  * Configuracion del injection del modulo de contabilidad-core.
@@ -35,7 +22,6 @@ public class ContabilidadCoreInjectionConfig extends AbstractModule {
         bind(FormaPagoUseCase.class).to(FormaPagoUseCaseImpl.class).in(Singleton.class);
         bind(MonedaUseCase.class).to(MonedaUseCaseImpl.class).in(Singleton.class);
         bind(OperacionContableUseCase.class).to(OperacionContableUseCaseImpl.class).in(Singleton.class);
-        bind(SubcuentaUseCase.class).to(SubcuentaUseCaseImpl.class).in(Singleton.class);
         bind(TipoCuentaUseCase.class).to(TipoCuentaUseCaseImpl.class).in(Singleton.class);
         bind(TipoOperacionContableUseCase.class).to(TipoOperacionContableUseCaseImpl.class).in(Singleton.class);
         bind(TitularUseCase.class).to(TitularUseCaseImpl.class).in(Singleton.class);

@@ -28,7 +28,6 @@ public class A_ModuleGestionContabilidadEmpresarial {
     public final static LiquidacionUseCase liquicadionUC;
     public final static MonedaUseCase monedaUC;
     public final static OperacionContableUseCase operacionContableUC;
-    public final static SubcuentaUseCase subcuentaUC;
     public final static TipoCuentaUseCase tipoCuentaUC;
     public final static TipoOperacionContableUseCase tipoOperacionContableUC;
     public final static FormaPagoUseCase formaPagoUC;
@@ -48,7 +47,6 @@ public class A_ModuleGestionContabilidadEmpresarial {
         formaPagoUC = ContabilidadCoreModule.getInstance().getImplementation(FormaPagoUseCase.class);
         monedaUC = ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class);
         operacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(OperacionContableUseCase.class);
-        subcuentaUC = ContabilidadCoreModule.getInstance().getImplementation(SubcuentaUseCase.class);
         tipoCuentaUC = ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class);
         tipoOperacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableUseCase.class);
         titularUC = ContabilidadCoreModule.getInstance().getImplementation(TitularUseCase.class);

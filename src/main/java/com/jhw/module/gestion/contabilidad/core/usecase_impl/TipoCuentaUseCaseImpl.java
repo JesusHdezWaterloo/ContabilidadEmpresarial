@@ -5,8 +5,8 @@ import com.jhw.module.gestion.contabilidad.core.domain.TipoCuentaDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.TipoCuentaRepo;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoCuentaUseCase;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TipoCuentaUseCaseImpl extends DefaultCRUDUseCase<TipoCuentaDomain> implements TipoCuentaUseCase {
 
@@ -17,26 +17,22 @@ public class TipoCuentaUseCaseImpl extends DefaultCRUDUseCase<TipoCuentaDomain> 
     }
 
     @Override
-    public List<TipoCuentaDomain> findAllCuadre(TipoCuentaDomain tipo) throws Exception {
-        List<TipoCuentaDomain> tipos = findAll();
-        List<TipoCuentaDomain> answ = new ArrayList<>(tipos.size());
-        for (TipoCuentaDomain c : tipos) {
-            if (c.getDebitoCredito() != tipo.getDebitoCredito() && c.isLiquidable()) {
-                answ.add(c);
-            }
-        }
-        return answ;
+    public List<TipoCuentaDomain> findAllEquivalent(TipoCuentaDomain tipo) throws Exception {
+        return findAll().stream()
+                .filter((TipoCuentaDomain t) -> {
+                    return t.equivalent(tipo);
+                }).collect(Collectors.toList());
     }
 
     /**
-     * Delegate de findAllCuadre(TipoCuentaDomain tipo)
+     * Delegate de findAllEquivalent(TipoCuentaDomain tipo)
      *
      * @param idTipoCuenta
      * @return
      * @throws Exception
      */
     @Override
-    public List<TipoCuentaDomain> findAllCuadre(Integer idTipoCuenta) throws Exception {
-        return findAllCuadre(ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class).findBy(idTipoCuenta));
+    public List<TipoCuentaDomain> findAllEquivalent(Integer idTipoCuenta) throws Exception {
+        return findAllEquivalent(ContabilidadCoreModule.getInstance().getImplementation(TipoCuentaUseCase.class).findBy(idTipoCuenta));
     }
 }

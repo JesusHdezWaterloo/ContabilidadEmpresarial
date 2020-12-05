@@ -15,28 +15,4 @@ public class TipoOperacionContableUseCaseImpl extends DefaultCRUDUseCase<TipoOpe
         super.setRepo(repo);
     }
 
-    @Override
-    public TipoOperacionContableDomain create(TipoOperacionContableDomain newObject) throws Exception {
-        if (newObject.getKeyEnum() == null || newObject.getKeyEnum().isEmpty()) {
-            newObject.setKeyEnum(SHA.hash256(newObject.getNombreOperacion()));
-        }
-        return super.create(newObject);
-    }
-
-    @Override
-    public TipoOperacionContableDomain edit(TipoOperacionContableDomain objectToUpdate) throws Exception {
-        TipoOperacionContableDomain old = findBy(objectToUpdate.getIdTipoOperacion());
-        objectToUpdate.setKeyEnum(old.getKeyEnum());
-        return super.edit(objectToUpdate);
-    }
-
-    @Override
-    public TipoOperacionContableDomain findByKey(String key) {
-        try {
-            return repo.findByKey(key);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
 }

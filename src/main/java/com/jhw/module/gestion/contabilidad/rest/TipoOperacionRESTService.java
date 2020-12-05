@@ -25,10 +25,4 @@ public class TipoOperacionRESTService extends RESTServiceTemplate<TipoOperacionC
         setUseCase(tipoOperacionContableUC);
     }
 
-    @Override
-    @GetMapping(TIPO_OPERACION_PATH_FIND_BY_PATH)
-    public TipoOperacionContableDomain findByKey(@PathVariable(SEARCH_TEXT) String searchText) {
-        return tipoOperacionContableUC.findByKey(searchText);
-    }
-
 }

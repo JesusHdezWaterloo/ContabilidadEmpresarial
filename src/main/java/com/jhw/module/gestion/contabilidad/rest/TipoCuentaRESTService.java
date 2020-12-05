@@ -27,8 +27,8 @@ public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain>
     }
 
     /**
-     * Use findAllCuadre(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta) para
-     * lightweight
+     * Use findAllEquivalent(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta)
+     * para lightweight
      *
      * @param selectedItem
      * @return
@@ -37,14 +37,14 @@ public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain>
      */
     @Override
     @Deprecated
-    public List<TipoCuentaDomain> findAllCuadre(TipoCuentaDomain selectedItem) throws Exception {
-        return tipoCuentaUC.findAllCuadre(selectedItem);
+    public List<TipoCuentaDomain> findAllEquivalent(TipoCuentaDomain selectedItem) throws Exception {
+        return tipoCuentaUC.findAllEquivalent(selectedItem);
     }
 
     @Override
-    @GetMapping(TIPO_CUENTA_FIND_ALL_CUADRE_PATH)
-    public List<TipoCuentaDomain> findAllCuadre(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta) throws Exception {
-        return tipoCuentaUC.findAllCuadre(idTipoCuenta);
+    @GetMapping(TIPO_CUENTA_FIND_ALL_EQUIVALENT_PATH)
+    public List<TipoCuentaDomain> findAllEquivalent(@PathVariable(TIPO_CUENTA) Integer idTipoCuenta) throws Exception {
+        return tipoCuentaUC.findAllEquivalent(idTipoCuenta);
     }
 
 }

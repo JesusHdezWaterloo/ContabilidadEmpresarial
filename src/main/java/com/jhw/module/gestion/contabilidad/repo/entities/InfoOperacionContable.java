@@ -66,7 +66,7 @@ public class InfoOperacionContable implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 0, max = 500)
+    @Size(max = 500)
     @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
 

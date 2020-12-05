@@ -1,0 +1,4 @@
+Ultima DB: 4
+ALTER TABLE `tipo_operacion_contable` DROP INDEX `key_enum`;
+ALTER TABLE `tipo_operacion_contable` DROP `key_enum`;
+DROP TABLE `subcuenta`;

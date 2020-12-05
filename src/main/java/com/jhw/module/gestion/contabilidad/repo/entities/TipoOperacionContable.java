@@ -35,7 +35,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "TipoOperacionContable.findAll", query = "SELECT t FROM TipoOperacionContable t"),
     @NamedQuery(name = "TipoOperacionContable.findByIdTipoOperacion", query = "SELECT t FROM TipoOperacionContable t WHERE t.idTipoOperacion = :idTipoOperacion"),
     @NamedQuery(name = "TipoOperacionContable.findByNombreOperacion", query = "SELECT t FROM TipoOperacionContable t WHERE t.nombreOperacion = :nombreOperacion"),
-    @NamedQuery(name = "TipoOperacionContable.findByKeyEnum", query = "SELECT t FROM TipoOperacionContable t WHERE t.keyEnum = :keyEnum"),
     @NamedQuery(name = "TipoOperacionContable.findByDescripcion", query = "SELECT t FROM TipoOperacionContable t WHERE t.descripcion = :descripcion")})
 public class TipoOperacionContable implements Serializable {
 
@@ -52,12 +51,6 @@ public class TipoOperacionContable implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "nombre_operacion", nullable = false, length = 100)
     private String nombreOperacion;
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "key_enum", nullable = false, length = 100)
-    private String keyEnum;
 
     @Basic(optional = false)
     @NotNull
@@ -80,10 +73,9 @@ public class TipoOperacionContable implements Serializable {
         this.idTipoOperacion = idTipoOperacion;
     }
 
-    public TipoOperacionContable(Integer idTipoOperacion, String nombreOperacion, String keyEnum, String descripcion, TipoCuenta tipoCuentaCuadreDefectoFk, TipoCuenta tipoCuentaDefectoFk) {
+    public TipoOperacionContable(Integer idTipoOperacion, String nombreOperacion, String descripcion, TipoCuenta tipoCuentaCuadreDefectoFk, TipoCuenta tipoCuentaDefectoFk) {
         this.idTipoOperacion = idTipoOperacion;
         this.nombreOperacion = nombreOperacion;
-        this.keyEnum = keyEnum;
         this.descripcion = descripcion;
         this.tipoCuentaCuadreDefectoFk = tipoCuentaCuadreDefectoFk;
         this.tipoCuentaDefectoFk = tipoCuentaDefectoFk;
@@ -119,14 +111,6 @@ public class TipoOperacionContable implements Serializable {
 
     public void setNombreOperacion(String nombreOperacion) {
         this.nombreOperacion = nombreOperacion;
-    }
-
-    public String getKeyEnum() {
-        return keyEnum;
-    }
-
-    public void setKeyEnum(String keyEnum) {
-        this.keyEnum = keyEnum;
     }
 
     public String getDescripcion() {

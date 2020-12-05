@@ -5,5 +5,4 @@ import com.jhw.module.gestion.contabilidad.core.domain.TipoOperacionContableDoma
 
 public interface TipoOperacionContableRepo extends CRUDRepository<TipoOperacionContableDomain> {
 
-    public TipoOperacionContableDomain findByKey(String key) throws Exception;
 }

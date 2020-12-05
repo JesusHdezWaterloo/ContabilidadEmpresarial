@@ -22,7 +22,6 @@ public class ContabilidadRepoInjectionConfig extends AbstractModule {
         bind(FormaPagoRepo.class).to(FormaPagoRepoImpl.class).in(Singleton.class);
         bind(MonedaRepo.class).to(MonedaRepoImpl.class).in(Singleton.class);
         bind(OperacionContableRepo.class).to(OperacionContableRepoImpl.class).in(Singleton.class);
-        bind(SubcuentaRepo.class).to(SubcuentaRepoImpl.class).in(Singleton.class);
         bind(TipoCuentaRepo.class).to(TipoCuentaRepoImpl.class).in(Singleton.class);
         bind(TipoOperacionContableRepo.class).to(TipoOperacionContableRepoImpl.class).in(Singleton.class);
         bind(TitularRepo.class).to(TitularRepoImpl.class).in(Singleton.class);

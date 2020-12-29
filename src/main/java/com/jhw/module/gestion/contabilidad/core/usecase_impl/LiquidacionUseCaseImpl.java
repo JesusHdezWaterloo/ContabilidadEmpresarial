@@ -1,6 +1,7 @@
 package com.jhw.module.gestion.contabilidad.core.usecase_impl;
 
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;
@@ -25,6 +26,7 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
     }
 
     @Override
+    @Licenced
     public LiquidacionDomain create(LiquidacionDomain newObject) throws Exception {
         if (newObject.getCuadreFk().getLiquidada()) {
             throw new RuntimeException("No se puede liquidar dos veces el mismo cuadre");
@@ -51,6 +53,17 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
     }
 
     @Override
+    @Licenced
+    public LiquidacionDomain edit(LiquidacionDomain objectToUpdate) throws Exception {
+        LiquidacionDomain original = findBy(objectToUpdate.getIdLiquidacion());
+        objectToUpdate.setDebito(original.getDebito());
+        objectToUpdate.setCredito(original.getCredito());
+        objectToUpdate.setCuadreFk(original.getCuadreFk());
+        return objectToUpdate;
+    }
+
+    @Override
+    @Licenced
     public LiquidacionDomain destroy(LiquidacionDomain objectToDestroy) throws Exception {
         objectToDestroy.getCuadreFk().setLiquidada(false);
         //si se elimina una liquidacion se le agrega esa cantidad a la cuenta, por eso el increase al deb-cred
@@ -62,6 +75,7 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
     }
 
     @Override
+    @Licenced
     public LiquidacionDomain destroyById(Object keyId) throws Exception {
         throw new RuntimeException("No se puede eliminar directamente una liquidación.\nTiene que corregirse también el cuadre asociado");
     }
@@ -107,14 +121,4 @@ public class LiquidacionUseCaseImpl extends DefaultCRUDUseCase<LiquidacionDomain
     public List<LiquidacionDomain> findAll(Integer IdCuentaBancaria) throws Exception {
         return findAll(ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class).findBy(IdCuentaBancaria));
     }
-
-    @Override
-    public LiquidacionDomain edit(LiquidacionDomain objectToUpdate) throws Exception {
-        LiquidacionDomain original = findBy(objectToUpdate.getIdLiquidacion());
-        objectToUpdate.setDebito(original.getDebito());
-        objectToUpdate.setCredito(original.getCredito());
-        objectToUpdate.setCuadreFk(original.getCuadreFk());
-        return objectToUpdate;
-    }
-
 }

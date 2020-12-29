@@ -6,6 +6,7 @@ import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
 import com.clean.core.domain.services.Resource;
 import com.clean.core.exceptions.ValidationException;
+import com.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.Cuenta;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;
@@ -29,6 +30,15 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
     }
 
     @Override
+    @Licenced
+    public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
+        cuenta.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
+        cuenta.setCredito(BigDecimal.ZERO);
+        return super.create(cuenta);
+    }
+
+    @Override
+    @Licenced
     public CuentaBancariaDomain edit(CuentaBancariaDomain objectToUpdate) throws Exception {
         CuentaBancariaDomain old = findBy(objectToUpdate.getIdCuentaBancaria());
         if (old.getDebito().compareTo(objectToUpdate.getDebito()) != 0) {
@@ -79,13 +89,6 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
     @Override
     public CuentaBancariaDomain findCuentaDefault(Integer idMoneda) throws Exception {
         return findCuentaDefault(ContabilidadCoreModule.getInstance().getImplementation(MonedaUseCase.class).findBy(idMoneda));
-    }
-
-    @Override
-    public CuentaBancariaDomain create(CuentaBancariaDomain cuenta) throws Exception {
-        cuenta.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
-        cuenta.setCredito(BigDecimal.ZERO);
-        return super.create(cuenta);
     }
 
     @Override

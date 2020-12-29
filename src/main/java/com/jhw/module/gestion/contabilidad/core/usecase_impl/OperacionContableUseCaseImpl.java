@@ -1,6 +1,7 @@
 package com.jhw.module.gestion.contabilidad.core.usecase_impl;
 
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.OperacionContableDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
@@ -36,26 +37,30 @@ public class OperacionContableUseCaseImpl extends DefaultCRUDUseCase<OperacionCo
 
     @Override
     @Deprecated
-    public OperacionContableDomain destroyById(Object keyId) throws Exception {
-        throw new RuntimeException("No se puede eliminar una operacion directamente.\nTiene que eliminarse todo el ajuste");
+    @Licenced
+    public OperacionContableDomain create(OperacionContableDomain newObject) throws Exception {
+        throw new RuntimeException("No se puede crear una operacion directamente.\nTiene que crearse todo el ajuste");
     }
 
     @Override
     @Deprecated
-    public OperacionContableDomain destroy(OperacionContableDomain objecttToDestroy) throws Exception {
-        throw new RuntimeException("No se puede eliminar una operacion directamente.\nTiene que eliminarse todo el ajuste");
-    }
-
-    @Override
-    @Deprecated
+    @Licenced
     public OperacionContableDomain edit(OperacionContableDomain objectToUpdate) throws Exception {
         throw new RuntimeException("No se puede editar una operacion directamente.\nTiene que editarse todo el ajuste");
     }
 
     @Override
     @Deprecated
-    public OperacionContableDomain create(OperacionContableDomain newObject) throws Exception {
-        throw new RuntimeException("No se puede crear una operacion directamente.\nTiene que crearse todo el ajuste");
+    @Licenced
+    public OperacionContableDomain destroy(OperacionContableDomain objecttToDestroy) throws Exception {
+        throw new RuntimeException("No se puede eliminar una operacion directamente.\nTiene que eliminarse todo el ajuste");
+    }
+
+    @Override
+    @Deprecated
+    @Licenced
+    public OperacionContableDomain destroyById(Object keyId) throws Exception {
+        throw new RuntimeException("No se puede eliminar una operacion directamente.\nTiene que eliminarse todo el ajuste");
     }
 
 }

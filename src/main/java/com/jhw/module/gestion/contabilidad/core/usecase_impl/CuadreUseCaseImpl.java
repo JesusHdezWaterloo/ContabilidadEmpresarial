@@ -5,6 +5,7 @@ import com.clean.core.app.services.Notification;
 import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
 import com.clean.core.domain.services.Resource;
+import com.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
@@ -23,6 +24,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
     }
 
     @Override
+    @Licenced
     public CuadreDomain create(CuadreDomain newObject) throws Exception {
         newObject.validate();
 
@@ -40,6 +42,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
     }
 
     @Override
+    @Licenced
     public CuadreDomain edit(CuadreDomain objectToUpdate) throws Exception {
         CuadreDomain old = findBy(objectToUpdate.getIdCuadre());
         if (old.getLiquidada()) {
@@ -51,6 +54,7 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
     }
 
     @Override
+    @Licenced
     public CuadreDomain destroy(CuadreDomain objectToDestroy) throws Exception {
         //cargo el viejo que es el que tiene los valores correctos
         objectToDestroy = findBy(objectToDestroy.getIdCuadre());

@@ -1,19 +1,21 @@
 package com.jhw.module.gestion.contabilidad.core.module;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.*;
 import com.jhw.module.gestion.contabilidad.core.usecase_impl.*;
+import com.jhw.module.util.licence.core.injection.LicenceInjectionConfig;
 
 /**
  * Configuracion del injection del modulo de contabilidad-core.
  *
  * @author Jesus Hernandez Barrios (jhernandezb96@gmail.com)
  */
-public class ContabilidadCoreInjectionConfig extends AbstractModule {
+public class ContabilidadCoreInjectionConfig extends LicenceInjectionConfig {
 
     @Override
     protected void configure() {
+        super.configure();//configura la licencia
+        
         bind(CuadreUseCase.class).to(CuadreUseCaseImpl.class).in(Singleton.class);
         bind(CuentaBancariaUseCase.class).to(CuentaBancariaUseCaseImpl.class).in(Singleton.class);
         bind(CuentaContableUseCase.class).to(CuentaContableUseCaseImpl.class).in(Singleton.class);

@@ -7,6 +7,7 @@ package com.jhw.module.gestion.contabilidad.rest;
 
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.*;
+import com.jhw.module.gestion.contabilidad.core.usecase_impl.init.MonedaInitializer;
 import com.jhw.module.gestion.contabilidad.service.ResourceServiceImplementation;
 import com.jhw.module.gestion.contabilidad.service.ResourceServiceServerImplementation;
 import org.springframework.stereotype.Component;
@@ -35,7 +36,7 @@ public class A_ModuleGestionContabilidadEmpresarial {
     static {
         ResourceServiceImplementation.init();
         ResourceServiceServerImplementation.init();
-        
+
         ContabilidadCoreModule.init();
 
         cuadreUC = ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class);
@@ -50,5 +51,6 @@ public class A_ModuleGestionContabilidadEmpresarial {
         tipoOperacionContableUC = ContabilidadCoreModule.getInstance().getImplementation(TipoOperacionContableUseCase.class);
         titularUC = ContabilidadCoreModule.getInstance().getImplementation(TitularUseCase.class);
 
+        MonedaInitializer.init(monedaUC);
     }
 }

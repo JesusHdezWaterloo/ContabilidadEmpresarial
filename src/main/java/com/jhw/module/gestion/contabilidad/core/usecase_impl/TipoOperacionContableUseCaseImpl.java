@@ -5,7 +5,6 @@ import com.jhw.module.gestion.contabilidad.core.domain.TipoOperacionContableDoma
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.jhw.module.gestion.contabilidad.core.repo_def.TipoOperacionContableRepo;
 import com.jhw.module.gestion.contabilidad.core.usecase_def.TipoOperacionContableUseCase;
-import com.jhw.utils.security.SHA;
 
 public class TipoOperacionContableUseCaseImpl extends DefaultCRUDUseCase<TipoOperacionContableDomain> implements TipoOperacionContableUseCase {
 

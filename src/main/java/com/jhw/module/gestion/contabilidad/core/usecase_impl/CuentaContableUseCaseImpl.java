@@ -6,6 +6,7 @@ import com.clean.core.app.services.NotificationsGeneralType;
 import com.clean.core.app.usecase.DefaultCRUDUseCase;
 import com.clean.core.domain.services.Resource;
 import com.clean.core.exceptions.ValidationException;
+import com.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.Cuenta;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaContableDomain;
@@ -30,6 +31,15 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
     }
 
     @Override
+    @Licenced
+    public CuentaContableDomain create(CuentaContableDomain newObject) throws Exception {
+        newObject.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
+        newObject.setCredito(BigDecimal.ZERO);
+        return super.create(newObject);
+    }
+
+    @Override
+    @Licenced
     public CuentaContableDomain edit(CuentaContableDomain objectToUpdate) throws Exception {
         CuentaContableDomain old = findBy(objectToUpdate.getIdCuentaContable());
         if (old.getDebito().compareTo(objectToUpdate.getDebito()) != 0) {
@@ -45,13 +55,6 @@ public class CuentaContableUseCaseImpl extends DefaultCRUDUseCase<CuentaContable
             throw new ValidationException("tipoCuentaFk", "No se puede cambiar el tipo cuenta.");
         }
         return super.edit(objectToUpdate);
-    }
-
-    @Override
-    public CuentaContableDomain create(CuentaContableDomain newObject) throws Exception {
-        newObject.setDebito(BigDecimal.ZERO);//siempre empiezan en cero
-        newObject.setCredito(BigDecimal.ZERO);
-        return super.create(newObject);
     }
 
     @Override

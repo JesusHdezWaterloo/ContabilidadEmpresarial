@@ -1,12 +1,12 @@
 package com.jhw.module.gestion.contabilidad.core.usecase_impl;
 
-import com.clean.core.app.services.ExceptionHandler;
-import com.clean.core.app.services.Notification;
-import com.clean.core.app.services.NotificationsGeneralType;
-import com.clean.core.app.usecase.DefaultCRUDUseCase;
-import com.clean.core.domain.services.Resource;
-import com.clean.core.exceptions.ValidationException;
-import com.clean.core.utils.Licenced;
+import com.root101.clean.core.app.services.ExceptionHandler;
+import com.root101.clean.core.app.services.NotificationHandler;
+import com.root101.clean.core.app.services.NotificationsGeneralType;
+import com.root101.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.root101.clean.core.domain.services.ResourceHandler;
+import com.root101.clean.core.exceptions.ValidationException;
+import com.root101.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.Cuenta;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;
@@ -119,7 +119,7 @@ public class CuentaBancariaUseCaseImpl extends DefaultCRUDUseCase<CuentaBancaria
             }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
-            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, Resource.getString("msg.default_config.error.check_integrity"));
+            NotificationHandler.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, ResourceHandler.getString("msg.default_config.error.check_integrity"));
         }
     }
 

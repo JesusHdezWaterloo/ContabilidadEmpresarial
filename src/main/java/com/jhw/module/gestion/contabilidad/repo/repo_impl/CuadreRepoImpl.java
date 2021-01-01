@@ -6,10 +6,9 @@ import com.jhw.module.gestion.contabilidad.repo.entities.Cuadre;
 import com.jhw.module.gestion.contabilidad.repo.entities.CuentaContable;
 import com.jhw.module.gestion.contabilidad.repo.entities.InfoOperacionContable;
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
-import com.jhw.utils.jackson.JACKSON;
-import com.jhw.utils.services.ConverterService;
-import com.jhw.utils.jpa.JPACleanCRUDRepo;
-import com.jhw.utils.jpa.NonExistingEntityException;
+import com.root101.utils.services.ConverterService;
+import com.root101.repo.jpa.JPACleanCRUDRepo;
+import com.root101.repo.jpa.NonExistingEntityException;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -133,7 +132,7 @@ public class CuadreRepoImpl extends JPACleanCRUDRepo<CuadreDomain, Cuadre> imple
         EntityManager em = getEntityManager();
         try {
             List<Cuadre> list = em.createNamedQuery("Cuadre.findByLiquidada", Cuadre.class).setParameter("liquidada", liquidada).getResultList();
-            return JACKSON.convert(list, CuadreDomain.class);
+            return ConverterService.convert(list, CuadreDomain.class);
         } finally {
             em.close();
         }

@@ -5,7 +5,7 @@
  */
 package com.jhw.module.gestion.contabilidad.repo.utils;
 
-import com.clean.core.app.services.ExceptionHandler;
+import com.root101.clean.core.app.services.ExceptionHandler;
 import com.jhw.module.util.mysql.services.MySQLHandler;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

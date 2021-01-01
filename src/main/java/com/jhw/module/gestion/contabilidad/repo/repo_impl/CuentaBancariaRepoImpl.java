@@ -4,7 +4,7 @@ import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.repo_def.CuentaBancariaRepo;
 import com.jhw.module.gestion.contabilidad.repo.entities.CuentaBancaria;
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
-import com.jhw.utils.jpa.JPACleanCRUDRepo;
+import com.root101.repo.jpa.JPACleanCRUDRepo;
 
 public class CuentaBancariaRepoImpl extends JPACleanCRUDRepo<CuentaBancariaDomain, CuentaBancaria> implements CuentaBancariaRepo {
 

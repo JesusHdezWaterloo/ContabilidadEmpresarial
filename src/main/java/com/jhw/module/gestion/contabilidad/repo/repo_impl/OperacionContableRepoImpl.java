@@ -6,8 +6,8 @@ import com.jhw.module.gestion.contabilidad.core.repo_def.OperacionContableRepo;
 import com.jhw.module.gestion.contabilidad.repo.entities.CuentaContable;
 import com.jhw.module.gestion.contabilidad.repo.entities.OperacionContable;
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
-import com.jhw.utils.services.ConverterService;
-import com.jhw.utils.jpa.JPACleanCRUDRepo;
+import com.root101.utils.services.ConverterService;
+import com.root101.repo.jpa.JPACleanCRUDRepo;
 import java.util.List;
 import javax.persistence.EntityManager;
 

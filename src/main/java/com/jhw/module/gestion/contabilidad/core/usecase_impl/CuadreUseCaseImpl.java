@@ -1,11 +1,11 @@
 package com.jhw.module.gestion.contabilidad.core.usecase_impl;
 
-import com.clean.core.app.services.ExceptionHandler;
-import com.clean.core.app.services.Notification;
-import com.clean.core.app.services.NotificationsGeneralType;
-import com.clean.core.app.usecase.DefaultCRUDUseCase;
-import com.clean.core.domain.services.Resource;
-import com.clean.core.utils.Licenced;
+import com.root101.clean.core.app.services.ExceptionHandler;
+import com.root101.clean.core.app.services.NotificationHandler;
+import com.root101.clean.core.app.services.NotificationsGeneralType;
+import com.root101.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.root101.clean.core.domain.services.ResourceHandler;
+import com.root101.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaContableDomain;
 import com.jhw.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
@@ -91,14 +91,14 @@ public class CuadreUseCaseImpl extends DefaultCRUDUseCase<CuadreDomain> implemen
                 try {
                     cuadreDomain.validate();
                 } catch (Exception e) {
-                    Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR,
+                    NotificationHandler.showConfirmDialog(NotificationsGeneralType.CONFIRM_ERROR,
                             "Error en el cuadre con nombre: '" + cuadreDomain.info().getNombre() + "', documento: '" + cuadreDomain.info().getDocumento() + "'.\nAnótelo en una hoja aparte y reviselo cuando el sistema termine de cargar."
                     );
                 }
             }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
-            Notification.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, Resource.getString("msg.default_config.error.check_integrity"));
+            NotificationHandler.showConfirmDialog(NotificationsGeneralType.CONFIRM_WARNING, ResourceHandler.getString("msg.default_config.error.check_integrity"));
         }
     }
 }

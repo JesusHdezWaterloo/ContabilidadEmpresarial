@@ -4,7 +4,7 @@ import com.jhw.module.gestion.contabilidad.core.domain.MonedaDomain;
 import com.jhw.module.gestion.contabilidad.core.repo_def.MonedaRepo;
 import com.jhw.module.gestion.contabilidad.repo.entities.Moneda;
 import com.jhw.module.gestion.contabilidad.repo.utils.ResourcesContabilidad;
-import com.jhw.utils.jpa.JPACleanCRUDRepo;
+import com.root101.repo.jpa.JPACleanCRUDRepo;
 
 public class MonedaRepoImpl extends JPACleanCRUDRepo<MonedaDomain, Moneda> implements MonedaRepo {
 

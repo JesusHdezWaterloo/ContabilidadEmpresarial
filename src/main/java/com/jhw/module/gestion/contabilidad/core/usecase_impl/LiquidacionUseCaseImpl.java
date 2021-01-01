@@ -1,7 +1,7 @@
 package com.jhw.module.gestion.contabilidad.core.usecase_impl;
 
-import com.clean.core.app.usecase.DefaultCRUDUseCase;
-import com.clean.core.utils.Licenced;
+import com.root101.clean.core.app.usecase.DefaultCRUDUseCase;
+import com.root101.clean.core.utils.Licenced;
 import com.jhw.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.CuentaBancariaDomain;
 import com.jhw.module.gestion.contabilidad.core.domain.LiquidacionDomain;

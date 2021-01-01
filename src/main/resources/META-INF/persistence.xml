@@ -15,7 +15,7 @@
     <class>com.root101.module.gestion.contabilidad.repo.entities.InfoOperacionContable</class>
     <class>com.root101.module.gestion.contabilidad.repo.entities.TipoCuenta</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:7733/sigecon_contabilidad?serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:7733/root101_sigecon_contabilidad?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>

@@ -28,7 +28,7 @@ import javax.persistence.Persistence;
  */
 public class ResourcesContabilidad {
 
-    public static final String SCHEMA = "sigecon_contabilidad";
+    public static final String SCHEMA = "root101_sigecon_contabilidad";
     
     public static EntityManagerFactory EMF;
 

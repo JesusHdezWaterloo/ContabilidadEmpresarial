@@ -16,7 +16,7 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
-import static com.root101.module.gestion.contabilidad.core.ModuleGestionContabilidadEmpresarialConstants.*;
+import static com.root101.module.gestion.contabilidad.rest.A_ModuleGestionContabilidadConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.*;
 import com.root101.module.gestion.contabilidad.core.usecase_def.*;
 import com.jhw.utils.spring.server.*;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = CUENTA_BANCARIA_GENERAL_PATH)
 public class CuentaBancariaRESTService extends RESTServiceTemplate<CuentaBancariaDomain> implements CuentaBancariaUseCase {
 
-    private final CuentaBancariaUseCase cuentaBancariaUC = A_ModuleGestionContabilidadEmpresarial.cuentaBancariaUC;
+    private final CuentaBancariaUseCase cuentaBancariaUC = A_ModuleGestionContabilidadRESTConfig.cuentaBancariaUC;
 
     public CuentaBancariaRESTService() {
         setUseCase(cuentaBancariaUC);

@@ -16,7 +16,7 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
-import static com.root101.module.gestion.contabilidad.core.ModuleGestionContabilidadEmpresarialConstants.*;
+import static com.root101.module.gestion.contabilidad.rest.A_ModuleGestionContabilidadConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.root101.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.jhw.utils.spring.server.*;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = CUADRE_GENERAL_PATH)
 public class CuadreRESTService extends RESTServiceTemplate<CuadreDomain> implements CuadreUseCase {
 
-    private final CuadreUseCase cuadreUC = A_ModuleGestionContabilidadEmpresarial.cuadreUC;
+    private final CuadreUseCase cuadreUC = A_ModuleGestionContabilidadRESTConfig.cuadreUC;
 
     public CuadreRESTService() {
         setUseCase(cuadreUC);

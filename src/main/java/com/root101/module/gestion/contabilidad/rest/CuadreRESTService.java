@@ -16,7 +16,7 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
-import static com.root101.module.gestion.contabilidad.rest.A_ModuleGestionContabilidadConstants.*;
+import static com.root101.module.gestion.contabilidad.rest.ModuleGestionContabilidadRESTConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.root101.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
 import com.jhw.utils.spring.server.*;

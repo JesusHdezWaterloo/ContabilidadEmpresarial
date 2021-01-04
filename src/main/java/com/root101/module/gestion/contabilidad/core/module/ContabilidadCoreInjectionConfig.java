@@ -19,7 +19,7 @@ package com.root101.module.gestion.contabilidad.core.module;
 import com.google.inject.Singleton;
 import com.root101.module.gestion.contabilidad.core.usecase_def.*;
 import com.root101.module.gestion.contabilidad.core.usecase_impl.*;
-import com.jhw.module.util.licence.core.injection.LicenceInjectionConfig;
+import com.root101.module.control.licence.core.injection.LicenceInjectionConfig;
 
 /**
  *

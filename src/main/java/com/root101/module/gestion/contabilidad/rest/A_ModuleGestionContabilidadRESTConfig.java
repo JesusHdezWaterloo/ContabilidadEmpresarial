@@ -29,9 +29,10 @@ import org.springframework.stereotype.Component;
  * @author JesusHdezWaterloo@Github
  */
 @Component
-public class A_ModuleGestionContabilidadEmpresarial {
+public class A_ModuleGestionContabilidadRESTConfig {
 
-    public static final String BASE_PACKAGE = "com.root101.module.gestion.contabilidad";
+    //get the name of the package => com.root101.module.gestion.contabilidad.rest
+    public static final String BASE_PACKAGE = A_ModuleGestionContabilidadRESTConfig.class.getPackage().getName();
 
     public final static CuadreUseCase cuadreUC;
     public final static CuentaBancariaUseCase cuentaBancariaUC;

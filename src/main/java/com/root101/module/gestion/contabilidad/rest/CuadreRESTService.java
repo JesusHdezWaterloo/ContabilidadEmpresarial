@@ -16,10 +16,10 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
+import com.root101.spring.server.RESTServiceTemplate;
 import static com.root101.module.gestion.contabilidad.rest.ModuleGestionContabilidadRESTConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.CuadreDomain;
 import com.root101.module.gestion.contabilidad.core.usecase_def.CuadreUseCase;
-import com.jhw.utils.spring.server.*;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 

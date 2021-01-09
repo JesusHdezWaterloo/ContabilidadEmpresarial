@@ -14,26 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.root101.module.gestion.contabilidad.rest;
-
-import com.root101.spring.server.RESTServiceTemplate;
-import static com.root101.module.gestion.contabilidad.rest.ModuleGestionContabilidadRESTConstants.*;
-import com.root101.module.gestion.contabilidad.core.domain.*;
-import com.root101.module.gestion.contabilidad.core.usecase_def.*;
-import org.springframework.web.bind.annotation.*;
+package com.root101.module.gestion.contabilidad.service;
 
 /**
  *
  * @author Root101 (jhernandezb96@gmail.com, +53-5-426-8660)
  * @author JesusHdezWaterloo@Github
  */
-@RestController
-@RequestMapping(value = TITULAR_GENERAL_PATH)
-public class TitularRESTService extends RESTServiceTemplate<TitularDomain> implements TitularUseCase {
+public class ResourceKeys {
 
-    private final TitularUseCase titularUC = A_ModuleGestionContabilidadRESTConfig.titularUC;
+    public static final String KEY_MODULE_NAME_CONTAB = "com.root.module.gestion.contabilidad.name";
 
-    public TitularRESTService() {
-        setUseCase(titularUC);
-    }
 }

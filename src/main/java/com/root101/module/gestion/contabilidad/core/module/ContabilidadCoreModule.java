@@ -20,7 +20,10 @@ import com.root101.clean.core.app.modules.AbstractModule;
 import com.root101.clean.core.app.modules.DefaultAbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.root101.module.gestion.contabilidad.repo.module.ContabilidadRepoModule;
+import com.root101.clean.core.domain.services.ResourceHandler;
+import com.root101.clean.core.exceptions.AlreadyInitModule;
+import com.root101.clean.core.exceptions.NotInitModule;
+import static com.root101.module.gestion.contabilidad.service.ResourceKeys.KEY_MODULE_NAME_CONTAB;
 
 /**
  *
@@ -35,29 +38,15 @@ public class ContabilidadCoreModule extends DefaultAbstractModule {
 
     public static ContabilidadCoreModule getInstance() {
         if (INSTANCE == null) {
-            throw new NullPointerException("El modulo de Contabilidad no se ha inicializado");
+            throw new NotInitModule(ResourceHandler.getString(KEY_MODULE_NAME_CONTAB));
         }
         return INSTANCE;
     }
 
-    public static ContabilidadCoreModule init() {
-        if (INSTANCE != null) {
-            return INSTANCE;
-        }
-        INSTANCE = new ContabilidadCoreModule();
-        INSTANCE.registerModule(ContabilidadRepoModule.init());
-        return getInstance();
-    }
-
-    /**
-     * Usar init() sin repo por parametro para usar el repo por defecto
-     *
-     * @param repoModule
-     * @return
-     * @deprecated
-     */
-    @Deprecated
     public static ContabilidadCoreModule init(AbstractModule repoModule) {
+        if (INSTANCE != null) {
+            throw new AlreadyInitModule(ResourceHandler.getString(KEY_MODULE_NAME_CONTAB));
+        }
         INSTANCE = new ContabilidadCoreModule();
         INSTANCE.registerModule(repoModule);
         return getInstance();

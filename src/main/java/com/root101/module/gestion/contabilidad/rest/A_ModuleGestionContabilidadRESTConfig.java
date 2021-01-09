@@ -19,6 +19,7 @@ package com.root101.module.gestion.contabilidad.rest;
 import com.root101.module.gestion.contabilidad.core.module.ContabilidadCoreModule;
 import com.root101.module.gestion.contabilidad.core.usecase_def.*;
 import com.root101.module.gestion.contabilidad.core.usecase_impl.init.MonedaInitializer;
+import com.root101.module.gestion.contabilidad.repo.module.ContabilidadRepoModule;
 import com.root101.module.gestion.contabilidad.service.ResourceServiceImplementation;
 import com.root101.module.gestion.contabilidad.service.ResourceServiceServerImplementation;
 import org.springframework.stereotype.Component;
@@ -29,9 +30,9 @@ import org.springframework.stereotype.Component;
  * @author JesusHdezWaterloo@Github
  */
 @Component
-public class A_ModuleGestionContabilidadEmpresarial {
+public class A_ModuleGestionContabilidadRESTConfig {
 
-    public static final String BASE_PACKAGE = "com.root101.module.gestion.contabilidad";
+    public static final String BASE_PACKAGE = "com.root101.module.gestion.contabilidad.rest";
 
     public final static CuadreUseCase cuadreUC;
     public final static CuentaBancariaUseCase cuentaBancariaUC;
@@ -49,7 +50,7 @@ public class A_ModuleGestionContabilidadEmpresarial {
         ResourceServiceImplementation.init();
         ResourceServiceServerImplementation.init();
 
-        ContabilidadCoreModule.init();
+        ContabilidadCoreModule.init(ContabilidadRepoModule.init());
 
         cuadreUC = ContabilidadCoreModule.getInstance().getImplementation(CuadreUseCase.class);
         cuentaBancariaUC = ContabilidadCoreModule.getInstance().getImplementation(CuentaBancariaUseCase.class);

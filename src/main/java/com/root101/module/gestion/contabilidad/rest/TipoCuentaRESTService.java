@@ -16,10 +16,10 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
-import static com.root101.module.gestion.contabilidad.core.ModuleGestionContabilidadEmpresarialConstants.*;
+import com.root101.spring.server.RESTServiceTemplate;
+import static com.root101.module.gestion.contabilidad.rest.ModuleGestionContabilidadRESTConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.*;
 import com.root101.module.gestion.contabilidad.core.usecase_def.*;
-import com.jhw.utils.spring.server.*;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = TIPO_CUENTA_GENERAL_PATH)
 public class TipoCuentaRESTService extends RESTServiceTemplate<TipoCuentaDomain> implements TipoCuentaUseCase {
 
-    private final TipoCuentaUseCase tipoCuentaUC = A_ModuleGestionContabilidadEmpresarial.tipoCuentaUC;
+    private final TipoCuentaUseCase tipoCuentaUC = A_ModuleGestionContabilidadRESTConfig.tipoCuentaUC;
 
     public TipoCuentaRESTService() {
         setUseCase(tipoCuentaUC);

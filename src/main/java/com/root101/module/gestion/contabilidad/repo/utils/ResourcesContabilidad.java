@@ -17,7 +17,7 @@
 package com.root101.module.gestion.contabilidad.repo.utils;
 
 import com.root101.clean.core.app.services.ExceptionHandler;
-import com.jhw.module.util.mysql.services.MySQLHandler;
+import com.root101.module.util.mysql.services.MySQLHandler;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -29,7 +29,7 @@ import javax.persistence.Persistence;
 public class ResourcesContabilidad {
 
     public static final String SCHEMA = "root101_sigecon_contabilidad";
-    
+
     public static EntityManagerFactory EMF;
 
     public static void initEMF() {

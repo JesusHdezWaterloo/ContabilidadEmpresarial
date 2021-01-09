@@ -16,10 +16,10 @@
  */
 package com.root101.module.gestion.contabilidad.rest;
 
-import static com.root101.module.gestion.contabilidad.core.ModuleGestionContabilidadEmpresarialConstants.*;
+import com.root101.spring.server.RESTServiceTemplate;
+import static com.root101.module.gestion.contabilidad.rest.ModuleGestionContabilidadRESTConstants.*;
 import com.root101.module.gestion.contabilidad.core.domain.*;
 import com.root101.module.gestion.contabilidad.core.usecase_def.*;
-import com.jhw.utils.spring.server.*;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = FORMA_PAGO_GENERAL_PATH)
 public class FormaPagoRESTService extends RESTServiceTemplate<FormaPagoDomain> implements FormaPagoUseCase {
 
-    private final FormaPagoUseCase formaPagoUC = A_ModuleGestionContabilidadEmpresarial.formaPagoUC;
+    private final FormaPagoUseCase formaPagoUC = A_ModuleGestionContabilidadRESTConfig.formaPagoUC;
 
     public FormaPagoRESTService() {
         setUseCase(formaPagoUC);
